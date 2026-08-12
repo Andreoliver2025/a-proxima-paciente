@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanto a sua base deixa de gerar por ano — My Glow Up</title>
+<meta name="description" content="Descubra em um minuto quantas pacientes satisfeitas nunca indicaram ninguém para a sua clínica — e quanto isso representa por ano.">
+<style>
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --line:#2C2536;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI",system-ui,-apple-system,sans-serif; line-height:1.6;
+    background-image:radial-gradient(ellipse 80% 50% at 50% -10%, rgba(200,155,224,.16), transparent 60%);
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:32px 20px 64px}
+  .selo{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-size:clamp(26px,7vw,36px);line-height:1.15;margin:10px 0 12px;letter-spacing:-.02em}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--ink-soft);font-size:16px;margin:0 0 28px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+  label{display:block;font-size:13px;font-weight:600;color:var(--ink-soft);margin:18px 0 7px}
+  label:first-of-type{margin-top:0}
+  .campo{position:relative}
+  .campo .pre{position:absolute;left:14px;top:50%;transform:translateY(-50%);
+    color:var(--ink-faint);font-size:15px;pointer-events:none}
+  input[type=number]{
+    width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:12px;
+    color:var(--ink);font-size:19px;font-weight:600;padding:14px 14px;outline:none;
+    -moz-appearance:textfield}
+  input[type=number].com-pre{padding-left:38px}
+  input[type=number]:focus{border-color:var(--g2);box-shadow:0 0 0 3px rgba(200,155,224,.16)}
+  input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .dica{font-size:12px;color:var(--ink-faint);margin-top:6px}
+
+  /* seletor de cenario */
+  .cenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .cen{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 8px;
+    text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
+  .cen:hover{border-color:var(--g2)}
+  .cen.on{border-color:var(--g2);background:rgba(200,155,224,.12)}
+  .cen .q{font-size:21px;font-weight:800;line-height:1;letter-spacing:-.02em}
+  .cen .l{font-size:11px;color:var(--ink-faint);margin-top:5px;line-height:1.3}
+
+  button{
+    width:100%;margin-top:24px;border:0;border-radius:12px;padding:16px;
+    font-size:16px;font-weight:700;color:#17121D;cursor:pointer;
+    background:linear-gradient(90deg,var(--g1),var(--g2))}
+  button:active{transform:translateY(1px)}
+
+  .res{margin-top:26px;display:none}
+  .res.on{display:block;animation:sobe .45s ease}
+  @keyframes sobe{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .destaque{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.09));
+    border:1px solid var(--line);border-radius:18px;padding:24px;text-align:center}
+  .destaque .rot{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .destaque .num{font-size:clamp(34px,10vw,48px);font-weight:800;line-height:1.05;margin:8px 0 4px;
+    letter-spacing:-.03em}
+  .destaque .leg{font-size:14px;color:var(--ink-soft)}
+  .porano{display:inline-block;margin-top:10px;background:rgba(255,255,255,.07);
+    border:1px solid var(--line);border-radius:100px;padding:5px 13px;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .linhas{margin-top:16px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .linha{display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+    padding:13px 16px;border-bottom:1px solid var(--line);font-size:14px}
+  .linha:last-child{border-bottom:0}
+  .linha .k{color:var(--ink-soft)}
+  .linha .v{font-weight:700;white-space:nowrap}
+  .linha.somatorio{background:rgba(123,224,176,.08)}
+  .linha.somatorio .v{color:var(--ok)}
+  .linha.custo .v{color:var(--ink-soft)}
+
+  .nota{margin-top:16px;font-size:12.5px;color:var(--ink-faint);line-height:1.55}
+  .oferta{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+  .oferta h2{font-size:19px;margin:0 0 6px}
+  .oferta p{font-size:14.5px;color:var(--ink-soft);margin:0 0 14px}
+  .preco{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+  .pill{background:var(--bg2);border:1px solid var(--line);border-radius:100px;
+    padding:8px 14px;font-size:13px}
+  .pill b{color:var(--ink)}
+  .cortesia{background:rgba(123,224,176,.10);border:1px solid rgba(123,224,176,.32);
+    border-radius:12px;padding:13px 15px;font-size:14px;margin-top:6px}
+  .cortesia b{color:var(--ok)}
+  .rodape{margin-top:34px;text-align:center;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-faint)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="selo">My Glow Up</div>
+  <h1>Quantas pacientes suas <span class="grad">nunca indicaram ninguém</span>?</h1>
+  <p class="sub">Duas perguntas. A conta leva um minuto — e o número que aparece é o da sua clínica.</p>
+
+  <div class="card">
+    <label for="pac">Quantas pacientes você atende por mês?</label>
+    <div class="campo">
+      <input id="pac" type="number" min="1" max="3000" placeholder="80" inputmode="numeric">
+    </div>
+    <div class="dica">Some todos os procedimentos, não só os grandes.</div>
+
+    <label for="tic">Qual o seu ticket médio?</label>
+    <div class="campo">
+      <span class="pre">R$</span>
+      <input id="tic" type="number" min="1" max="200000" placeholder="900" class="com-pre" inputmode="numeric">
+    </div>
+    <div class="dica">Quanto entra, em média, por procedimento.</div>
+
+    <label>De cada 10 pacientes satisfeitas que hoje não indicam, quantas passariam a indicar com um programa de verdade?</label>
+    <div class="cenarios" id="cenarios">
+      <div class="cen" data-v="0.2"><div class="q">2</div><div class="l">cauteloso</div></div>
+      <div class="cen on" data-v="0.4"><div class="q">4</div><div class="l">esperado</div></div>
+      <div class="cen" data-v="0.6"><div class="q">6</div><div class="l">bem tocado</div></div>
+    </div>
+    <div class="dica">Cada uma que passa a indicar traz <b>uma</b> paciente nova — é assim que a conta é feita.</div>
+
+    <button id="btn">Ver o meu número</button>
+  </div>
+
+  <div class="res" id="res">
+    <div class="destaque">
+      <div class="rot">Pacientes satisfeitas que nunca indicaram</div>
+      <div class="num grad" id="adormecidas">—</div>
+      <div class="leg">na sua base, a cada ano</div>
+      <div class="porano">Todos os números desta página são anuais</div>
+    </div>
+
+    <div class="linhas">
+      <div class="linha"><span class="k">Pacientes atendidas por ano</span><span class="v" id="ano">—</span></div>
+      <div class="linha"><span class="k">Saem satisfeitas <span style="opacity:.7">(8 em cada 10)</span></span><span class="v" id="sat">—</span></div>
+      <div class="linha"><span class="k">Dessas, nunca indicam <span style="opacity:.7">(8 em cada 10)</span></span><span class="v" id="nunca">—</span></div>
+      <div class="linha"><span class="k"><span id="lblCen">4 em cada 10</span> passam a indicar</span><span class="v" id="novas">—</span></div>
+      <div class="linha somatorio"><span class="k"><b>Receita a mais no ano</b></span><span class="v" id="receita">—</span></div>
+      <div class="linha custo"><span class="k">Custo do My Glow Up no mesmo ano</span><span class="v" id="custo">—</span></div>
+      <div class="linha somatorio"><span class="k"><b>Diferença a favor da clínica</b></span><span class="v" id="saldo">—</span></div>
+    </div>
+
+    <p class="nota">
+      <b>De onde vem a conta.</b> O índice de que <b>80% das pacientes satisfeitas nunca indicam
+      ninguém</b> é o dado de mercado que fundamenta o My Glow Up. O cenário que você escolheu
+      acima é uma <b>hipótese de trabalho, não promessa de resultado</b> — o número real depende
+      da sua base, do seu relacionamento e do acompanhamento.
+      <br><br>
+      <b>Receita, não lucro.</b> O valor mostrado é o faturamento adicional dessas pacientes
+      novas, antes dos custos do procedimento. O custo do My Glow Up já está descontado na última
+      linha; os seus insumos e o seu tempo, não.
+    </p>
+
+    <div class="oferta">
+      <h2>E se essa conta virasse processo?</h2>
+      <p>Indicação rastreada pelo WhatsApp, Milhas da Beleza para a paciente voltar, e o registro
+         de quem trouxe quem morando fora do celular de alguém.</p>
+      <div class="preco">
+        <span class="pill"><b>R$ 299</b>/mês fixo</span>
+        <span class="pill"><b>R$ 50</b> por consulta agendada</span>
+        <span class="pill"><b>R$ 50</b> por procedimento fechado</span>
+      </div>
+      <div class="cortesia">
+        Implantação, treinamento e onboarding: <b>R$ 1.500</b> —
+        <b>hoje, 100% cortesia</b>, por tempo limitado.
+      </div>
+      <p class="nota" style="margin-top:14px">
+        É B2B: a sua paciente não paga nada, nunca. E o variável só existe quando alguém
+        realmente aparece.
+      </p>
+    </div>
+  </div>
+
+  <div class="rodape">My Glow Up · Onde a indicação financia a beleza</div>
+</div>
+
+<script>
+(function(){
+  var brl = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  var n   = new Intl.NumberFormat('pt-BR');
+  var taxa = 0.4;                      // padrao: 4 em cada 10
+
+  var cens = document.querySelectorAll('.cen');
+  cens.forEach(function(c){
+    c.addEventListener('click', function(){
+      cens.forEach(function(x){ x.classList.remove('on'); });
+      c.classList.add('on');
+      taxa = parseFloat(c.dataset.v);
+      document.getElementById('lblCen').textContent =
+        Math.round(taxa*10) + ' em cada 10';
+      if(document.getElementById('res').classList.contains('on')) calc();
+    });
+  });
+
+  function calc(){
+    var p = parseFloat(document.getElementById('pac').value);
+    var t = parseFloat(document.getElementById('tic').value);
+    if(!(p>0) || !(t>0)){ alert('Preencha os dois campos para ver o seu número.'); return; }
+
+    var ano    = p*12;                 // pacientes atendidas no ano
+    var sat    = ano*0.8;              // saem satisfeitas
+    var nunca  = sat*0.8;              // dessas, 80% nunca indicam
+    var novas  = nunca*taxa;           // quantas passariam a indicar (1 indicacao cada)
+    var receita= novas*t;              // faturamento adicional no ano
+    var custo  = 299*12 + novas*100;   // fixo + (50 agendada + 50 fechada) por paciente nova
+    var saldo  = receita - custo;
+
+    document.getElementById('ano').textContent         = n.format(Math.round(ano));
+    document.getElementById('sat').textContent         = n.format(Math.round(sat));
+    document.getElementById('nunca').textContent       = n.format(Math.round(nunca));
+    document.getElementById('adormecidas').textContent = n.format(Math.round(nunca));
+    document.getElementById('novas').textContent       = n.format(Math.round(novas));
+    document.getElementById('receita').textContent     = brl.format(Math.round(receita));
+    document.getElementById('custo').textContent       = brl.format(Math.round(custo));
+    document.getElementById('saldo').textContent       = brl.format(Math.round(saldo));
+
+    var r = document.getElementById('res');
+    r.classList.add('on');
+    r.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  document.getElementById('btn').addEventListener('click', calc);
+  ['pac','tic'].forEach(function(id){
+    document.getElementById(id).addEventListener('keydown', function(e){
+      if(e.key === 'Enter') calc();
+    });
+  });
+})();
+</script>
+</body>
+</html>
