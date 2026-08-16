@@ -42,14 +42,31 @@
   input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   .dica{font-size:12px;color:var(--ink-faint);margin-top:6px}
 
-  /* seletor de cenario */
-  .cenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
-  .cen{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 8px;
-    text-align:center;cursor:pointer;transition:border-color .15s,background .15s}
-  .cen:hover{border-color:var(--g2)}
-  .cen.on{border-color:var(--g2);background:rgba(200,155,224,.12)}
-  .cen .q{font-size:21px;font-weight:800;line-height:1;letter-spacing:-.02em}
-  .cen .l{font-size:11px;color:var(--ink-faint);margin-top:5px;line-height:1.3}
+  /* ── seletor de cenario com a LUZ ──
+     A luz tem duas formas e nunca uma terceira: ANEL parada sobre uma opcao,
+     BASTAO esticado entre duas quando viaja. Nunca curva, nunca ponta solta no ar.
+     Sao duas molas independentes — uma na cabeca, outra na cauda — e o vao entre
+     elas E a animacao. */
+  .cenarios{position:relative;display:grid;grid-template-columns:repeat(3,1fr);
+    gap:8px;margin-top:8px;background:var(--bg2);border:1px solid var(--line);
+    border-radius:14px;padding:6px;isolation:isolate}
+  .luz{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;
+    overflow:visible}
+  .cen{position:relative;z-index:1;background:transparent;border:0;border-radius:10px;
+    padding:12px 8px;text-align:center;cursor:pointer;color:inherit;font:inherit;
+    transition:color .2s}
+  .cen .q{font-size:21px;font-weight:800;line-height:1;letter-spacing:-.02em;
+    color:var(--ink-faint);transition:color .25s}
+  .cen .l{font-size:11px;color:var(--ink-faint);margin-top:5px;line-height:1.3;
+    transition:color .25s}
+  .cen.on .q{color:var(--ink)}
+  .cen.on .l{color:var(--ink-soft)}
+  .cen:hover .q{color:var(--ink-soft)}
+  .cen:focus-visible{outline:2px solid var(--g2);outline-offset:2px}
+  /* sem movimento para quem pediu sem movimento: a luz troca de lugar, nao viaja */
+  @media (prefers-reduced-motion:reduce){
+    .luz .corpo{transition:none}
+  }
 
   button{
     width:100%;margin-top:24px;border:0;border-radius:12px;padding:16px;
@@ -116,11 +133,28 @@
     </div>
     <div class="dica">Quanto entra, em média, por procedimento.</div>
 
-    <label>De cada 10 pacientes satisfeitas que hoje não indicam, quantas passariam a indicar com um programa de verdade?</label>
-    <div class="cenarios" id="cenarios">
-      <div class="cen" data-v="0.2"><div class="q">2</div><div class="l">cauteloso</div></div>
-      <div class="cen on" data-v="0.4"><div class="q">4</div><div class="l">esperado</div></div>
-      <div class="cen" data-v="0.6"><div class="q">6</div><div class="l">bem tocado</div></div>
+    <label id="lbl-cen">De cada 10 pacientes satisfeitas que hoje não indicam, quantas passariam a indicar com um programa de verdade?</label>
+    <div class="cenarios" id="cenarios" role="radiogroup" aria-labelledby="lbl-cen">
+      <svg class="luz" id="luz" aria-hidden="true">
+        <defs>
+          <linearGradient id="lg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0"   stop-color="#E8B4C8"/>
+            <stop offset=".55" stop-color="#C89BE0"/>
+            <stop offset="1"   stop-color="#8FA9F0"/>
+          </linearGradient>
+          <filter id="brilho" x="-60%" y="-140%" width="220%" height="380%">
+            <feGaussianBlur stdDeviation="5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect class="corpo" id="corpo" fill="none" stroke="url(#lg)" filter="url(#brilho)"/>
+      </svg>
+      <button type="button" class="cen" data-v="0.2" role="radio" aria-checked="false">
+        <div class="q">2</div><div class="l">cauteloso</div></button>
+      <button type="button" class="cen on" data-v="0.4" role="radio" aria-checked="true">
+        <div class="q">4</div><div class="l">esperado</div></button>
+      <button type="button" class="cen" data-v="0.6" role="radio" aria-checked="false">
+        <div class="q">6</div><div class="l">bem tocado</div></button>
     </div>
     <div class="dica">Cada uma que passa a indicar traz <b>uma</b> paciente nova — é assim que a conta é feita.</div>
 
@@ -185,17 +219,111 @@
   var n   = new Intl.NumberFormat('pt-BR');
   var taxa = 0.4;                      // padrao: 4 em cada 10
 
-  var cens = document.querySelectorAll('.cen');
-  cens.forEach(function(c){
+  /* ══════════════════ A LUZ ══════════════════
+     Duas molas independentes, uma por extremidade. A da frente (A) e sempre rapida;
+     a de tras (B) comeca mole e ENRIJECE conforme a cabeca se aproxima do destino —
+     e por isso que a luz abre ao partir e recolhe ao chegar.
+     A espessura sobe com a velocidade: esticada, uma linha de peso fixo pareceria
+     mais fraca justo no momento em que faz mais — entao engrossa para compensar. */
+  var cens  = Array.prototype.slice.call(document.querySelectorAll('.cen'));
+  var svg   = document.getElementById('luz');
+  var corpo = document.getElementById('corpo');
+  var semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var alvos = [];                 // centro x de cada opcao
+  var meia  = 0, alturaLuz = 0, topoLuz = 0;
+  var ax = 0, bx = 0, av = 0, bv = 0;   // posicao/velocidade das duas pontas
+  var destino = 0, partida = 0, idAnim = 0, ultimo = 0;
+
+  function medir(){
+    var cr = document.getElementById('cenarios').getBoundingClientRect();
+    alvos = cens.map(function(c){
+      var r = c.getBoundingClientRect();
+      return r.left - cr.left + r.width / 2;
+    });
+    var r0 = cens[0].getBoundingClientRect();
+    meia      = r0.width / 2 - 2;
+    alturaLuz = r0.height - 4;
+    topoLuz   = r0.top - cr.top + 2;
+    var i = cens.findIndex(function(c){ return c.classList.contains('on'); });
+    if (!idAnim) { ax = bx = alvos[i < 0 ? 0 : i]; destino = ax; }
+    desenhar(0);
+  }
+
+  function desenhar(vel){
+    var e = Math.min(ax, bx) - meia;
+    var d = Math.max(ax, bx) + meia;
+    var largura = Math.max(d - e, 8);
+    var espessura = 1.6 + Math.min(Math.abs(vel) / 90, 1) * 1.9;   // 1.6px → 3.5px
+    corpo.setAttribute('x', e.toFixed(2));
+    corpo.setAttribute('y', topoLuz.toFixed(2));
+    corpo.setAttribute('width', largura.toFixed(2));
+    corpo.setAttribute('height', alturaLuz.toFixed(2));
+    corpo.setAttribute('rx', (alturaLuz / 2).toFixed(2));
+    corpo.setAttribute('stroke-width', espessura.toFixed(2));
+    corpo.setAttribute('opacity', (0.75 + Math.min(Math.abs(vel) / 220, 1) * 0.25).toFixed(2));
+  }
+
+  function passo(agora){
+    // dt REAL, nao 1/60 fixo: em tela de 120Hz a mola andaria em dobro, e ao voltar de
+    // uma aba em segundo plano o salto seria enorme. O teto de 1/30 absorve as duas coisas.
+    var h = ultimo ? Math.min((agora - ultimo) / 1000, 1 / 30) : 1 / 60;
+    ultimo = agora;
+
+    // quanto falta da viagem: 0 no comeco, 1 ao chegar
+    var total = Math.abs(destino - partida) || 1;
+    var casa  = 1 - Math.min(Math.abs(destino - ax) / total, 1);
+    var suave = casa * casa * (3 - 2 * casa);          // smoothstep
+    var KB = 62 + 175 * suave;                         // a cauda enrijece ao chegar
+    var CB = 13 + 9 * suave;
+
+    av += (-235 * (ax - destino) - 22 * av) * h;  ax += av * h;
+    bv += (-KB  * (bx - destino) - CB * bv) * h;  bx += bv * h;
+
+    desenhar((av + bv) / 2);
+
+    // para o loop quando as duas pontas assentam — animacao continua gasta bateria
+    if (Math.abs(ax - destino) < .25 && Math.abs(bx - destino) < .25 &&
+        Math.abs(av) < 6 && Math.abs(bv) < 6){
+      ax = bx = destino; av = bv = 0; idAnim = 0; ultimo = 0; desenhar(0); return;
+    }
+    idAnim = requestAnimationFrame(passo);
+  }
+
+  function irPara(i){
+    destino = alvos[i];
+    if (semMovimento){ ax = bx = destino; av = bv = 0; desenhar(0); return; }
+    partida = (ax + bx) / 2;
+    // SEMPRE reagenda, cancelando o quadro anterior. A versao com "if (!rodando)" travava
+    // de vez se o navegador engolisse o rAF (aba em segundo plano): a flag ficava ligada,
+    // nenhum quadro chegava, e todo clique seguinte era ignorado.
+    if (idAnim) cancelAnimationFrame(idAnim);
+    ultimo = 0;
+    idAnim = requestAnimationFrame(passo);
+  }
+
+  // ao voltar para a aba, retoma se ficou no meio do caminho
+  document.addEventListener('visibilitychange', function(){
+    if (!document.hidden && !semMovimento && Math.abs(ax - destino) > .5){
+      if (idAnim) cancelAnimationFrame(idAnim);
+      ultimo = 0; idAnim = requestAnimationFrame(passo);
+    }
+  });
+
+  cens.forEach(function(c, i){
     c.addEventListener('click', function(){
-      cens.forEach(function(x){ x.classList.remove('on'); });
-      c.classList.add('on');
+      cens.forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-checked','false'); });
+      c.classList.add('on'); c.setAttribute('aria-checked','true');
       taxa = parseFloat(c.dataset.v);
-      document.getElementById('lblCen').textContent =
-        Math.round(taxa*10) + ' em cada 10';
+      document.getElementById('lblCen').textContent = Math.round(taxa*10) + ' em cada 10';
+      irPara(i);
       if(document.getElementById('res').classList.contains('on')) calc();
     });
   });
+
+  window.addEventListener('resize', medir);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+  medir();
 
   function calc(){
     var p = parseFloat(document.getElementById('pac').value);
