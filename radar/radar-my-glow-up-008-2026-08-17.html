@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Radar My Glow Up · Nº 008 · 17 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <!-- ══════════════════ CAPA ══════════════════ -->
+  <header class="capa">
+    <div class="selo">🧴 Radar My Glow Up</div>
+    <h1>O Brasil aprendeu que indicar tem preço. A sua clínica é a única que ainda não disse o dela.</h1>
+    <p class="chamada">Aplicativo de transporte, banco e casa de aposta pagam dinheiro por cada
+      pessoa indicada — e anunciam o valor em letra grande. A sua paciente já cresceu ouvindo isso.
+      Quando você pede que ela traga uma amiga sem dizer o que ela ganha, é contra esses números
+      que você está calada.</p>
+    <div class="dateline">Edição Nº 008 · segunda-feira, 17 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <!-- ══════════════════ SUMÁRIO ══════════════════ -->
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">Indicar virou um mercado com tabela de preço — e a sua clínica é a única casa da rua sem preço na vitrine.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: quem paga por indicação hoje, quanto paga, o que medimos no YouTube e duas palavras suas que foram tomadas.</div></li>
+      <li><a href="#semana">O que fazer esta semana</a>
+        <div class="d">Uma frase de dez segundos, dita na porta, no fim de cada atendimento da semana.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Toda fonte com data e link — e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </div>
+
+  <!-- ══════════════════ 01 · O QUE MUDOU ══════════════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na edição passada este radar disse que a palavra <i>indicação</i> tinha
+      sido tomada por aposta e transporte. Olhando com mais calma nesta semana, o quadro é maior
+      e mais incômodo: <b>não é só a palavra que foi tomada. É a expectativa da sua paciente
+      sobre o que ela ganha ao indicar alguém.</b></p>
+
+    <p class="texto capitular">Hoje existe uma indústria inteira ensinando o brasileiro que
+      indicar rende dinheiro, e ensinando com o valor escrito na tela. Aplicativo de transporte
+      que paga por parceiro trazido. Aplicativo de finanças que lista quais empresas pagam por
+      cadastro. Casa de aposta com código de indicação publicado em site de futebol. Um deles
+      chega a anunciar <b>até dois mil reais em cupons</b> por empresa indicada.</p>
+
+    <p class="texto">Nada disso é do seu setor. Mas tudo isso treinou a mesma pessoa que senta na
+      sua maca. Quando ela ouve “indica pra uma amiga”, a cabeça dela já vai atrás de uma pergunta
+      automática: <b>e eu ganho o quê?</b> Se ninguém responde, ela não briga — ela só não indica.</p>
+
+    <p class="texto">E o silêncio é medido. Acompanhamos desde 29 de julho os mesmos vídeos
+      brasileiros sobre <b>como conseguir indicação de paciente</b>. De sexta-feira até hoje eles
+      ganharam <b>zero</b> visualização. O líder do grupo levou <b>dezenove dias</b> para ganhar
+      uma única. No mesmo período, os vídeos sobre reconquistar cliente que sumiu ganharam
+      quatorze — bem menos gente estudando como <i>ser indicada</i> do que como <i>correr atrás</i>.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p><b>Programa de indicação</b> é o combinado: a sua paciente traz uma amiga e ganha algo por
+      isso. Só vira programa quando três coisas existem — <b>o que ela ganha</b>, <b>quando ela
+      ganha</b> e <b>alguém anotando quem trouxe quem</b>. Sem as três, é só um pedido simpático
+      na porta.</p>
+    </div>
+
+    <p class="texto">A tese desta edição é essa: <b>o problema não é que a sua clínica paga pouco
+      por indicação. É que ela nunca disse quanto paga.</b> E aqui está a boa notícia — a moeda
+      que a clínica tem para pagar não sai do caixa. Ela sai da agenda: um cuidado a mais na
+      cadeira, um retorno que a paciente queria e não pediu. É isso que as
+      <b>Milhas da Beleza</b> pagam. Dinheiro, todo mundo tem. Cadeira, só você.</p>
+
+    <div class="olho">
+      <p>“Indicar já tem preço no Brasil. A gente não precisa cobrir esse preço —
+      precisa dizer o nosso em voz alta.”</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">0</div>
+        <div class="lbl">visualização ganha em <b>três dias</b> pelos vídeos brasileiros sobre conseguir indicação de paciente</div></div>
+      <div class="numero"><div class="big">19</div>
+        <div class="lbl">dias que o vídeo líder do grupo levou para ganhar <b>uma</b> visualização</div></div>
+      <div class="numero"><div class="big">+14</div>
+        <div class="lbl">visualizações em <b>três dias</b> nos vídeos sobre reconquistar quem sumiu — o assunto vizinho, esse sim vivo</div></div>
+      <div class="numero"><div class="big">R$ 2 mil</div>
+        <div class="lbl">em cupons: o que um aplicativo de transporte anuncia pagar por <b>empresa indicada</b></div></div>
+    </div>
+
+    <div class="acao">
+      <div class="r">O que fica desta seção</div>
+      <p>Antes de montar qualquer programa, resolva a parte que custa zero: <b>decida em uma frase
+      o que a paciente ganha quando traz alguém</b> — e que essa frase não tenha a palavra
+      “desconto”. Desconto tira do seu caixa e ensina a paciente a esperar preço menor.
+      Um cuidado a mais ensina que a sua cadeira vale mais.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════ 02 · AS NOVIDADES ══════════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>“Plataformas com bônus de cadastro em agosto de 2026” — indicar virou pauta mensal de site de futebol</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>OneFootball · 14/08/2026</span></div>
+          <p class="texto">Não é uma notícia isolada: é uma lista que sai <b>todo mês</b>, com o
+            valor pago por cadastro atualizado. Quando um assunto vira coluna mensal, quer dizer
+            que existe público esperando por ela. Esse público é a sua paciente também.</p>
+          <p class="texto"><b>Na sua agenda:</b> ela chega até você já sabendo que indicar é
+            uma coisa que se paga. Você não precisa competir com o valor. Precisa não ficar
+            muda quando o assunto aparecer.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5hN3BFUlRGSGljbGtMcnZERm92cmZ0Sy1pS1lHWFpObmlsdFJqYUx0MURYaVdWXzB0djh0cGFUa0ZndS14UmRVMzdKZklHbmVsRzUtdWJ3?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Um aplicativo de transporte anuncia até dois mil reais em cupons por empresa indicada</h3>
+          <div class="credito"><span class="frescor antes">🔵 de março, ainda no ar</span><span>55content · 16/03/2026</span></div>
+          <p class="texto">Esse é o número que define a régua. Ele não é do seu setor e não precisa
+            ser batido. Ele serve para outra coisa: mostrar que a empresa que quer ser indicada
+            <b>diz o valor antes</b>, por escrito, sem que ninguém pergunte. É a parte que
+            praticamente nenhuma clínica faz.</p>
+          <p class="texto"><b>Na sua agenda:</b> a sua recompensa pode ser muito menor em dinheiro
+            e ainda assim ganhar — desde que seja dita. Uma sessão de manutenção, um cuidado extra
+            no dia do retorno, um horário guardado. O que perde não é o valor pequeno; é o valor
+            que ninguém enunciou.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxNamtlUzRWb3JHQV9jRGtWcTlvY3kzUlZSaDNvbklwWmFzRU44LXBPTXVwRDJRU0tjVkItLUR2U2xFNzVIMGpCUklsUlU0OFBVWXJMMF9XWG10TEpNUDJMR1N1YTRYRVNiYTRtQXh3V1Y0RGh2bjZxNXhLVzR2bFNMMzJUMktZOVhhN3dyLUJfaXNoM2FRSGdLemM2a1ZQNXo3dXhGTzdkcTJTa3FEM05aajdxR0xORWdMUlVV?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Medido hoje: o assunto “indicação de paciente” não andou nada em três dias</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>YouTube · 14/08 comparado com 17/08/2026 · mesmos vídeos nos dois dias</span></div>
+          <p class="texto">Os três vídeos brasileiros que acompanhamos sobre conseguir indicação
+            de paciente somavam mil cento e vinte e nove visualizações na sexta-feira. Hoje somam
+            <b>as mesmas mil cento e vinte e nove</b>. O líder do grupo marcou o mesmo número em
+            cinco medições seguidas de julho, subiu uma unidade em 14 de agosto e parou de novo.</p>
+          <p class="texto">É a quinta edição consecutiva em que esse assunto aparece parado. Ele
+            não caiu nem subiu: ele simplesmente não tem plateia no Brasil.</p>
+          <p class="texto"><b>Na sua agenda:</b> ninguém vai chegar à sua clínica este mês vendendo
+            programa de indicação, porque quase ninguém está falando disso. Isso é ruim para quem
+            espera que a solução venha pronta de fora — e ótimo para quem resolve montar a sua
+            antes que o assunto tenha dono.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=wMx70A949cI">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Reportagem de ontem ensina a montar ou virar um negócio usando IA — a fila de quem vai bater na sua porta aumentou</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>Exame · 16/08/2026</span></div>
+          <p class="texto">Publicada no domingo, é o tipo de matéria que multiplica fornecedor:
+            revista grande, público de empreendedor, receita de bolo. Some com o que este radar
+            registrou na semana passada — as empresas brasileiras instalando os seus primeiros
+            programas que conversam sozinhos — e o resultado é previsível.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Quando alguém oferecer <b>IA</b> para a sua clínica, peça para essa pessoa terminar
+            a frase: “a inteligência artificial vai fazer o quê, exatamente, na segunda-feira de
+            manhã?”. Se a resposta não couber em uma frase que você repetiria para a sua
+            recepcionista, ainda não é uma proposta — é um folheto.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> espere mais ligações e mais mensagens de venda nas
+            próximas semanas. Vale ter uma pergunta guardada para todas: <i>de onde esse programa
+            tira o que vai dizer para cada paciente minha?</i></p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPU0VsbVZQcXNJZThTRFJoYjl1ZXZkS01lbUEzUWdvcy0waWhabDNBbGFNTS0ycnFkUmJLcTNtUUVZc0dqSjllRlRtS3ZMc0t6MmJIYnhqblpQbXNhMXktUS0yaWpvaW1lUmJpOVlGZzRKdmlGcTNsbWlTdWt5TFlvR0tJOW9XdnltN2dCRkNQR2owMUZjTEhpelg4bEdZY21FZ3pNVEZkQW93LWxOcGlycGI4TGxlOFQwS3Q5LVUzcFc1OWhVRm16bUhIeTdHaVMxTzhj?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Suas duas palavras foram tomadas no mesmo fim de semana: “indicação” virou aposta e “estética” virou videogame</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>TecMundo · 16/08/2026 · com Trivela · 13/08/2026</span></div>
+          <p class="texto">O item mais recente que o radar capturou com a palavra <i>estética</i>
+            é sobre um vídeo feito por computador imitando a aparência de um jogo. Com a palavra
+            <i>indicação</i>, um código de casa de aposta. Nenhum dos dois tem qualquer relação
+            com clínica, procedimento ou paciente.</p>
+          <p class="texto">Isso não é uma curiosidade — é um aviso de vocabulário. As duas palavras
+            que definem o seu trabalho não pertencem mais a você na internet. Quem depende delas
+            para ser achada disputa espaço com aposta e com jogo.</p>
+          <p class="texto"><b>Na sua agenda:</b> é mais uma razão para o seu programa ter
+            <b>nome próprio</b>. As <b>Milhas da Beleza</b> existem exatamente por isso: uma palavra
+            que ninguém mais está usando, que a paciente entende de primeira e que não tem
+            concorrência de significado.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOWHM3S2xOSGd5VGdlNHRaaW9QTW8ybDlfcVotdDZFNTlibXRUcVNtOE00NkhXVV9CUnVnb2pDellHVHdtTHJmWjZwOVhodTY3QTdyY2VRUDhZOC1oRWlubG43NTNTcDJ0TEpoS2NWLWVNQTNaMnBKaUhqSTVITnNQMzdXVzhoTDBJY19rdUdaeFBHZFE2dXZuenE1Rk1USDVsTjJjUmdhR0pqOHp2RHduWnJzWVNDZw?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════ 03 · O QUE FAZER ESTA SEMANA ══════════════════ -->
+  <section class="materia" id="semana">
+    <div class="titulo"><span class="n">03</span><h2>O que fazer esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">A edição passada pediu vinte minutos por dia com a agenda antiga, para
+      contar quantas vezes você não sabia <b>quem trouxe cada paciente</b>. Esta semana o movimento
+      é o contrário: <b>parar de produzir “não sei” novo.</b> São dez segundos por atendimento.</p>
+
+    <div class="acao">
+      <div class="r">O movimento da semana</div>
+      <p><b>De segunda a sábado, no fim de cada atendimento, uma frase na porta.</b> Escolha
+      uma e não mude durante a semana. Sugestão: <i>“Se você trouxer uma amiga, na sua próxima
+      sessão eu incluo [o cuidado que você escolher] por conta da casa.”</i> Precisa ser algo
+      que você faria sem dor no bolso, e que a paciente reconheça como cuidado, não como abatimento
+      de preço.</p>
+      <p><b>Escolha o cuidado antes de segunda.</b> Um só, para toda a semana, para toda paciente.
+      Se cada uma ouvir uma coisa diferente, você não vai conseguir avaliar nada no sábado.</p>
+      <p><b>Anote duas colunas num papel só, na recepção:</b> o nome de quem ouviu a frase e, se
+      alguém aparecer indicada, <b>o nome de quem indicou</b>. Nada além disso. Sem planilha, sem
+      programa, sem aplicativo.</p>
+      <p><b>No sábado, olhe dois números:</b> quantas ouviram e quantas trouxeram alguém. Não
+      espere um resultado bonito na primeira semana — quase ninguém indica no mesmo mês em que
+      ouviu. O que você está construindo é o hábito de <b>dizer o valor em voz alta</b> e o de
+      <b>registrar quem trouxe quem</b>, que é a única coisa que nenhuma ferramenta comprada
+      preenche por você.</p>
+      <p>É a tese da edição virada para o seu lado: <b>o Brasil inteiro já diz quanto paga por
+      indicação. Falta a sua clínica dizer a dela — e ela não se paga em dinheiro, se paga em
+      cadeira.</b></p>
+    </div>
+  </section>
+
+  <!-- ══════════════════ 04 · FONTES ══════════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">04</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>OneFootball</b> · “Plataformas com bônus de cadastro em Agosto de 2026” — 14/08/2026 ·
+        <i>citado como evidência de que indicação paga em dinheiro virou pauta recorrente, não como recomendação</i> —
+        <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5hN3BFUlRGSGljbGtMcnZERm92cmZ0Sy1pS1lHWFpObmlsdFJqYUx0MURYaVdWXzB0djh0cGFUa0ZndS14UmRVMzdKZklHbmVsRzUtdWJ3?oc=5">clique aqui</a></li>
+
+      <li><b>55content</b> · “99 para Empresas lança programa de indicação com recompensas de até R$ 2 mil em cupons” — 16/03/2026 —
+        <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxNamtlUzRWb3JHQV9jRGtWcTlvY3kzUlZSaDNvbklwWmFzRU44LXBPTXVwRDJRU0tjVkItLUR2U2xFNzVIMGpCUklsUlU0OFBVWXJMMF9XWG10TEpNUDJMR1N1YTRYRVNiYTRtQXh3V1Y0RGh2bjZxNXhLVzR2bFNMMzJUMktZOVhhN3dyLUJfaXNoM2FRSGdLemM2a1ZQNXo3dXhGTzdkcTJTa3FEM05aajdxR0xORWdMUlVV?oc=5">clique aqui</a></li>
+
+      <li><b>Uber</b> · “Aumente seus ganhos indicando novos parceiros(as)” — 25/03/2026 ·
+        <i>segunda evidência de indicação paga em dinheiro, no transporte</i> —
+        <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxORmpEd1d2Z19fNkl6S2F0MVVGQWI0eGFud29xZ01zdUp1NHdIVnBFZmVNRXE2NnZOZXNTM0Zndk83Mi05TjJNTGRMYThZeUNuNUF3dFhnRkVLcDlGbk5ycWQzU2dteGtlbkg3WTQ4aWRnOWtDZkRwc0hHTFV3YU9INEZuU2lDNEp5YjNrZEhFdXE?oc=5">clique aqui</a></li>
+
+      <li><b>Mobills</b> · “Indique e Ganhe: conheça apps que pagam por cadastro em 2026” — 07/04/2026 —
+        <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOQXRON243ZmFtN0xxbkswZVFfcmZNQnp4MUtnVklING5HM25SdHZxNGNOcHRycWdhWkdHUW5oMzl6Mm9YUWZHZ2YzODBVcWxkZFQwaUNwdDljeFE0QWJ1R2NvR0M4S0xvNFVBWXhNd3k0LXJ3QXRRQW5hamZoM2ZKWVdlVnAyV3h4TkcyR19idWt5dw?oc=5">clique aqui</a></li>
+
+      <li><b>Trivela</b> · “Código de Indicação Superbet 2026” — 13/08/2026 ·
+        <i>citado como evidência de qual setor ocupa a palavra “indicação” no noticiário, não como recomendação</i> —
+        <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9TUWIxWDJJNDlGVW10NE9tZjZpVnFsVzVzSXdseEFldXNpRFZQaUNkSHNzUnc3LW8tWlE4QUU4MjNDZGZsaGJOMHpjUF9Bd0l5STBSSGQwLUxncDhRS3ByeVQzUQ?oc=5">clique aqui</a></li>
+
+      <li><b>Exame</b> · “Empreendedorismo e IA: 6 dicas para montar (ou pivotar) um negócio usando inteligência artificial” — 16/08/2026 —
+        <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPU0VsbVZQcXNJZThTRFJoYjl1ZXZkS01lbUEzUWdvcy0waWhabDNBbGFNTS0ycnFkUmJLcTNtUUVZc0dqSjllRlRtS3ZMc0t6MmJIYnhqblpQbXNhMXktUS0yaWpvaW1lUmJpOVlGZzRKdmlGcTNsbWlTdWt5TFlvR0tJOW9XdnltN2dCRkNQR2owMUZjTEhpelg4bEdZY21FZ3pNVEZkQW93LWxOcGlycGI4TGxlOFQwS3Q5LVUzcFc1OWhVRm16bUhIeTdHaVMxTzhj?oc=5">clique aqui</a></li>
+
+      <li><b>TecMundo</b> · “Flávio Bolsonaro posta vídeo de IA usando sunga com estética de GTA VI” — 16/08/2026 ·
+        <i>citado apenas como evidência de qual assunto ocupa a palavra “estética” no noticiário de ontem</i> —
+        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOWHM3S2xOSGd5VGdlNHRaaW9QTW8ybDlfcVotdDZFNTlibXRUcVNtOE00NkhXVV9CUnVnb2pDellHVHdtTHJmWjZwOVhodTY3QTdyY2VRUDhZOC1oRWlubG43NTNTcDJ0TEpoS2NWLWVNQTNaMnBKaUhqSTVITnNQMzdXVzhoTDBJY19rdUdaeFBHZFE2dXZuenE1Rk1USDVsTjJjUmdhR0pqOHp2RHduWnJzWVNDZw?oc=5">clique aqui</a></li>
+
+      <li><b>YouTube · base do “indicação de paciente: 1.129 → 1.129 (0)”</b> — os mesmos 3 vídeos em 14/08 e 17/08/2026:
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI">993 hoje (993 em 14/08)</a> ·
+        <a href="https://www.youtube.com/watch?v=dbipVf_OiqY">69 (69)</a> ·
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0">67 (67)</a>.
+        O líder marcou <b>992 em 29/07, 03/08, 05/08, 07/08 e 10/08</b>, <b>993 em 14/08</b> e <b>993</b> hoje — uma visualização em dezenove dias.
+        <i>Entraram no levantamento de hoje e ficaram fora da conta, por não existirem na medição anterior:</i>
+        <a href="https://www.youtube.com/watch?v=ptHo-HId1hQ">735</a> ·
+        <a href="https://www.youtube.com/watch?v=fUMNVjI02RM">197</a>.
+        <i>Segue fora da conta, por tratar de captar paciente nova e não de indicação:</i>
+        <a href="https://www.youtube.com/watch?v=Vu17SpAgHbY">473 (473)</a>.</li>
+
+      <li><b>YouTube · base do “reativar quem sumiu: 1.828 → 1.842 (+14)”</b> — os mesmos 5 vídeos em 14/08 e 17/08/2026:
+        <a href="https://www.youtube.com/watch?v=-L4soVK6XrI">944 hoje (942 em 14/08)</a> ·
+        <a href="https://www.youtube.com/watch?v=4hTjm0YeUz4">378 (378)</a> ·
+        <a href="https://www.youtube.com/watch?v=kL_NfXGDuns">323 (323)</a> ·
+        <a href="https://www.youtube.com/watch?v=wrjhoO_CTGQ">180 (168)</a> ·
+        <a href="https://www.youtube.com/watch?v=V144xmXc-Ao">17 (17)</a>.
+        O sexto vídeo, que entrou em 14/08, ficou <b>parado</b>: <a href="https://www.youtube.com/watch?v=QPMZPKKssiI">104 (104)</a>.
+        Ritmo: <b>+23 em quatro dias</b> na medição anterior, <b>+14 em três dias</b> agora — praticamente o mesmo por dia.</li>
+
+      <li><b>YouTube · anúncio pago e fidelização</b> (14/08 comparado com 17/08/2026) —
+        <a href="https://www.youtube.com/watch?v=RsPDlK1C_lA">anúncio pago para clínica de estética: 28.146 hoje, contra 28.067 em 14/08 (+79)</a> ·
+        fidelização na estética, mesmos 4 vídeos nos dois dias: 14.738 → 14.740 <b>(+2)</b> —
+        <a href="https://www.youtube.com/watch?v=HQtokWuxK1s">6.643 (6.643)</a> ·
+        <a href="https://www.youtube.com/watch?v=uuXb6LCA69M">4.271 (4.269)</a> ·
+        <a href="https://www.youtube.com/watch?v=_ojjqsCgCOY">3.768 (3.768)</a> ·
+        <a href="https://www.youtube.com/watch?v=l22sJTg8rtY">58 (58)</a>.
+        <i>Entraram hoje, fora da conta:</i>
+        <a href="https://www.youtube.com/watch?v=ETmYeOCggQo">42</a> ·
+        <a href="https://www.youtube.com/watch?v=8jonfSLTaYg">42</a>.</li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p><b>O valor de dois mil reais em cupons.</b> É o que a empresa anunciou em março ao lançar
+      o programa, e a página segue no ar. Não sei quantas empresas receberam esse valor de fato,
+      nem quais são as condições. Vale como <b>régua de mercado</b>, não como número para
+      comparação de resultado.</p>
+      <p><b>A matéria de ontem sobre IA para empreender.</b> Li a manchete e o veículo. Não tenho
+      as seis dicas em mãos e não sei se alguma se aplica a clínica de estética. Registro a
+      existência da matéria e a data — o que interessa aqui é o volume de gente sendo formada
+      para vender isso, não o conteúdo dela.</p>
+      <p><b>Não dá para saber por que o assunto “indicação de paciente” está parado.</b> Pode ser
+      falta de interesse, pode ser vídeo velho, pode ser que a conversa aconteça em lugar que este
+      radar não mede — grupo de WhatsApp, curso pago, evento. O que afirmo é o que medi: os
+      mesmos vídeos, nas mesmas datas, sem movimento.</p>
+      <p><b>Um vídeo sobre captar paciente que estava nas edições anteriores sumiu do levantamento
+      de hoje.</b> Sem ele na lista, não dá para calcular o crescimento nestes três dias. Prefiro
+      dizer isso a comparar com número velho.</p>
+      <p><b>As dez buscas mais populares do Google Brasil hoje</b> (rádio, jornal regional,
+      política, celebridade) são todas de fora do setor. Nenhuma foi usada como sinal — sétima
+      edição seguida. E a busca em inglês sobre fidelidade e indicação em beleza voltou
+      <b>vazia</b> pela quarta edição consecutiva.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════ BLOCO INTERNO — NUNCA PUBLICAR ══════════════════ -->
+  
+
+  <div class="assinatura">
+    🧴 Radar My Glow Up · Pulso · Edição Nº 008<br>
+    17 de agosto de 2026 · Milhas da Beleza<br>
+    A Próxima Paciente · por My Glow Up
+  </div>
+
+</div>
+</body>
+</html>
