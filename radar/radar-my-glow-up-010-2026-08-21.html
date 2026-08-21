@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Radar My Glow Up · Nº 010 · Pulso · 21 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🧴 Radar My Glow Up · Pulso</div>
+    <h1>A amiga indicada chega na sua caixa de mensagem como se fosse uma estranha.</h1>
+    <p class="chamada">Na quarta-feira uma empresa grande do país anunciou uma inteligência
+    artificial feita para quem atende — não para quem compra. A ideia é chegar na conversa
+    já sabendo quem é a pessoa do outro lado. Na sua clínica, quem atende ainda não sabe que
+    a mulher que acabou de mandar mensagem foi mandada por uma paciente sua.</p>
+    <div class="dateline">Edição Nº 010 · sexta-feira, 21 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#s1">O que mudou</a>
+        <span class="d">A máquina do mercado mudou de dono: passou a ser entregue a quem atende.</span></li>
+      <li><a href="#s2">As novidades</a>
+        <span class="d">Cinco recortes: a máquina do corretor, o dinheiro grande no atendimento de saúde e o número que finalmente se mexeu.</span></li>
+      <li><a href="#s3">O que fazer esta semana</a>
+        <span class="d">Um movimento só: uma pergunta na porta de entrada, antes de qualquer preço.</span></li>
+      <li><a href="#s4">De onde veio cada informação</a>
+        <span class="d">Fonte com data e link — e a lista honesta do que não deu para confirmar.</span></li>
+    </ol>
+  </div>
+
+  <!-- ═══════════════ 01 ═══════════════ -->
+  <section class="materia publico" id="s1">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Nas três edições passadas este radar montou o pedido de indicação:
+    <b>anotar quem trouxe quem</b>, <b>dizer em voz alta o que ela ganha</b> e
+    <b>escolher o minuto de perguntar</b>. Falta a peça que ninguém olha — o que acontece
+    quando a amiga chega.</p>
+
+    <p class="texto capitular">Na quarta-feira, dia dezenove, duas publicações de negócios
+    contaram a mesma novidade: uma empresa grande do mercado imobiliário brasileiro lançou
+    uma inteligência artificial para os corretores. Não para quem procura casa. Para quem
+    atende quem procura casa.</p>
+
+    <p class="texto">Repare na direção. Até agora, tudo que apareceu neste radar foi máquina
+    virada para o cliente: responde mensagem, tira dúvida, marca horário. Esta foi entregue
+    ao profissional, com uma promessa diferente — chegar na conversa já sabendo alguma coisa
+    sobre a pessoa do outro lado.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p>É a diferença entre a recepcionista que atende o telefone e a recepcionista que,
+      antes de atender, olha a ficha e diz: “essa é a amiga da dona Sandra, que veio semana
+      passada fazer limpeza de pele”. A primeira responde. A segunda reconhece.</p>
+    </div>
+
+    <p class="texto">Agora leve isso para a sua porta de entrada. Toda indicação que você
+    recebe chega do mesmo jeito: uma mensagem nova, de um número desconhecido, perguntando
+    preço. Nada nessa mensagem diz que ela veio da sua paciente de sexta-feira. Ela chega
+    igual a quem viu o anúncio, igual a quem passou na frente, igual a todo mundo.</p>
+
+    <div class="olho">
+      <p>“A amiga indicada não chega diferente. Ela chega igual — e é por isso que a
+      indicação morre na porta, não na hora do pedido.”</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <p class="texto">E ela chega valendo mais do que as outras. Já veio convencida, já ouviu
+    o resultado da boca de alguém em quem confia, já sabe que a sua mão é boa. É a única
+    pessoa que bate na sua porta sem precisar ser convencida — e recebe a mesma tabela de
+    preço copiada e colada que todo mundo recebe.</p>
+
+    <p class="texto">A tese desta edição é essa: <b>o mercado está armando quem atende com
+    informação sobre quem chega</b>. A informação da sua clínica existe, é sua e ninguém
+    mais tem. Ela só não está na mão de quem responde a mensagem.</p>
+
+    <p class="texto">E o assunto continua sem dono. Medimos hoje, pela décima vez desde
+    trinta e um de julho, os mesmos vídeos brasileiros. O que ensina a comprar anúncio para
+    clínica de estética ganhou seiscentas e cinquenta e duas visualizações em vinte e um
+    dias. O vídeo líder sobre programa de indicação de pacientes ganhou duas. Duas, em vinte
+    e um dias.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">+652</div>
+        <div class="lbl">visualizações do vídeo brasileiro que ensina a <b>comprar anúncio</b>
+        para clínica de estética, entre 31/07 e hoje</div></div>
+      <div class="numero"><div class="big">+2</div>
+        <div class="lbl">visualizações, no mesmo período, do vídeo líder sobre
+        <b>programa de indicação de pacientes</b></div></div>
+      <div class="numero"><div class="big">0</div>
+        <div class="lbl">visualizações do vídeo brasileiro sobre <b>fidelização na estética</b>
+        em dez medições seguidas — parado no mesmo número desde 31/07</div></div>
+      <div class="numero"><div class="big">+31</div>
+        <div class="lbl">visualizações do vídeo sobre <b>voltar a falar com quem sumiu</b>
+        pelo WhatsApp, nos mesmos vinte e um dias</div></div>
+    </div>
+
+    <div class="acao">
+      <div class="r">O que fica desta seção</div>
+      <p>Antes de comprar qualquer programa, resolva a parte que custa zero: faça <b>uma
+      pergunta a mais</b> em toda mensagem nova, antes de falar de preço — “quem te falou da
+      gente?”. Sem essa resposta, a indicação que a sua paciente fez ontem some dentro da sua
+      própria caixa de entrada, e você nunca fica sabendo que ela aconteceu.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 02 ═══════════════ -->
+  <section class="materia publico" id="s2">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes da semana. Em cada um, o que muda na <b>sua agenda</b>
+    — não na agenda de quem vende tecnologia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Uma empresa grande do país lançou, na quarta-feira, uma inteligência artificial feita para o corretor — não para o cliente</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>Estadão · 19/08/2026 · com Mobile Time, mesmo dia</span></div>
+          <p class="texto">Duas publicações de negócios noticiaram no mesmo dia: a plataforma
+          de imóveis anunciou uma inteligência artificial dentro do braço que vende para
+          empresas, voltada a quem atende. É a primeira vez neste radar que a máquina é
+          entregue ao profissional em vez de ao cliente final. Vale reparar em quem paga a
+          conta: quem atende.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Existem dois tipos de programa sendo vendidos com o mesmo nome. Um fica no
+            lugar da recepção e responde por você. O outro fica <b>do seu lado</b> e te conta
+            quem é a pessoa antes de você responder. O segundo não substitui ninguém — ele
+            evita que você atenda no escuro.</p>
+          </div>
+          <p class="texto">Na sua agenda: quando aparecer alguém oferecendo isso para a sua
+          clínica, faça uma pergunta antes de ouvir o preço. “Ele responde no meu lugar ou me
+          diz quem está chegando?” Só o segundo resolve o problema da amiga indicada.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQZExYMFBfSEJwZEMwU0dsVk9VOUZoaTdjXzB6VDJRSXREZENVUG5PMWpkQ0hVaEhUeDBnUjRGTmdLMmp4ZmotaGNoWGl5aHJlODJ1X21kaUNfeGN1aEhlSWpYcmZpd2xVS3M2UnlrUkpfaUJHbnl2bjZJQ2l4LWlVZHpCYkVZR3d5X19WX0pkT18yUWFzcG1tVFlyWkE5UkhvdG53YUJWbE9CTXdYeEkxNzE3VTAwd9IBuwFBVV95cUxQNzBLTGwydGl0OHl5ZG9KelZ3VG16UVBGM0lBdkFiczEzTm9rT2dxaUtvNml2OGcwbnJaUTREVC1lY0pmQVVyLWlIMnI1QWhNS2h0aUFfSi00VEVfVzAzM3VNc01hQXlLS2d0YWFqUHJFbThtemlkYUI3dFBzcE9DdzhrY1ZtRGZxRDY2WXUwR3NhZ05NQTJtQUdyNy1HWjVSODZJUHZoSmlPbjdkaHF3UFVRWlBDQXNyTG1z?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Uma empresa brasileira anunciou aplicação de milhões em inteligência artificial para o atendimento em clínicas</h3>
+          <div class="credito"><span class="frescor antes">🟡 de julho, ainda no ar</span><span>Portal Comunique-se · 29/07/2026</span></div>
+          <p class="texto">O dinheiro grande chegou ao atendimento de saúde privada. A
+          notícia é de julho e continua valendo: há investimento pesado sendo colocado
+          exatamente no pedaço do negócio que hoje, na sua clínica, é você mesma respondendo
+          entre um procedimento e outro.</p>
+          <p class="texto">Na sua agenda: o padrão de resposta que a sua paciente considera
+          normal está subindo, e não é você que decide isso. Quem responde em dois minutos às
+          dez da noite passa a ser o normal. O seu “bom dia, vi sua mensagem de ontem” vira
+          lento sem que você tenha piorado em nada.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQTGk2dTVnZGVydnBZOUZBWndhdVhpQmtDbkJZeVJ5SWxyTVNRLVNfUENPczVjckxFT2ZIOUQ0NkVEbGJkaHlQdDR0TmJ6b1VKbWJaN3RvSEhiVXZBVlJyUHVWYXhEc0lfYWJSTWNGNFVQZjBYejFNdUwwUWZLb2VCNDlGY3pLb2lXRnBNaUt1d0k3S19nT3FhMlNPTEw4N2NlenNr?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Um levantamento detalhou como as empresas do país estão montando os seus primeiros programas de inteligência artificial</h3>
+          <div class="credito"><span class="frescor antes">🟡 de 12 de agosto</span><span>ipnews.com.br · 12/08/2026</span></div>
+          <p class="texto">É a terceira semana seguida em que este radar registra a mesma
+          direção: sai de cena a reportagem sobre o que a máquina <em>poderia</em> fazer,
+          entra a reportagem sobre empresas que já ligaram a delas. Quando o assunto vira
+          levantamento, é porque já existe número para contar.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Montar esse tipo de programa tem duas partes. A parte que conversa hoje
+            qualquer um compra, e o preço só cai. A outra parte é <b>o que ele sabe sobre a
+            sua clínica</b>: quem já veio, o que fez, quando volta, quem trouxe quem. Essa
+            segunda parte não está à venda em lugar nenhum. Ou você anotou, ou ela não
+            existe.</p>
+          </div>
+          <p class="texto">Na sua agenda: a fila de gente querendo vender isso para você
+          aumenta nas próximas semanas. O que decide se vale a pena não é o programa — é se
+          você tem alguma coisa escrita para ensinar a ele.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQNUJ6RGhMY1UtZ29iZWtNVVdwNE5BbE8yMnoybzB4c3U1eWxYWlBxTjJsVXRhM2xWSXR1MUVMaEF5cnNmYmlZNTVvTkZMUmpVd3pCbElDa2JXZTV6bmNiZEhUeDZOS0wwYUxJU1NIUUw5Sl94NHFDU3huWk5ISzlpR0VtTmtPWm1rZEdFUXEzM2xlTlJOclFLVWo3OV9IZXo5QXIw0gGjAUFVX3lxTFA1QnpEaExjVS1nb2Jla01VV3A0TkFsTzIyejJvMHhzdTV5bFhaUHFOMmxVdGEzbFZJdHUxRUxoQXlyc2ZiaVk1NW9ORkxSalV3ekJsSUNrYldlNXpuY2JkSFR4Nk5LTDBhTElTU0hRTDlKX3g0cUNTeG5aTkhLOWlHRW1Oa09abWtkR0VRcTMzbGVOUk5yUUtVajc5X0hlejlBcjA?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Publicação de vendas on-line afirma que retomar a conversa pelo WhatsApp com quem parou no meio funciona melhor do que e-mail e mensagem de texto</h3>
+          <div class="credito"><span class="frescor antes">🟡 de julho</span><span>E-Commerce Brasil · 13/07/2026</span></div>
+          <p class="texto">O texto trata de loja on-line: a pessoa escolhe o produto, chega
+          até o pagamento e desiste. Segundo a publicação, a conversa que retoma esse caso
+          pelo WhatsApp tem resultado melhor do que a mesma tentativa por e-mail ou por
+          torpedo. É a afirmação deles, sobre o comércio deles — mas o comportamento descrito
+          é o da sua paciente.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>“Carrinho abandonado”, na sua clínica, é a mulher que perguntou o preço da
+            aplicação, disse “vou ver com meu marido e te falo” e nunca mais respondeu. Ela
+            não desistiu de você. Ela desistiu da conversa.</p>
+          </div>
+          <p class="texto">Na sua agenda: abra a conversa da semana passada com quem parou no
+          “vou pensar”. Uma mensagem só, escrita por você, sem tabela de preço junto. Isto não
+          é promessa de retorno — é o caminho mais barato que você tem hoje.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQajNQX0E4TlhoVnNmZ3I1cExTVVhybjFuYVpuY1BFeDIxeHpOeFJ2S3MzQjdkOVNOR1ZIeE9NRnRCNi1BQ1hlbFNOV3BjWEJxdWxsUlNjdHE1WFhQY2Q2aE9BWkEzOGRicjdqa0MwaU50QzJOMXpJZm1pVFJzdFJPZWZTTUh1Umx5X3o2NWVDQkdJLTZXem1RY0hWMnZTU0o2U2tMZE9NTU5nYVZUaWU0UzhZWWdpUTBrMEFMREh5WVg?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: depois de seis edições parado, o assunto “indicação de paciente” se mexeu — duas visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>YouTube · dez medições entre 31/07 e 21/08/2026 · os mesmos vídeos em todas</span></div>
+          <p class="texto">Mil cento e vinte e nove nas medições de catorze, dezessete e
+          dezenove de agosto. Hoje: mil cento e trinta e um. O vídeo líder brasileiro sobre
+          programa de indicação de pacientes saiu de novecentas e noventa e duas
+          visualizações, em trinta e um de julho, para novecentas e noventa e quatro hoje —
+          <b>duas em vinte e um dias</b>. No mesmo período, o vídeo que ensina a comprar
+          anúncio para clínica de estética ganhou seiscentas e cinquenta e duas.</p>
+          <p class="texto">Na sua agenda: é a sétima edição seguida com esse assunto parado.
+          Ninguém vai bater na sua porta este mês vendendo isso pronto. Ruim para quem espera
+          solução vinda de fora, bom para quem monta a sua enquanto o assunto ainda não tem
+          dono.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=wMx70A949cI">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════ 03 ═══════════════ -->
+  <section class="materia publico" id="s3">
+    <div class="titulo"><span class="n">03</span><h2>O que fazer esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Um movimento só, e ele cabe entre dois atendimentos.
+    <b>Pergunte quem indicou antes de falar de preço.</b></p>
+
+    <div class="acao">
+      <div class="r">O movimento da semana</div>
+      <p><b>1. A pergunta.</b> Toda mensagem nova que chegar esta semana começa pela mesma
+      frase, antes de qualquer valor: “Oi! Que bom te receber por aqui. Antes de eu te passar
+      tudo direitinho — quem te falou da gente?”</p>
+      <p><b>2. O papel.</b> A resposta vai para o mesmo lugar onde você anotou, na semana
+      passada, quem trouxe quem. Caderno, planilha ou o campo de observação da ficha — tanto
+      faz, desde que seja sempre o mesmo lugar.</p>
+      <p><b>3. O aviso.</b> Se ela disser o nome de uma paciente sua, mande uma mensagem para
+      essa paciente no mesmo dia: “A Camila chegou aqui e falou que foi você que indicou.
+      Obrigada de verdade.” Só isso. Sem oferta junto, sem preço — quem indicou não está
+      comprando nada.</p>
+      <p><b>4. O fecho da semana.</b> Sexta-feira, conte quantas responderam um nome. Esse
+      número, que hoje você não tem, é o único jeito de saber se a sua clínica é indicada ou
+      se você só acha que é.</p>
+    </div>
+
+    <p class="texto">A pergunta não custa nada, não depende de sistema, não precisa de
+    aprovação de ninguém e leva quatro segundos. Ela só precisa acontecer <em>antes</em> da
+    tabela de preço — depois do preço a conversa já virou negociação, e ninguém volta atrás
+    para perguntar quem indicou.</p>
+
+    <p class="texto">É a mesma tese da abertura, dita do outro lado: o mercado está gastando
+    milhões para que quem atende saiba quem está chegando. Você consegue o mesmo com uma
+    frase e um caderno.</p>
+  </section>
+
+  <!-- ═══════════════ 04 ═══════════════ -->
+  <section class="materia publico" id="s4">
+    <div class="titulo"><span class="n">04</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>Inteligência artificial lançada para corretores</b> — Estadão, 19/08/2026, e
+        Mobile Time, 19/08/2026 (duas publicações, mesmo dia).
+        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxQZExYMFBfSEJwZEMwU0dsVk9VOUZoaTdjXzB6VDJRSXREZENVUG5PMWpkQ0hVaEhUeDBnUjRGTmdLMmp4ZmotaGNoWGl5aHJlODJ1X21kaUNfeGN1aEhlSWpYcmZpd2xVS3M2UnlrUkpfaUJHbnl2bjZJQ2l4LWlVZHpCYkVZR3d5X19WX0pkT18yUWFzcG1tVFlyWkE5UkhvdG53YUJWbE9CTXdYeEkxNzE3VTAwd9IBuwFBVV95cUxQNzBLTGwydGl0OHl5ZG9KelZ3VG16UVBGM0lBdkFiczEzTm9rT2dxaUtvNml2OGcwbnJaUTREVC1lY0pmQVVyLWlIMnI1QWhNS2h0aUFfSi00VEVfVzAzM3VNc01hQXlLS2d0YWFqUHJFbThtemlkYUI3dFBzcE9DdzhrY1ZtRGZxRDY2WXUwR3NhZ05NQTJtQUdyNy1HWjVSODZJUHZoSmlPbjdkaHF3UFVRWlBDQXNyTG1z?oc=5">Estadão</a> · <a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE52dXQ1WW04UmpWcjZEV3ByeVN6NmlpZHVhZFdCbFpvR3VlM0tOd01SdHZudWhwdUg2ZHFrV2RXamQ5cnF0d0x1OXBJdDh6ekdDQ0xCU3dVay1VdnUwWXJnc3ZZRUo2RUtZSnk5VGV4Y2JYYUxzZHZaQ3dBT1U4QVk?oc=5">Mobile Time</a></li>
+      <li><b>Aplicação de milhões em inteligência artificial no atendimento clínico</b> —
+        Portal Comunique-se, 29/07/2026. <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQTGk2dTVnZGVydnBZOUZBWndhdVhpQmtDbkJZeVJ5SWxyTVNRLVNfUENPczVjckxFT2ZIOUQ0NkVEbGJkaHlQdDR0TmJ6b1VKbWJaN3RvSEhiVXZBVlJyUHVWYXhEc0lfYWJSTWNGNFVQZjBYejFNdUwwUWZLb2VCNDlGY3pLb2lXRnBNaUt1d0k3S19nT3FhMlNPTEw4N2NlenNr?oc=5">ler</a></li>
+      <li><b>Levantamento sobre como as empresas montam os primeiros programas de IA</b> —
+        ipnews.com.br, 12/08/2026. <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQNUJ6RGhMY1UtZ29iZWtNVVdwNE5BbE8yMnoybzB4c3U1eWxYWlBxTjJsVXRhM2xWSXR1MUVMaEF5cnNmYmlZNTVvTkZMUmpVd3pCbElDa2JXZTV6bmNiZEhUeDZOS0wwYUxJU1NIUUw5Sl94NHFDU3huWk5ISzlpR0VtTmtPWm1rZEdFUXEzM2xlTlJOclFLVWo3OV9IZXo5QXIw0gGjAUFVX3lxTFA1QnpEaExjVS1nb2Jla01VV3A0TkFsTzIyejJvMHhzdTV5bFhaUHFOMmxVdGEzbFZJdHUxRUxoQXlyc2ZiaVk1NW9ORkxSalV3ekJsSUNrYldlNXpuY2JkSFR4Nk5LTDBhTElTU0hRTDlKX3g0cUNTeG5aTkhLOWlHRW1Oa09abWtkR0VRcTMzbGVOUk5yUUtVajc5X0hlejlBcjA?oc=5">ler</a></li>
+      <li><b>Retomada de conversa pelo WhatsApp em compra interrompida</b> — E-Commerce
+        Brasil, 13/07/2026. Afirmação da própria publicação, sobre comércio on-line.
+        <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQajNQX0E4TlhoVnNmZ3I1cExTVVhybjFuYVpuY1BFeDIxeHpOeFJ2S3MzQjdkOVNOR1ZIeE9NRnRCNi1BQ1hlbFNOV3BjWEJxdWxsUlNjdHE1WFhQY2Q2aE9BWkEzOGRicjdqa0MwaU50QzJOMXpJZm1pVFJzdFJPZWZTTUh1Umx5X3o2NWVDQkdJLTZXem1RY0hWMnZTU0o2U2tMZE9NTU5nYVZUaWU0UzhZWWdpUTBrMEFMREh5WVg?oc=5">ler</a></li>
+      <li><b>Medição de visualizações no YouTube</b> — dez levantamentos deste radar entre
+        31/07 e 21/08/2026, sempre com as mesmas buscas. Vídeo de indicação de pacientes:
+        992 → 994. <a href="https://www.youtube.com/watch?v=wMx70A949cI">ver</a> · Vídeo de anúncio para clínica de estética:
+        27.636 → 28.288. <a href="https://www.youtube.com/watch?v=RsPDlK1C_lA">ver</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>• O valor exato aplicado pela empresa de atendimento clínico: a matéria fala em
+      milhões, sem número auditado por terceiro.<br>
+      • Se a inteligência artificial lançada para corretores tem alguma versão para saúde ou
+      estética — não há nada anunciado nesse sentido.<br>
+      • O resultado citado pela publicação de comércio on-line é declarado por ela, não é
+      estudo independente e não trata de clínicas.<br>
+      • As visualizações do YouTube são contagem pública do próprio site, medida por este
+      radar em dias alternados. Ela mostra interesse por um assunto — não mostra faturamento
+      de ninguém.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 05 · INTERNO ═══════════════ -->
+  
+
+  <div class="assinatura">
+    Radar My Glow Up · Nº 010 · Pulso · 21 de agosto de 2026<br>
+    Feito para a dona de clínica · A Próxima Paciente · por My Glow Up
+  </div>
+
+</div>
+
+</body>
+</html>
