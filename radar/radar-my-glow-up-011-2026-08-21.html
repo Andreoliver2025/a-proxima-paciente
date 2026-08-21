@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Radar My Glow Up &middot; N&ordm; 011 &middot; 21 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">&#129378; Radar My Glow Up &middot; Pulso</div>
+    <h1>A sua paciente j&aacute; sabe indicar. Ela s&oacute; nunca teve o que dizer sobre voc&ecirc;.</h1>
+    <p class="chamada">Na ter&ccedil;a-feira saiu mais um texto grande ensinando brasileiro a usar
+      c&oacute;digo de indica&ccedil;&atilde;o. Aplicativo de corrida faz, aplicativo de entrega faz,
+      site de aposta faz. A mulher que sentou na sua maca ontem j&aacute; sabe exatamente como isso
+      funciona &mdash; e a sua cl&iacute;nica &eacute; o &uacute;nico lugar onde ela n&atilde;o tem
+      nada na m&atilde;o para mandar para a amiga.</p>
+    <div class="dateline">Edi&ccedil;&atilde;o N&ordm; 011 &middot; sexta-feira, 21 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario">
+    <div class="rot">Nesta edi&ccedil;&atilde;o</div>
+    <ol>
+      <li><div><a href="#s1">O que mudou</a>
+        <div class="d">O Brasil inteiro aprendeu a indicar. A sua cl&iacute;nica n&atilde;o precisa ensinar &mdash; precisa ter o texto.</div></div></li>
+      <li><div><a href="#s2">As novidades</a>
+        <div class="d">Cinco recortes: o vocabul&aacute;rio da indica&ccedil;&atilde;o, o painel do Google que contou errado e quem indica dentro da sua sala.</div></div></li>
+      <li><div><a href="#s3">O que fazer esta semana</a>
+        <div class="d">Um movimento s&oacute;: escrever duas linhas na voz dela, n&atilde;o na sua.</div></div></li>
+      <li><div><a href="#s4">De onde veio cada informa&ccedil;&atilde;o</a>
+        <div class="d">Fonte com data e link &mdash; e a lista honesta do que n&atilde;o deu para confirmar.</div></div></li>
+    </ol>
+  </nav>
+
+  <!-- 01 -->
+  <section class="materia" id="s1">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Nas quatro edi&ccedil;&otilde;es passadas este radar montou o pedido de
+      indica&ccedil;&atilde;o peda&ccedil;o por peda&ccedil;o: <b>anotar quem trouxe quem</b>,
+      <b>dizer em voz alta o que ela ganha</b>, <b>escolher o minuto de perguntar</b> e
+      <b>receber a amiga sabendo quem a mandou</b>. Falta a pe&ccedil;a mais simples de todas
+      &mdash; o que ela leva na m&atilde;o.</p>
+
+    <p class="texto capitular">Na ter&ccedil;a-feira, dia dezoito, um site grande de esporte
+      publicou um texto inteiro ensinando o leitor a usar um c&oacute;digo de
+      indica&ccedil;&atilde;o. &Eacute; de site de aposta, e este radar n&atilde;o recomenda o
+      setor nem sugere copiar nada dele. O que interessa aqui &eacute; outra coisa: a palavra.</p>
+
+    <p class="texto">Porque &ldquo;c&oacute;digo de indica&ccedil;&atilde;o&rdquo; virou
+      vocabul&aacute;rio de gente comum no Brasil. Em abril, um site de finan&ccedil;as pessoais
+      publicou uma lista inteira de aplicativos que pagam por indica&ccedil;&atilde;o. Em
+      mar&ccedil;o, uma empresa de transporte anunciou que agora at&eacute; empresa ganha ao
+      indicar outra empresa.</p>
+
+    <div class="traduz">
+      <span class="r">Em portugu&ecirc;s claro</span>
+      <p>C&oacute;digo de indica&ccedil;&atilde;o &eacute; isto: um peda&ccedil;o de texto
+        &mdash; um nome, um n&uacute;mero, um link &mdash; que a pessoa manda para a amiga.
+        Quando a amiga usa, o sistema sabe de quem veio. Nada al&eacute;m disso. &Eacute; o
+        crach&aacute; da indica&ccedil;&atilde;o.</p>
+    </div>
+
+    <p class="texto">Agora leve isso para a sua sala. A mulher que sentou na sua maca ontem
+      j&aacute; usou um c&oacute;digo desses em algum aplicativo. Ela sabe o que &eacute;, sabe
+      como se manda, sabe que a amiga do outro lado vai entender.</p>
+
+    <p class="texto">Ou seja: a parte dif&iacute;cil, que &eacute; ensinar a paciente a indicar,
+      foi feita por outros mercados. De gra&ccedil;a, ao longo dos &uacute;ltimos anos, sem
+      voc&ecirc; gastar um centavo. A sua cl&iacute;nica n&atilde;o precisa ensinar. Precisa ter
+      o que ela mande.</p>
+
+    <div class="olho">
+      <p>&ldquo;A sua paciente aprendeu a indicar com aplicativo de corrida e com site de aposta.
+        S&oacute; a sua cl&iacute;nica nunca deu a ela o que dizer.&rdquo;</p>
+      <span class="quem">A frase para levar &agrave; reuni&atilde;o de equipe</span>
+    </div>
+
+    <p class="texto">E aqui mora o buraco. Hoje, quando a sua paciente quer te indicar, ela
+      precisa inventar o texto sozinha. Ela para, pensa, come&ccedil;a a escrever, apaga. Na
+      maioria das vezes ela s&oacute; fala o seu nome em voz alta, no meio de uma conversa
+      &mdash; e o nome se perde.</p>
+
+    <p class="texto">A tese desta edi&ccedil;&atilde;o &eacute; essa:
+      <b>a indica&ccedil;&atilde;o n&atilde;o morre por falta de vontade da sua paciente. Ela
+      morre por falta de texto pronto.</b></p>
+
+    <p class="texto">E o assunto continua sem dono. Medimos hoje, pela d&eacute;cima primeira vez
+      desde trinta e um de julho, os mesmos v&iacute;deos brasileiros. Na busca por
+      <em>fideliza&ccedil;&atilde;o de clientes para cl&iacute;nica de est&eacute;tica</em>, o
+      v&iacute;deo mais visto da lista n&atilde;o fala de fidelizar. Fala de captar cliente
+      novo.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">18.768</div>
+        <div class="lbl">visualiza&ccedil;&otilde;es do v&iacute;deo mais visto na busca por
+          <b>fideliza&ccedil;&atilde;o na est&eacute;tica</b> &mdash; e ele ensina a
+          <b>captar</b>, n&atilde;o a fidelizar</div></div>
+      <div class="numero"><div class="big">8.234</div>
+        <div class="lbl">a soma dos <b>cinco v&iacute;deos dessa mesma lista</b> que realmente
+          falam de fidelizar cliente</div></div>
+      <div class="numero"><div class="big">994</div>
+        <div class="lbl">o v&iacute;deo l&iacute;der brasileiro sobre <b>programa de
+          indica&ccedil;&atilde;o de pacientes</b> &mdash; tinha 992 em 31 de julho</div></div>
+      <div class="numero"><div class="big">28.288</div>
+        <div class="lbl">o v&iacute;deo brasileiro que ensina a <b>comprar an&uacute;ncio</b>
+          para cl&iacute;nica de est&eacute;tica</div></div>
+    </div>
+
+    <p class="texto">Vale dizer com todas as letras: esses n&uacute;meros s&atilde;o os mesmos
+      medidos hoje de manh&atilde;. &Eacute; o mesmo dia e a mesma contagem. Nada se mexeu porque
+      nada teve tempo de se mexer &mdash; o que mudou foi o corte que estamos olhando.</p>
+
+    <p class="texto">Em mar&ccedil;o, uma publica&ccedil;&atilde;o de neg&oacute;cios j&aacute;
+      tinha escrito que crescer s&oacute; com an&uacute;ncio pago &eacute; um crescimento
+      fr&aacute;gil. O interesse, medido em v&iacute;deo, continua todo do lado do
+      an&uacute;ncio. E o texto que a sua paciente encaminharia continua sem existir em lugar
+      nenhum.</p>
+
+    <div class="acao">
+      <div class="r">O que fica desta se&ccedil;&atilde;o</div>
+      <p>Escreva hoje, no bloco de notas do celular, <b>duas linhas na voz da sua paciente</b>
+        &mdash; n&atilde;o na sua. Duas linhas que ela possa encaminhar sem mudar nenhuma
+        palavra. Enquanto esse texto n&atilde;o existir, cada indica&ccedil;&atilde;o depende de
+        a sua paciente ser boa de escrever no momento certo.</p>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="materia" id="s2">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes da semana. Em cada um, o que muda na <b>sua agenda</b>
+      &mdash; n&atilde;o na agenda de quem vende tecnologia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Um site de esporte publicou na ter&ccedil;a um texto inteiro s&oacute; para ensinar o leitor a usar um c&oacute;digo de indica&ccedil;&atilde;o</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; desta semana</span><span>Trivela &middot; 18/08/2026</span></div>
+          <p class="texto">O conte&uacute;do &eacute; de site de aposta. Este radar n&atilde;o
+            recomenda o setor e n&atilde;o sugere copiar a mec&acirc;nica dele. Registra apenas o
+            fato: em agosto de 2026, ensinar brasileiro a usar c&oacute;digo de
+            indica&ccedil;&atilde;o ainda rende mat&eacute;ria em ve&iacute;culo grande. O
+            h&aacute;bito est&aacute; instalado no pa&iacute;s.</p>
+          <div class="traduz">
+            <span class="r">Em portugu&ecirc;s claro</span>
+            <p>Voc&ecirc; n&atilde;o precisa de sistema nenhum para ter um. O seu
+              &ldquo;c&oacute;digo&rdquo; pode ser o primeiro nome da paciente. A amiga chega e
+              diz &ldquo;vim pela Camila&rdquo;. Pronto: isso &eacute; um c&oacute;digo de
+              indica&ccedil;&atilde;o funcionando, sem um centavo de tecnologia.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> pare de achar que a sua paciente precisa de
+            explica&ccedil;&atilde;o. Ela n&atilde;o precisa. O que ela nunca recebeu de
+            voc&ecirc; foi a frase pronta e a permiss&atilde;o de mandar.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9TUWIxWDJJNDlGVW10NE9tZjZpVnFsVzVzSXdseEFldXNpRFZQaUNkSHNzUnc3LW8tWlE4QUU4MjNDZGZsaGJOMHpjUF9Bd0l5STBSSGQwLUxncDhRS3ByeVQzUQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>J&aacute; existe lista publicada de aplicativos que pagam por indica&ccedil;&atilde;o &mdash; e at&eacute; empresa ganhando por indicar empresa</h3>
+          <div class="credito"><span class="frescor antes">&#128993; de abril e de mar&ccedil;o</span><span>Mobills &middot; 07/04/2026 &middot; com TudoCelular &middot; 12/03/2026</span></div>
+          <p class="texto">Um site de finan&ccedil;as pessoais reuniu, em abril, os aplicativos
+            que pagam por cadastro indicado. Em mar&ccedil;o, uma empresa de transporte anunciou
+            que empresas passam a lucrar ao indicar novos parceiros. A r&eacute;gua do que
+            &eacute; &ldquo;recompensa por indica&ccedil;&atilde;o&rdquo; foi montada fora da
+            sa&uacute;de &mdash; e est&aacute; toda em dinheiro.</p>
+          <div class="traduz">
+            <span class="r">Em portugu&ecirc;s claro</span>
+            <p>Na sua cl&iacute;nica isso <b>n&atilde;o</b> se copia. A sua paciente nunca paga e
+              nunca recebe dinheiro para trazer algu&eacute;m. O que volta para ela sai da agenda:
+              um cuidado a mais, um hor&aacute;rio guardado, um retoque j&aacute; incluso.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> quando escrever o que ela ganha, escreva algo que
+            sai do seu tempo e n&atilde;o do seu caixa. Isso protege o seu dinheiro e mant&eacute;m
+            a conversa dentro do que a sua profiss&atilde;o permite.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOQXRON243ZmFtN0xxbkswZVFfcmZNQnp4MUtnVklING5HM25SdHZxNGNOcHRycWdhWkdHUW5oMzl6Mm9YUWZHZ2YzODBVcWxkZFQwaUNwdDljeFE0QWJ1R2NvR0M4S0xvNFVBWXhNd3k0LXJ3QXRRQW5hamZoM2ZKWVdlVnAyV3h4TkcyR19idWt5dw?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Ontem saiu que o painel de n&uacute;meros do Google ficou semanas mostrando uma queda que n&atilde;o tinha acontecido</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; de ontem</span><span>iMasters &middot; 20/08/2026</span></div>
+          <p class="texto">Uma publica&ccedil;&atilde;o de tecnologia contou na quinta-feira que os
+            dados de visitas vindas de intelig&ecirc;ncia artificial voltaram a subir no painel do
+            Google depois da corre&ccedil;&atilde;o de uma falha de registro. Ou seja: o
+            n&uacute;mero estava errado e ningu&eacute;m sabia. Quem s&oacute; olhava o painel
+            achou que tinha ca&iacute;do.</p>
+          <div class="traduz">
+            <span class="r">Em portugu&ecirc;s claro</span>
+            <p>Esse painel &eacute; a tela gratuita onde quem tem site v&ecirc; quanta gente
+              chegou e por onde. &Eacute; do Google, &eacute; enorme, e mesmo assim contou errado
+              por semanas. Nenhum painel &eacute; sagrado.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> a &uacute;nica contagem de indica&ccedil;&atilde;o
+            que voc&ecirc; controla de verdade &eacute; a do seu caderno ou da ficha da paciente.
+            Se um dia contratar um sistema, continue anotando por fora durante um m&ecirc;s e
+            compare os dois. Se n&atilde;o baterem, o problema n&atilde;o &eacute; seu.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxPbnpWdi1OZHpMZEN5SzYxV2IxSnJLb3Y4YVQ1LTMtX0JFcDBvdzZXaU5CQTQxdWd0MjdybU9ka2w1T2FEazZ6cjhZVW0tcFFlLVlBM1ROSTVEOXhwUDlZRE9zSmE2cXZ0cWRLZTNpbGloNE5jWlVnbW9wNUV6SnlVSzZja2J2OG93VlJFTV9YZjU5ZERtLUM1VmJvcXpfUQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Uma especialista em pessoas disse ontem que treinar a equipe tamb&eacute;m &eacute; um jeito de fidelizar</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; de ontem</span><span>Human Resources Portugal &middot; 20/08/2026</span></div>
+          <p class="texto">A entrevista &eacute; portuguesa e fala do mundo corporativo:
+            forma&ccedil;&atilde;o cont&iacute;nua motiva, atualiza e segura o profissional.
+            N&atilde;o &eacute; sobre est&eacute;tica, mas o mecanismo &eacute; o mesmo dentro da
+            sua sala.</p>
+          <p class="texto"><b>Na sua agenda:</b> quem indica a sua cl&iacute;nica n&atilde;o
+            &eacute; s&oacute; a paciente. &Eacute; tamb&eacute;m a esteticista que atende com
+            voc&ecirc;. Ela chama as pacientes pelo nome e conversa com cada uma por quarenta
+            minutos seguidos. Se ela sair, boa parte da sua indica&ccedil;&atilde;o sai junto
+            &mdash; e n&atilde;o estar&aacute; escrita em lugar nenhum.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMikwJBVV95cUxNNVJRMFd0NWZYclZuM1NIaGV3eVRNNkdzT3NMbFNnQk93SDZrSDU1cFNaTGFnNDh6Ui1ibk0td0NhWFdLLXJUUUpaVkVKNVAtMGFMUHJPcUMwUWsxdUktVDhIbzJQSUZEeDhkU3AyMkhjdW5mTFlaOE9qcHVIWEpKeHd2MFdFMmtPUHIzZHNUeHBIN2xMczhhY3dtOEk3X3czNW8yVVZoeWdSM2FTb0dVSE9CS25ZWDZISy1nNVRBY25McTBSeVhpUk1MQkxONjFqd2JLNTg2WEs1dUc4NWo1Wmhwd0F6RVd2bFVnMGJLNVlOX21GNmt2dVAtM3ZPdHB2TDVKTzdsal9pdUpTN0JVX0FTWQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: na busca por fideliza&ccedil;&atilde;o na est&eacute;tica, o v&iacute;deo mais visto ensina a captar cliente novo</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; medido hoje</span><span>YouTube &middot; 11&ordf; medi&ccedil;&atilde;o deste radar &middot; 31/07 a 21/08/2026</span></div>
+          <p class="texto">Nas mesmas buscas de sempre, o corte de hoje &eacute; este: o
+            v&iacute;deo brasileiro mais visto da lista de <em>fideliza&ccedil;&atilde;o de
+            clientes para cl&iacute;nica de est&eacute;tica</em> tem dezoito mil setecentas e
+            sessenta e oito visualiza&ccedil;&otilde;es &mdash; e o t&iacute;tulo dele promete
+            ensinar a captar cliente. Os cinco que realmente falam de fidelizar somam oito mil
+            duzentas e trinta e quatro, todos juntos.</p>
+          <p class="texto"><b>Na sua agenda:</b> at&eacute; a prateleira onde deveria estar
+            &ldquo;fazer a paciente voltar&rdquo; est&aacute; ocupada por &ldquo;trazer paciente
+            nova&rdquo;. Ruim para quem espera o m&eacute;todo chegar pronto de fora. Bom para
+            quem monta o seu enquanto ningu&eacute;m est&aacute; olhando.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=yhWcc0qXO4A">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="materia" id="s3">
+    <div class="titulo"><span class="n">03</span><h2>O que fazer esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Um movimento s&oacute;, e ele cabe entre dois atendimentos:
+      <b>escreva o recado que ela encaminha.</b></p>
+
+    <div class="acao">
+      <div class="r">O movimento da semana</div>
+      <p><b>1. O texto.</b> Duas linhas, na voz dela, escritas por voc&ecirc;. Algo como:
+        &ldquo;Amiga, fa&ccedil;o meu tratamento com a [seu nome], aqui no [bairro]. Quando
+        for marcar, fala que fui eu que te falei.&rdquo; Curto o bastante para ela encaminhar
+        sem mexer em nada.</p>
+      <p><b>2. A entrega.</b> No fim do atendimento, mande esse texto para a pr&oacute;pria
+        paciente, no WhatsApp dela. Uma frase antes: &ldquo;Se algu&eacute;m te perguntar,
+        &eacute; s&oacute; encaminhar isso aqui.&rdquo; Sem tabela de pre&ccedil;o junto.</p>
+      <p><b>3. O reconhecimento.</b> Quando a amiga chegar e disser o nome, avise a paciente que
+        indicou <b>no mesmo dia</b>: &ldquo;A Camila chegou aqui e falou que foi voc&ecirc;.
+        Obrigada de verdade.&rdquo; S&oacute; isso. Quem indicou n&atilde;o est&aacute; comprando
+        nada.</p>
+      <p><b>4. O fecho da semana.</b> Sexta-feira, conte duas coisas: para quantas pacientes
+        voc&ecirc; mandou o texto e quantos nomes voltaram. Anote os dois no mesmo lugar de
+        sempre. Isto n&atilde;o &eacute; promessa de retorno &mdash; &eacute; a primeira vez que
+        voc&ecirc; ter&aacute; o que comparar na semana seguinte.</p>
+    </div>
+
+    <p class="texto">Custa zero, n&atilde;o depende de sistema, n&atilde;o precisa de
+      aprova&ccedil;&atilde;o de ningu&eacute;m e leva cinco minutos para escrever uma vez
+      s&oacute;. Depois disso &eacute; copiar e colar pelo resto do ano.</p>
+
+    <p class="texto">&Eacute; a mesma tese da abertura, dita do outro lado: o mercado passou anos
+      ensinando a sua paciente a indicar. <b>Ela j&aacute; sabe. S&oacute; falta voc&ecirc;
+      escrever o que ela deve dizer.</b></p>
+  </section>
+
+  <!-- 04 -->
+  <section class="materia" id="s4">
+    <div class="titulo"><span class="n">04</span><h2>De onde veio cada informa&ccedil;&atilde;o</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>Texto ensinando o uso de c&oacute;digo de indica&ccedil;&atilde;o</b> &mdash; Trivela,
+        18/08/2026. Ve&iacute;culo de esporte; o conte&uacute;do trata de site de aposta.
+        <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9TUWIxWDJJNDlGVW10NE9tZjZpVnFsVzVzSXdseEFldXNpRFZQaUNkSHNzUnc3LW8tWlE4QUU4MjNDZGZsaGJOMHpjUF9Bd0l5STBSSGQwLUxncDhRS3ByeVQzUQ?oc=5">ler</a></li>
+      <li><b>Lista de aplicativos que pagam por indica&ccedil;&atilde;o</b> &mdash; Mobills,
+        07/04/2026.
+        <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxOQXRON243ZmFtN0xxbkswZVFfcmZNQnp4MUtnVklING5HM25SdHZxNGNOcHRycWdhWkdHUW5oMzl6Mm9YUWZHZ2YzODBVcWxkZFQwaUNwdDljeFE0QWJ1R2NvR0M4S0xvNFVBWXhNd3k0LXJ3QXRRQW5hamZoM2ZKWVdlVnAyV3h4TkcyR19idWt5dw?oc=5">ler</a></li>
+      <li><b>Empresas passam a lucrar ao indicar novos parceiros</b> &mdash; TudoCelular.com,
+        12/03/2026.
+        <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxPM010Sk93NlRuTjlSTFlqaTBJc3Nwb0lTUThGN0ZaWTN4OTVVU1lIRENnb2w5eWlGTUpzbEhJTGE3TmNmdGdVR09HYWVzdXYtaGNCd1VPcWlMVVFfZF9VX2k3bjVRUXB6S21tTHA3SU9HTk1LdlhkZGNzT1hORVUwZnhXT0kza3JsdmhEZjBZSmxaQ0NxQW9WUTlIODJGVzA?oc=5">ler</a></li>
+      <li><b>Painel do Google voltou a subir ap&oacute;s falha de registro</b> &mdash; iMasters,
+        20/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxPbnpWdi1OZHpMZEN5SzYxV2IxSnJLb3Y4YVQ1LTMtX0JFcDBvdzZXaU5CQTQxdWd0MjdybU9ka2w1T2FEazZ6cjhZVW0tcFFlLVlBM1ROSTVEOXhwUDlZRE9zSmE2cXZ0cWRLZTNpbGloNE5jWlVnbW9wNUV6SnlVSzZja2J2OG93VlJFTV9YZjU5ZERtLUM1VmJvcXpfUQ?oc=5">ler</a></li>
+      <li><b>Forma&ccedil;&atilde;o cont&iacute;nua como forma de fideliza&ccedil;&atilde;o</b>
+        &mdash; Human Resources Portugal, 20/08/2026. Entrevista, contexto portugu&ecirc;s e
+        corporativo.
+        <a href="https://news.google.com/rss/articles/CBMikwJBVV95cUxNNVJRMFd0NWZYclZuM1NIaGV3eVRNNkdzT3NMbFNnQk93SDZrSDU1cFNaTGFnNDh6Ui1ibk0td0NhWFdLLXJUUUpaVkVKNVAtMGFMUHJPcUMwUWsxdUktVDhIbzJQSUZEeDhkU3AyMkhjdW5mTFlaOE9qcHVIWEpKeHd2MFdFMmtPUHIzZHNUeHBIN2xMczhhY3dtOEk3X3czNW8yVVZoeWdSM2FTb0dVSE9CS25ZWDZISy1nNVRBY25McTBSeVhpUk1MQkxONjFqd2JLNTg2WEs1dUc4NWo1Wmhwd0F6RVd2bFVnMGJLNVlOX21GNmt2dVAtM3ZPdHB2TDVKTzdsal9pdUpTN0JVX0FTWQ?oc=5">ler</a></li>
+      <li><b>Crescimento fr&aacute;gil de quem depende de an&uacute;ncio pago</b> &mdash;
+        startups.com.br, 04/03/2026.
+        <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxQRVZpSkdaRU4zQjRoWDQxdkFhSVFPTl9yZndyeXI5RTE2ckRya2JCVXYtZmsyQ2hMTWtCZElPbWNwcU12dm1WSjJINHdyZ0NJdW5ReGYxMVRXdFVrV0Z4cHNBcHRXOEtPUFZoZHl5VzVpcEpTSkZCa1p2TU5WTDVoOUtoNjJEYVN5NEJtTFpremxIWTZVSGc?oc=5">ler</a></li>
+      <li><b>Medi&ccedil;&atilde;o de visualiza&ccedil;&otilde;es no YouTube</b> &mdash; onze
+        levantamentos deste radar entre 31/07 e 21/08/2026, sempre com as mesmas buscas.
+        V&iacute;deo mais visto da lista de fideliza&ccedil;&atilde;o, que ensina a captar:
+        18.768. <a href="https://www.youtube.com/watch?v=yhWcc0qXO4A">ver</a> &middot;
+        Soma dos cinco que falam de fidelizar: 8.234, sendo o maior deles este.
+        <a href="https://www.youtube.com/watch?v=uuXb6LCA69M">ver</a> &middot;
+        V&iacute;deo l&iacute;der de indica&ccedil;&atilde;o de pacientes: 992 em 31/07, 994 hoje.
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI">ver</a> &middot;
+        V&iacute;deo de an&uacute;ncio para cl&iacute;nica de est&eacute;tica: 28.288.
+        <a href="https://www.youtube.com/watch?v=RsPDlK1C_lA">ver</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que n&atilde;o deu para confirmar</span>
+      <p>&bull; N&atilde;o existe dado p&uacute;blico brasileiro sobre quantas pacientes de
+        cl&iacute;nica de est&eacute;tica indicam algu&eacute;m. Nenhuma fonte desta
+        edi&ccedil;&atilde;o mede isso.<br>
+        &bull; O texto sobre c&oacute;digo de indica&ccedil;&atilde;o &eacute; de ve&iacute;culo
+        de esporte e trata de site de aposta. Este radar registra o vocabul&aacute;rio; n&atilde;o
+        recomenda o setor nem a mec&acirc;nica de pr&ecirc;mio em dinheiro.<br>
+        &bull; A lista de aplicativos que pagam por indica&ccedil;&atilde;o &eacute; de um site de
+        finan&ccedil;as pessoais e n&atilde;o foi auditada por terceiro.<br>
+        &bull; A entrevista sobre forma&ccedil;&atilde;o e fideliza&ccedil;&atilde;o &eacute;
+        opini&atilde;o de uma especialista, em Portugal, sobre equipe corporativa. N&atilde;o
+        &eacute; estudo e n&atilde;o trata de est&eacute;tica.<br>
+        &bull; N&atilde;o foi poss&iacute;vel apurar por quanto tempo exatamente o painel do
+        Google mostrou n&uacute;mero errado, nem o tamanho do erro.<br>
+        &bull; As visualiza&ccedil;&otilde;es do YouTube s&atilde;o a contagem p&uacute;blica do
+        pr&oacute;prio site, medida hoje por este radar. Mostram interesse por um assunto
+        &mdash; n&atilde;o mostram faturamento de ningu&eacute;m.<br>
+        &bull; Esta edi&ccedil;&atilde;o usa a medi&ccedil;&atilde;o de hoje, a mesma da
+        edi&ccedil;&atilde;o anterior. Os n&uacute;meros n&atilde;o se moveram porque &eacute; o
+        mesmo dia, e n&atilde;o porque o assunto parou nas &uacute;ltimas horas.</p>
+    </div>
+  </section>
+
+  <!-- 05 INTERNO -->
+  
+
+  <div class="assinatura">
+    Radar My Glow Up &middot; N&ordm; 011 &middot; Pulso &middot; 21 de agosto de 2026<br>
+    Feito para a dona de cl&iacute;nica &middot; A Pr&oacute;xima Paciente &middot; por My Glow Up
+  </div>
+
+</div>
+</body>
+</html>
