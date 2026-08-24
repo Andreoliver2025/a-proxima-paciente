@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Radar My Glow Up &middot; N&ordm; 012 &middot; Pulso &middot; 24 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">&#129378; Radar My Glow Up &middot; Pulso</div>
+    <h1>A sua paciente indica uma pessoa. E est&atilde;o decidindo no tribunal quem pode ser essa pessoa.</h1>
+    <p class="chamada">Na sexta-feira um tribunal federal anulou a regra que autorizava
+      dentista a fazer harmoniza&ccedil;&atilde;o orofacial. N&atilde;o &eacute; um caso
+      solto: em mar&ccedil;o o mesmo tribunal j&aacute; tinha barrado biom&eacute;dico em
+      procedimento invasivo, e o Senado abriu discuss&atilde;o sobre quem pode trabalhar em
+      est&eacute;tica. O que a sua paciente promete para a amiga depende de quem encosta a
+      m&atilde;o nela.</p>
+    <div class="dateline">Edi&ccedil;&atilde;o N&ordm; 012 &middot; segunda-feira, 24 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Nesta edicao">
+    <div class="rot">Nesta edi&ccedil;&atilde;o</div>
+    <ol>
+      <li><a href="#s1">O que mudou</a>
+        <span class="d">A indica&ccedil;&atilde;o que voc&ecirc; passou cinco edi&ccedil;&otilde;es montando tem um nome pr&oacute;prio dentro. E o nome mudou de lugar.</span></li>
+      <li><a href="#s2">As novidades</a>
+        <span class="d">Cinco recortes: a decis&atilde;o de sexta, a mentira que chega pelo celular da paciente e a fila de gente abrindo cl&iacute;nica na sua esquina.</span></li>
+      <li><a href="#s3">O que fazer esta semana</a>
+        <span class="d">Um movimento s&oacute;: uma terceira linha no texto que ela encaminha &mdash; e uma confer&ecirc;ncia na sua tabela.</span></li>
+      <li><a href="#s4">De onde veio cada informa&ccedil;&atilde;o</a>
+        <span class="d">Fonte com data e link &mdash; e a lista honesta do que n&atilde;o deu para confirmar.</span></li>
+    </ol>
+  </nav>
+
+  <section class="materia" id="s1">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Nas cinco edi&ccedil;&otilde;es passadas este radar montou o pedido de
+      indica&ccedil;&atilde;o inteiro: <b>anotar quem trouxe quem</b>, <b>dizer em voz alta o
+      que ela ganha</b>, <b>escolher o minuto de perguntar</b>, <b>receber a amiga sabendo
+      quem a mandou</b> e <b>deixar o texto pronto na m&atilde;o dela</b>. Faltou perguntar
+      uma coisa &oacute;bvia: o que est&aacute; escrito nesse texto?</p>
+
+    <p class="texto capitular">Na sexta-feira, dia vinte e um, dois ve&iacute;culos
+      noticiaram a mesma decis&atilde;o. Um tribunal federal anulou a resolu&ccedil;&atilde;o
+      que autorizava dentista a fazer harmoniza&ccedil;&atilde;o orofacial. No s&aacute;bado
+      um jornal da Bahia repetiu a not&iacute;cia com o t&iacute;tulo mais direto
+      poss&iacute;vel: a Justi&ccedil;a barrou.</p>
+
+    <p class="texto">N&atilde;o &eacute; a primeira vez este ano. Em mar&ccedil;o, o mesmo
+      tribunal decidiu pelo fim da est&eacute;tica invasiva feita por biom&eacute;dico. Em
+      julho, o Senado marcou discuss&atilde;o sobre quais profissionais podem atuar em
+      sa&uacute;de est&eacute;tica. Na mesma semana, a Anvisa sentou para discutir a
+      regula&ccedil;&atilde;o dos servi&ccedil;os de est&eacute;tica.</p>
+
+    <div class="traduz">
+      <span class="r">Em portugu&ecirc;s claro</span>
+      <p>Resolu&ccedil;&atilde;o &eacute; a regra que um conselho profissional escreve para
+        dizer o que a categoria dele pode fazer. Anular &eacute; a Justi&ccedil;a dizer que
+        aquela regra n&atilde;o vale. N&atilde;o muda o procedimento em si &mdash; muda quem
+        tem permiss&atilde;o para execut&aacute;-lo.</p>
+    </div>
+
+    <p class="texto">Agora leve isso para a sua recep&ccedil;&atilde;o. Quando a sua paciente
+      indica voc&ecirc;, ela n&atilde;o manda o nome de um procedimento para a amiga. Ela
+      manda o nome de <em>algu&eacute;m</em>. &ldquo;Vai na Fulana, ela tem m&atilde;o
+      boa.&rdquo; A indica&ccedil;&atilde;o inteira mora numa pessoa.</p>
+
+    <p class="texto">E &eacute; exatamente sobre essa pessoa que o ano de 2026 est&aacute;
+      brigando no tribunal. Se o profissional que faz o procedimento na sua sala perde a
+      permiss&atilde;o de fazer, a indica&ccedil;&atilde;o continua chegando &mdash; s&oacute;
+      que chegando para uma coisa que voc&ecirc; n&atilde;o pode mais entregar.</p>
+
+    <div class="olho">
+      <p>&ldquo;A sua paciente n&atilde;o indica um procedimento. Ela indica uma pessoa
+        &mdash; e este ano o Brasil est&aacute; decidindo, no tribunal, quem pode ser essa
+        pessoa.&rdquo;</p>
+      <span class="quem">A frase para levar &agrave; reuni&atilde;o de equipe</span>
+    </div>
+
+    <p class="texto">A tese desta edi&ccedil;&atilde;o &eacute; essa:
+      <b>a indica&ccedil;&atilde;o que sobrevive &eacute; a que aponta para a
+      cl&iacute;nica, n&atilde;o s&oacute; para uma m&atilde;o</b>. Se o texto que a sua
+      paciente encaminha diz apenas o nome de um profissional, ele fica t&atilde;o firme
+      quanto o registro dele. Se diz o nome da cl&iacute;nica e quem atende ali, ele
+      aguenta uma mudan&ccedil;a de regra.</p>
+
+    <p class="texto">Enquanto isso, o mercado n&atilde;o desacelera. O Sebrae contou vinte e
+      sete neg&oacute;cios de beleza abertos por hora no pa&iacute;s, com crescimento de
+      dezoito e meio por cento em 2025. A Circana mediu dez por cento de alta no setor no
+      primeiro trimestre. No s&aacute;bado, uma feira em Jo&atilde;o Pessoa reuniu mais de
+      cento e cinquenta marcas.</p>
+
+    <p class="texto">Ou seja: mais gente abrindo cl&iacute;nica na sua esquina, e menos
+      clareza sobre quem pode fazer o qu&ecirc; dentro dela. A paciente que est&aacute;
+      escolhendo entre voc&ecirc; e a vizinha decide pelo nome de quem encosta a m&atilde;o
+      &mdash; e, cada vez mais, pergunta se essa pessoa pode.</p>
+
+    <p class="texto">E o assunto da indica&ccedil;&atilde;o continua sem dono no Brasil.
+      Medimos hoje, pela d&eacute;cima segunda vez desde trinta e um de julho, os mesmos
+      v&iacute;deos brasileiros. Em vinte e quatro dias, o v&iacute;deo que ensina a comprar
+      an&uacute;ncio para cl&iacute;nica de est&eacute;tica ganhou setecentas e quatorze
+      visualiza&ccedil;&otilde;es. O l&iacute;der sobre programa de indica&ccedil;&atilde;o de
+      pacientes ganhou duas.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">+714</div>
+        <div class="lbl">visualiza&ccedil;&otilde;es do v&iacute;deo brasileiro que ensina a
+          <b>comprar an&uacute;ncio</b> para cl&iacute;nica de est&eacute;tica, entre 31/07 e hoje</div></div>
+      <div class="numero"><div class="big">+2</div>
+        <div class="lbl">visualiza&ccedil;&otilde;es, nos mesmos vinte e quatro dias, do v&iacute;deo
+          l&iacute;der sobre <b>programa de indica&ccedil;&atilde;o de pacientes</b></div></div>
+      <div class="numero"><div class="big">0</div>
+        <div class="lbl">o v&iacute;deo brasileiro sobre <b>fideliza&ccedil;&atilde;o na
+          est&eacute;tica</b> est&aacute; no mesmo n&uacute;mero h&aacute; doze
+          medi&ccedil;&otilde;es seguidas</div></div>
+      <div class="numero"><div class="big">27</div>
+        <div class="lbl">neg&oacute;cios de beleza <b>abertos por hora</b> no pa&iacute;s,
+          segundo o Sebrae &mdash; alta de 18,5% em 2025</div></div>
+    </div>
+
+    <div class="acao">
+      <div class="r">O que fica desta se&ccedil;&atilde;o</div>
+      <p>Abra a sua tabela de procedimentos e leia coluna por coluna com uma pergunta na
+        cabe&ccedil;a: <b>quem faz isto aqui, e o conselho dessa pessoa permite?</b> N&atilde;o
+        &eacute; burocracia. &Eacute; a pergunta que separa uma agenda cheia de uma agenda que
+        esvazia de um dia para o outro por causa de uma decis&atilde;o que voc&ecirc; nem
+        leu.</p>
+      <p>Este radar n&atilde;o d&aacute; orienta&ccedil;&atilde;o jur&iacute;dica. A resposta
+        certa vem do conselho da profiss&atilde;o de cada pessoa que atende na sua sala.</p>
+    </div>
+  </section>
+
+  <section class="materia" id="s2">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes da semana. Em cada um, o que muda na
+      <b>sua agenda</b> &mdash; n&atilde;o na agenda de quem escreve a not&iacute;cia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>A Justi&ccedil;a anulou a regra que autorizava dentista a fazer harmoniza&ccedil;&atilde;o orofacial</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; hoje</span>
+            <span>valoremercadoro.com.br &middot; 21/08/2026 &middot; e Tribuna da Bahia, 22/08</span></div>
+          <p class="texto">Um tribunal federal derrubou a resolu&ccedil;&atilde;o do conselho
+            que dava aos dentistas a permiss&atilde;o de fazer harmoniza&ccedil;&atilde;o
+            orofacial. Dois ve&iacute;culos noticiaram em dias seguidos, com o mesmo
+            conte&uacute;do. &Eacute; a segunda categoria profissional barrada pela mesma
+            corte em seis meses.</p>
+          <div class="traduz">
+            <span class="r">Em portugu&ecirc;s claro</span>
+            <p>Harmoniza&ccedil;&atilde;o orofacial &eacute; o conjunto de procedimentos que
+              mexe no equil&iacute;brio do rosto &mdash; preenchimento, toxina, contorno. O que
+              mudou n&atilde;o foi o procedimento. Foi a lista de quem tem
+              autoriza&ccedil;&atilde;o para faz&ecirc;-lo.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se algum procedimento da sua tabela &eacute;
+            executado por dentista, confirme com o conselho dele, ainda esta semana, o que a
+            decis&atilde;o alcan&ccedil;a. E segure hor&aacute;rio novo desse procedimento
+            at&eacute; ter a resposta por escrito.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOG9CSHgzbzliRVh1bE5fTEt6MHQ0MDZiNnNWUDhVT3lCLU5GbkJULVRaMlhGZmZhcG9VY0ZPVlVpSzhSQ01HNHVGSkdFeDVqUUl1Tm5LRlFqY0M3eUlNNklvcG01dzhXWVE2QzI4SUktRlRpaUtTck9JYzlBTURxZmtnbGd0d3FWOHg5NUs0elFyRnVxMFE0bXhaWko3QVlPWkY4NjZibkVjV0dHV2w1VTVKT1ZweUw2?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>N&atilde;o foi um caso isolado: em mar&ccedil;o o mesmo tribunal j&aacute; tinha barrado biom&eacute;dico em procedimento invasivo</h3>
+          <div class="credito"><span class="frescor antes">&#128993; contexto</span>
+            <span>CREMERS &middot; 11/03/2026 &middot; e Consultor Jur&iacute;dico, 26/03</span></div>
+          <p class="texto">A decis&atilde;o de sexta-feira entra numa fila. Em mar&ccedil;o, a
+            mesma corte decidiu pelo fim da est&eacute;tica invasiva feita por
+            biom&eacute;dico. Em fevereiro, a C&acirc;mara marcou debate sobre um projeto que
+            restringe a atua&ccedil;&atilde;o em est&eacute;tica. Em julho, o Senado abriu a
+            discuss&atilde;o sobre quais profissionais podem atuar na &aacute;rea.</p>
+          <p class="texto"><b>Na sua agenda:</b> pare de tratar isso como not&iacute;cia de
+            uma categoria s&oacute;. Fa&ccedil;a uma lista de uma folha com cada pessoa que
+            atende na sua cl&iacute;nica, a forma&ccedil;&atilde;o dela e o que ela executa
+            hoje. Essa folha vai ser pedida mais de uma vez at&eacute; o fim do ano.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQQW1SUkJQelE2eS0xekplNzktLU5Ndk1ael9hcWRZeFQzTHJnUjA3cTBsUHlfRk44ckwtQXBrWUNrYktSVjFnSmY3SHpiem9lZFU3V2Q2akFibEFweWQyXzFaUFE3eU4tOG1NZXFJaXhUZGI2elF2WEdrczQ0RXhVVXdKYnJ1V0VERWc0RTkzTmpJZms?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Professora desmente informa&ccedil;&atilde;o falsa sobre bioestimuladores que est&aacute; circulando nas redes</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; hoje</span>
+            <span>ICTQ &middot; 21/08/2026</span></div>
+          <p class="texto">Uma professora do ICTQ veio a p&uacute;blico na sexta-feira negar
+            informa&ccedil;&otilde;es falsas sobre bioestimuladores que circulam nas redes
+            sociais. &Eacute; a mesma semana da decis&atilde;o judicial &mdash; e o assunto
+            chega na sua paciente pelo celular, n&atilde;o pelo consult&oacute;rio.</p>
+          <div class="traduz">
+            <span class="r">Em portugu&ecirc;s claro</span>
+            <p>Bioestimulador &eacute; o produto injet&aacute;vel que estimula o pr&oacute;prio
+              corpo a produzir col&aacute;geno, em vez de preencher na hora. &Eacute; um dos
+              procedimentos mais comentados na internet &mdash; e por isso um dos que mais
+              recebem informa&ccedil;&atilde;o errada.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> escolha os tr&ecirc;s procedimentos que mais
+            geram pergunta na sua recep&ccedil;&atilde;o e escreva, em uma frase cada, a
+            resposta correta. Quem atende o WhatsApp precisa dessa frase impressa. A paciente
+            j&aacute; chega com uma vers&atilde;o pronta na cabe&ccedil;a.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxOYmowQ1BycEFJc3hBcU5rQ3JkOHdJX05wMWowVTBrdGJfcEtQTUphTDFSQVdBZE81VlAyVGd5c0R6eTVHeGJyQzZsZ1oySGJtVmhPREliQ1RkRXRQWlBSQ2lhY05Kc09Sb1ppdUdqZDJMMDNmMG9CbXhaNTF3b2p4dU41UTFFZmxSS2hWVlVUZ2tIUnFaVXBKekI0VjZnUHFJdGc5VVQ3V19JcW9JV0lyUHNYcjc4czdCUl9XUTN3?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Enquanto a regra se mexe, abre um neg&oacute;cio de beleza a cada dois minutos no pa&iacute;s</h3>
+          <div class="credito"><span class="frescor antes">&#128993; contexto</span>
+            <span>Ag&ecirc;ncia Sebrae &middot; 16/01/2026 &middot; e CNN Brasil / Circana, 07/06</span></div>
+          <p class="texto">O Sebrae contou vinte e sete neg&oacute;cios de beleza abertos por
+            hora no Brasil, com crescimento de dezoito e meio por cento em 2025. A Circana
+            mediu alta de dez por cento no setor no primeiro trimestre deste ano. No
+            s&aacute;bado, uma feira em Jo&atilde;o Pessoa reuniu mais de cento e cinquenta
+            marcas.</p>
+          <p class="texto"><b>Na sua agenda:</b> a sua vantagem sobre a cl&iacute;nica que
+            abriu m&ecirc;s passado n&atilde;o &eacute; o aparelho nem o pre&ccedil;o. &Eacute;
+            a paciente que j&aacute; te conhece e fala de voc&ecirc;. Ela &eacute; a
+            &uacute;nica coisa na sua cl&iacute;nica que a concorr&ecirc;ncia nova n&atilde;o
+            consegue comprar pronta.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxOd3hpdHdOWXFMZGJEN2xLZ0MyWGlGRjBld3JJdU1fTXBEd0RTYll0ZTRQNWZSVlVIdDRRUXlxajdXc1FpWDZ3MnRsd3RQeHJBS0hPUEkzQzJOZGFUbnZjUTdoOGtQUTRWQ1NwMVRMeHN2bnVISVVrNnlkMjdyTklPaExLNVhaMlhrRHlBYUEtQlJIdjdHZTZtbXpUbFlCWXZlQ3RXT3NoR0FpTDlLUU1RamttTTk1V1ltWWpnVVZQRWVWVE4tdXBlQ1NmV3hRQ1pHRmc?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Mais empresas colocam um programa para responder as mensagens &mdash; e nenhum deles responde &ldquo;quem faz&rdquo;</h3>
+          <div class="credito"><span class="frescor hoje">&#128994; hoje</span>
+            <span>Acontecendo Aqui &middot; 18/08/2026 &middot; e Gazeta do Povo, 09/06</span></div>
+          <p class="texto">Uma reportagem de ter&ccedil;a-feira mostra empresas brasileiras
+            ampliando o uso de programas de intelig&ecirc;ncia artificial nos neg&oacute;cios.
+            Em junho, um jornal j&aacute; tinha escrito sobre esses programas na
+            gest&atilde;o de sal&otilde;es e cl&iacute;nicas. Quase todos fazem a mesma coisa:
+            respondem pre&ccedil;o e marcam hor&aacute;rio.</p>
+          <div class="traduz">
+            <span class="r">Em portugu&ecirc;s claro</span>
+            <p>&Eacute; um programa que atende a mensagem no lugar da recepcionista: responde
+              a d&uacute;vida comum, manda a tabela e marca o hor&aacute;rio. Ele n&atilde;o
+              sabe dizer quem vai executar o procedimento, nem se essa pessoa pode
+              execut&aacute;-lo hoje.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> quando algu&eacute;m te oferecer um desses,
+            fa&ccedil;a uma pergunta antes de ouvir o pre&ccedil;o &mdash; &ldquo;ele consegue
+            dizer para a paciente quem vai me atender?&rdquo;. A parte que a m&aacute;quina
+            n&atilde;o cobre &eacute; justamente a que virou assunto de tribunal esta
+            semana.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxOamlXazdSMlh5aFZqNklWM2ZDMHRxeXZfZFE4SUhBOXJidWh0dlI4UzZ0M2FFems2RV9qN0dWWGdqV20wN2thdlBKa193dGFsem03MHZDZkt1ZkpzZ0xtU3dsU0NWMG43ZkdVV2lQdEp2WkhPNVhmTF9zaFFLRmJ4RHJiQVk3UVhmVUhoSlZqdzU1VEVlVU9RRUxmUDQySjRU?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="materia" id="s3">
+    <div class="titulo"><span class="n">03</span><h2>O que fazer esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Um movimento s&oacute;. Custa zero e cabe entre dois atendimentos.</p>
+
+    <div class="acao">
+      <div class="r">O movimento da semana</div>
+      <p>Na sexta-feira este radar pediu que voc&ecirc; escrevesse <b>duas linhas na voz da
+        sua paciente</b> &mdash; o texto que ela encaminha para a amiga. Abra essas duas
+        linhas de novo e acrescente <b>uma terceira</b>: o nome da sua cl&iacute;nica e o
+        nome de quem atende ali.</p>
+      <p>Do jeito que estava, o texto apontava para uma m&atilde;o. Agora aponta para um
+        endere&ccedil;o com gente dentro. Se um dia a m&atilde;o mudar &mdash; por
+        decis&atilde;o, por f&eacute;rias, por sa&iacute;da &mdash; a amiga ainda sabe para
+        onde ir.</p>
+      <p>Depois, cinco minutos de confer&ecirc;ncia: passe o olho na sua tabela e marque com
+        um X <b>todo procedimento cujo respons&aacute;vel voc&ecirc; n&atilde;o consegue
+        nomear de cabe&ccedil;a</b>. Os X s&atilde;o a sua lista de liga&ccedil;&otilde;es
+        para o conselho da profiss&atilde;o esta semana.</p>
+      <p>&Eacute; isso. N&atilde;o compre nada, n&atilde;o assine nada, n&atilde;o troque de
+        sistema. Uma linha a mais no texto dela e uma coluna a mais na sua tabela.</p>
+    </div>
+  </section>
+
+  <section class="materia" id="s4">
+    <div class="titulo"><span class="n">04</span><h2>De onde veio cada informa&ccedil;&atilde;o</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que est&aacute; escrito aqui tem data e link. O que n&atilde;o
+      deu para confirmar est&aacute; dito com todas as letras no fim.</p>
+
+    <ol class="src">
+      <li><b>valoremercadoro.com.br</b> &middot; 21/08/2026 &middot; TRF 1&ordf; anula
+        resolu&ccedil;&atilde;o que autorizava dentistas a realizar harmoniza&ccedil;&atilde;o
+        orofacial &middot; <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOG9CSHgzbzliRVh1bE5fTEt6MHQ0MDZiNnNWUDhVT3lCLU5GbkJULVRaMlhGZmZhcG9VY0ZPVlVpSzhSQ01HNHVGSkdFeDVqUUl1Tm5LRlFqY0M3eUlNNklvcG01dzhXWVE2QzI4SUktRlRpaUtTck9JYzlBTURxZmtnbGd0d3FWOHg5NUs0elFyRnVxMFE0bXhaWko3QVlPWkY4NjZibkVjV0dHV2w1VTVKT1ZweUw2?oc=5">link</a></li>
+      <li><b>Tribuna da Bahia</b> &middot; 22/08/2026 &middot; Justi&ccedil;a barra
+        harmoniza&ccedil;&atilde;o por dentistas &middot; <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxObzd1VTRMeE51ZTQ5NS1FMEl4d3E4X182czM3LTdUWndEZjlrUjVHMXpUb2JqOHNmSWVEOW9kd2E3ZjJMandJQXVtTEU2TnBWR090ZlJVNkNPOE5DdmhIcTNuTVZZdDlkTnZud21PZ1BITUt6bmFpSU1HTTRFTFpoN0dyRlRzQTA?oc=5">link</a></li>
+      <li><b>CREMERS</b> &middot; 11/03/2026 &middot; TRF-1 decide pelo fim da pr&aacute;tica
+        da Biomedicina est&eacute;tica invasiva &middot; <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQQW1SUkJQelE2eS0xekplNzktLU5Ndk1ael9hcWRZeFQzTHJnUjA3cTBsUHlfRk44ckwtQXBrWUNrYktSVjFnSmY3SHpiem9lZFU3V2Q2akFibEFweWQyXzFaUFE3eU4tOG1NZXFJaXhUZGI2elF2WEdrczQ0RXhVVXdKYnJ1V0VERWc0RTkzTmpJZms?oc=5">link</a></li>
+      <li><b>Consultor Jur&iacute;dico</b> &middot; 26/03/2026 &middot; Biom&eacute;dicos
+        n&atilde;o podem fazer procedimentos est&eacute;ticos invasivos &middot;
+        <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxON2xCTV9uTGh6VjJadlBvMF8wc0FOSzRZakdlTjR5bGxxNkNob1hXc0hXOVAxNzNhUi1sS3RJZUhiV1dIemw0dVBTU091YWVLRXN2R2dhVkpOTW5pRC1MNFI5ZEloWEhPekJTUEFVRnE0b2ZsTTJENjMwcnlXb2MyUk1hVzY3dEZ2RmNMLWV4R0FqMDJUT29CR1g4bmtlMkltTXd6NzRB?oc=5">link</a></li>
+      <li><b>Senado Federal</b> &middot; 20/07/2026 &middot; Senado vai discutir quais
+        profissionais podem atuar na sa&uacute;de est&eacute;tica &middot;
+        <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxOU21UdWhaVGY2NU9kUUNPZ1NTQXFSZnZ1UjBHRG1JNEJtd3ZfVlRtRTVORVJNa18weHpGd2htWXF3bElYbFo0eEpIcGttNXIya1lKaTJNUVNyR2RjMUVlNFpWWUlLQnViSWZlVUZNeFFoNWFEWlhiNzFGek9zenpuYmljazlxSmR1Nm9FYUY3aXkzX0QwZUFua1dGNWZUcTAwVE41aDRBSmN3elNERk5aeng4ZFF4M3QzME1oeGJrVnl3UQ?oc=5">link</a></li>
+      <li><b>Cofen</b> &middot; 24/02/2026 &middot; C&acirc;mara dos Deputados vai debater
+        Projeto de Lei que restringe atua&ccedil;&atilde;o em Est&eacute;tica &middot;
+        <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQcmY1Xy1yQm9ia1FHX0RycG56RXhHTWNqQk9yWkhDX3pwOFZEel9nVll1b2daUGp6dWNlcnQ0c0x5bnZ2bW9odDRYQVhpWTR3LXhDNTJoay0xR1VTMmlvQmZva00teWd1cVJ3WHctOTltYWlsWmY4dHhON2F1eGNUdXRFLUh4cGgyU3NITllkZHJrMDdIMkpXUGJyN1pfems3bjZGaWtqc1VxX1U?oc=5">link</a></li>
+      <li><b>Jornal de Bras&iacute;lia</b> &middot; 29/07/2026 &middot; Anvisa discute
+        regula&ccedil;&atilde;o dos servi&ccedil;os de est&eacute;tica &middot;
+        <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxONVluUVVuNkd4MUFKVmlVSV84UnVIeUwzdlJZYWJIeGtpd3VJSndBQmx6ZDdjNUE2OUx6VnBMSk5qelFBSWgtZXdER0s5czBuRFQzSjBIamQtdzRkeW93bUJ3ZFJFeXNxOUNHTVFINzNwZ21iNXptS3VfWHZjYXd3UGt2S2NFR0lYMjFFazI4MWpmYUhBX2JhSkhvZUhrdw?oc=5">link</a></li>
+      <li><b>ICTQ</b> &middot; 21/08/2026 &middot; Professora do ICTQ desmente fake news sobre
+        bioestimuladores nas redes sociais &middot; <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxOYmowQ1BycEFJc3hBcU5rQ3JkOHdJX05wMWowVTBrdGJfcEtQTUphTDFSQVdBZE81VlAyVGd5c0R6eTVHeGJyQzZsZ1oySGJtVmhPREliQ1RkRXRQWlBSQ2lhY05Kc09Sb1ppdUdqZDJMMDNmMG9CbXhaNTF3b2p4dU41UTFFZmxSS2hWVlVUZ2tIUnFaVXBKekI0VjZnUHFJdGc5VVQ3V19JcW9JV0lyUHNYcjc4czdCUl9XUTN3?oc=5">link</a></li>
+      <li><b>Ag&ecirc;ncia Sebrae de Not&iacute;cias</b> &middot; 16/01/2026 &middot; A cada
+        hora, 27 neg&oacute;cios de beleza s&atilde;o abertos no pa&iacute;s. Crescimento foi
+        de 18,5% em 2025 &middot; <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxOd3hpdHdOWXFMZGJEN2xLZ0MyWGlGRjBld3JJdU1fTXBEd0RTYll0ZTRQNWZSVlVIdDRRUXlxajdXc1FpWDZ3MnRsd3RQeHJBS0hPUEkzQzJOZGFUbnZjUTdoOGtQUTRWQ1NwMVRMeHN2bnVISVVrNnlkMjdyTklPaExLNVhaMlhrRHlBYUEtQlJIdjdHZTZtbXpUbFlCWXZlQ3RXT3NoR0FpTDlLUU1RamttTTk1V1ltWWpnVVZQRWVWVE4tdXBlQ1NmV3hRQ1pHRmc?oc=5">link</a></li>
+      <li><b>CNN Brasil</b> &middot; 07/06/2026 &middot; Setor de beleza no Brasil cresceu 10%
+        no 1&ordm; trimestre, diz Circana &middot; <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPazFKMGdsd0l5Y3pfeGg2Y3h6WlYtd1J2bXZRN2YwMjgxVVlCb2pPUXBNeW5ZN1ctSms3bG5oUWVFOUJJOExIemQ4VDhvVFlka3NlU095dUFqdUpQZmZnaTYtM2JxVnFvaGtvbmM4aC12OXBRc2pOVUJ0WDgxRFFEZWxKMVhhMTkxT2M3aXN0dC1lbnQwQThZNjlGUkwwT2hHX3UtTmxR?oc=5">link</a></li>
+      <li><b>WSCOM</b> &middot; 22/08/2026 &middot; Feira Paraibana da Beleza re&uacute;ne mais
+        de 150 marcas em Jo&atilde;o Pessoa &middot; <a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxPTHRyNWIyN3BsVDhUcEN4RFNwTkQ5aEcyejVjeUJmeW1zZTdsN08yRUg0TjlqOHN6WnMxOXJaazRpTk5oLXVtdllzX2FLQk16SHNZZUFDSWUtZmxaRXJyODd5Y3o4YUV4VnoxS3ItRUstbW1OcWRqYjN1MHBOWi1LdXY0YU51aTBXV3QtVm1UUnNFZndKakNEdnh6cmxhUzllc0JlQlJBakljMFFBVlNXT2JyS1BteDVRX1hmblh4dEMyN3VZZlE?oc=5">link</a></li>
+      <li><b>Acontecendo Aqui</b> &middot; 18/08/2026 &middot; Empresas brasileiras ampliam uso
+        de agentes de IA nos neg&oacute;cios &middot; <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxOamlXazdSMlh5aFZqNklWM2ZDMHRxeXZfZFE4SUhBOXJidWh0dlI4UzZ0M2FFems2RV9qN0dWWGdqV20wN2thdlBKa193dGFsem03MHZDZkt1ZkpzZ0xtU3dsU0NWMG43ZkdVV2lQdEp2WkhPNVhmTF9zaFFLRmJ4RHJiQVk3UVhmVUhoSlZqdzU1VEVlVU9RRUxmUDQySjRU?oc=5">link</a></li>
+      <li><b>Gazeta do Povo</b> &middot; 09/06/2026 &middot; Intelig&ecirc;ncia artificial
+        transforma a gest&atilde;o de sal&otilde;es e cl&iacute;nicas &middot;
+        <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxNZ3Rsei1qaXc5Nk56NlZQbzI3LVpDT25hV0NVdnBIY1Zvc2pxMEVKOExINmNUMHUwR0ozV2U2dU1fMmNQSmxkYzFsMEJ6TW1vNDJyd00xMHZlT2pGYmc0eWZDQVZWZ0l1ZTByRV9oSWtxYnp6a0t5bnJfSDA5WjJCYkV1NVB0VnRvS05aRUxB?oc=5">link</a></li>
+      <li><b>YouTube</b> &middot; medi&ccedil;&atilde;o pr&oacute;pria deste radar &middot;
+        mesmos v&iacute;deos brasileiros acompanhados desde 31/07/2026, d&eacute;cima segunda
+        contagem em 24/08/2026</li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que n&atilde;o deu para confirmar</span>
+      <p><b>O alcance exato da decis&atilde;o sobre harmoniza&ccedil;&atilde;o orofacial.</b>
+        As duas mat&eacute;rias dizem que a resolu&ccedil;&atilde;o foi anulada, mas
+        n&atilde;o deu para ler o texto da decis&atilde;o, nem saber se cabe recurso, se ela
+        j&aacute; vale e em quais estados. Nenhum ve&iacute;culo de grande
+        circula&ccedil;&atilde;o publicou at&eacute; o fechamento desta
+        edi&ccedil;&atilde;o. Trate como aviso para confirmar, n&atilde;o como palavra
+        final.</p>
+      <p><b>O n&uacute;mero do Sebrae &eacute; de janeiro e fala de 2025.</b> N&atilde;o
+        existe leitura equivalente publicada para 2026. O dado da Circana &eacute; do
+        primeiro trimestre e mede o setor de beleza inteiro, n&atilde;o cl&iacute;nica de
+        est&eacute;tica.</p>
+      <p><b>A conta do YouTube.</b> S&atilde;o v&iacute;deos brasileiros escolhidos por busca
+        e acompanhados desde 31 de julho. Servem para medir <em>interesse por assunto</em>,
+        n&atilde;o tamanho de mercado. A busca muda de resultado ao longo do tempo, e por
+        isso alguns v&iacute;deos entram e saem da lista.</p>
+    </div>
+  </section>
+
+  
+
+  <div class="assinatura">
+    &#129378; Radar My Glow Up &middot; Edi&ccedil;&atilde;o N&ordm; 012 &middot; Pulso<br>
+    Alimenta o programa <b>A Pr&oacute;xima Paciente &middot; por My Glow Up</b><br>
+    Segunda-feira, 24 de agosto de 2026
+  </div>
+
+</div>
+</body>
+</html>
