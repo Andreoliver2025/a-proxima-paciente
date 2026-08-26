@@ -76,6 +76,9 @@
   .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
     color:var(--ink);display:block}
   .sumario a:hover{color:var(--g1)}
+  /* .d caia na coluna do numero (2.6rem) e quebrava uma palavra por linha. 26/08/2026 */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
   .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
 
   /* ── materia ── */
