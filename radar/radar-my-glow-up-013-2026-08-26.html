@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Radar My Glow Up · Nº 013 · Completo · 26 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+  <header class="capa">
+    <div class="selo">🧴 Radar My Glow Up · Edição completa</div>
+    <h1>A máquina do mercado aprendeu a vender de madrugada. As duas clínicas que viraram notícia esta semana cresceram na conversa.</h1>
+    <p class="chamada">Na terça saíram duas reportagens sobre programas que vendem sozinhos a qualquer hora, agora oferecidos como corte de custo. No domingo e na segunda, os dois textos que falaram de clínica de estética contaram outra coisa: uma cliente que virou dona do próprio negócio e um centro de estética que completou um ano com uma cliente no meio da história.</p>
+    <div class="dateline">Edição Nº 013 · quarta-feira, 26 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a>
+        <div class="d">Indicação não é um acontecimento solto. É um degrau — e existem quatro deles.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a máquina de madrugada, a cliente que virou dona e o dinheiro que entrou padronizado.</div></li>
+      <li><a href="#nova">Como trazer paciente nova</a>
+        <div class="d">A pessoa mais provável de te indicar hoje é a que já te indicou uma vez. E ninguém volta nela.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">Antes de pedir indicação, a segunda visita. Quem nunca voltou não fala de você.</div></li>
+      <li><a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story com caixinha.</div></li>
+      <li><a href="#semana">O que fazer esta semana</a>
+        <div class="d">Um movimento só: marcar na agenda quem já trouxe alguém — e agradecer pelo nome.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </div>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Nas seis edições passadas este radar montou o pedido de indicação inteiro, peça por peça. Esta semana o mercado mostrou, sem querer, <b>o que vem depois do pedido</b> — e é aí que quase todo mundo para.</p>
+
+    <p class="texto capitular">Na terça-feira, dia vinte e cinco, dois veículos publicaram sobre a mesma coisa. Um contou que uma startup brasileira aposta em um programa que vende sozinho, inclusive de madrugada. O outro contou que esse tipo de programa está sendo vendido às empresas como ferramenta de eficiência.</p>
+
+    <p class="texto">Repare no argumento de venda. Não é “atende melhor”. É “custa menos”. A máquina da porta de entrada, que há um mês aparecia aqui como novidade, agora é vendida como economia.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p>“Eficiência operacional” é isto: fazer o mesmo trabalho com menos gente e em menos tempo. Quando um serviço passa a ser vendido assim, é sinal de que ele virou item de tabela — todo mundo vai ter, e ter deixa de ser vantagem.</p>
+    </div>
+
+    <p class="texto">Agora olhe o que aconteceu no seu setor nos mesmos três dias. No domingo, um jornal contou que uma profissional celebrou o primeiro ano do centro de estética e spa dela ao lado de uma amiga <em>e cliente</em>. Na segunda, uma reportagem trouxe o título mais direto do ano: <em>de cliente a dona</em>.</p>
+
+    <p class="texto">Nenhuma das duas histórias fala de máquina. As duas falam da mesma coisa: uma mulher que entrou como cliente e, com o tempo, virou outra coisa dentro daquele negócio. Uma virou dona. A outra virou a pessoa que aparece na foto de um ano.</p>
+
+    <div class="olho">
+      <p>“A máquina do mercado está aprendendo a responder mais rápido. Ninguém está aprendendo a reconhecer quem já está dentro.”</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <p class="texto">E é isso que faltava nas seis edições anteriores. Este radar ensinou a <em>anotar quem trouxe quem</em>, a <em>dizer em voz alta o que ela ganha</em>, a <em>escolher o minuto de perguntar</em>, a <em>receber a amiga sabendo quem a mandou</em>, a <em>deixar o texto pronto na mão dela</em> e a <em>fazer esse texto apontar para a clínica</em>. Tudo isso é o pedido.</p>
+
+    <p class="texto">Mas o pedido trata a indicação como um acontecimento solto: aconteceu, ótimo, próxima. E não é. Entre a mulher que sentou na sua maca pela primeira vez e a mulher que abriu o próprio negócio existe uma escada. Ela tem degraus, e eles são poucos.</p>
+
+    <div class="nota">
+      <div class="r">Os quatro degraus</div>
+      <ul class="lista">
+        <li><b>Veio uma vez.</b> Fez o procedimento, pagou, foi embora. É a maioria da sua agenda.</li>
+        <li><b>Voltou.</b> Marcou de novo por conta própria. Aqui ela já escolheu você duas vezes.</li>
+        <li><b>Trouxe alguém.</b> Falou o seu nome para outra pessoa, e essa pessoa apareceu.</li>
+        <li><b>Trouxe de novo.</b> Fez isso mais de uma vez. Essa é a mulher que sustenta a sua agenda — e provavelmente você não sabe o nome dela de cabeça.</li>
+      </ul>
+    </div>
+
+    <p class="texto">A tese desta edição é essa: <b>a indicação não é um evento, é um degrau</b>. E a sua agenda hoje só tem duas palavras para descrever paciente: “marcou” e “não marcou”. Não existe onde escrever em que degrau cada uma está.</p>
+
+    <p class="texto">Sem esse registro, a mulher do quarto degrau recebe de você exatamente o mesmo tratamento da mulher do primeiro. A mesma mensagem de confirmação, a mesma tabela, o mesmo silêncio de três meses.</p>
+
+    <p class="texto">E o assunto continua sem dono no Brasil. Medimos hoje, pela décima terceira vez desde trinta e um de julho, os mesmos vídeos brasileiros. O que ensina a comprar anúncio para clínica de estética ganhou setecentas e setenta e duas visualizações em vinte e seis dias. O vídeo líder sobre programa de indicação de pacientes ganhou duas.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">+772</div>
+        <div class="lbl">visualizações do vídeo brasileiro que ensina a <b>comprar anúncio</b> para clínica de estética, entre 31/07 e hoje</div></div>
+      <div class="numero"><div class="big">+92</div>
+        <div class="lbl">no mesmo período, do vídeo brasileiro sobre <b>fidelizar cliente na recepção</b> do salão</div></div>
+      <div class="numero"><div class="big">+2</div>
+        <div class="lbl">no mesmo período, do vídeo líder brasileiro sobre <b>programa de indicação de pacientes</b></div></div>
+      <div class="numero"><div class="big">0</div>
+        <div class="lbl">do vídeo brasileiro “Fidelização de clientes na estética”: <b>3.768 em treze medições seguidas</b>, parado desde 31/07</div></div>
+    </div>
+
+    <p class="texto">Leia esses quatro números como a escada. Quanto mais fundo o degrau, menos gente estudando. Trazer gente nova é o assunto que o Brasil inteiro consome. Fazer voltar já perde muita audiência. Fazer indicar, quase ninguém procura.</p>
+
+    <div class="acao">
+      <div class="r">O que fica desta seção</div>
+      <p>Antes de comprar qualquer programa, resolva a parte que custa zero: <b>dê um nome ao degrau</b>. Na sua agenda, na sua planilha ou num caderno, marque ao lado de cada paciente uma letra só — V de veio uma vez, R de voltou, T de trouxe alguém.</p>
+      <p>Você vai descobrir, provavelmente em menos de uma hora, que o seu grupo de T cabe numa folha. E que ninguém falou com essas mulheres nos últimos meses.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes da semana. Dois sobre a máquina que ficou barata, dois sobre gente que subiu degrau, um sobre o dinheiro que está entrando no setor já padronizado.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Uma startup brasileira aposta em vender de madrugada — e o argumento virou “custa menos”</h3>
+          <div class="credito"><span class="frescor hoje">🟢 anteontem</span><span>Portal UAI e CorreioWeb · 25/08/2026</span></div>
+          <p class="texto">As duas reportagens saíram no mesmo dia. Uma conta que uma empresa brasileira aposta num programa que conduz a venda sozinho, a qualquer hora. A outra conta que esse tipo de programa está sendo oferecido às empresas como ferramenta de eficiência, ou seja, como economia.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>É um programa que fica de plantão no WhatsApp e no direct, responde quem pergunta preço e tenta marcar a avaliação. A novidade não é ele existir — é o preço dele ter caído a ponto de ser vendido como corte de custo, e não como diferencial.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> responder rápido vai deixar de impressionar. Quando todo mundo responde em um minuto, a paciente volta a escolher por outra coisa — e essa outra coisa é ser reconhecida. Guarde energia para o que a máquina não faz.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOd05xQ2Z6eElsVVpybWJHai1jM0tyd0I2aE5SRnJxYWx0MFRnTG1vLS11bVJza0o3ZC1fWEsteXpxZHF6WlNidU9pbXNnbmxmcFJQcE5jVEstQkZ5cnZVMWI0WU1mRFh0aHdyNF80c2dGQUtNSURoZ2RDQzRVWGZPdVgxbWo1NURMTlFkaWpOQXFtTXJrN0NYT0N0NGFmSjZ4dVBTT0dqVGx2YTcxSUItcTJrZGJWdklRMzZRR3BUczVOWEpi?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>“De cliente a dona”: a reportagem da semana no seu setor contou a escada inteira</h3>
+          <div class="credito"><span class="frescor hoje">🟢 segunda-feira</span><span>G1 · 24/08/2026</span></div>
+          <p class="texto">O título já diz tudo o que interessa aqui: uma empreendedora transformou o gosto pela estética em negócio próprio, e a reportagem começa a história dela do lado de fora do balcão — como cliente.</p>
+          <p class="texto">Este radar não trata a matéria como receita de sucesso, e não há promessa nenhuma nisso. O que vale é o caminho: ninguém pula de cliente a dona num salto. Passa por voltar, por gostar, por falar do lugar para as amigas, por virar presença.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> a mulher que está na sua maca hoje ocupa um degrau dessa escada. Você não sabe qual, porque não anota. E o degrau dela decide se vale a pena mandar promoção ou mandar um “obrigada, Fulana”.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxPdWx6MURxOHB4NGhoU1pjUG4yYUFpYXRNQjB0OUNjcnRHdkR1Mi1MdjJleHNPbC1rZmphWVRwNFJtRXA1TGJBbFpHRUxGOEhKMUhaT3NidGtGVGFvVjllYjRmcG5sbjV6VGxNZGV5Q0x6a0dzbUNyQ2IxZEYyZ092SFBXZVpaQktHellESFpxa1g4Y01WTERMaG93MmFCcVZBcGFaNlQ0STJQNHhHZUdNNXhaNVdoOEhmNkJ0UzRzZ2VoZjkxeF9jOTN1ak11TFhpLXZlLVRrUHFTR2xNdDUwT3JFWnZyQ2E5QkhTSjZZSGHSAfABQVVfeXFMT3VsejFEcThweDRoaFNaY1BuMmFBaWF0TUIwdDlDY3J0R3ZEdTItTHYyZXhzT2wta2ZqYVlUcDRSbUVwNUxiQWxaR0VMRjhISjFIWk9zYnRrRlRhb1Y5ZWI0ZnBubG41elRsTWRleUNMemtHc21DckNiMWRGMmdPdkhQV2VaWkJLR3pZREhacWtYOGNNVkxETGhvdzJhQnFWQXBhWjZUNEkyUDR4R2VHTTV4WjVXaDhIZjZCdFM0c2dlaGY5MXhfYzkzdWpNdUxYaS12ZS1Ua1BxU0dsTXQ1ME9yRVp2ckNhOUJIU0o2WUhh?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Um centro de estética fez um ano e contou a história com uma cliente no meio</h3>
+          <div class="credito"><span class="frescor hoje">🟢 domingo</span><span>Ultima Hora Online · 23/08/2026</span></div>
+          <p class="texto">A matéria conta o primeiro aniversário de um centro de estética e spa. A dona aparece ao lado de uma mulher descrita como amiga e cliente. Não é depoimento de campanha, não é anúncio — é a foto de um ano de trabalho, e tem uma cliente dentro dela.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> a sua clínica também tem uma dessas. Uma mulher que virou presença, que já trouxe gente, que fala de você sem ser pedido. Ela tem nome e sobrenome. Se você levou mais de dez segundos para lembrar qual é, esse é o buraco da semana.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMilwJBVV95cUxPdjZGRjJJVFJ4SHdBNmtNbUV0U25zTW9GQWZGdFctWm9XbmhsYlZyaVc5LWg3X2dUWFB3STJVdHVRcHFxQ3VHeWJ4cXBhUE8tX0lmWFFldWQ3MTN3THhUU2tJWEhJNXhIMndzY1FuZzd6VVdxTHlPdjhPZHZPTE0wa1MxWTJ3WkRxaTJmWjkta09uSFhSUi1naDhCT0ZvTUtRTW1pa1EybW1BRkVwbEhVZk8tbFc2d3c1TGg5bFdMTjhBSkgwQWVGbld3TTZZdmVhYjhVdk5FQllRLUtKUHdza1hWQ1Yta2RKSS1qOER6LUdKaGZiNXctUzlDVGJiOV9jbTJ2OVJCTjgwN0M5ZVR4eVpEVV80bVU?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Franquia de beleza movimentou mais de quatrocentos e trinta milhões de reais só no Pará</h3>
+          <div class="credito"><span class="frescor hoje">🟢 anteontem</span><span>O Liberal · 25/08/2026</span></div>
+          <p class="texto">A reportagem mostra o tamanho que o negócio de beleza em formato de franquia alcançou em um único estado. É dinheiro entrando no setor com marca pronta, método pronto e tabela pronta.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Franquia é o negócio em que a marca, o método e a tabela de preço vêm de fora, iguais em toda unidade. Quem abre não inventa o serviço — executa um manual.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> uma unidade dessas pode abrir a seiscentos metros de você, com preço de tabela nacional e vitrine bonita. O que o manual não entrega é memória: ninguém ali sabe que a sua paciente odeia agulha e prefere quarta de manhã. Isso é seu.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPay03RTY5eTZBdVZ6dWgzMU15azBGUW9CX25sX3U4RVR2TDVVWkhmOHFqbFNQV21aZGNWV1RGYWdIcXZ5eXZ2ajExVzdBWTVyTkd1SHNZdHBYejFzcWJFVEZ1NE9UcENxV0I4bTBmc0JJTzhUZlh4R0NBSy03am45cFFhT1NNek5YcjFJMG5EdXNZVHh2RWdPN3hRbDdaNkNUTjlOaE1WZHdMVExOZ0FvOA?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>O mercado de estética deve continuar crescendo no Brasil — e isso enche a sua esquina</h3>
+          <div class="credito"><span class="frescor antes">🟡 semana passada</span><span>Jornal Cruzeiro · 17/08/2026</span></div>
+          <p class="texto">A reportagem trata a expansão do setor como coisa que continua. Isso é notícia boa de manhã e notícia ruim de tarde: mais procura, e também mais gente oferecendo a mesma coisa perto de você.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> disputar a mulher que ainda não conhece ninguém fica mais caro a cada mês. Já a mulher que você atendeu em março continua no seu celular, de graça, esperando alguém lembrar dela.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPSFoxNDJpOW1Wenk1UVF4aHlJSWNqMmJLYW9BdU9ZSklyVlhQcXFRZWVJYjMxTGk2bGFwMFg4RTZFVUYtYWg1VXNJZDFjeHpucTRjOFpLTmRtUWZKQnJOMkNMTFg1c19PTTc1VU5JRndzV3o1dVlLRGtJZlN6MEpUZ0pkOXNJN2FmR1RkcXRlRV9XZEZxeE5JeGZTckoxLWg0OWdxUzZablVla1d2eVJ6YkJSVVFnTlhFc3NJSUR3Q3RoampDLU5MbEVvSVhVbmVo0gHWAUFVX3lxTE50YmE3T1BKS1BRWEQ1TXJEeU1RTVRyRk9VRlZxa1E3eE1jVWF2VUg0NVZsMFBUQUtyTFlva0o2STE0UVJickFVTWx0aFJBZ3B4UE9zZ3ZYMWlKWGcwUVA5R19nd0o1bUlGY2EwcEY4YTlvR0E4WG8xa3dZY2JXUDliRzlmcVlodlItM1ZrRHdDTjdFMWQ2OXBhVllmTGprUUZ3clFLYjd2b2ZmYi1lV2ZSUVgyZEczcUdoSkZUa29Hc0RBUjFHRnBzVHhhZEVDcFd3ZWFfRFE?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="nova">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">A pessoa com maior chance de te trazer uma paciente nova esta semana <b>já te trouxe uma</b>. E é justamente com ela que ninguém volta a falar.</p>
+
+    <p class="texto">Pense em como isso funciona hoje na maioria das clínicas. Uma paciente manda uma amiga. A amiga vem, faz o procedimento, paga. Todo mundo fica contente. E aí acaba. Ninguém agradece a quem mandou, ninguém registra que foi ela, e ninguém pergunta se tem mais alguém.</p>
+
+    <p class="texto">A indicação foi tratada como sorte. Aconteceu uma vez, e o assunto morreu ali. É por isso que quase toda clínica tem uma lista mental de duas ou três pacientes que “sempre trazem gente” — e nada por escrito sobre elas.</p>
+
+    <div class="olho">
+      <p>“Você não precisa de mais gente indicando. Precisa que as mesmas poucas indiquem de novo.”</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <p class="texto">O que está funcionando no mercado, e não custa dinheiro, é o agradecimento nominal. Não é bilhete decorado nem brinde. É uma mensagem curta, escrita por você, dizendo o nome da pessoa que ela mandou. “Sandra, a Cátia veio semana passada e falou que você indicou. Obrigada de verdade.”</p>
+
+    <p class="texto">Repare no que essa mensagem faz. Ela confirma para a sua paciente que você percebeu. Enquanto ninguém percebe, indicar é um favor que some no ar. Quando alguém percebe, indicar vira uma coisa que ela fez — e que ela pode fazer de novo.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p>“Boca a boca” não é acaso. É uma mulher assumindo um risco: ela está emprestando a reputação dela para você. Se dá errado, quem passa vergonha na roda de amigas é ela. Agradecer pelo nome é reconhecer esse risco.</p>
+    </div>
+
+    <p class="texto">E só depois de agradecer é que se pergunta. Nunca na mesma mensagem — na mesma mensagem o agradecimento vira isca. Dois ou três dias depois: “Sandra, você conhece mais alguém que ia gostar do que a Cátia fez?”</p>
+
+    <p class="texto">Perguntar com nome no meio muda a resposta. “Indica a gente” é abstrato e não gera nada. “Mais alguém como a Cátia” é uma pergunta que a cabeça dela consegue responder, porque ela pensa em pessoas, não em categorias.</p>
+
+    <div class="nota">
+      <div class="r">A regra que não pode ser quebrada</div>
+      <ul class="lista">
+        <li><b>A paciente nunca paga nada</b> para participar de qualquer coisa que você monte.</li>
+        <li><b>Nada de promessa.</b> Nem “você vai lotar a agenda”, nem “ela vai voltar”. Você está organizando um gesto, não comprando um resultado.</li>
+        <li><b>O reconhecimento sai da agenda, não do caixa.</b> Um horário melhor, um retoque incluído, a prioridade numa data disputada. Dinheiro na mão transforma amiga em vendedora.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">O degrau da indicação vem <b>depois</b> do degrau de voltar. Quem veio uma vez só não fala de você para ninguém — não porque não gostou, mas porque não teve o que contar duas vezes.</p>
+
+    <p class="texto">Comece pelo grupo mais óbvio e mais esquecido: as mulheres que vieram uma vez e não voltaram. Elas não brigaram com você. Elas simplesmente saíram do seu campo de visão, e ninguém foi atrás.</p>
+
+    <p class="texto">O erro clássico é ir atrás com oferta. A mensagem chega assim: “estamos com condição especial esta semana”. Ela lê isso como propaganda, porque é propaganda, e não responde. Aí a clínica conclui que reativar não funciona.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p>“Reativar” é voltar a falar com quem sumiu. Não é vender de novo — é reabrir a conversa. O que reabre conversa é pergunta sobre ela, não anúncio sobre você.</p>
+    </div>
+
+    <p class="texto">A mensagem que funciona pergunta sobre o resultado, não sobre a agenda. “Ana, faz uns meses que você fez a limpeza aqui. Como ficou a pele depois? Aguentou bem o inverno?” Isso é interesse, e interesse é a única coisa que ninguém consegue comprar em forma de programa.</p>
+
+    <p class="texto">Repare que essa mensagem só existe se você souber o que ela fez e quando. É a mesma anotação de sempre — procedimento, data, o que ela reclamou, o que ela elogiou. Sem ficha, você só consegue mandar propaganda, porque propaganda é a única mensagem que serve para qualquer pessoa.</p>
+
+    <p class="texto">Depois do pós-procedimento vem a fidelidade, e fidelidade aqui é uma coisa modesta: ser lembrada na hora certa. A mulher que faz limpeza de pele a cada três meses não precisa de cartão fidelidade. Precisa de alguém que escreva “Ana, deu três meses” no lugar certo do calendário.</p>
+
+    <p class="texto">Vale reparar em quem está estudando esse assunto. Entre os vídeos brasileiros que este radar acompanha desde julho, o que ensina a fidelizar cliente na recepção do salão ganhou noventa e duas visualizações em vinte e seis dias. O que ensina a comprar anúncio ganhou setecentas e setenta e duas. O mercado está estudando a porta de entrada.</p>
+
+    <div class="acao">
+      <div class="r">O que fica desta seção</div>
+      <p>Separe a sua agenda dos últimos doze meses em três montes: <b>veio uma vez</b>, <b>voltou</b>, <b>trouxe alguém</b>. Só isso, sem sistema nenhum, no papel se for preciso.</p>
+      <p>O monte do meio é o que decide o seu mês. E o monte da direita, o menor de todos, é o que decide o seu ano.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ESTA SEMANA ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos, todos saindo da mesma tese: <b>a escada</b>. Nenhum deles promete resultado a ninguém, e nenhum expõe paciente sem autorização.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 01 · Reels de trinta segundos</div>
+      <ul class="lista">
+        <li><b>Título falado:</b> “A paciente mais antiga da minha clínica.”</li>
+        <li><b>O que dizer:</b> conte, olhando para a câmera, há quanto tempo ela vem, o que ela fez da primeira vez e o que ela faz hoje. Sem nome, se ela não autorizou. Sem antes e depois.</li>
+        <li><b>Por que funciona:</b> é a história que o seu setor virou notícia contando esta semana — uma cliente que virou presença. Ninguém posta isso, todo mundo posta resultado.</li>
+        <li><b>Como fechar:</b> “Se você é paciente daqui há mais de um ano, comenta há quanto tempo.” Os comentários viram a sua lista do terceiro degrau.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 02 · Carrossel de cinco telas</div>
+      <ul class="lista">
+        <li><b>Tela 1:</b> “Existem quatro tipos de paciente. Você é qual?”</li>
+        <li><b>Telas 2 a 5:</b> um degrau por tela, com a linguagem dela — veio uma vez, voltou, trouxe uma amiga, trouxe várias.</li>
+        <li><b>Última linha:</b> “Não tem certo nem errado. Aqui a gente cuida igual dos quatro.”</li>
+        <li><b>Por que funciona:</b> a pessoa se identifica e se coloca sozinha num degrau. Carrossel com autoclassificação costuma render comentário, e comentário é onde a conversa começa.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 03 · Story com caixinha de pergunta</div>
+      <ul class="lista">
+        <li><b>A caixinha:</b> “Quem te falou da gente?”</li>
+        <li><b>O que fazer com as respostas:</b> anote todos os nomes que aparecerem. Essa é a sua lista de quem indica, feita em vinte e quatro horas e sem custo.</li>
+        <li><b>No dia seguinte:</b> um story de agradecimento, só com os primeiros nomes e <b>só de quem autorizou</b> por mensagem.</li>
+        <li><b>Por que funciona:</b> agradecer em público é a forma mais barata de mostrar que indicar, ali, é percebido.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA ══════════════ -->
+  <section class="materia" id="semana">
+    <div class="titulo"><span class="n">06</span><h2>O que fazer esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Um movimento só. Não envolve comprar nada, não envolve sistema, e cabe numa tarde de quarta com a agenda fraca.</p>
+
+    <div class="acao">
+      <div class="r">O movimento da semana</div>
+      <p><b>Faça a lista do terceiro degrau e agradeça pelo nome.</b> Abra a agenda dos últimos doze meses e marque as pacientes que você tem certeza de que trouxeram alguém. Não precisa ser exato: comece pelas que você lembra de cabeça e pelas que a recepção lembrar.</p>
+      <p>Mande para cada uma, uma por uma, uma mensagem curta com o nome de quem ela trouxe. Sem oferta, sem link, sem promoção junto. Só o obrigada.</p>
+      <p>Dois ou três dias depois, e só nas que responderam, faça <b>uma pergunta</b>: “você conhece mais alguém que ia gostar do que a Fulana fez?”</p>
+      <p>E, a partir de hoje, toda vez que alguém disser o nome de quem a mandou, isso vira uma letra ao lado do nome na sua agenda. É a diferença entre saber quem sustenta a sua clínica e achar que sabe.</p>
+    </div>
+
+    <p class="texto">A tese volta aqui, e é por ela que a edição fecha. A máquina que o mercado está comprando ficou barata porque faz uma coisa que qualquer clínica pode ter. Reconhecer quem já está dentro continua sendo a única coisa que não vem em manual, nem em franquia, nem em programa vendido como corte de custo.</p>
+
+    <p class="texto"><b>Indicação não é um evento. É um degrau — e você é a única pessoa que sabe em qual degrau cada uma das suas pacientes está.</b> Falta escrever.</p>
+  </section>
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima veio de material publicado com data. Onde a informação não deu para confirmar, está dito.</p>
+
+    <ol class="src">
+      <li><b>Portal UAI, 25/08/2026</b> — “IA que vende sozinha até de madrugada? Startup brasileira aposta nisso”. <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOd05xQ2Z6eElsVVpybWJHai1jM0tyd0I2aE5SRnJxYWx0MFRnTG1vLS11bVJza0o3ZC1fWEsteXpxZHF6WlNidU9pbXNnbmxmcFJQcE5jVEstQkZ5cnZVMWI0WU1mRFh0aHdyNF80c2dGQUtNSURoZ2RDQzRVWGZPdVgxbWo1NURMTlFkaWpOQXFtTXJrN0NYT0N0NGFmSjZ4dVBTT0dqVGx2YTcxSUItcTJrZGJWdklRMzZRR3BUczVOWEpi?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>CorreioWeb, 25/08/2026</b> — “IA comercial ganha espaço como ferramenta de eficiência operacional”. <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxNQVVYZWdpZllxTDhZbnl1eVVwR21NTnRJUF9za0liSkJmYjhKU202R0paTlRoQVBjMkhoZGdJa1ZKZnVtMlVCMHZ6RklKbjZHeWNXTVM1UjhkWG5wSkNvV3hPM3V0bjRjalppNWwwTWVXVWZSQ2Y3SGRTWFRkV2ZQQ2lrMDBQN3dPRk5hRXlEWXhkNUVNaWVZa2szRWlRVTcxSVZhYzR3Y3IxMmJSWGFhd2lrTlg3OWxYZU9sejJMNEdVYmpNNVlEYS1KTFV1ZGtOcXVwOGQ0OA?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>G1, 24/08/2026</b> — “De cliente a dona: empreendedora transforma paixão por estética em negócio milionário”. <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxPdWx6MURxOHB4NGhoU1pjUG4yYUFpYXRNQjB0OUNjcnRHdkR1Mi1MdjJleHNPbC1rZmphWVRwNFJtRXA1TGJBbFpHRUxGOEhKMUhaT3NidGtGVGFvVjllYjRmcG5sbjV6VGxNZGV5Q0x6a0dzbUNyQ2IxZEYyZ092SFBXZVpaQktHellESFpxa1g4Y01WTERMaG93MmFCcVZBcGFaNlQ0STJQNHhHZUdNNXhaNVdoOEhmNkJ0UzRzZ2VoZjkxeF9jOTN1ak11TFhpLXZlLVRrUHFTR2xNdDUwT3JFWnZyQ2E5QkhTSjZZSGHSAfABQVVfeXFMT3VsejFEcThweDRoaFNaY1BuMmFBaWF0TUIwdDlDY3J0R3ZEdTItTHYyZXhzT2wta2ZqYVlUcDRSbUVwNUxiQWxaR0VMRjhISjFIWk9zYnRrRlRhb1Y5ZWI0ZnBubG41elRsTWRleUNMemtHc21DckNiMWRGMmdPdkhQV2VaWkJLR3pZREhacWtYOGNNVkxETGhvdzJhQnFWQXBhWjZUNEkyUDR4R2VHTTV4WjVXaDhIZjZCdFM0c2dlaGY5MXhfYzkzdWpNdUxYaS12ZS1Ua1BxU0dsTXQ1ME9yRVp2ckNhOUJIU0o2WUhh?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Ultima Hora Online, 23/08/2026</b> — “‘Aqui a gente cuida do corpo e também da mente’: Adriana Ladislau celebra um ano do Centro de Estética e Spa com a amiga e cliente Cátia dos Santos”. <a href="https://news.google.com/rss/articles/CBMilwJBVV95cUxPdjZGRjJJVFJ4SHdBNmtNbUV0U25zTW9GQWZGdFctWm9XbmhsYlZyaVc5LWg3X2dUWFB3STJVdHVRcHFxQ3VHeWJ4cXBhUE8tX0lmWFFldWQ3MTN3THhUU2tJWEhJNXhIMndzY1FuZzd6VVdxTHlPdjhPZHZPTE0wa1MxWTJ3WkRxaTJmWjkta09uSFhSUi1naDhCT0ZvTUtRTW1pa1EybW1BRkVwbEhVZk8tbFc2d3c1TGg5bFdMTjhBSkgwQWVGbld3TTZZdmVhYjhVdk5FQllRLUtKUHdza1hWQ1Yta2RKSS1qOER6LUdKaGZiNXctUzlDVGJiOV9jbTJ2OVJCTjgwN0M5ZVR4eVpEVV80bVU?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>O Liberal, 25/08/2026</b> — “Franquias de beleza movimentam mais de 430 milhões de reais no Pará”. <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPay03RTY5eTZBdVZ6dWgzMU15azBGUW9CX25sX3U4RVR2TDVVWkhmOHFqbFNQV21aZGNWV1RGYWdIcXZ5eXZ2ajExVzdBWTVyTkd1SHNZdHBYejFzcWJFVEZ1NE9UcENxV0I4bTBmc0JJTzhUZlh4R0NBSy03am45cFFhT1NNek5YcjFJMG5EdXNZVHh2RWdPN3hRbDdaNkNUTjlOaE1WZHdMVExOZ0FvOA?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Jornal Cruzeiro, 17/08/2026</b> — “Mercado de estética deve continuar em expansão no Brasil”. <a href="https://news.google.com/rss/articles/CBMi0AFBVV95cUxPSFoxNDJpOW1Wenk1UVF4aHlJSWNqMmJLYW9BdU9ZSklyVlhQcXFRZWVJYjMxTGk2bGFwMFg4RTZFVUYtYWg1VXNJZDFjeHpucTRjOFpLTmRtUWZKQnJOMkNMTFg1c19PTTc1VU5JRndzV3o1dVlLRGtJZlN6MEpUZ0pkOXNJN2FmR1RkcXRlRV9XZEZxeE5JeGZTckoxLWg0OWdxUzZablVla1d2eVJ6YkJSVVFnTlhFc3NJSUR3Q3RoampDLU5MbEVvSVhVbmVo0gHWAUFVX3lxTE50YmE3T1BKS1BRWEQ1TXJEeU1RTVRyRk9VRlZxa1E3eE1jVWF2VUg0NVZsMFBUQUtyTFlva0o2STE0UVJickFVTWx0aFJBZ3B4UE9zZ3ZYMWlKWGcwUVA5R19nd0o1bUlGY2EwcEY4YTlvR0E4WG8xa3dZY2JXUDliRzlmcVlodlItM1ZrRHdDTjdFMWQ2OXBhVllmTGprUUZ3clFLYjd2b2ZmYi1lV2ZSUVgyZEczcUdoSkZUa29Hc0RBUjFHRnBzVHhhZEVDcFd3ZWFfRFE?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do radar, 31/07 a 26/08/2026</b> — as visualizações citadas vêm da mesma busca pública do YouTube, feita treze vezes desde 31 de julho, sempre com os mesmos termos. Vídeos acompanhados: “A Melhor Estratégia Atual para Clínicas de Estética · Tráfego para Negócio Local” (27.636 → 28.408), “Erros e Acertos na Recepção de Salão para Fidelizar Clientes” (16.386 → 16.478), “Como fazer um bom programa de indicação de pacientes?” (992 → 994) e “Fidelização de clientes na estética” (3.768 → 3.768).</li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>Três coisas ficaram de fora, e é honesto dizer quais. <b>Um:</b> não foi possível verificar de forma independente se a empreendedora da reportagem do G1 começou como cliente da própria área ou de outro negócio — o título afirma isso, e este radar repassa o título, não uma apuração própria. <b>Dois:</b> a matéria de aniversário do centro de estética descreve a acompanhante como “amiga e cliente”, e não há como confirmar se existe sociedade entre as duas; não afirmamos que existe. <b>Três:</b> circula desde junho uma reportagem com um número de aumento de vendas atribuído a um sistema de atendimento com inteligência artificial; o número é divulgado pela própria empresa, não foi possível saber como foi medido, e por isso ele não entrou nesta edição.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO — NUNCA PUBLICAR ══════════════ -->
+  
+
+  <div class="assinatura">
+    Radar My Glow Up · Edição Nº 013 · 26 de agosto de 2026<br>
+    A Próxima Paciente · por My Glow Up
+  </div>
+
+</div>
+</body>
+</html>
