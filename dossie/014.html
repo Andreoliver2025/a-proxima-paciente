@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 014 · 28 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A paciente já decidiu antes de te mandar mensagem</h1>
+    <p class="chamada">Na terça saiu a reportagem com o título mais incômodo da
+      semana: a venda que a empresa perde começa antes de alguém abrir o WhatsApp.
+      Em oito dias, seis textos brasileiros trataram de programas que respondem e
+      vendem sozinhos. Nenhum falou do trecho em que a decisão realmente acontece:
+      o silêncio entre a última visita dela e a próxima mensagem.</p>
+    <div class="dateline">Edição Nº 014 · sexta-feira, 28 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#mudou">O que mudou</a>
+        <div class="d">O mercado está comprando velocidade de resposta. A decisão
+          não mora na resposta.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a venda que se perde antes da mensagem, o
+          programa que aprende sozinho e o setor que já levou isso para o palco.</div>
+      </li>
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu
+          para confirmar hoje.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════ 01 ══════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na terça-feira, dia vinte e cinco, um veículo publicou um
+      texto com um título desconfortável: <b>a venda que a sua empresa perde começa
+      antes de o vendedor abrir o WhatsApp</b>. O argumento é simples — quando a
+      mensagem chega, boa parte da escolha já foi feita.</p>
+
+    <p class="texto capitular">Leve isso para a sua recepção. A mulher que manda
+      &ldquo;oi, quanto tá a limpeza de pele?&rdquo; não começou ali. Ela começou
+      semanas antes, no dia em que lembrou de você. Ou no dia em que lembrou da
+      vizinha primeiro. A mensagem é o fim da história, não o começo.</p>
+
+    <p class="texto">E é justamente o fim da história que o mercado está comprando.
+      Entre dezoito e vinte e cinco de agosto, seis reportagens brasileiras trataram
+      de programas que atendem e vendem sozinhos, a qualquer hora. Todas prometem a
+      mesma coisa: responder mais rápido. Nenhuma toca no trecho anterior.</p>
+
+    <p class="texto">A tese desta edição é essa: <b>a velocidade da resposta virou
+      item de tabela; o que decide é a memória</b>. Responder em um minuto todo mundo
+      vai fazer. Lembrar que ela odeia agulha, que prefere quarta de manhã e que a
+      última limpeza foi em março — isso ninguém compra pronto.</p>
+
+    <div class="olho">
+      <p>&ldquo;A máquina responde em um minuto. Ela decidiu em três semanas — e
+        essas três semanas ninguém disputou.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">6</div>
+        <div class="lbl">reportagens brasileiras sobre <b>programa que atende e vende
+          sozinho</b>, entre 18 e 25 de agosto, em veículos que não falam de estética</div>
+      </div>
+      <div class="numero">
+        <div class="big">0</div>
+        <div class="lbl">delas trata do que fazer com a paciente <b>entre uma visita e
+          a outra</b> — nas vinte e quatro buscas que este radar roda todo dia</div>
+      </div>
+      <div class="numero">
+        <div class="big">430 mi</div>
+        <div class="lbl">de reais movimentados por <b>franquias de beleza só no Pará</b>,
+          segundo reportagem de 25 de agosto</div>
+      </div>
+      <div class="numero">
+        <div class="big">13</div>
+        <div class="lbl">edições seguidas em que medimos os mesmos vídeos brasileiros.
+          <b>Hoje a coleta falhou</b> e a série parou — está registrado nas fontes</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Vale reparar em como o argumento de venda desses programas mudou
+        de lugar em poucas semanas. Há um mês, o discurso era &ldquo;atende melhor&rdquo;.
+        Agora é &ldquo;custa menos&rdquo; e &ldquo;funciona de madrugada&rdquo;. Quando um
+        serviço passa a ser vendido pelo preço, é sinal de que ele virou item de tabela:
+        todo mundo vai ter, e ter deixa de ser vantagem.</p>
+
+      <p class="texto">Isso muda o que sobra para você. Se responder rápido deixa de
+        diferenciar, a paciente volta a escolher pelo motivo de sempre — sentir que
+        alguém ali sabe quem ela é. E esse motivo não está no aparelho nem na tabela.
+        Está na ficha.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p>&ldquo;Ficha&rdquo; aqui não é papel timbrado. É o lugar, qualquer que seja,
+          onde está escrito o que ela fez, quando fez, do que ela reclamou e do que ela
+          gostou. Pode ser caderno. O que não pode é estar só na sua cabeça, porque a
+          sua cabeça atende trinta pessoas por semana.</p>
+      </div>
+
+      <p class="texto">Na edição de quarta este radar mostrou que a indicação não é um
+        acontecimento solto: é um degrau. Veio uma vez, voltou, trouxe alguém, trouxe de
+        novo. A notícia desta sexta encaixa exatamente aí. O silêncio entre uma visita e
+        a outra é o lugar onde a paciente sobe ou desce um degrau — e é o único pedaço
+        da relação em que hoje ninguém encosta.</p>
+
+      <p class="texto">Repare no desenho da coisa. As seis reportagens da semana falam
+        do minuto em que ela escreve. A sua agenda também só registra esse minuto:
+        &ldquo;marcou&rdquo; ou &ldquo;não marcou&rdquo;. As semanas entre um minuto e
+        outro não têm dono, não têm registro e não têm mensagem. É um buraco de três
+        meses no meio de uma relação que a gente chama de fidelidade.</p>
+
+      <p class="texto">Não é um problema de ferramenta cara. É um problema de anotação.
+        Uma clínica que sabe dizer, de cabeça ou de caderno, quem sumiu há mais de
+        noventa dias já está fazendo mais do que qualquer programa de plantão de
+        madrugada faz sozinho.</p>
+
+      <p class="texto">Este radar não promete resultado nenhum com isso. Registra apenas
+        o que as fontes desta semana mostram: o mercado está investindo no fim da
+        conversa, e o começo dela continua sem dono.</p>
+    </details>
+  </section>
+
+  <!-- ══════════ 02 ══════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes da semana. Em cada um, o que muda na
+      <b>sua agenda</b> — não na agenda de quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>&ldquo;A venda que a sua empresa perde começa antes do vendedor abrir o WhatsApp&rdquo;</h3>
+          <div class="credito"><span class="frescor hoje">🟢 terça-feira</span><span>Brasil Paralelo · 25/08/2026</span></div>
+          <p class="texto">O texto sustenta que a maior parte da perda acontece antes do
+            primeiro contato: quando a pessoa manda mensagem, ela já comparou, já
+            perguntou para alguém e já formou opinião. Atender bem no minuto seguinte
+            resolve pouco do que se perdeu antes.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> pare de medir só quantas
+            mensagens você respondeu rápido. Olhe quantas mulheres não mandaram mensagem
+            nenhuma nos últimos noventa dias. É esse o grupo que decidiu sem falar com
+            você.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPOWtVdjJncVpOVnVTS1pCMnBDODNTTl9rYWZNV2hUYUdxdVJ5QVZBbDk3SEtjeXFhLS1HYUw4azZBRzhlTzN2SzdpSG1mNi1zM1ZHVVhyZGpaVVFkanlMNjhkMUh5UDVXZTZkSWZkUy03ZFJJNDBLTnZIdmRKTW54clVFTzV5TjM2bEtYM0o3eXdaWkptakFMVHJPYnpxQ0RYWlZ2XzVBTGUyNG83SDlkMFZ6NUo?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>O terceiro texto do mesmo dia trouxe a parte nova: o programa aprende com as próprias conversas</h3>
+          <div class="credito"><span class="frescor hoje">🟢 terça-feira</span><span>Pequenas Empresas &amp; Grandes Negócios · 25/08/2026</span></div>
+          <p class="texto">Três veículos publicaram sobre o assunto no mesmo dia. Este
+            trouxe o detalhe que os outros não trouxeram: o programa não só responde fora
+            do expediente, ele se corrige sozinho a partir das conversas que já teve. Ou
+            seja, quanto mais gente fala com ele, melhor ele fica.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>&ldquo;Agente de inteligência artificial&rdquo; é um programa que conversa
+              no WhatsApp e no direct, tira dúvida de preço e tenta marcar avaliação.
+              &ldquo;Se autoaperfeiçoa&rdquo; quer dizer que ele vai ajustando as
+              respostas com base no que deu certo antes, sem alguém reescrever cada
+              resposta na mão.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> quem tem muita conversa
+            acumulada leva vantagem, porque esse tipo de programa aprende com volume. A
+            sua vantagem é outra e não serve para ninguém copiar: você conhece o histórico
+            de cada uma. Só que ele precisa estar escrito, não lembrado.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMikwJBVV95cUxQRllpNTJsa0czaHpMaUhNamI2eFBNc1lRalA0SG5VcW4zSVYzSlhSZ1c2S010cnB3RTFVb0l6TFVjaWdYdm9heUlYbmVZY3c3VHg3OFNnUlFYU3Zuc2c1WmF5VHNneFF6ZlptTkZ1WU5jV2gzaXQ4d2JqWTVERE0wYlJHODJ6Z2gzX3ZTRWJEMDcxcVlBV2llLU1SQm5sN0FoZ01IUWRfd05JTGhHenh0WS02OXJULXRXdmdlYVBNc0FRSXRtODB4WUJodnkwVnJjTFBtM3RKdGc0aFFnb2xxQWlZOFNwWlBTcVYzMEJfc0RkQXNTRFQxMGwzSXRicmtyOFZ6a1dvLTVpT0ZCelgwWW4tWdIBkwJBVV95cUxQRllpNTJsa0czaHpMaUhNamI2eFBNc1lRalA0SG5VcW4zSVYzSlhSZ1c2S010cnB3RTFVb0l6TFVjaWdYdm9heUlYbmVZY3c3VHg3OFNnUlFYU3Zuc2c1WmF5VHNneFF6ZlptTkZ1WU5jV2gzaXQ4d2JqWTVERE0wYlJHODJ6Z2gzX3ZTRWJEMDcxcVlBV2llLU1SQm5sN0FoZ01IUWRfd05JTGhHenh0WS02OXJULXRXdmdlYVBNc0FRSXRtODB4WUJodnkwVnJjTFBtM3RKdGc0aFFnb2xxQWlZOFNwWlBTcVYzMEJfc0RkQXNTRFQxMGwzSXRicmtyOFZ6a1dvLTVpT0ZCelgwWW4tWQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Empresas brasileiras estão ampliando o uso de programas que respondem sozinhos</h3>
+          <div class="credito"><span class="frescor antes">🟡 semana passada</span><span>Acontecendo Aqui · 18/08/2026</span></div>
+          <p class="texto">A reportagem trata a adoção desses programas como um movimento
+            em curso nas empresas brasileiras, não como novidade de feira. Somada aos
+            textos da terça, mostra um assunto que saiu do caderno de tecnologia e caiu no
+            caderno de negócios.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> a paciente que te escreve hoje
+            já conversou com um desses em outro lugar — banco, loja, plano de saúde. Ela
+            reconhece o tom. Quando a sua resposta soa igual à do banco, você perde a única
+            coisa que a clínica pequena tem de sobra.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxOamlXazdSMlh5aFZqNklWM2ZDMHRxeXZfZFE4SUhBOXJidWh0dlI4UzZ0M2FFems2RV9qN0dWWGdqV20wN2thdlBKa193dGFsem03MHZDZkt1ZkpzZ0xtU3dsU0NWMG43ZkdVV2lQdEp2WkhPNVhmTF9zaFFLRmJ4RHJiQVk3UVhmVUhoSlZqdzU1VEVlVU9RRUxmUDQySjRU?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Um levantamento contou como as empresas estão montando os primeiros desses programas</h3>
+          <div class="credito"><span class="frescor antes">🟡 12 de agosto</span><span>ipnews.com.br · 12/08/2026</span></div>
+          <p class="texto">O texto descreve como esses programas estão sendo construídos
+            dentro das empresas. É a etapa em que o mercado ainda está: montando, testando,
+            errando. Nada disso está pronto e embalado na prateleira para clínica pequena.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> você não está atrasada. O
+            mercado inteiro está na primeira tentativa. Enquanto isso, o trabalho que já dá
+            para fazer é o mais chato e o mais barato: escrever o que aconteceu com cada
+            paciente, para que qualquer coisa que você contrate depois tenha o que ler.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQNUJ6RGhMY1UtZ29iZWtNVVdwNE5BbE8yMnoybzB4c3U1eWxYWlBxTjJsVXRhM2xWSXR1MUVMaEF5cnNmYmlZNTVvTkZMUmpVd3pCbElDa2JXZTV6bmNiZEhUeDZOS0wwYUxJU1NIUUw5Sl94NHFDU3huWk5ISzlpR0VtTmtPWm1rZEdFUXEzM2xlTlJOclFLVWo3OV9IZXo5QXIw0gGjAUFVX3lxTFA1QnpEaExjVS1nb2Jla01VV3A0TkFsTzIyejJvMHhzdTV5bFhaUHFOMmxVdGEzbFZJdHUxRUxoQXlyc2ZiaVk1NW9ORkxSalV3ekJsSUNrYldlNXpuY2JkSFR4Nk5LTDBhTElTU0hRTDlKX3g0cUNTeG5aTkhLOWlHRW1Oa09abWtkR0VRcTMzbGVOUk5yUUtVajc5X0hlejlBcjA?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Em outro setor de serviço, o assunto já virou palestra de congresso</h3>
+          <div class="credito"><span class="frescor antes">🟡 semana passada</span><span>Panrotas · 18/08/2026</span></div>
+          <p class="texto">Num evento do setor de viagens, uma palestra ensinou os
+            profissionais a usar esses programas para vender mais. Não é o seu setor, e a
+            forma de vender viagem não é a sua. O que importa aqui é o calendário: lá o
+            assunto já subiu ao palco de um congresso.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> no seu setor isso ainda não
+            chegou ao palco. É um intervalo curto para arrumar a casa antes de a vizinha
+            aprender no congresso do ano que vem — e a arrumação começa pela lista de quem
+            sumiu.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxONGVnMld4RFF3T0xSVndwd0xVQnZWcXdVRXZnamV6OVdlLVlvOUxuMW1uWHhld3JzLVBqVkdhSWxQaDl1R0RVMUIyV2lzZE1idkxZZUhndGI3Tk9McFIzV0JQMHRMYTA5cFkxMk1vSmtzdlhFOFZaNG5kZmhXZkh2UXh0cndfbDQxY2VMVzNvVk1iWjRqT0VMbTZSemJqWERzRGI3MFZjaGlJcTdTMGNiMnhzdi1qTDlqNjE0MFpubTJHVXFGdXNfZ0VNSjJmOThsVmpFdEJaSEVWZFdCUlR3eF9ZVFV1UQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 03 ══════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não
+      deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>A venda que sua empresa perde começa antes do vendedor abrir o WhatsApp</b>
+        — Brasil Paralelo, 25/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxPOWtVdjJncVpOVnVTS1pCMnBDODNTTl9rYWZNV2hUYUdxdVJ5QVZBbDk3SEtjeXFhLS1HYUw4azZBRzhlTzN2SzdpSG1mNi1zM1ZHVVhyZGpaVVFkanlMNjhkMUh5UDVXZTZkSWZkUy03ZFJJNDBLTnZIdmRKTW54clVFTzV5TjM2bEtYM0o3eXdaWkptakFMVHJPYnpxQ0RYWlZ2XzVBTGUyNG83SDlkMFZ6NUo?oc=5">ler</a></li>
+
+      <li><b>Programa comercial de inteligência artificial que se autoaperfeiçoa e vende
+        fora do expediente</b> — Pequenas Empresas &amp; Grandes Negócios, 25/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMikwJBVV95cUxQRllpNTJsa0czaHpMaUhNamI2eFBNc1lRalA0SG5VcW4zSVYzSlhSZ1c2S010cnB3RTFVb0l6TFVjaWdYdm9heUlYbmVZY3c3VHg3OFNnUlFYU3Zuc2c1WmF5VHNneFF6ZlptTkZ1WU5jV2gzaXQ4d2JqWTVERE0wYlJHODJ6Z2gzX3ZTRWJEMDcxcVlBV2llLU1SQm5sN0FoZ01IUWRfd05JTGhHenh0WS02OXJULXRXdmdlYVBNc0FRSXRtODB4WUJodnkwVnJjTFBtM3RKdGc0aFFnb2xxQWlZOFNwWlBTcVYzMEJfc0RkQXNTRFQxMGwzSXRicmtyOFZ6a1dvLTVpT0ZCelgwWW4tWdIBkwJBVV95cUxQRllpNTJsa0czaHpMaUhNamI2eFBNc1lRalA0SG5VcW4zSVYzSlhSZ1c2S010cnB3RTFVb0l6TFVjaWdYdm9heUlYbmVZY3c3VHg3OFNnUlFYU3Zuc2c1WmF5VHNneFF6ZlptTkZ1WU5jV2gzaXQ4d2JqWTVERE0wYlJHODJ6Z2gzX3ZTRWJEMDcxcVlBV2llLU1SQm5sN0FoZ01IUWRfd05JTGhHenh0WS02OXJULXRXdmdlYVBNc0FRSXRtODB4WUJodnkwVnJjTFBtM3RKdGc0aFFnb2xxQWlZOFNwWlBTcVYzMEJfc0RkQXNTRFQxMGwzSXRicmtyOFZ6a1dvLTVpT0ZCelgwWW4tWQ?oc=5">ler</a></li>
+
+      <li><b>Empresas brasileiras ampliam uso de agentes de inteligência artificial nos
+        negócios</b> — Acontecendo Aqui, 18/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxOamlXazdSMlh5aFZqNklWM2ZDMHRxeXZfZFE4SUhBOXJidWh0dlI4UzZ0M2FFems2RV9qN0dWWGdqV20wN2thdlBKa193dGFsem03MHZDZkt1ZkpzZ0xtU3dsU0NWMG43ZkdVV2lQdEp2WkhPNVhmTF9zaFFLRmJ4RHJiQVk3UVhmVUhoSlZqdzU1VEVlVU9RRUxmUDQySjRU?oc=5">ler</a></li>
+
+      <li><b>Levantamento sobre como as empresas estão construindo os primeiros agentes de
+        inteligência artificial</b> — ipnews.com.br, 12/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQNUJ6RGhMY1UtZ29iZWtNVVdwNE5BbE8yMnoybzB4c3U1eWxYWlBxTjJsVXRhM2xWSXR1MUVMaEF5cnNmYmlZNTVvTkZMUmpVd3pCbElDa2JXZTV6bmNiZEhUeDZOS0wwYUxJU1NIUUw5Sl94NHFDU3huWk5ISzlpR0VtTmtPWm1rZEdFUXEzM2xlTlJOclFLVWo3OV9IZXo5QXIw0gGjAUFVX3lxTFA1QnpEaExjVS1nb2Jla01VV3A0TkFsTzIyejJvMHhzdTV5bFhaUHFOMmxVdGEzbFZJdHUxRUxoQXlyc2ZiaVk1NW9ORkxSalV3ekJsSUNrYldlNXpuY2JkSFR4Nk5LTDBhTElTU0hRTDlKX3g0cUNTeG5aTkhLOWlHRW1Oa09abWtkR0VRcTMzbGVOUk5yUUtVajc5X0hlejlBcjA?oc=5">ler</a></li>
+
+      <li><b>Palestra ensina profissionais de viagem a usar agentes de inteligência
+        artificial para vender mais</b> — Panrotas, 18/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMi5gFBVV95cUxONGVnMld4RFF3T0xSVndwd0xVQnZWcXdVRXZnamV6OVdlLVlvOUxuMW1uWHhld3JzLVBqVkdhSWxQaDl1R0RVMUIyV2lzZE1idkxZZUhndGI3Tk9McFIzV0JQMHRMYTA5cFkxMk1vSmtzdlhFOFZaNG5kZmhXZkh2UXh0cndfbDQxY2VMVzNvVk1iWjRqT0VMbTZSemJqWERzRGI3MFZjaGlJcTdTMGNiMnhzdi1qTDlqNjE0MFpubTJHVXFGdXNfZ0VNSjJmOThsVmpFdEJaSEVWZFdCUlR3eF9ZVFV1UQ?oc=5">ler</a></li>
+
+      <li><b>Programa de inteligência artificial que vende de madrugada</b> — Portal UAI,
+        25/08/2026. Entra na contagem das seis reportagens.
+        <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOd05xQ2Z6eElsVVpybWJHai1jM0tyd0I2aE5SRnJxYWx0MFRnTG1vLS11bVJza0o3ZC1fWEsteXpxZHF6WlNidU9pbXNnbmxmcFJQcE5jVEstQkZ5cnZVMWI0WU1mRFh0aHdyNF80c2dGQUtNSURoZ2RDQzRVWGZPdVgxbWo1NURMTlFkaWpOQXFtTXJrN0NYT0N0NGFmSjZ4dVBTT0dqVGx2YTcxSUItcTJrZGJWdklRMzZRR3BUczVOWEpi?oc=5">ler</a></li>
+
+      <li><b>Inteligência artificial comercial ganha espaço como ferramenta de eficiência
+        operacional</b> — CorreioWeb, 25/08/2026. Entra na contagem das seis reportagens.
+        <a href="https://news.google.com/rss/articles/CBMi1wFBVV95cUxNQVVYZWdpZllxTDhZbnl1eVVwR21NTnRJUF9za0liSkJmYjhKU202R0paTlRoQVBjMkhoZGdJa1ZKZnVtMlVCMHZ6RklKbjZHeWNXTVM1UjhkWG5wSkNvV3hPM3V0bjRjalppNWwwTWVXVWZSQ2Y3SGRTWFRkV2ZQQ2lrMDBQN3dPRk5hRXlEWXhkNUVNaWVZa2szRWlRVTcxSVZhYzR3Y3IxMmJSWGFhd2lrTlg3OWxYZU9sejJMNEdVYmpNNVlEYS1KTFV1ZGtOcXVwOGQ0OA?oc=5">ler</a></li>
+
+      <li><b>Franquias de beleza movimentam mais de quatrocentos e trinta milhões de reais
+        no Pará</b> — O Liberal, 25/08/2026. Origem do número usado no painel.
+        <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxPay03RTY5eTZBdVZ6dWgzMU15azBGUW9CX25sX3U4RVR2TDVVWkhmOHFqbFNQV21aZGNWV1RGYWdIcXZ5eXZ2ajExVzdBWTVyTkd1SHNZdHBYejFzcWJFVEZ1NE9UcENxV0I4bTBmc0JJTzhUZlh4R0NBSy03am45cFFhT1NNek5YcjFJMG5EdXNZVHh2RWdPN3hRbDdaNkNUTjlOaE1WZHdMVExOZ0FvOA?oc=5">ler</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>
+        &bull; <b>A medição de vídeos falhou hoje.</b> Desde 31 de julho este radar
+        acompanha os mesmos vídeos brasileiros sobre indicação, reativação e fidelização.
+        Hoje as quatro consultas voltaram vazias por falha técnica na coleta. A série de
+        treze medições seguidas está interrompida, e nenhum número de vídeo entrou nesta
+        edição.<br><br>
+        &bull; <b>Nenhuma das seis reportagens é sobre clínica de estética.</b> São textos
+        de negócios em geral. A leitura para a sua agenda é deste radar, não das fontes.<br><br>
+        &bull; <b>Nenhuma fonte mede quanto se perde no silêncio entre visitas.</b> A ideia
+        de que a decisão começa antes da mensagem é o argumento de uma reportagem de
+        opinião de mercado, não um estudo auditado.<br><br>
+        &bull; <b>Não conseguimos verificar de forma independente</b> o que esses programas
+        realmente fazem. As descrições vêm do que as empresas informaram aos veículos.<br><br>
+        &bull; <b>O número do Pará</b> é de reportagem regional e não foi conferido em base
+        oficial por este radar.
+      </p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este radar não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, retorno de
+          paciente ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, clínica ou contábil.</b> Decisão desse tipo passa
+          pelo conselho da profissão de quem atende na sua sala.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ INTERNO — NUNCA PUBLICAR ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 014 · 28 de agosto de 2026<br>
+    Documento de trabalho · o bloco interno não vai ao ar
+  </div>
+
+</div>
+</body>
+</html>
