@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 015 · 31 de agosto de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>O seu mercado cresce 42% até 2031. E a palavra &ldquo;indicação&rdquo; já tem outro dono.</h1>
+    <p class="chamada">Na sexta saiu a projeção: o mercado de beleza no Brasil deve
+      avançar quarenta e dois por cento até 2031. Nos mesmos dois dias, três textos
+      brasileiros ensinaram o leitor a usar um &ldquo;código de indicação&rdquo; — e
+      nenhum deles falava de saúde ou de beleza. Falavam de casa de aposta. A sua rua
+      fica mais cheia, e o formato que a sua paciente reconhece por esse nome foi
+      moldado por outro setor.</p>
+    <div class="dateline">Edição Nº 015 · segunda-feira, 31 de agosto de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#mudou">O que mudou</a>
+        <div class="d">Uma projeção de crescimento na sexta e três textos de aposta em
+          dois dias. A palavra que a sua clínica usa está sendo escrita por outra gente.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a projeção de 42%, os três códigos de indicação, a
+          medição de hoje no YouTube e duas peças de arquivo sobre o que chegou ao consultório.</div>
+      </li>
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar hoje.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════ 01 ══════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na sexta-feira, dia vinte e oito, saiu uma projeção para o seu
+      setor: <b>o mercado de beleza no Brasil deve avançar quarenta e dois por cento até
+      2031</b>. É notícia boa. E, na mesma sexta e na véspera, outros três textos
+      brasileiros ensinaram o leitor a usar um &ldquo;código de indicação&rdquo;. Os três
+      eram de casa de aposta.</p>
+
+    <p class="texto capitular">Repare no que essas duas coisas fazem juntas. Mercado
+      crescendo significa mais gente oferecendo o mesmo procedimento perto de você. E o
+      jeito de indicar que a sua paciente vê todo dia no celular já vem pronto de outro
+      lugar: digite o código, ganhe o bônus, cadastre-se.</p>
+
+    <p class="texto">A tese desta edição é essa: <b>a palavra &ldquo;indicação&rdquo; não
+      está livre</b>. Se você montar a sua no molde que ela reconhece, a recomendação da
+      sua paciente vira cupom. E cupom disputa preço — que é exatamente onde uma clínica
+      pequena não quer estar num mercado que fica mais cheio a cada ano.</p>
+
+    <div class="olho">
+      <p>&ldquo;Código e bônus é o jeito da casa de aposta. O jeito da clínica tem nome
+        próprio: alguém disse o seu nome para outra pessoa.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">42%</div>
+        <div class="lbl">de <b>avanço projetado para o mercado de beleza no Brasil até
+          2031</b>, segundo reportagem publicada em 28 de agosto</div>
+      </div>
+      <div class="numero">
+        <div class="big">3</div>
+        <div class="lbl">textos brasileiros sobre <b>&ldquo;código de indicação&rdquo;</b>
+          publicados em 27 e 28 de agosto — <b>todos de casa de aposta</b></div>
+      </div>
+      <div class="numero">
+        <div class="big">6 de 14</div>
+        <div class="lbl">edições anteriores deste radar em que o texto brasileiro da semana
+          sobre <b>código de indicação</b> também era de aposta. Contagem do nosso arquivo</div>
+      </div>
+      <div class="numero">
+        <div class="big">994</div>
+        <div class="lbl">visualizações do vídeo brasileiro que <b>ensina a montar um
+          programa de indicação de pacientes</b>, medido hoje. O mais visto da mesma busca
+          ensina outra coisa</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Vale entender por que a comparação com a casa de aposta não é
+        provocação, é medida. Este radar roda as mesmas vinte e quatro buscas todo dia
+        desde o fim de julho. Sempre que a busca por &ldquo;aplicativo de indicação com
+        recompensa&rdquo; devolve texto brasileiro recente, ele é quase sempre de aposta
+        esportiva. Aconteceu em seis das quatorze edições anteriores. Nesta segunda,
+        vieram três de uma vez.</p>
+
+      <p class="texto">Isso importa porque molda o que a sua paciente entende quando você
+        diz &ldquo;indique uma amiga&rdquo;. Ela já viu esse convite. Naquele contexto ele
+        quer dizer: cadastre alguém, ganhe crédito, some. É um convite entre estranhos,
+        feito para acontecer uma vez.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p>&ldquo;Código de indicação&rdquo; é aquela sequência de letras que a pessoa
+          digita ao se cadastrar para que quem a chamou receba algo. Serve para o
+          aplicativo saber quem trouxe quem. É útil para contar. Não é útil para explicar
+          por que alguém confiou.</p>
+      </div>
+
+      <p class="texto">Na clínica, a indicação nunca foi entre estranhos. É uma mulher
+        falando de outra mulher, com nome, para alguém que ela conhece. O que atravessa não
+        é o código: é a frase &ldquo;vai lá que ela é boa&rdquo;.</p>
+
+      <p class="texto">A projeção de crescimento só aumenta o preço do erro. Se o setor
+        avança quarenta e dois por cento em cinco anos, cresce também o número de salas
+        parecidas com a sua num raio de dois quilômetros. Quando tudo fica igual do lado de
+        fora, o que decide é quem já foi atendida e falou.</p>
+
+      <p class="texto">Há um detalhe medido hoje que fecha o raciocínio. Na busca por
+        &ldquo;programa de indicação para clínica de estética&rdquo;, o vídeo brasileiro
+        mais assistido não ensina a montar programa de indicação: ensina a captar paciente
+        nova. Tem onze mil e sessenta e quatro visualizações. O que realmente trata do
+        assunto tem novecentas e noventa e quatro.</p>
+
+      <p class="texto">Ou seja: o setor inteiro estuda como trazer quem nunca veio. Quase
+        ninguém estuda como fazer quem já veio falar de você. Não é promessa de resultado —
+        é a constatação de onde a atenção do mercado está hoje, medida em visualizações.</p>
+
+      <p class="texto">A edição de sexta terminou dizendo que o mercado está comprando
+        velocidade de resposta e que ninguém disputa a memória do que ficou anotado. A desta
+        segunda acrescenta a outra metade: quando alguém finalmente resolver disputar
+        indicação, vai encontrar um formato pronto e errado esperando na prateleira.</p>
+    </details>
+  </section>
+
+  <!-- ══════════ 02 ══════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na <b>sua agenda</b> — não
+      na agenda de quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>O mercado de beleza no Brasil deve avançar quarenta e dois por cento até 2031</h3>
+          <div class="credito"><span class="frescor hoje">🟢 sexta-feira</span><span>Guia da Farmácia · 28/08/2026</span></div>
+          <p class="texto">A reportagem publica uma projeção de crescimento do setor de
+            beleza no país até 2031. É uma estimativa de mercado, feita por quem estuda
+            consumo — não uma medição do que já aconteceu.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> mercado que cresce atrai gente
+            nova para a mesma rua. A mulher que ainda não conhece ninguém fica mais cara de
+            conquistar a cada ano. A que você atendeu em março continua no seu celular, sem
+            custo, esperando alguém lembrar dela.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9CLWdBNFQxUDdmZDVTNHdEUWFoMEgzZDRNOVVBMFVuY3ZLM29CR2RZVjAza29SSF9XX2Q1Zzl0TTQyV0JRdWozZTNWWnlqZXdIN0FRMkNkQVkxOTdLaDhaY1NpQTd5ZE5lSVE?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>&ldquo;Código de indicação&rdquo; saiu três vezes em dois dias — e nenhuma vez foi sobre saúde ou beleza</h3>
+          <div class="credito"><span class="frescor hoje">🟢 quinta e sexta</span><span>Metrópoles, Trivela e OneFootball · 27 e 28/08/2026</span></div>
+          <p class="texto">Três veículos brasileiros publicaram, em dois dias, textos
+            explicando ao leitor como usar um código de indicação e um bônus de cadastro.
+            Os três são de casa de aposta esportiva. É o setor que hoje mais escreve sobre
+            indicar alguém, em português.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>&ldquo;Bônus de cadastro&rdquo; é o brinde que a pessoa ganha só por se
+              inscrever usando o código de outra. O convite se resolve no cadastro: quem
+              indicou recebe, quem entrou recebe, e as duas nem precisam se conhecer. Na sua
+              sala é o contrário — o convite só existe porque elas se conhecem.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> esse é o formato que a sua
+            paciente reconhece pelo nome &ldquo;indicação&rdquo;. Se você copiar o molde,
+            ela entende cupom. Diga a frase inteira: quem indicou, o que essa pessoa contou
+            sobre você, e o nome de quem chegou.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxQdjM1eDJaS2hnRXlPYVk5UG4wUlA1SFBscHpyVlkxSlc2QzVlWkxIeVo2R3A4eWJ4UEs1LThpSHc2aXFMWS1zeFRMLTdJUGIwdTJjd2YtWE94dlNHbzdhcHFZNDRoOTlXTTRaeGRpTlRmZDFVbS1jLVFqdEZ1Z0JiaU1hQUdveEpHRFQyM0ZOVQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Medido hoje: na busca por programa de indicação para clínica, o vídeo mais visto não ensina indicação</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 31/08/2026</span></div>
+          <p class="texto">A medição de sexta tinha falhado e voltou hoje. Na busca por
+            &ldquo;programa de indicação para clínica de estética&rdquo;, o vídeo mais
+            assistido ensina a captar paciente nova e tem onze mil e sessenta e quatro
+            visualizações. O que trata mesmo de montar um programa de indicação tem
+            novecentas e noventa e quatro.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> o assunto que sustenta o seu
+            boca a boca é o menos estudado do setor. Isso não garante nada a quem estudar,
+            mas mostra onde há menos gente olhando.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=wMx70A949cI">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>O &ldquo;gêmeo digital&rdquo; chegou aos consultórios de estética</h3>
+          <div class="credito"><span class="frescor antes">🟡 arquivo</span><span>VEJA · 26/05/2026</span></div>
+          <p class="texto">A reportagem descreve uma tecnologia que já está em consultórios
+            de estética: uma cópia digital do rosto ou do corpo da pessoa, usada para mostrar
+            na tela como ficaria depois. Entrou nesta edição porque é o contraste exato da
+            tese — o que se vende para a clínica mira o momento da consulta.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>&ldquo;Gêmeo digital&rdquo; é um modelo da pessoa feito no computador, a
+              partir de foto ou de escaneamento, para simular na tela. É ferramenta de
+              conversa dentro da sala. Não fala com a paciente depois que ela vai embora, e
+              não guarda o que ela contou.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> o que chega de novidade hoje
+            melhora o dia em que ela está sentada na sua frente. Os três meses seguintes
+            continuam sem ferramenta e sem dono.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxQZUJCdVZ2ZVhycDI3ZnR6T2VNLTBpOEZRV0F6Z216T1lZeklsMi1rQy13NGdlMEhubXhlY2VjQkpOZW9JdHBsa0N1S2lmdzRjcDVQMDh2R01QemlDenRIOEliSmdtR2NveVlJcFV5WUhzeV9qTkxJdERxYnJsVHpuQlpHU0l4TlM4RFNoZHY1SHNlUlFGeEE1Q04xeUJKRG9Fd1dGVW5kTGNhN09lM203WTQ1WVNLdmpZTFJKbkotTmFCc1NndzFJ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>A procura por estética sem cirurgia continua avançando no país</h3>
+          <div class="credito"><span class="frescor antes">🟡 arquivo</span><span>Terra · 08/06/2026</span></div>
+          <p class="texto">A reportagem trata do avanço da procura por procedimentos
+            estéticos que não passam pela sala de cirurgia. É o tipo de procedimento que se
+            repete: a pessoa volta em algumas semanas ou alguns meses — ou não volta mais.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> procedimento que se repete só
+            vira faturamento se alguém marcar a volta. Olhe a sua agenda desta semana e veja
+            quantos retornos estão marcados com data, e não com um &ldquo;depois eu te
+            chamo&rdquo;.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPM3ZiY21ZLTB3dTEtSi1SZldBREpZajROU0d2aUVWVHFVYUNHUGh5NTk0ZFlIbm0xRDgtNmdrOFBLbnlMMGFpSWFocWVTSlhaM193Zy1mdTBqcEYxOGJzVGtPd3lKVHhGTGFGOXhBUVlDbG5kX1NPNjZwLXhTZ01RT1RDNHRfRWlraTBHbjlRNTV4d2pQc1BqU1lQT19xNHJYc3RfV1pzVmhpOFJtQXZEMmxIeVBYWHJIOTkxRVI5U2hWVzRqektqTQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 03 ══════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não
+      deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Mercado de beleza no Brasil deve avançar 42% até 2031</b> — Guia da Farmácia,
+        28/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9CLWdBNFQxUDdmZDVTNHdEUWFoMEgzZDRNOVVBMFVuY3ZLM29CR2RZVjAza29SSF9XX2Q1Zzl0TTQyV0JRdWozZTNWWnlqZXdIN0FRMkNkQVkxOTdLaDhaY1NpQTd5ZE5lSVE?oc=5">ler</a></li>
+
+      <li><b>Código de indicação Betano: use BETMETRO em agosto de 2026</b> — Metrópoles,
+        28/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMijwFBVV95cUxQdjM1eDJaS2hnRXlPYVk5UG4wUlA1SFBscHpyVlkxSlc2QzVlWkxIeVo2R3A4eWJ4UEs1LThpSHc2aXFMWS1zeFRMLTdJUGIwdTJjd2YtWE94dlNHbzdhcHFZNDRoOTlXTTRaeGRpTlRmZDFVbS1jLVFqdEZ1Z0JiaU1hQUdveEpHRFQyM0ZOVQ?oc=5">ler</a></li>
+
+      <li><b>Código de indicação Superbet 2026: use SUPERTRV</b> — Trivela, 27/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE9TUWIxWDJJNDlGVW10NE9tZjZpVnFsVzVzSXdseEFldXNpRFZQaUNkSHNzUnc3LW8tWlE4QUU4MjNDZGZsaGJOMHpjUF9Bd0l5STBSSGQwLUxncDhRS3ByeVQzUQ?oc=5">ler</a></li>
+
+      <li><b>Plataformas com bônus de cadastro em agosto de 2026: 13 ofertas</b> —
+        OneFootball, 27/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE5hN3BFUlRGSGljbGtMcnZERm92cmZ0Sy1pS1lHWFpObmlsdFJqYUx0MURYaVdWXzB0djh0cGFUa0ZndS14UmRVMzdKZklHbmVsRzUtdWJ3?oc=5">ler</a></li>
+
+      <li><b>Medição própria no YouTube, 31/08/2026.</b> Busca &ldquo;programa de indicação
+        para clínica de estética&rdquo;: vídeo mais visto com 11.064 visualizações
+        (&ldquo;5 estratégias secretas para captar pacientes em clínicas e
+        consultórios&rdquo;, canal Ricardo Novack); vídeo sobre montar programa de
+        indicação com 994 visualizações (canal Vitor Jaci).
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI">ler</a></li>
+
+      <li><b>O que é o &ldquo;gêmeo digital&rdquo; e como essa tecnologia está mudando os
+        consultórios de estética</b> — VEJA, 26/05/2026.
+        <a href="https://news.google.com/rss/articles/CBMixwFBVV95cUxQZUJCdVZ2ZVhycDI3ZnR6T2VNLTBpOEZRV0F6Z216T1lZeklsMi1rQy13NGdlMEhubXhlY2VjQkpOZW9JdHBsa0N1S2lmdzRjcDVQMDh2R01QemlDenRIOEliSmdtR2NveVlJcFV5WUhzeV9qTkxJdERxYnJsVHpuQlpHU0l4TlM4RFNoZHY1SHNlUlFGeEE1Q04xeUJKRG9Fd1dGVW5kTGNhN09lM203WTQ1WVNLdmpZTFJKbkotTmFCc1NndzFJ?oc=5">ler</a></li>
+
+      <li><b>Busca por estética não cirúrgica avança no Brasil</b> — Terra, 08/06/2026.
+        <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxPM3ZiY21ZLTB3dTEtSi1SZldBREpZajROU0d2aUVWVHFVYUNHUGh5NTk0ZFlIbm0xRDgtNmdrOFBLbnlMMGFpSWFocWVTSlhaM193Zy1mdTBqcEYxOGJzVGtPd3lKVHhGTGFGOXhBUVlDbG5kX1NPNjZwLXhTZ01RT1RDNHRfRWlraTBHbjlRNTV4d2pQc1BqU1lQT19xNHJYc3RfV1pzVmhpOFJtQXZEMmxIeVBYWHJIOTkxRVI5U2hWVzRqektqTQ?oc=5">ler</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>
+        &bull; <b>Os 42% são projeção, não medição.</b> É uma estimativa de crescimento
+        futuro publicada em reportagem. Este radar não teve acesso à metodologia nem à
+        consultoria que produziu o número.<br><br>
+        &bull; <b>A contagem &ldquo;6 de 14&rdquo; é do nosso próprio arquivo.</b> Foi
+        apurada nas edições anteriores deste radar, não por levantamento de imprensa
+        independente. Serve para mostrar a repetição, não para medir o mercado de apostas.<br><br>
+        &bull; <b>Os três textos de aposta não são reportagem de mercado.</b> São conteúdos
+        que divulgam código promocional. Entraram aqui como sinal de linguagem — que palavra
+        está sendo ensinada ao leitor brasileiro —, não como notícia econômica.<br><br>
+        &bull; <b>Visualização de vídeo não é medida de qualidade.</b> É medida de atenção,
+        colhida hoje, e muda de um dia para o outro. A comparação vale entre vídeos da mesma
+        busca, no mesmo dia.<br><br>
+        &bull; <b>Duas fontes desta edição são de arquivo</b> (26/05 e 08/06). Estão marcadas
+        como tal porque hoje não havia texto brasileiro recente sobre consultório nem sobre
+        procedimento não cirúrgico nas nossas buscas.<br><br>
+        &bull; <b>Nenhuma fonte desta edição mede quanto a indicação rende numa clínica de
+        estética.</b> Esse número não existe publicado em português até onde este radar
+        alcança.
+      </p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este radar não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, retorno de
+          paciente ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, clínica ou contábil.</b> Decisão desse tipo passa
+          pelo conselho da profissão de quem atende na sua sala.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ INTERNO — NUNCA PUBLICAR ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 015 · 31 de agosto de 2026<br>
+    Documento de trabalho · o bloco interno não vai ao ar
+  </div>
+
+</div>
+</body>
+</html>
