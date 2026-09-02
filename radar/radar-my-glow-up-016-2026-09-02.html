@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 016 · 2 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Mudaram a regra de quem pode fazer. Não mudaram a regra de quem confia em você.</h1>
+    <p class="chamada">Na terça, um tribunal federal derrubou a resolução que autorizava
+      dentista a fazer harmonização orofacial. No mesmo ano, o Senado marcou debate sobre
+      quais profissionais podem atuar em estética e a Anvisa abriu discussão sobre regular
+      os serviços. A régua de quem faz o quê está sendo reescrita fora da sua clínica — e a
+      única parte da sua agenda que ninguém revoga é a que veio pelo nome de alguém.</p>
+    <div class="dateline">Edição Nº 016 · quarta-feira, 2 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#movimento">O movimento da semana</a>
+        <div class="d">Um tribunal federal anulou a resolução da harmonização orofacial. E
+          não é o único lugar onde a régua está se mexendo.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a decisão da Justiça, o Senado, a Anvisa, uma pesquisa
+          de outro setor sobre recomendação e o que este radar mediu hoje.</div>
+      </li>
+      <li>
+        <a href="#nova">Como trazer paciente nova</a>
+        <div class="d">O que o mercado inteiro estuda, o que quase ninguém estuda, e a
+          pergunta que a sua recepção pode fazer amanhã.</div>
+      </li>
+      <li>
+        <a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">Reativar quem sumiu numa semana em que o procedimento dela pode ter
+          mudado de dono. E por que fidelidade virou jornada, não carimbo.</div>
+      </li>
+      <li>
+        <a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story. Todos sobre
+          segurança, que é o assunto da semana no seu setor.</div>
+      </li>
+      
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar hoje.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na terça-feira, dia primeiro de setembro, saiu a reportagem que
+      explica o tamanho da coisa: <b>o Tribunal Regional Federal da 1ª Região anulou a
+      resolução que autorizava o cirurgião-dentista a fazer harmonização orofacial</b>. A
+      decisão já tinha sido noticiada em agosto. O que saiu na terça foi o que muda para o
+      profissional agora.</p>
+
+    <p class="texto capitular">Pare um segundo e pense na sua agenda. Se você tem harmonização
+      na tabela, se você aluga sala para alguém que faz, se você costuma indicar uma colega
+      que faz — essa decisão passa por dentro da sua semana. Não é notícia de tribunal. É
+      notícia de agenda.</p>
+
+    <p class="texto">A tese desta edição é essa, e ela volta no fim: <b>procedimento é
+      regulável, relação não é</b>. Uma resolução pode mudar quem assina, quem aplica e quem
+      pode anunciar. Nenhuma resolução muda o fato de uma mulher ter dito o seu nome para
+      outra.</p>
+
+    <div class="olho">
+      <p>&ldquo;Resolução muda por decisão de terceiro. Quem já foi bem atendida e falou o
+        seu nome não muda por decisão nenhuma.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">3</div>
+        <div class="lbl">frentes mexendo na régua <b>no mesmo ano</b>: um tribunal federal, o
+          Congresso e a Anvisa</div>
+      </div>
+      <div class="numero">
+        <div class="big">166</div>
+        <div class="lbl">visualizações que o vídeo brasileiro sobre <b>captar paciente
+          nova</b> ganhou em sete dias, medido por este radar</div>
+      </div>
+      <div class="numero">
+        <div class="big">2</div>
+        <div class="lbl">visualizações que o vídeo sobre <b>programa de indicação de
+          pacientes</b> ganhou nos mesmos sete dias</div>
+      </div>
+      <div class="numero">
+        <div class="big">27</div>
+        <div class="lbl">negócios de beleza <b>abertos por hora no país</b>, com crescimento
+          de 18,5% em 2025, segundo o Sebrae</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Comece pelo que a decisão é e pelo que ela não é. Um tribunal federal
+        anulou uma resolução de conselho profissional. Resolução de conselho é a norma que
+        diz o que aquela categoria pode fazer. Quando ela cai, o que estava permitido por ela
+        deixa de estar permitido por ela.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p><b>Harmonização orofacial</b> é o conjunto de procedimentos que mexe no equilíbrio
+          do rosto e da boca: preenchimento, toxina, contorno de mandíbula, mento.
+          <b>Resolução de conselho</b> é a regra interna que cada profissão escreve para si.
+          <b>Anular</b> é o juiz dizer que aquela regra não vale — não é multa, não é processo
+          contra ninguém em particular, é a regra saindo do ar.</p>
+      </div>
+
+      <p class="texto">Agora repare que não é um episódio isolado. Em julho, a Rádio Senado
+        anunciou que o Senado vai discutir quais profissionais podem atuar na saúde estética.
+        Em fevereiro, o Cofen registrou que a Câmara ia debater um projeto de lei que
+        restringe atuação em estética. Em julho também, a Anvisa abriu discussão sobre regular
+        os serviços de estética.</p>
+
+      <p class="texto">Some tudo: tribunal, Congresso e agência sanitária mexendo na mesma
+        régua no mesmo ano. Para quem tem clínica, a leitura prática é simples e desconfortável.
+        <b>O que você pode oferecer amanhã não depende só de você.</b></p>
+
+      <p class="texto">É aí que a conversa vira estratégia de agenda, e não assunto de
+        advogado. Uma clínica que enche porque compra anúncio de um procedimento específico
+        está apoiada numa perna só. Se a regra daquele procedimento muda, a perna dobra. Uma
+        clínica que enche porque as pacientes falam dela continua enchendo — o que muda é o
+        que ela oferece quando a paciente chega.</p>
+
+      <p class="texto">Tem um dado desta semana que mostra onde a atenção do setor está. Este
+        radar acompanha, desde o fim de julho, os mesmos vídeos brasileiros nas mesmas buscas.
+        Em sete dias, entre 26 de agosto e hoje, o vídeo mais visto sobre <i>captar paciente
+        nova</i> ganhou cento e sessenta e seis visualizações. O vídeo sobre <i>montar um
+        programa de indicação de pacientes</i> ganhou duas.</p>
+
+      <p class="texto">Não é previsão, é contagem. O setor inteiro está estudando como trazer
+        quem nunca veio, numa semana em que a lei está discutindo o que você pode oferecer
+        para quem chegar. A parte da agenda que menos gente estuda é justamente a que menos
+        depende de resolução.</p>
+
+      <p class="texto">A edição de segunda terminou dizendo que a palavra &ldquo;indicação&rdquo;
+        já vem moldada por outro setor, o das casas de aposta. Esta de quarta acrescenta o
+        motivo de disputar essa palavra agora: quando a régua do procedimento se mexe, a
+        relação é o que sobra de pé.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes desta semana. Cada um com o que é, de onde veio e o
+      que faz com a sua agenda.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Tribunal federal anulou a resolução que autorizava dentista a fazer harmonização orofacial</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Estado de Minas · 01/09/2026</span></div>
+          <p class="texto">A reportagem trata do que muda para o cirurgião-dentista depois da
+            anulação. A decisão é do Tribunal Regional Federal da 1ª Região e já tinha sido
+            noticiada em agosto por veículos regionais. O texto de terça é o desdobramento
+            prático: o que fica valendo a partir de agora.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Não é uma proibição nova criada pelo juiz. É o juiz derrubando uma regra que o
+              próprio conselho da categoria tinha escrito. O efeito, na prática, é o mesmo
+              para quem tinha o procedimento na tabela: a permissão que existia por aquela
+              regra deixou de existir.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se harmonização entra no seu faturamento
+            — sua, de sócia, de profissional que aluga sala ou de colega que você indica —
+            vale conferir esta semana quem, na sua clínica, está amparado por qual conselho.
+            É conversa de meia hora que evita remarcação de mês inteiro.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQTTJ4cnJhc1h6OXJKRmx0ZVA2TmtIQ0ktNmtLTFBMakRkRmFzRWJMRFZOZG1oNDRKRENpNDFQa01HUVMxX0dDQ1A2UlZrNjRSYW1yT0xwS0syMlpHbDVCNGpET2JFUUdROTdZWTFpd0hJdHZBcktodDFBS0RNeVlNWjU4bXRpY1RjM3ozdjZFdUdLYjRvSEI5YnFpbG5hcE5FRFV2em1lWWhVbmZMaUNkeTl6LThiNWdTeF9ZbzlfYjF3ZEVGWVBOQ9IByAFBVV95cUxQTTJ4cnJhc1h6OXJKRmx0ZVA2TmtIQ0ktNmtLTFBMakRkRmFzRWJMRFZOZG1oNDRKRENpNDFQa01HUVMxX0dDQ1A2UlZrNjRSYW1yT0xwS0syMlpHbDVCNGpET2JFUUdROTdZWTFpd0hJdHZBcktodDFBS0RNeVlNWjU4bXRpY1RjM3ozdjZFdUdLYjRvSEI5YnFpbG5hcE5FRFV2em1lWWhVbmZMaUNkeTl6LThiNWdTeF9ZbzlfYjF3ZEVGWVBOQw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>O Senado marcou debate sobre quais profissionais podem atuar na saúde estética</h3>
+          <div class="credito"><span class="frescor antes">🟡 de julho</span><span>Rádio Senado · 20/07/2026</span></div>
+          <p class="texto">O anúncio é anterior à decisão do tribunal, mas ganha outro peso
+            agora. Enquanto a Justiça derruba uma regra de conselho, o Congresso discute
+            escrever a regra por lei. Em fevereiro, o Cofen já havia registrado que a Câmara
+            debateria um projeto que restringe atuação em estética.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Hoje, quem pode fazer cada procedimento é definido em boa parte por resolução
+              de conselho — regra que a própria categoria escreve. O que está em discussão é
+              subir isso para lei federal. Lei é mais difícil de derrubar no tribunal, e
+              mais difícil de mudar depois.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> os serviços que dependem de uma única
+            categoria profissional são os mais expostos. Vale olhar a sua tabela e ver quanto
+            do seu mês está apoiado em um só tipo de registro.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxOU21UdWhaVGY2NU9kUUNPZ1NTQXFSZnZ1UjBHRG1JNEJtd3ZfVlRtRTVORVJNa18weHpGd2htWXF3bElYbFo0eEpIcGttNXIya1lKaTJNUVNyR2RjMUVlNFpWWUlLQnViSWZlVUZNeFFoNWFEWlhiNzFGek9zenpuYmljazlxSmR1Nm9FYUY3aXkzX0QwZUFua1dGNWZUcTAwVE41aDRBSmN3elNERk5aeng4ZFF4M3QzME1oeGJrVnl3UQ?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>A Anvisa abriu discussão sobre regular os serviços de estética</h3>
+          <div class="credito"><span class="frescor antes">🟡 de julho</span><span>Jornal de Brasília · 29/07/2026</span></div>
+          <p class="texto">Aqui a régua não é sobre o profissional: é sobre o estabelecimento.
+            Anvisa é a agência que cuida de produto e de serviço de saúde. Quando ela discute
+            regular serviços de estética, o que está em jogo é o que a sala precisa ter, o que
+            precisa estar registrado e o que precisa estar escrito.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Conselho regula <b>quem</b> faz. Anvisa regula <b>onde</b> e <b>com o quê</b>
+              se faz. São duas réguas diferentes, e uma clínica precisa passar nas duas.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> a coisa mais barata de fazer antes de
+            qualquer regra nova é ter a ficha de cada paciente organizada, com o que foi
+            aplicado, o lote do produto e a data. Quem já tem isso não sente a mudança; quem
+            não tem, sente de uma vez.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxONVluUVVuNkd4MUFKVmlVSV84UnVIeUwzdlJZYWJIeGtpd3VJSndBQmx6ZDdjNUE2OUx6VnBMSk5qelFBSWgtZXdER0s5czBuRFQzSjBIamQtdzRkeW93bUJ3ZFJFeXNxOUNHTVFINzNwZ21iNXptS3VfWHZjYXd3UGt2S2NFR0lYMjFFazI4MWpmYUhBX2JhSkhvZUhrdw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Em outro setor, mediram uma coisa útil: o cliente recomenda mesmo quando a experiência não foi perfeita</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Mecânica Online · 01/09/2026</span></div>
+          <p class="texto">A reportagem é sobre concessionária de carro, não sobre estética.
+            Mas o achado atravessa: o que faz alguém recomendar não é a ausência de problema.
+            É o que aconteceu depois do problema. Quem foi bem cuidado num contratempo
+            recomenda — às vezes mais do que quem não teve contratempo nenhum.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Recomendação não é nota de prova. É memória de como você se comportou quando
+              algo saiu do previsto: o retorno que demorou, o hematoma que assustou, o
+              horário que atrasou.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que te ligou preocupada no fim de
+            semana e foi bem atendida é candidata a falar de você. Ela normalmente não está em
+            lista nenhuma. Vale começar a marcá-la.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOSXByYVNpcUZmd2xEalJWajFQVnphR2pXeGRtYm80Y1FSR0NMME9hRWVwdDVpM1U4U3J2SnZ0Wk56Tm0zQXFEU05QbGlWVTdWMW1SYlU4cTg2T0V4X25OUFpMbWgxVGJGMzNBQU0zQ3VTU0pKT0tzRnJ0SndjdFlKRDVqd3E4N2tjX0hVbzhjVGk5a3M0cHVhQzR3WDlvcURRcVhRUg?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: em sete dias, &ldquo;captar paciente&rdquo; ganhou 166 visualizações e &ldquo;indicação&rdquo; ganhou 2</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>medição própria deste radar · 26/08 a 02/09/2026</span></div>
+          <p class="texto">Este radar roda as mesmas buscas públicas no YouTube desde o fim de
+            julho e anota o número de visualizações de cada vídeo. Entre 26 de agosto e hoje,
+            o vídeo mais visto sobre captar paciente nova saiu de dez mil novecentos e setenta
+            para onze mil cento e trinta e seis. O vídeo sobre montar programa de indicação
+            saiu de novecentas e noventa e quatro para novecentas e noventa e seis.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>Visualização não mede qualidade nem resultado. Mede atenção. O que essa
+              contagem diz é onde a atenção do seu setor está indo nesta semana — e não é
+              para o assunto da indicação.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> quase todo mundo à sua volta está estudando
+            a mesma coisa que você, do mesmo jeito. O espaço mais vazio da sua rua continua
+            sendo o que já está sentado na sua cadeira.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="nova">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">Numa semana em que a regra do procedimento se mexe, o caminho mais
+      estável para paciente nova continua sendo o mais antigo: uma mulher falando de você
+      para outra.</p>
+
+    <p class="texto">A reportagem de terça sobre concessionária traz o achado que vale copiar.
+      O que produz recomendação não é experiência sem defeito. É cuidado depois do defeito.
+      Isso muda quem você olha na sua agenda.</p>
+
+    <p class="texto">Na clínica, essa pessoa tem cara. É a paciente que ligou fora do horário
+      com medo do inchaço. É a que precisou remarcar três vezes e foi tratada bem nas três. É
+      a que teve um resultado abaixo do que esperava e recebeu retorno sem cobrança. Essas
+      raramente entram em campanha nenhuma.</p>
+
+    <div class="nota">
+      <div class="r">A pergunta de recepção que quase ninguém faz</div>
+      <ul class="lista">
+        <li><b>A pergunta:</b> &ldquo;quem te falou da gente?&rdquo; — feita no primeiro
+          atendimento, antes de qualquer outra coisa.</li>
+        <li><b>O que fazer com a resposta:</b> anotar o nome de quem indicou junto do nome de
+          quem chegou. Um caderno serve.</li>
+        <li><b>Por que importa:</b> sem esse par anotado, você não tem como agradecer a
+          ninguém — e agradecimento é o único combustível barato que a indicação tem.</li>
+        <li><b>O erro comum:</b> perguntar &ldquo;como você nos conheceu?&rdquo; e aceitar
+          &ldquo;Instagram&rdquo; como resposta final. Quase sempre teve um nome antes do
+          Instagram.</li>
+      </ul>
+    </div>
+
+    <p class="texto">E há o lado que a decisão do tribunal escancarou. Se boa parte da sua
+      entrada de paciente nova vem de anúncio de um procedimento específico, a sua porta tem
+      o mesmo tamanho da regra daquele procedimento. Quando a regra encolhe, a porta encolhe
+      junto — no mesmo dia, sem aviso.</p>
+
+    <div class="acao">
+      <div class="r">O que isso pede desta semana</div>
+      <p>Olhe as dez últimas pacientes novas e escreva, ao lado de cada nome, <b>de onde ela
+        veio</b>. Anúncio, passagem na rua, rede social ou pessoa. Se &ldquo;pessoa&rdquo;
+        aparecer menos de três vezes em dez, a sua clínica está mais exposta a mudança de
+        regra do que ela precisa estar.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tem uma consequência desta semana que quase ninguém está olhando: se
+      um procedimento sai da tabela de alguém, as pacientes daquele procedimento ficam sem
+      destino. Elas não sumiram. Elas ficaram sem para onde voltar.</p>
+
+    <p class="texto">Isso vale para dentro e para fora. Para dentro: se você tinha profissional
+      atendendo sob a regra que caiu, essa agenda precisa de conversa individual, não de aviso
+      no story. Para fora: existem pacientes de outras casas, agora sem retorno marcado,
+      procurando alguém que explique com calma o que mudou.</p>
+
+    <p class="texto">A palavra aqui é <b>explicar</b>, não &ldquo;aproveitar&rdquo;. Ninguém
+      volta para quem usou o susto dela como argumento de venda. As pessoas voltam para quem
+      as tratou como adultas num momento confuso.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p><b>Reativar</b> é chamar de volta quem não aparece há um tempo. Não é promoção. É
+        lembrar de alguém em voz alta, com motivo, no momento em que aquilo faz sentido para
+        ela — e não no momento em que a sua agenda está fraca.</p>
+    </div>
+
+    <p class="texto">Vale também a leitura de mercado sobre fidelidade. Uma reportagem de
+      dezembro do ano passado descreveu a virada: programas de fidelidade deixaram de ser
+      carimbo acumulado e viraram jornada contínua, com etapas e reconhecimento pelo caminho.
+      A diferença é grande. Carimbo premia repetição. Jornada reconhece história.</p>
+
+    <div class="nota">
+      <div class="r">Três listas que cabem numa tarde</div>
+      <ul class="lista">
+        <li><b>Lista 1 — sem destino:</b> pacientes cujo procedimento habitual está atingido
+          pela mudança de regra. Merecem ligação, não mensagem em massa.</li>
+        <li><b>Lista 2 — sumiu com boa memória:</b> quem não aparece há mais de seis meses e
+          saiu bem da última vez. Merece uma mensagem individual, com o nome do que ela fez.</li>
+        <li><b>Lista 3 — voltou sempre e nunca foi reconhecida:</b> quem já veio quatro, cinco
+          vezes e nunca ouviu nada sobre isso. É a lista mais esquecida e a mais barata.</li>
+      </ul>
+    </div>
+
+    <div class="olho">
+      <p>&ldquo;A indicação morre quando quem indicou nunca fica sabendo o que aconteceu com
+        a pessoa que ela mandou.&rdquo;</p>
+      <span class="quem">O motivo pelo qual quase toda indicação acontece uma vez só</span>
+    </div>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ESTA SEMANA ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos, todos ligados ao assunto da semana: segurança e
+      quem responde pelo que é feito no seu rosto. Nenhum deles cita processo, tribunal ou
+      colega.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · reels de 30 segundos</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Três perguntas para fazer antes de deixar alguém aplicar
+          qualquer coisa no seu rosto&rdquo;</li>
+        <li><b>Roteiro:</b> quem é o profissional e qual o registro dele; qual é o produto e
+          onde está o lote; qual é o retorno marcado se algo não sair como o esperado.</li>
+        <li><b>Por que agora:</b> a semana inteira o seu setor está falando de quem pode fazer
+          o quê. Você chega com a resposta calma, sem citar ninguém.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · carrossel de 5 telas</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;O que fica registrado quando você faz um procedimento
+          aqui&rdquo;</li>
+        <li><b>Telas:</b> a ficha; a foto de antes; o produto e o lote anotados; a data do
+          retorno; o canal para falar comigo se precisar.</li>
+        <li><b>Por que agora:</b> mostra organização sem prometer nada. É o tipo de post que
+          a paciente manda para a amiga que está com medo.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · story com caixinha</div>
+      <ul class="lista">
+        <li><b>Pergunta:</b> &ldquo;o que você gostaria de ter perguntado antes do seu
+          primeiro procedimento e não perguntou?&rdquo;</li>
+        <li><b>O que fazer depois:</b> responder as três mais repetidas no dia seguinte, em
+          stories separados, sem identificar quem perguntou.</li>
+        <li><b>Por que agora:</b> a caixinha entrega o vocabulário real das suas pacientes.
+          É material de conteúdo para o mês inteiro, colhido em um dia.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Um cuidado que vale repetir: nenhum dos três fala mal de categoria
+      profissional nenhuma. Post que ataca colega gera resposta, e resposta gera assunto que
+      você não controla. O que você quer é ser a voz que acalma, não a que acusa.</p>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima veio de material publicado com data. Onde
+      a informação não deu para confirmar, está dito.</p>
+
+    <ol class="src">
+      <li><b>Estado de Minas, 01/09/2026</b> — &ldquo;TRF1 anula resolução da HOF: o que muda
+        para o dentista agora&rdquo;. <a href="https://news.google.com/rss/articles/CBMiyAFBVV95cUxQTTJ4cnJhc1h6OXJKRmx0ZVA2TmtIQ0ktNmtLTFBMakRkRmFzRWJMRFZOZG1oNDRKRENpNDFQa01HUVMxX0dDQ1A2UlZrNjRSYW1yT0xwS0syMlpHbDVCNGpET2JFUUdROTdZWTFpd0hJdHZBcktodDFBS0RNeVlNWjU4bXRpY1RjM3ozdjZFdUdLYjRvSEI5YnFpbG5hcE5FRFV2em1lWWhVbmZMaUNkeTl6LThiNWdTeF9ZbzlfYjF3ZEVGWVBOQ9IByAFBVV95cUxQTTJ4cnJhc1h6OXJKRmx0ZVA2TmtIQ0ktNmtLTFBMakRkRmFzRWJMRFZOZG1oNDRKRENpNDFQa01HUVMxX0dDQ1A2UlZrNjRSYW1yT0xwS0syMlpHbDVCNGpET2JFUUdROTdZWTFpd0hJdHZBcktodDFBS0RNeVlNWjU4bXRpY1RjM3ozdjZFdUdLYjRvSEI5YnFpbG5hcE5FRFV2em1lWWhVbmZMaUNkeTl6LThiNWdTeF9ZbzlfYjF3ZEVGWVBOQw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Tribuna da Bahia, 22/08/2026</b> — &ldquo;Justiça barra harmonização por
+        dentistas&rdquo;. <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxObzd1VTRMeE51ZTQ5NS1FMEl4d3E4X182czM3LTdUWndEZjlrUjVHMXpUb2JqOHNmSWVEOW9kd2E3ZjJMandJQXVtTEU2TnBWR090ZlJVNkNPOE5DdmhIcTNuTVZZdDlkTnZud21PZ1BITUt6bmFpSU1HTTRFTFpoN0dyRlRzQTA?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>valoremercadoro.com.br, 21/08/2026</b> — &ldquo;TRF 1ª anula resolução que
+        autorizava dentistas a realizar harmonização orofacial&rdquo;. <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxQOG9CSHgzbzliRVh1bE5fTEt6MHQ0MDZiNnNWUDhVT3lCLU5GbkJULVRaMlhGZmZhcG9VY0ZPVlVpSzhSQ01HNHVGSkdFeDVqUUl1Tm5LRlFqY0M3eUlNNklvcG01dzhXWVE2QzI4SUktRlRpaUtTck9JYzlBTURxZmtnbGd0d3FWOHg5NUs0elFyRnVxMFE0bXhaWko3QVlPWkY4NjZibkVjV0dHV2w1VTVKT1ZweUw2?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Rádio Senado / Senado Federal, 20/07/2026</b> — &ldquo;Senado vai discutir quais
+        profissionais podem atuar na saúde estética&rdquo;. <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxOU21UdWhaVGY2NU9kUUNPZ1NTQXFSZnZ1UjBHRG1JNEJtd3ZfVlRtRTVORVJNa18weHpGd2htWXF3bElYbFo0eEpIcGttNXIya1lKaTJNUVNyR2RjMUVlNFpWWUlLQnViSWZlVUZNeFFoNWFEWlhiNzFGek9zenpuYmljazlxSmR1Nm9FYUY3aXkzX0QwZUFua1dGNWZUcTAwVE41aDRBSmN3elNERk5aeng4ZFF4M3QzME1oeGJrVnl3UQ?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Cofen, 24/02/2026</b> — &ldquo;Câmara dos Deputados vai debater Projeto de Lei que
+        restringe atuação em Estética&rdquo;. <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQcmY1Xy1yQm9ia1FHX0RycG56RXhHTWNqQk9yWkhDX3pwOFZEel9nVll1b2daUGp6dWNlcnQ0c0x5bnZ2bW9odDRYQVhpWTR3LXhDNTJoay0xR1VTMmlvQmZva00teWd1cVJ3WHctOTltYWlsWmY4dHhON2F1eGNUdXRFLUh4cGgyU3NITllkZHJrMDdIMkpXUGJyN1pfems3bjZGaWtqc1VxX1U?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Jornal de Brasília, 29/07/2026</b> — &ldquo;Anvisa discute regulação dos serviços
+        de estética&rdquo;. <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxONVluUVVuNkd4MUFKVmlVSV84UnVIeUwzdlJZYWJIeGtpd3VJSndBQmx6ZDdjNUE2OUx6VnBMSk5qelFBSWgtZXdER0s5czBuRFQzSjBIamQtdzRkeW93bUJ3ZFJFeXNxOUNHTVFINzNwZ21iNXptS3VfWHZjYXd3UGt2S2NFR0lYMjFFazI4MWpmYUhBX2JhSkhvZUhrdw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Mecânica Online, 01/09/2026</b> — &ldquo;Cliente recomenda concessionária mesmo
+        sem experiência perfeita&rdquo;. <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOSXByYVNpcUZmd2xEalJWajFQVnphR2pXeGRtYm80Y1FSR0NMME9hRWVwdDVpM1U4U3J2SnZ0Wk56Tm0zQXFEU05QbGlWVTdWMW1SYlU4cTg2T0V4X25OUFpMbWgxVGJGMzNBQU0zQ3VTU0pKT0tzRnJ0SndjdFlKRDVqd3E4N2tjX0hVbzhjVGk5a3M0cHVhQzR3WDlvcURRcVhRUg?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Mercado&amp;Consumo, 18/12/2025</b> — &ldquo;Gamificação transforma programas de
+        fidelidade em jornadas de engajamento contínuo&rdquo;. <a href="https://news.google.com/rss/articles/CBMi2AFBVV95cUxQd2VZN29RX19mbG93VGl4OGpBbkVHSzdGcFBKYjNMNmxDNVpjZ3k0Zl9VTDE4cmJCVUU4eDVfYTVsc1RDek1JLTFHSFdhMkVONWJqcmFaQW9tLXNneUk5NWJ1c3RwOE95TklZSnZtOWhwMHdHM29lZ3JtRmpnem5SVmc5WTZDMjFtQ3JfZWxKbkUzdHRlNVEwUjBHTElGTDJaTWhvQVVQbmF0ekhac1BCSVNQMHdXVEdWWTJoNDMtc3lBWHZ1OHdjZDJaRlFXOVVwak03NnZtYTTSAd4BQVVfeXFMUGRKZjdoZktoR1g3QTY5SUY4ZUpHM1FDRGRDSjhtRjJmRjR3WU5GZmVjVXpiQWxtX0RIczZGUk5oY0E1Uk9rV0F2em9hdGIzTUwxYnhYbll5ZkhMcllBTlJuNlQ4Ny1HTFJTbVp1YzBWZl8zTUNYQ0I2Zk14R3J5UjNGLVdQd1ZHcnhzWFEwM2JTbmlTbXAyZmxOYUVkNmpsbUsyX3BHU2Y0a2hpMTNDYXh6ZFpZY2N4SEtkcUNlSk00Szk0Y1Rsbi03YjN3WkxRbHZWem9EZHROTkM0RzB3?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Agência Sebrae de Notícias, 16/01/2026</b> — &ldquo;A cada hora, 27 negócios de
+        beleza são abertos no país. Crescimento foi de 18,5% em 2025&rdquo;. <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxOd3hpdHdOWXFMZGJEN2xLZ0MyWGlGRjBld3JJdU1fTXBEd0RTYll0ZTRQNWZSVlVIdDRRUXlxajdXc1FpWDZ3MnRsd3RQeHJBS0hPUEkzQzJOZGFUbnZjUTdoOGtQUTRWQ1NwMVRMeHN2bnVISVVrNnlkMjdyTklPaExLNVhaMlhrRHlBYUEtQlJIdjdHZTZtbXpUbFlCWXZlQ3RXT3NoR0FpTDlLUU1RamttTTk1V1ltWWpnVVZQRWVWVE4tdXBlQ1NmV3hRQ1pHRmc?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do radar, 31/07 a 02/09/2026</b> — as visualizações citadas vêm
+        das mesmas buscas públicas do YouTube, repetidas em todas as edições, sempre com os
+        mesmos termos. Vídeos acompanhados nesta janela: &ldquo;5 estratégias secretas para
+        captar pacientes em clínicas e consultórios&rdquo; (10.970 em 26/08 → 11.064 em 31/08
+        → 11.136 hoje) e &ldquo;Como fazer um bom programa de indicação de pacientes?&rdquo;
+        (994 em 26/08 → 994 em 31/08 → 996 hoje).</li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>Quatro coisas ficaram em aberto, e é honesto dizer quais. <b>Um:</b> não foi possível
+        confirmar se a decisão do tribunal já produz efeito imediato em todo o país ou se
+        houve recurso com efeito suspensivo — as reportagens disponíveis não deixam isso
+        claro, e este radar não consultou o processo. <b>Dois:</b> não foi possível confirmar
+        se o debate anunciado pelo Senado em julho já tem data marcada. <b>Três:</b> a
+        discussão da Anvisa sobre serviços de estética foi noticiada como discussão, não como
+        norma publicada; nada mudou ainda por causa dela. <b>Quatro:</b> a pesquisa citada
+        pela reportagem de concessionária é de outro setor e de outro país de origem
+        metodológica não detalhada no texto; ela é usada aqui como indício, não como prova
+        sobre clínicas de estética.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO — NUNCA PUBLICAR ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 016 · 2 de setembro de 2026<br>
+    Documento de trabalho · não publicar as seções marcadas
+  </div>
+
+</div>
+</body>
+</html>
