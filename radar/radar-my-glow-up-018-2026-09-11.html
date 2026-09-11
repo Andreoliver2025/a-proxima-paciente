@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 018 · 11 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Uma vez ruim basta. E quase nunca é o procedimento.</h1>
+    <p class="chamada">Saiu ontem uma reportagem dizendo que preço não segura ninguém: uma
+      única experiência ruim já é suficiente para a pessoa trocar de marca. Na mesma semana,
+      outro levantamento mostrou o contrário do que se espera — cliente indica mesmo quando o
+      atendimento não foi perfeito. As duas coisas cabem juntas, e é disso que trata esta
+      edição.</p>
+    <div class="dateline">Edição Nº 018 · sexta-feira, 11 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#mudou">O que mudou</a>
+        <div class="d">Preço não fideliza, e uma vez ruim basta — mas imperfeição não é o que
+          faz a paciente sumir.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a experiência que quebra a relação, o cliente que indica
+          mesmo assim, a estética que virou cuidado de anos, o dinheiro da beleza de luxo
+          desacelerando no Brasil e a medição de hoje.</div>
+      </li>
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════ 01 ══════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Saiu ontem: <b>preço não fideliza, e uma única experiência ruim pode
+      fazer a pessoa trocar de marca</b>. A reportagem fala de consumo em geral. Mas ela
+      descreve, com outras palavras, a paciente que desmarcou em julho e nunca mais
+      respondeu.</p>
+
+    <p class="texto capitular">Na mesma semana apareceu um segundo levantamento, e ele parece
+      dizer o oposto: numa pesquisa com donos de carro, o cliente recomendou a oficina
+      <i>mesmo sem</i> ter tido uma experiência perfeita. As duas coisas são verdade ao mesmo
+      tempo, e é aí que mora o assunto de hoje.</p>
+
+    <p class="texto">A tese desta edição é essa: <b>o que quebra a relação não é o erro. É o
+      silêncio depois dele</b>. O atraso na sala de espera, o resultado que demorou mais do que
+      ela esperava, a dúvida que ela mandou num domingo — nada disso, sozinho, manda a paciente
+      embora. O que manda embora é ninguém ter percebido.</p>
+
+    <div class="olho">
+      <p>&ldquo;A paciente não vai embora porque você errou. Ela vai embora porque errou e
+        ninguém percebeu.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">1</div>
+        <div class="lbl">uma <b>única experiência ruim</b> já basta para a pessoa trocar de
+          marca — e o preço não segura, diz a reportagem de ontem</div>
+      </div>
+      <div class="numero">
+        <div class="big">3º</div>
+        <div class="lbl">a posição do <b>Brasil entre os maiores mercados de estética do
+          mundo</b>, segundo levantamento da consultoria BCG citado em reportagem de 1º de
+          setembro</div>
+      </div>
+      <div class="numero">
+        <div class="big">164 para 1</div>
+        <div class="lbl">o que os dois vídeos da nossa busca de sempre ganharam <b>de 4 de
+          setembro até hoje</b>: o de captar paciente nova subiu cento e sessenta e quatro
+          visualizações; o de indicação subiu uma</div>
+      </div>
+      <div class="numero">
+        <div class="big">18</div>
+        <div class="lbl">edições deste radar <b>sem encontrar uma reportagem brasileira que
+          meça quanto a indicação rende numa clínica de estética</b></div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Vale ler as duas peças com calma, porque o desencontro entre elas é
+        aparente. A de ontem diz que uma experiência ruim é suficiente para trocar de marca, e
+        que desconto não segura quem já decidiu ir embora. A de 1º de setembro diz que o
+        cliente recomendou mesmo sem ter vivido um atendimento impecável.</p>
+
+      <p class="texto">Postas lado a lado, elas separam duas coisas que a gente costuma
+        confundir: <b>imperfeição</b> e <b>descaso</b>. Imperfeição é o atraso de quarenta
+        minutos porque o procedimento anterior demorou. Descaso é ninguém ligar depois. A
+        primeira, as pessoas perdoam — a segunda, não.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p>&ldquo;Fidelizar&rdquo; é fazer a paciente voltar por vontade, sem você precisar
+          gastar de novo para lembrá-la de que existe. &ldquo;Experiência&rdquo; não é só o
+          resultado do procedimento: é a espera na recepção, o tom da mensagem, o tempo até
+          alguém responder. A paciente soma tudo isso e chama de &ldquo;como fui
+          tratada&rdquo;.</p>
+      </div>
+
+      <p class="texto">Isso muda onde você procura o problema. Quando a agenda esvazia, o
+        primeiro impulso é mexer no preço ou no anúncio. Mas se uma única vez ruim é o que
+        derruba a relação, o preço não é onde está o vazamento. O vazamento está no dia em que
+        alguma coisa saiu do lugar e ninguém voltou para conversar sobre aquilo.</p>
+
+      <p class="texto">Há um detalhe prático nisso, e ele é desconfortável: <b>você
+        provavelmente não sabe quais foram esses dias</b>. A paciente insatisfeita raramente
+        reclama. Ela simplesmente para de responder. O sinal dela não é uma mensagem — é a
+        ausência de uma. E ausência não aparece em relatório nenhum, a não ser que alguém
+        combine de olhar.</p>
+
+      <p class="texto">A segunda notícia da semana empurra na mesma direção por outro caminho.
+        Uma reportagem de terça diz que a estética está migrando para o terreno da
+        <b>longevidade</b> — cuidado mantido ao longo de anos, em vez do procedimento pontual
+        que resolve e encerra. Cuidado mantido por anos é, por definição, uma relação que
+        precisa sobreviver a vários dias imperfeitos.</p>
+
+      <p class="texto">E a terceira fecha a conta pelo lado do dinheiro. O Valor Econômico
+        publicou na segunda que o mercado de beleza de luxo <b>desacelerou no Brasil</b> no
+        primeiro semestre, crescendo menos que o resto da América Latina. Ou seja: o dinheiro
+        do topo ficou mais seletivo justamente onde o Brasil é o terceiro maior mercado de
+        estética do mundo. Mais gente disputando um bolso que escolhe mais.</p>
+
+      <p class="texto">A edição de sexta passada terminou dizendo que o canal barato deixou de
+        ser o anúncio e passou a ser a mulher que você já atendeu. A desta sexta acrescenta a
+        parte incômoda da mesma frase: <b>esse canal é o único que você pode perder sem receber
+        aviso</b>. Anúncio, quando para de funcionar, aparece no relatório. Paciente, quando
+        decide não voltar, não avisa ninguém.</p>
+    </details>
+  </section>
+
+  <!-- ══════════ 02 ══════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na <b>sua agenda</b> — não na
+      agenda de quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Preço não fideliza: uma única experiência ruim já basta para a pessoa trocar de marca</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>bra1.com.br · 10/09/2026</span></div>
+          <p class="texto">A reportagem trata de consumo em geral e sustenta duas coisas: que
+            desconto não segura quem decidiu sair, e que uma experiência ruim sozinha é
+            suficiente para a pessoa procurar outro lugar.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> antes de mexer no valor do
+            procedimento para trazer gente de volta, vale olhar a lista de quem sumiu e
+            perguntar o que aconteceu no último atendimento de cada uma. Não é pesquisa de
+            satisfação. É uma pergunta por vez, no WhatsApp, feita por alguém que lembra o nome
+            dela.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQSk5UNHlVRjNBNzN4XzhHWUtuRVBWM1Y0R1lEQ25LUTdHa0s2UXJSVzcwYWx3U19tek9NMVRJaTRtS1NoSjA2RVo5WWw2T2MwMk1yajFESWdJTUhBVi1uZEtwb0htR0tpdl9ReGtwQ0JiaF9XdkJwQTRNclhqclBZVGIyWllnTmttdUtyaW5UVmZnM3k2dHBtdDI1akpvaGE0dmRkWmxYVm1FZ25TaWxNVG0zMVY5UWRPbTVjRjNRWXFldw?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Cliente recomenda mesmo quando a experiência não foi perfeita</h3>
+          <div class="credito"><span class="frescor antes">🟡 arquivo</span><span>Mecânica Online · 01/09/2026</span></div>
+          <p class="texto">O levantamento é do setor automotivo: donos de carro disseram que
+            recomendariam a oficina mesmo sem terem vivido um atendimento impecável. É o
+            contrapeso exato da notícia de ontem — e é o que separa erro de abandono.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>&ldquo;Recomendar&rdquo; aqui é a pessoa dizer o nome do lugar para alguém
+              conhecido. Não é avaliação de estrela na internet, nem elogio na sua cara ao sair
+              da sala. É o que ela fala quando você não está ouvindo.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> tira o peso da perfeição das costas
+            da sua equipe. O atraso de quarenta minutos não custou a indicação. O que custa é
+            ninguém ter dito &ldquo;desculpa a demora de terça, como você ficou?&rdquo;.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOSXByYVNpcUZmd2xEalJWajFQVnphR2pXeGRtYm80Y1FSR0NMME9hRWVwdDVpM1U4U3J2SnZ0Wk56Tm0zQXFEU05QbGlWVTdWMW1SYlU4cTg2T0V4X25OUFpMbWgxVGJGMzNBQU0zQ3VTU0pKT0tzRnJ0SndjdFlKRDVqd3E4N2tjX0hVbzhjVGk5a3M0cHVhQzR3WDlvcURRcVhRUg?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>A estética está virando cuidado de anos, e não procedimento que resolve e encerra</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>crn1.com.br · 08/09/2026</span></div>
+          <p class="texto">A reportagem descreve a longevidade saudável como a tendência que
+            está organizando o setor: menos foco no antes e depois de um procedimento, mais
+            foco no cuidado mantido ao longo do tempo.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> cuidado que dura anos depende de uma
+            relação que sobrevive a dias ruins. Se o seu pacote termina com a última sessão e o
+            próximo contato só acontece quando você tem promoção, a promessa de longo prazo não
+            está no seu calendário — está só no seu material de divulgação.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQS09qMU10LUU0cDRGOHZ5MHlnWGtOa1BjWEVWM1RUYXdlbzF0aWxIdUExSmg5bFhPNWpGLWV2WXp6RWVMRTFGT3FQa3VWMHl2cTVia05Ld2ZFNi03Y3lwbnhxTm9EckhfbnF2bEtvb2VCV0RxLWstUm9oUko4LW5TZUpmVkxNT0xYdmdSdFhXUzg?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>O mercado de beleza de luxo desacelerou no Brasil e cresceu menos que o resto da América Latina</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Valor Econômico · 07/09/2026</span></div>
+          <p class="texto">A reportagem trata da faixa de luxo da beleza no primeiro semestre: o
+            Brasil perdeu ritmo e cresceu abaixo da média latino-americana. Não é sobre clínica,
+            é sobre o bolso que costuma pagar o procedimento mais caro da sua tabela.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> quando o dinheiro do topo fica mais
+            seletivo, a paciente que já confia em você é a que menos hesita. É mais um motivo
+            para saber quem ela é pelo nome, e não pelo número de atendimentos do mês.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNaEU5bGVENmNsWUVFXzcxLXMtdlJ4M29TaVk0ZGlieGVCVzN2MUR3X0NkLVRtcko0eVVkN1FkNDBQekFsU1NVajk0MldjRDJOSXpZSjJkak1JaW5GWXdoMFl5ZEdsekhPcTJELUZMMFpUUjRwX1hRVTc4ei1FcFNtbjBSVXhaTnFJUGNBUHZ1NUlxbkw4VWVCQ3lRSXNacnF1MmdUSlVGd28zRUxuZ1hBTjA0aEV3V2NPc193UjQyTE9jdGhIbVFOVUxsTV9SVmZ2TC1VOFNwbmQ2ZkpFZ3lHU3ozbHFKbW_SAfYBQVVfeXFMTkVPbzh2MWswdy1OLWZHY1dUMGg1c09tRWVKTDFjT1JacVZqSlRNd2NZSzNvQzA2a1RDYkZzdEpJMGlHYkdrblgxUG5pTVQzR21BNUhETVB1N2hGX3l2VWVRUU1oc1BXNGFaV1I3Y2YwbHhEaV9EZ19qZTdpSGxsUHY2TVJrODBtdjFlbi1Lbm8xTUJQZFpmUktBYVJWWWtHZ1lJQVk0YkdaWGdZXzQzUVVhZkFSeWVIb21VclFmSGRWMTg3R2NJdDBCVkRWckdMWDhrQzRQSTJOSTlxVjRjc21May05UU05RzNJRjBuNlc2dFAwZ21R?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: em uma semana, o vídeo sobre captar paciente ganhou 164 visualizações; o de indicação ganhou 1</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 11/09/2026</span></div>
+          <p class="texto">Na mesma busca de todas as edições — &ldquo;programa de indicação
+            para clínica de estética&rdquo; — o vídeo mais assistido continua sendo o que ensina
+            a captar paciente nova, agora com 11.352 visualizações. O que ensina a montar um
+            programa de indicação está com 999. No dia 4 de setembro estavam em 11.188 e 998.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> na semana em que a notícia foi
+            &ldquo;uma vez ruim basta&rdquo;, o setor seguiu estudando como trazer gente nova.
+            Isso não garante nada a quem olhar para o outro lado. Mostra só onde há menos gente
+            olhando.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=wMx70A949cI">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 03 ══════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu
+      para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Preço não fideliza: por que uma única má experiência pode fazer você trocar de
+        marca</b> — bra1.com.br, 10/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQSk5UNHlVRjNBNzN4XzhHWUtuRVBWM1Y0R1lEQ25LUTdHa0s2UXJSVzcwYWx3U19tek9NMVRJaTRtS1NoSjA2RVo5WWw2T2MwMk1yajFESWdJTUhBVi1uZEtwb0htR0tpdl9ReGtwQ0JiaF9XdkJwQTRNclhqclBZVGIyWllnTmttdUtyaW5UVmZnM3k2dHBtdDI1akpvaGE0dmRkWmxYVm1FZ25TaWxNVG0zMVY5UWRPbTVjRjNRWXFldw?oc=5">ler</a></li>
+
+      <li><b>Cliente recomenda concessionária mesmo sem experiência perfeita</b> — Mecânica
+        Online, 01/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOSXByYVNpcUZmd2xEalJWajFQVnphR2pXeGRtYm80Y1FSR0NMME9hRWVwdDVpM1U4U3J2SnZ0Wk56Tm0zQXFEU05QbGlWVTdWMW1SYlU4cTg2T0V4X25OUFpMbWgxVGJGMzNBQU0zQ3VTU0pKT0tzRnJ0SndjdFlKRDVqd3E4N2tjX0hVbzhjVGk5a3M0cHVhQzR3WDlvcURRcVhRUg?oc=5">ler</a></li>
+
+      <li><b>Longevidade saudável é a nova tendência na área da estética</b> — crn1.com.br,
+        08/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMikAFBVV95cUxQS09qMU10LUU0cDRGOHZ5MHlnWGtOa1BjWEVWM1RUYXdlbzF0aWxIdUExSmg5bFhPNWpGLWV2WXp6RWVMRTFGT3FQa3VWMHl2cTVia05Ld2ZFNi03Y3lwbnhxTm9EckhfbnF2bEtvb2VCV0RxLWstUm9oUko4LW5TZUpmVkxNT0xYdmdSdFhXUzg?oc=5">ler</a></li>
+
+      <li><b>Mercado de beleza de luxo desacelera no Brasil e cresce menos que América Latina no
+        1º semestre</b> — Valor Econômico, 07/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxNaEU5bGVENmNsWUVFXzcxLXMtdlJ4M29TaVk0ZGlieGVCVzN2MUR3X0NkLVRtcko0eVVkN1FkNDBQekFsU1NVajk0MldjRDJOSXpZSjJkak1JaW5GWXdoMFl5ZEdsekhPcTJELUZMMFpUUjRwX1hRVTc4ei1FcFNtbjBSVXhaTnFJUGNBUHZ1NUlxbkw4VWVCQ3lRSXNacnF1MmdUSlVGd28zRUxuZ1hBTjA0aEV3V2NPc193UjQyTE9jdGhIbVFOVUxsTV9SVmZ2TC1VOFNwbmQ2ZkpFZ3lHU3ozbHFKbW_SAfYBQVVfeXFMTkVPbzh2MWswdy1OLWZHY1dUMGg1c09tRWVKTDFjT1JacVZqSlRNd2NZSzNvQzA2a1RDYkZzdEpJMGlHYkdrblgxUG5pTVQzR21BNUhETVB1N2hGX3l2VWVRUU1oc1BXNGFaV1I3Y2YwbHhEaV9EZ19qZTdpSGxsUHY2TVJrODBtdjFlbi1Lbm8xTUJQZFpmUktBYVJWWWtHZ1lJQVk0YkdaWGdZXzQzUVVhZkFSeWVIb21VclFmSGRWMTg3R2NJdDBCVkRWckdMWDhrQzRQSTJOSTlxVjRjc21May05UU05RzNJRjBuNlc2dFAwZ21R?oc=5">ler</a></li>
+
+      <li><b>Brasil é o 3º maior mercado de estética do mundo, aponta BCG</b> —
+        panoramagocomunicacao.com.br, 01/09/2026. Usado apenas para a posição do Brasil no
+        bloco de números.
+        <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxPb3ZlWHhMazZIZkFpb01oUnMzbTRvM1JRdDdBYzNzQkt4emFKMmZYakd3TzdnOTVWbmwzWEY3MEoyX2doS1JSY21WRldSR2dXdWt5LTdQRGZWVHRydnZJU3ZWLWRlZm1DbC1WYWZOdjJBSHBNcVRsMGZUN1FCajNOeHFCZjdHSGs5dXljMnowbFVkRzktdkpkelZfaXNsUQ?oc=5">ler</a></li>
+
+      <li><b>Medição própria no YouTube, 11/09/2026.</b> Busca &ldquo;programa de indicação para
+        clínica de estética&rdquo;: vídeo mais visto com 11.352 visualizações (&ldquo;5
+        estratégias secretas para captar pacientes em clínicas e consultórios&rdquo;, canal
+        Ricardo Novack); vídeo sobre montar programa de indicação com 999 visualizações
+        (&ldquo;Como fazer um bom programa de indicação de pacientes?&rdquo;, canal Vitor
+        Jaci). A comparação usa os números registrados na edição Nº 017, de 04/09/2026 — 11.188
+        e 998.
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI">ler</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>
+        &bull; <b>A reportagem de ontem não é sobre estética.</b> Ela trata de consumo e de
+        troca de marca em geral. A aplicação à clínica é leitura deste radar, não afirmação da
+        fonte.<br><br>
+        &bull; <b>Não tivemos acesso à metodologia de nenhum dos dois levantamentos sobre
+        experiência.</b> Nem o de ontem, nem o do setor automotivo. Não está confirmado quantas
+        pessoas foram ouvidas, quando, nem por quem.<br><br>
+        &bull; <b>O dado do setor automotivo não vale automaticamente para clínica.</b> Levar o
+        carro à oficina e fazer um procedimento no próprio rosto são decisões diferentes. A
+        peça entrou como contraponto, não como medida do seu setor.<br><br>
+        &bull; <b>A posição do Brasil como terceiro maior mercado veio de reportagem que cita a
+        consultoria BCG.</b> Não tivemos acesso ao estudo original, ao ano de referência nem ao
+        critério usado para ordenar os países.<br><br>
+        &bull; <b>Os números da beleza de luxo são do primeiro semestre e da faixa de luxo.</b>
+        Não são do mercado de estética inteiro e não descrevem a clínica de bairro.<br><br>
+        &bull; <b>&ldquo;Longevidade&rdquo; como tendência é descrição de reportagem, não
+        medida.</b> Não há número no texto dizendo quantas clínicas ou quantas pacientes já
+        migraram para esse formato de cuidado.<br><br>
+        &bull; <b>Visualização de vídeo não é medida de qualidade.</b> É medida de atenção,
+        colhida hoje, e muda de um dia para o outro. A comparação vale entre vídeos da mesma
+        busca.<br><br>
+        &bull; <b>Continua não existindo reportagem brasileira que meça quanto a indicação rende
+        numa clínica de estética.</b> Décima oitava edição, mesma lacuna.
+      </p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este radar não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, retorno de
+          paciente ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, clínica, contábil ou financeira.</b> Decisão desse tipo
+          passa pelo conselho da profissão de quem atende na sua sala e por quem cuida das suas
+          contas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ INTERNO — NUNCA PUBLICAR ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 018 · 11 de setembro de 2026<br>
+    Documento de trabalho · o bloco interno não vai ao ar
+  </div>
+
+</div>
+</body>
+</html>
