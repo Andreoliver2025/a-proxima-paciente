@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 019 · 14 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A paciente perguntou para a máquina antes de perguntar para você.</h1>
+    <p class="chamada">Saiu hoje um artigo com um aviso direto: quando a inteligência
+      artificial responde primeiro na busca, a empresa pode sumir dela. Para a clínica, isso
+      quer dizer que a paciente nova pode chegar já decidida — ou nem chegar. Esta edição
+      trata do momento em que ela escolhe, antes da primeira mensagem.</p>
+    <div class="dateline">Edição Nº 019 · segunda-feira, 14 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#mudou">O que mudou</a>
+        <div class="d">A busca na internet começou a responder sozinha — e a escolha da
+          paciente passou a acontecer antes de ela falar com a sua recepção.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a resposta pronta que esconde empresas, a compra
+          indicada por máquina, o limite de quem pode fazer harmonização, o produto sem
+          registro e a medição de hoje.</div>
+      </li>
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════ 01 ══════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Saiu hoje: <b>quando a inteligência artificial responde primeiro, a sua
+      empresa pode sumir da busca</b>. O artigo começa pedindo para você lembrar a última vez
+      que procurou algo na internet — e o primeiro exemplo que ele dá é justamente
+      &ldquo;uma clínica&rdquo;.</p>
+
+    <p class="texto capitular">O que mudou é o jeito de procurar. Antes, a pessoa digitava
+      &ldquo;clínica de estética perto de mim&rdquo; e recebia uma lista de endereços para
+      abrir um por um. Agora a própria busca pode entregar uma resposta pronta, em texto, e
+      muita gente para por ali. O artigo alerta que quem não aparece nessa resposta corre o
+      risco de simplesmente não ser visto.</p>
+
+    <p class="texto">A tese desta edição é essa: <b>a paciente nova escolhe antes de mandar a
+      primeira mensagem, num lugar onde você não está</b>. Pode ser a conversa com uma amiga,
+      pode ser a resposta pronta da busca. Nos dois casos, quando o WhatsApp da clínica toca,
+      boa parte da decisão já foi tomada.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p>&ldquo;A inteligência artificial responde primeiro&rdquo; quer dizer: em vez de te
+        mostrar dez sites para você escolher, a busca lê esses sites por você e escreve um
+        resumo no topo da tela. É como perguntar na recepção de um prédio &ldquo;qual clínica
+        vocês recomendam?&rdquo; e ouvir um nome só — sem ver as outras portas do corredor.</p>
+    </div>
+
+    <div class="olho">
+      <p>&ldquo;Quando a paciente manda a primeira mensagem, ela já escolheu. A pergunta é quem
+        estava falando da gente na hora em que ela escolheu.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">54%</div>
+        <div class="lbl">dos brasileiros <b>já compraram algum produto indicado por
+          inteligência artificial</b>, segundo reportagem da CartaCapital de maio</div>
+      </div>
+      <div class="numero">
+        <div class="big">2</div>
+        <div class="lbl"><b>derrotas recentes na Justiça</b> do conselho federal de odontologia
+          sobre o que o dentista pode fazer, citadas em coluna do Estado de Minas</div>
+      </div>
+      <div class="numero">
+        <div class="big">8 e 59</div>
+        <div class="lbl">visualizações ganhas <b>em três dias</b> pelo vídeo de indicação e pelo
+          de captar paciente nova, na nossa busca de sempre no YouTube</div>
+      </div>
+      <div class="numero">
+        <div class="big">19</div>
+        <div class="lbl">edições deste radar <b>sem encontrar uma reportagem brasileira que
+          meça quanto a indicação rende numa clínica de estética</b></div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Vale separar o que o artigo de hoje afirma do que ele não afirma. Ele
+        afirma que a busca está mudando de formato — de lista de endereços para resposta
+        escrita — e que isso pode tirar empresas do campo de visão de quem procura. Ele não
+        traz, no trecho a que tivemos acesso, um número dizendo quantas clínicas perderam
+        pacientes por isso.</p>
+
+      <p class="texto">Mesmo sem esse número, a mudança mexe num ponto que a dona de clínica
+        conhece bem. A paciente que chega &ldquo;porque viu no Google&rdquo; costumava chegar
+        comparando: abria três perfis, olhava fotos, perguntava preço em dois lugares. A
+        resposta pronta encurta essa comparação. Ela recebe menos opções e decide mais
+        rápido.</p>
+
+      <p class="texto">É aí que a notícia encosta na indicação. A indicação sempre funcionou
+        assim: alguém de confiança diz um nome, e a pessoa nem procura outro. A busca que
+        responde sozinha passa a ocupar um lugar parecido — o de quem sugere um nome antes de
+        você entrar na conversa. A reportagem da CartaCapital de maio mostra que o brasileiro
+        já aceita esse tipo de sugestão na hora de comprar.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p>&ldquo;Aparecer na busca&rdquo; não é só ter site. É o que existe escrito sobre a
+          sua clínica na internet: o endereço certo, o horário, o que você faz, o que as
+          pacientes contaram. É a ficha da clínica que qualquer um consegue ler sem ter pisado
+          nela.</p>
+      </div>
+
+      <p class="texto">O que não sabemos — e isso está na lista do fim — é <b>como essas
+        respostas escolhem quem citam</b>. As empresas que fazem as buscas não explicam em
+        detalhe, e o artigo de hoje também não. Por isso esta edição não sugere nenhuma receita
+        para &ldquo;aparecer na resposta&rdquo;. Quem vender essa receita como garantida está
+        vendendo mais do que alguém consegue provar hoje.</p>
+
+      <p class="texto">O que dá para dizer com segurança é mais simples: existe um momento da
+        escolha que acontece longe da sua recepção, e ele está ficando mais curto. Nesse
+        momento, pesa o que já foi dito sobre você — por uma amiga ou por uma tela. A agenda
+        de amanhã começa nessa conversa que você não ouve.</p>
+    </details>
+  </section>
+
+  <!-- ══════════ 02 ══════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na <b>sua agenda</b> — não na
+      agenda de quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Quando a inteligência artificial responde primeiro, a empresa pode sumir da busca</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>DHoje Interior · 14/09/2026</span></div>
+          <p class="texto">O artigo parte de uma cena comum — procurar uma clínica, o preço de
+            uma reforma, o horário de uma loja — para dizer que a busca começou a entregar
+            resposta pronta. E que a empresa que não entra nessa resposta pode deixar de ser
+            vista por quem procura.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>&ldquo;Sumir da busca&rdquo; não quer dizer que a sua clínica foi apagada da
+              internet. Quer dizer que ela continua lá, mas numa página que menos gente abre,
+              porque a resposta do topo já satisfez a pergunta.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> a paciente que chega pela internet
+            pode chegar com menos comparação e mais decisão. Vale perguntar na recepção, a cada
+            paciente nova, &ldquo;como você chegou até a gente?&rdquo; — e anotar a resposta.
+            Sem essa anotação, você não vai perceber quando esse caminho mudar.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSGhQQzcwY1Z2TFR2bHcxS215ZVBjN2xBN2dfWWRNOUNhUHA4X011OHR6dEc5aFNDTDBfNFRTSU00Rm5CNkw4THpvTDVVdDRxekliTl8wVHlCc3FUNWVoMHhpQncyYzE5cHRBdkFvZW9HTWFsZmVjOEtVTy1KazhmcGkyRkxmNmtNSzVPU1JOcS10VEF3TnFVZmlxRE51eDZ5Smt2Sk5tQU8?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Mais da metade dos brasileiros já comprou algo indicado por inteligência artificial</h3>
+          <div class="credito"><span class="frescor antes">🟡 arquivo</span><span>CartaCapital · 22/05/2026</span></div>
+          <p class="texto">A reportagem registra que 54% dos brasileiros já compraram produtos
+            indicados por inteligência artificial. É dado de consumo em geral, não de estética —
+            mas mostra que aceitar sugestão de uma máquina deixou de ser coisa de nicho.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> a indicação ganhou uma segunda voz.
+            A amiga continua sendo a mais forte, mas não é mais a única a dizer um nome antes de
+            você. Isso não diminui a indicação da paciente que você já atendeu; só deixa claro
+            que ela disputa espaço com uma tela.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxOUWxDYzRlTmkzS0t4OWQtdkFFTTdXMmFEVDhwYWJwamlZLUZJcXhCUWVqWC0xcVlwZEFGeFUzQ21Db2dZUlRrQkIwX3p5M3JpZFJGSTRVRXpkT0JFZS1KMzhVek1OeUxLYzFNZlczN2VxMHg1MTlwaDVVS2tZM0lJcldUc0QtV3p3elFtdDZUYzg4WGl1enFQYjBLNC1vckFvOTZjTklhTi0?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Coluna aponta duas derrotas do conselho de odontologia na Justiça sobre o que o dentista pode fazer</h3>
+          <div class="credito"><span class="frescor antes">🟡 há nove dias</span><span>Estado de Minas · 05/09/2026</span></div>
+          <p class="texto">A coluna cita a suspensão das regras que permitiam ao dentista fazer
+            sedação profunda pela veia e a anulação, por um tribunal federal, da resolução que
+            ampliava os limites da harmonização orofacial. O argumento do autor: resolução de
+            conselho não amplia o que a lei não deu.</p>
+          <div class="traduz">
+            <span class="r">Em português claro</span>
+            <p>&ldquo;Resolução&rdquo; é a regra que o conselho da profissão escreve para dizer o
+              que seus profissionais podem fazer. &ldquo;Anular&rdquo; é a Justiça dizer que
+              essa regra não vale. Na prática, é a lista de procedimentos permitidos sendo
+              revista de fora para dentro.</p>
+          </div>
+          <p class="texto"><b>O que muda na sua agenda:</b> se na sua clínica há dentista
+            fazendo procedimento no rosto, a lista do que ele oferece pode mudar sem aviso. Essa
+            conversa é com o conselho da profissão e com quem cuida da parte jurídica da clínica
+            — não com este radar.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOa1JMaFVXbEFFRTBtdW02SmRLTUJXNXg4ZUtrdXBXNzUwRmdlVC1SVU4xbjhxUnlHTnZvamlTcHlIUHRnYzdHQXBYUF9BZWt4V251STlLWE9VTFFNbEdQY3phQ0U3QUZ1UzJnNzhMQTM4RGtoWEk1eXlWMXhER1NxSGpyXzhtY1UzTzZ2M2lRb3hOMU5Ga0QtVE92SS1aRjJyNTFB0gGoAUFVX3lxTFA2RlJWRkRUWFRHMm9KNnFlRGE5Q3hldXBCSVd4bTBmWVM4QmZQcE10bEY0OVl6aHA4UEQyVGZURHZ2RWlSUGhYcFF3V2c1Z1hra282X3BXX3JxNzVpUEZKYU4yeFY1SXFseUVyRmJZOGtHM3dZUVBLMHRWVG9IRlFVQ2dfZFJYcDZ2YTUtTnBLS3ZEZlpHbFdZTzhmV1g1UmNWU3dfSnVDSA?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Produto usado em paciente não tinha registro na Anvisa</h3>
+          <div class="credito"><span class="frescor antes">🟡 há doze dias</span><span>Daqui · 02/09/2026</span></div>
+          <p class="texto">A reportagem trata de um caso em que o produto aplicado numa paciente
+            não tinha registro na Anvisa, o órgão federal que autoriza o que pode ser usado no
+            corpo. Não tivemos acesso aos detalhes do caso nem ao tipo de estabelecimento.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> notícia assim vira pergunta na
+            cadeira. A paciente que pesquisa antes de chegar pesquisa também esse tipo de caso.
+            E pode trazer a pergunta para a cadeira, junto com a dúvida sobre horário e
+            valor.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxQcERPcDN5RU5uOTFzX2hueVMzZ0hmRVFwbkNCMGZRUl9BLXJRdEVENXM1bm9WR2FxamxySFgzcmtuYjFlYUJhd29WVk1xV2JwcUFLQzE2NmRmM0hRV2otaTdZV3JBMGpIZ2t6aF85YmFKMm5qSzBxcnhzQjdJYlJqZXJoRUE1d3lhREtTekJSczlIQk5tSmRvbVhmdjZPcjNQY0E?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: em três dias, o vídeo sobre indicação ganhou 8 visualizações; o de captar paciente, 59</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 14/09/2026</span></div>
+          <p class="texto">Na mesma busca de todas as edições — &ldquo;programa de indicação
+            para clínica de estética&rdquo; — o vídeo que ensina a captar paciente nova foi de
+            11.352 para 11.411 visualizações desde sexta. O que ensina a montar programa de
+            indicação foi de 999 para 1.007: passou de mil.</p>
+          <p class="texto"><b>O que muda na sua agenda:</b> é a menor diferença entre os dois
+            nas três últimas medições. Três dias é pouco para chamar de mudança, e isso não
+            garante nada a ninguém. Mostra só que o assunto indicação ganhou um pouco mais de
+            gente olhando.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=wMx70A949cI">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 03 ══════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu
+      para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Quando a IA Responde Primeiro: Por Que Sua Empresa Pode Sumir da Busca</b> — DHoje
+        Interior, 14/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxQSGhQQzcwY1Z2TFR2bHcxS215ZVBjN2xBN2dfWWRNOUNhUHA4X011OHR6dEc5aFNDTDBfNFRTSU00Rm5CNkw4THpvTDVVdDRxekliTl8wVHlCc3FUNWVoMHhpQncyYzE5cHRBdkFvZW9HTWFsZmVjOEtVTy1KazhmcGkyRkxmNmtNSzVPU1JOcS10VEF3TnFVZmlxRE51eDZ5Smt2Sk5tQU8?oc=5">ler</a></li>
+
+      <li><b>54% dos brasileiros já compraram produtos indicados por inteligência
+        artificial</b> — CartaCapital, 22/05/2026.
+        <a href="https://news.google.com/rss/articles/CBMiqAFBVV95cUxOUWxDYzRlTmkzS0t4OWQtdkFFTTdXMmFEVDhwYWJwamlZLUZJcXhCUWVqWC0xcVlwZEFGeFUzQ21Db2dZUlRrQkIwX3p5M3JpZFJGSTRVRXpkT0JFZS1KMzhVek1OeUxLYzFNZlczN2VxMHg1MTlwaDVVS2tZM0lJcldUc0QtV3p3elFtdDZUYzg4WGl1enFQYjBLNC1vckFvOTZjTklhTi0?oc=5">ler</a></li>
+
+      <li><b>Transformando dentistas em médicos</b> — coluna de Renato Assis, Estado de Minas,
+        05/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOa1JMaFVXbEFFRTBtdW02SmRLTUJXNXg4ZUtrdXBXNzUwRmdlVC1SVU4xbjhxUnlHTnZvamlTcHlIUHRnYzdHQXBYUF9BZWt4V251STlLWE9VTFFNbEdQY3phQ0U3QUZ1UzJnNzhMQTM4RGtoWEk1eXlWMXhER1NxSGpyXzhtY1UzTzZ2M2lRb3hOMU5Ga0QtVE92SS1aRjJyNTFB0gGoAUFVX3lxTFA2RlJWRkRUWFRHMm9KNnFlRGE5Q3hldXBCSVd4bTBmWVM4QmZQcE10bEY0OVl6aHA4UEQyVGZURHZ2RWlSUGhYcFF3V2c1Z1hra282X3BXX3JxNzVpUEZKYU4yeFY1SXFseUVyRmJZOGtHM3dZUVBLMHRWVG9IRlFVQ2dfZFJYcDZ2YTUtTnBLS3ZEZlpHbFdZTzhmV1g1UmNWU3dfSnVDSA?oc=5">ler</a> ·
+        <a href="https://www.em.com.br/colunistas/renato-assis/2026/09/7494194-transformando-dentistas-em-medicos.html">endereço direto</a></li>
+
+      <li><b>Produto usado em paciente não tinha registro na Anvisa</b> — Daqui, 02/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxQcERPcDN5RU5uOTFzX2hueVMzZ0hmRVFwbkNCMGZRUl9BLXJRdEVENXM1bm9WR2FxamxySFgzcmtuYjFlYUJhd29WVk1xV2JwcUFLQzE2NmRmM0hRV2otaTdZV3JBMGpIZ2t6aF85YmFKMm5qSzBxcnhzQjdJYlJqZXJoRUE1d3lhREtTekJSczlIQk5tSmRvbVhmdjZPcjNQY0E?oc=5">ler</a></li>
+
+      <li><b>Medição própria no YouTube, 14/09/2026.</b> Busca &ldquo;programa de indicação para
+        clínica de estética&rdquo;: &ldquo;5 estratégias secretas para captar pacientes em
+        clínicas e consultórios&rdquo; (canal Ricardo Novack) com 11.411 visualizações;
+        &ldquo;Como fazer um bom programa de indicação de pacientes?&rdquo; (canal Vitor Jaci)
+        com 1.007. A comparação usa os números da edição Nº 018, de 11/09/2026 — 11.352 e 999.
+        <a href="https://www.youtube.com/watch?v=Y6PCqfCvTdE">vídeo de captação</a> ·
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI">vídeo de indicação</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>
+        &bull; <b>Não lemos o artigo de hoje na íntegra.</b> Confirmamos o título, a data e a
+        abertura, que cita a busca por &ldquo;uma clínica&rdquo; como exemplo. Não confirmamos
+        se o texto traz números, estudos ou exemplos de empresas que sumiram da busca.<br><br>
+        &bull; <b>Não se sabe como a busca escolhe quem cita na resposta pronta.</b> Nem o
+        artigo nem as empresas de busca explicam isso em detalhe. Por isso não há, nesta
+        edição, nenhuma receita para aparecer nela.<br><br>
+        &bull; <b>O dado de 54% é de consumo em geral e é de maio.</b> Não tivemos acesso à
+        pesquisa original, a quantas pessoas foram ouvidas nem ao que conta como &ldquo;produto
+        indicado por inteligência artificial&rdquo;. Não vale automaticamente para procedimento
+        estético.<br><br>
+        &bull; <b>A coluna do Estado de Minas é opinião.</b> Ela descreve decisões judiciais,
+        mas não tivemos acesso às decisões em si nem sabemos se ainda cabem recursos. Nada
+        aqui é orientação jurídica.<br><br>
+        &bull; <b>Do caso do produto sem registro, só confirmamos o título.</b> Não sabemos a
+        cidade, o produto, o tipo de estabelecimento nem quem aplicou.<br><br>
+        &bull; <b>&ldquo;Anvisa&rdquo; apareceu hoje entre os assuntos em alta nas buscas no
+        Brasil.</b> Não deu para confirmar o motivo, e por isso isso não entrou como
+        notícia.<br><br>
+        &bull; <b>A medição do YouTube cobre só três dias, com fim de semana no meio.</b>
+        Visualização é medida de atenção, não de qualidade, e muda de um dia para o outro.<br><br>
+        &bull; <b>Continua não existindo reportagem brasileira que meça quanto a indicação rende
+        numa clínica de estética.</b> Décima nona edição, mesma lacuna.
+      </p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este radar não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, retorno de
+          paciente, posição na busca ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, clínica, contábil ou financeira.</b> Decisão desse tipo
+          passa pelo conselho da profissão de quem atende na sua sala e por quem cuida das suas
+          contas.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════ INTERNO — NUNCA PUBLICAR ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 019 · 14 de setembro de 2026<br>
+    Documento de trabalho · o bloco interno não vai ao ar
+  </div>
+
+</div>
+</body>
+</html>
