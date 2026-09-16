@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 020 · 16 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+<style>
+  /* Marca visual da secao que so vai ao ar depois da validacao do Andre.
+     O filtro publico (versao-publica.cjs) remove tudo com a classe .aguardando-validacao. */
+  .aguardando-validacao{position:relative;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    border:1px dashed rgba(143,169,240,.55);border-radius:16px}
+  .aguardando-validacao::before{content:"⏳ Aguarda validação · não publicar ainda";position:absolute;
+    top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--g3)}
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>A maior rede de beleza do país montou atendimento dentro da loja. E mediu quem volta.</h1>
+    <p class="chamada">O Boticário divulgou os números dos espaços de serviço dentro das suas
+      lojas: quem é atendida ali volta com o dobro da frequência. A rede quer dobrar esses
+      espaços até dezembro. Atender de perto virou estratégia de gigante — e esta edição trata
+      do que a gigante não consegue comprar.</p>
+    <div class="dateline">Edição Nº 020 · quarta-feira, 16 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#movimento">O movimento da semana</a>
+        <div class="d">A rede de lojas de beleza que passou a atender de perto, com leitura de
+          pele e recomendação, e descobriu que isso faz a cliente voltar.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: o atendimento dentro da loja, o selo de &ldquo;feito com
+          IA&rdquo; nas redes, a moda do resultado natural, um curso gratuito sobre fazer a
+          cliente voltar e a medição de hoje.</div>
+      </li>
+      <li>
+        <a href="#nova">Como trazer paciente nova</a>
+        <div class="d">Resultado natural não aparece na foto. Aparece na amiga perguntando o que
+          ela fez.</div>
+      </li>
+      <li>
+        <a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">O motivo para voltar precisa sair da sala junto com ela. A loja já
+          aprendeu isso.</div>
+      </li>
+      <li>
+        <a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div>
+      </li>
+      
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">O Boticário está transformando parte das suas lojas em salas de
+      atendimento. Maquiagem, cuidado com a pele com <b>leitura do rosto por inteligência
+      artificial</b>, análise de cabelo. E a rede mediu o efeito: quem usa esses serviços volta
+      à loja <b>com o dobro da frequência</b>.</p>
+
+    <p class="texto capitular">Os números saíram em reportagens de 9 e 11 de setembro, e voltaram
+      ao noticiário na segunda. São cento e cinquenta espaços hoje, chamados Studio Boti. A meta
+      é chegar a trezentos e dez até dezembro e a perto de mil até 2028. Quem é atendida ali
+      também gasta setenta por cento a mais por compra, segundo a empresa.</p>
+
+    <p class="texto">A tese desta edição é essa, e ela volta no fim: <b>atender de perto virou
+      estratégia de gigante. O que a gigante não compra é uma paciente dizendo o seu nome para
+      a amiga.</b> Espelho que lê a pele se instala em qualquer loja. A conversa entre duas
+      mulheres que confiam uma na outra, não.</p>
+
+    <div class="olho">
+      <p>&ldquo;A loja pode comprar o espelho que lê a pele. Não pode comprar a sua paciente
+        falando de você no almoço de domingo.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">2x</div>
+        <div class="lbl"><b>a frequência de volta à loja</b> de quem usa os serviços do Studio
+          Boti, segundo o Boticário</div>
+      </div>
+      <div class="numero">
+        <div class="big">310</div>
+        <div class="lbl"><b>espaços de atendimento</b> previstos até o fim de 2026 — hoje são
+          cento e cinquenta</div>
+      </div>
+      <div class="numero">
+        <div class="big">77%</div>
+        <div class="lbl"><b>dos consumidores brasileiros</b> já abandonaram uma marca por
+          atendimento ruim, segundo pesquisa Neogrid e Opinion Box</div>
+      </div>
+      <div class="numero">
+        <div class="big">0</div>
+        <div class="lbl"><b>vídeos sobre indicação</b> entre os seis primeiros da nossa busca de
+          sempre no YouTube, medida hoje</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Comece pelo que o Studio Boti é, e pelo que ele não é. Não é clínica e não
+        faz procedimento injetável. É um conjunto de serviços dentro da loja: maquiagem rápida,
+        produção completa, cuidado com a pele, análise de cabelo com aparelho de aumento, ritual
+        de hidratação do corpo e cuidado masculino.</p>
+
+      <p class="texto">Mas repare no que ele disputa. No cuidado com a pele, a experiência inclui
+        uma <b>análise do rosto</b> e uma recomendação feita para aquela pessoa. Segundo a
+        reportagem da Promoview, o recomendador por inteligência artificial já está em todas as
+        lojas da rede, e um espelho inteligente está em teste.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p><b>Recomendador por inteligência artificial</b> é um programa que olha a foto do rosto
+          ou do cabelo, compara com milhares de outras e sugere uma rotina de produtos. Na
+          prática, é a parte da sua avaliação em que você olha a pele dela e diz &ldquo;para você,
+          eu faria assim&rdquo; — feita por uma tela, dentro de uma loja perto da casa dela.</p>
+      </div>
+
+      <p class="texto">Tem um detalhe no modelo que merece atenção. Segundo a mesma reportagem, o
+        valor pago pelo serviço volta inteiro como crédito para comprar produto. Ou seja: a
+        cliente sai da cadeira já com um motivo para voltar à prateleira. A loja não deixa o
+        próximo passo por conta da memória dela.</p>
+
+      <p class="texto">A rede também já tem programa de fidelidade próprio desde abril de 2025.
+        Some tudo: atendimento de perto, leitura de pele, recomendação personalizada, motivo para
+        voltar e pontos acumulados. É, em escala nacional, a receita que uma boa clínica sempre
+        seguiu de ouvido.</p>
+
+      <p class="texto">Para quem tem clínica, a leitura não é de pânico. É de calendário. Você
+        encontra a sua paciente a cada quatro ou seis meses. Uma loja no caminho do trabalho dela
+        pode encontrá-la todo mês — e, a cada visita, dizer alguma coisa sobre a pele dela. <b>O
+        intervalo entre um procedimento e outro deixou de ser silêncio.</b> Agora tem alguém
+        conversando com ela nesse intervalo.</p>
+
+      <p class="texto">A edição de sexta passada disse que o que quebra a relação é o silêncio
+        depois do erro. A de segunda disse que a paciente escolhe antes da primeira mensagem, num
+        lugar onde você não está. Esta de quarta junta as duas: o silêncio entre uma visita e
+        outra agora tem ocupante, e ele atende bem.</p>
+
+      <p class="texto">O que sobra de exclusivamente seu é aquilo que nenhuma rede consegue
+        instalar numa loja: a história que você tem com cada paciente e as conversas que ela tem
+        com as amigas sobre você. A loja mede quem volta. <b>Você precisa saber quem traz
+        quem.</b></p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda — não na agenda de
+      quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>O Boticário vai dobrar os espaços de atendimento dentro das lojas até dezembro</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Times Brasil · 09/09/2026 · Promoview · 11/09/2026 · Live MKT News · 14/09/2026</span></div>
+          <p class="texto">Os espaços Studio Boti reúnem maquiagem, cuidado com a pele, cabelo e
+            corpo dentro da loja. Segundo a empresa, quem usa esses serviços volta com o dobro da
+            frequência. A meta é passar de cento e cinquenta para trezentos e dez espaços até o
+            fim do ano.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>A rede descobriu, com
+            número, uma coisa que a clínica sabe de ouvido: quando alguém cuida de você
+            pessoalmente, você volta. A diferença é que ela anotou e agora vai repetir isso em
+            centenas de lojas.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a sua paciente pode passar a ter alguém falando
+            da pele dela todo mês, entre uma sessão sua e outra. Vale saber quando foi a última
+            vez que <b>você</b> falou com ela fora da sala.</p>
+          <div class="link"><a href="https://timesbrasil.com.br/empresas-e-negocios/o-boticario-investe-em-servicos-de-salao-e-inteligencia-artificial-para-quadruplicar-receita-do-varejo-fisico-ate-2028/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>As redes sociais estão marcando foto e vídeo feitos ou editados com inteligência artificial</h3>
+          <div class="credito"><span class="frescor hoje">🟢 segunda-feira</span><span>Paraíba Business · Forbes Brasil · 14/09/2026</span></div>
+          <p class="texto">As reportagens explicam como Instagram, Facebook, TikTok e LinkedIn
+            identificam conteúdo artificial. Segundo a Forbes Brasil, quando o sistema da Meta
+            detecta edição feita com inteligência artificial numa foto — como mudança de cor ou
+            de tamanho — a publicação pode receber um aviso. No TikTok, o próprio criador precisa
+            marcar o conteúdo realista feito dessa forma.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>É uma etiqueta que
+            aparece no post dizendo &ldquo;isto foi mexido por inteligência artificial&rdquo;. Não
+            é punição. Mas quem vê a etiqueta passa a olhar a foto com desconfiança.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> foto de resultado passada por aplicativo que
+            &ldquo;melhora&rdquo; a imagem pode chegar ao seu seguidor com essa etiqueta. Numa
+            clínica, desconfiança na foto vira desconfiança no procedimento.</p>
+          <div class="link"><a href="https://forbes.com.br/forbes-tech/2026/09/como-as-plataformas-de-redes-sociais-identificam-conteudos-gerados-por-ia/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>O rosto &ldquo;feito&rdquo; saiu de moda: a paciente quer resultado que ninguém percebe</h3>
+          <div class="credito"><span class="frescor antes">🟡 há oito dias</span><span>BRA 1 · 08/09/2026</span></div>
+          <p class="texto">A reportagem descreve a troca da busca pela perfeição artificial por um
+            rejuvenescimento mais discreto. Segundo a especialista ouvida, a paciente continua
+            procurando procedimento, mas quer evitar a aparência de que &ldquo;fez alguma
+            coisa&rdquo;.</p>
+          <p class="texto"><b>Na sua agenda:</b> resultado que ninguém percebe também não rende
+            foto de antes e depois chamativa. A prova do seu trabalho muda de lugar — sai do feed
+            e vai para a pergunta que a amiga faz a ela: &ldquo;você está diferente, o que você
+            fez?&rdquo;.</p>
+          <div class="link"><a href="https://www.bra1.com.br/geral/id-689893/o_fim_do_rosto_plastico__por_que_agora_a_moda_e_parecer_natural_e_saudavel" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Curso gratuito ensina a transformar o atendimento depois da venda em motivo para voltar</h3>
+          <div class="credito"><span class="frescor antes">🟡 de agosto</span><span>Paraná Portal · Sala da Notícia · 31/08/2026</span></div>
+          <p class="texto">A Kultivi, plataforma de cursos online gratuitos, oferece uma formação
+            sobre fidelizar no pós-venda, com certificado. O texto de divulgação defende que fazer
+            a cliente voltar não depende de grande investimento: um contato na hora certa, uma
+            mensagem pessoal, resolver rápido um problema.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p><b>Pós-venda</b> é tudo o
+            que acontece depois que a paciente pagou e saiu da sala: a mensagem do dia seguinte,
+            a dúvida respondida, o lembrete do retorno. <b>Fidelizar</b> é fazer ela voltar por
+            vontade própria.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> é um material sem custo para a sua recepção
+            assistir numa semana fraca. Não foi feito para clínica; vale como base, não como
+            receita.</p>
+          <div class="link"><a href="https://www.paranaportal.com/negocios/cliente-novo-ou-cliente-fiel-curso-gratuito-da-kultivi-mostra-como-transformar-o-pos-venda-em-estrategia-de-crescimento/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: a busca por &ldquo;programa de indicação para clínica&rdquo; não trouxe nenhum vídeo sobre indicação</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 16/09/2026</span></div>
+          <p class="texto">Desde julho este radar repete a mesma busca no YouTube. Hoje os seis
+            primeiros resultados foram: um projeto de decoração de salão, uma aula sobre trazer
+            clientes para clínica, um estudo de caso sobre clínica lucrativa, duas aulas gerais
+            de vendas e uma sobre recursos de um programa de inteligência artificial. Os dois
+            vídeos que acompanhávamos — um sobre trazer paciente nova, outro sobre programa de
+            indicação — saíram da lista.</p>
+          <p class="texto"><b>Na sua agenda:</b> quem procura aprender a organizar indicação na
+            clínica, hoje, não encontra quem ensine nos primeiros resultados. Isso não garante
+            nada a ninguém. Mostra só que o assunto continua sem dono.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="nova">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">Junte duas notícias da semana e aparece um problema prático. A paciente
+      quer resultado que não se nota. E a foto editada pode ganhar etiqueta de desconfiança.
+      Então onde fica a prova do seu trabalho?</p>
+
+    <p class="texto">Fica na conversa. Resultado natural é exatamente o tipo de resultado que
+      gera a pergunta &ldquo;você está com a pele ótima, o que você fez?&rdquo;. Essa pergunta
+      acontece no trabalho, no almoço de família, no grupo de amigas. É o momento em que uma
+      paciente nova nasce — ou não nasce, se a sua paciente não souber o que responder.</p>
+
+    <div class="olho">
+      <p>&ldquo;Resultado natural não aparece na foto. Aparece na amiga perguntando o que ela
+        fez.&rdquo;</p>
+      <span class="quem">Por que a indicação pesa mais quando a moda é discrição</span>
+    </div>
+
+    <p class="texto">Repare que muita paciente fica sem jeito nessa hora. Algumas preferem não
+      contar que fizeram procedimento. Outras contam, mas não lembram o seu nome direito, ou não
+      têm o seu contato à mão. A indicação morre ali, no meio de uma conversa boa.</p>
+
+    <div class="nota">
+      <div class="r">O que facilita a resposta dela</div>
+      <ul class="lista">
+        <li><b>Pergunte, com respeito, se ela se importa de indicar.</b> Tem paciente que prefere
+          discrição total. Anote isso na ficha e nunca insista.</li>
+        <li><b>Para quem topa, entregue algo fácil de repassar:</b> o seu contato num cartão ou
+          numa mensagem que ela possa encaminhar pelo WhatsApp.</li>
+        <li><b>Combine como a amiga se apresenta:</b> &ldquo;diga que veio pela Carla&rdquo;.
+          Assim você sabe quem indicou sem precisar adivinhar.</li>
+        <li><b>Não use a foto dela para isso.</b> Na semana em que foto editada ganha etiqueta, a
+          melhor propaganda é a palavra de alguém de verdade.</li>
+      </ul>
+    </div>
+
+    <p class="texto">O Boticário, com toda a escala que tem, entrega recomendação de uma tela. O
+      que chega à sua clínica pela mão de uma paciente chega com outra coisa: a confiança de
+      quem já viu o resultado de perto, no rosto de uma pessoa conhecida.</p>
+
+    <div class="acao">
+      <div class="r">O que isso pede desta semana</div>
+      <p>Pense nas pacientes que mais ouvem elogio depois de sair daqui. Escreva cinco nomes. Na
+        próxima vez que falar com cada uma, pergunte: <b>&ldquo;quando alguém te pergunta o que
+        você fez, o que você responde?&rdquo;</b>. A resposta mostra se a indicação está
+        acontecendo ou morrendo no meio do caminho.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">A loja não deixa o próximo passo por conta da memória da cliente: o valor
+      do serviço vira crédito para voltar. A lição não é copiar o crédito. É entender que <b>o
+      motivo para voltar precisa sair da sala junto com ela</b>.</p>
+
+    <p class="texto">Na clínica, esse motivo quase sempre existe, mas fica na cabeça da
+      profissional. Você sabe que a manutenção é em quatro meses. Ela não lembra. E quatro meses
+      depois, a loja perto do trabalho dela já conversou com ela três vezes sobre a pele.</p>
+
+    <p class="texto">O texto de divulgação do curso gratuito da semana traz um lembrete útil:
+      segundo pesquisa da Neogrid com o Opinion Box, setenta e sete por cento dos consumidores
+      brasileiros já abandonaram uma marca por atendimento ruim. Quase nunca a pessoa avisa. Ela
+      só não marca de novo.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p><b>Reativar</b> é chamar de volta quem não aparece há um tempo. Não é mandar promoção
+        para a lista inteira. É uma mensagem para uma pessoa, com o nome dela e o nome do que ela
+        fez, no momento em que isso faz sentido para ela.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Três momentos em que alguém da clínica fala com ela fora da sala</div>
+      <ul class="lista">
+        <li><b>Dois dias depois do atendimento:</b> &ldquo;como você está se sentindo?&rdquo;. Sem
+          oferta. É o contato que mostra que alguém lembrou dela.</li>
+        <li><b>Antes da data em que o retorno faz sentido:</b> a mensagem sai antes de ela
+          precisar lembrar, com a data sugerida já escrita.</li>
+        <li><b>Um ano depois do primeiro atendimento:</b> &ldquo;faz um ano que você veio aqui
+          pela primeira vez&rdquo;. Quase ninguém faz. Por isso é lembrado.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Nenhum desses três momentos precisa de desconto. Eles precisam de uma coisa
+      só: alguém ter anotado a data. É a mesma lição que a rede de lojas tirou dos próprios
+      números — o que se mede, se repete.</p>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ESTA SEMANA ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Todos conversam com o assunto da semana: resultado
+      natural, confiança na imagem e a pergunta sobre quem indicou.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · reels de 30 segundos</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Quando o resultado é bom, ninguém sabe o que você fez — só
+          acham que você está bem&rdquo;</li>
+        <li><b>Roteiro:</b> você, falando para a câmera, explica o que é um resultado natural:
+          manter os traços, respeitar as proporções, cuidar da qualidade da pele. Fecha com
+          &ldquo;e quando perguntarem, você pode contar ou não. A escolha é sua&rdquo;.</li>
+        <li><b>Por que agora:</b> a reportagem da semana mostra que a paciente quer parecer
+          descansada, não &ldquo;feita&rdquo;. Você chega falando a língua dela.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · carrossel de 5 telas</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Por que as fotos daqui não passam por filtro&rdquo;</li>
+        <li><b>Telas:</b> a luz é sempre a mesma; o ângulo é sempre o mesmo; nenhum aplicativo
+          mexe na pele; a foto só é publicada com autorização; o resultado real é o que você
+          vê no espelho, não na tela.</li>
+        <li><b>Por que agora:</b> as redes começaram a marcar imagem editada por inteligência
+          artificial. Quem mostra o próprio cuidado antes da etiqueta aparecer ganha confiança.
+          Confira antes a regra do seu conselho profissional sobre foto de resultado.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · story com enquete</div>
+      <ul class="lista">
+        <li><b>Pergunta:</b> &ldquo;Como você chegou aqui pela primeira vez?&rdquo; — opções:
+          &ldquo;uma amiga me falou&rdquo; e &ldquo;achei sozinha&rdquo;.</li>
+        <li><b>O que fazer depois:</b> no dia seguinte, um story agradecendo &ldquo;a todas que
+          falaram da gente para alguém&rdquo;, sem identificar ninguém.</li>
+        <li><b>Por que agora:</b> a enquete mostra a você, sem planilha, quanto da sua agenda
+          chega por conversa. E o agradecimento público lembra às pacientes que indicar é algo
+          que você nota.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Um cuidado que vale repetir: nenhum dos três fala da loja, da rede ou de
+      colega. O assunto é a sua forma de trabalhar, não a dos outros.</p>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para
+      confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Times Brasil (CNBC), 09/09/2026</b> — &ldquo;O Boticário investe em serviços de salão
+        e inteligência artificial para quadruplicar receita do varejo físico até 2028&rdquo;.
+        <a href="https://timesbrasil.com.br/empresas-e-negocios/o-boticario-investe-em-servicos-de-salao-e-inteligencia-artificial-para-quadruplicar-receita-do-varejo-fisico-ate-2028/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Promoview, 11/09/2026</b> — &ldquo;O Boticário transforma experiências em loja em
+        alavanca de crescimento e projeta receita 4 vezes maior com o Studio Boti&rdquo;. Fonte
+        dos dados de frequência, gasto por compra, crédito em produto e recomendador em todas
+        as lojas. <a href="https://www.promoview.com.br/studio-boti-boticario-experiencia-em-loja/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Live MKT News, 14/09/2026</b> — &ldquo;O Boticário expande Studio Boti com serviços
+        de beleza e recomendações&rdquo;. <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNMi1MUl8zakM5V1JrU1RPSjF4NTllMjFUb3dwYXVhcTczRElYS3RDVHFrS09reTZDcEZBS1NqN2FOSG5ETHU1LXdHTXd3dEc1VHJtZGY3Y1MxWURVdW9vYld4dm4xVVdiaGNEVUctUFdHeHBLaFhrMUxsbXkzeWtzYTV0c2ZQMHNwTjJQV255aDlSc1FGX0p3SHVSUDVoQzRxY25iZ0EydWRwNzdwb19POVFCTTlFVmJneFNnOWNCbi11Zw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>GO In Foco, 08/04/2025</b> — &ldquo;O Boticário e Quem Disse, Berenice? lançam
+        Beautybox, programa de fidelidade do Grupo Boticário&rdquo;. <a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxPa3BmNEd2em1IU3VtZmo3Q093dFU1SHRkdTFyYlF6blZDX2g5eFJkU2lFRDZsRGo4bDhEM1NHa0NEbVJGcmhxZzFUTTVCVkpVd19pVG5rU1lfM2ZMdjRra0hZZ1RrRGNZYzV4bF85eDNhaFgtUWJHN3RxSy1HUlV1cmp5eldtcTlnamJHOTdFaW5fd2hFd010VlNsU0RJR2dzOWFYUHhiSEo1TmxOWHNFSXFaTXFndEN2aEtfZHM3aU9CMnhnS3U4d0tkdEg0MVBRVTFfeXgzeTV1akc2QTdlU3AxQkZrQ3BrU3hkQUVSZE5ZcTFfVXc?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Paraíba Business, 14/09/2026</b> — &ldquo;Como redes identificam conteúdo criado por
+        inteligência artificial&rdquo;. <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxNMmlYNDdKM3RwX1UzUXd5ek16Y1AwdFNoVHhHNEFmQ2w0S3gwUE5SY2xrOC1VUEdwdVhhSG9zeklsSEhnXzNoTTlYSHJPdl9qSVV5QzJBQmtwd1ZuUmhxaTAtTzktRDZWMThVd0xSQm1GS2ZPNDJvamF3Z0ZHcGhIa3NSajQ3SklfeE5ZaTlrN1FSNk4wUFVTUkpHLTNYbDg?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Forbes Brasil, 14/09/2026</b> — &ldquo;Como as plataformas de redes sociais
+        identificam conteúdos gerados por IA&rdquo;. Fonte do aviso em foto editada na Meta e da
+        regra do TikTok. <a href="https://forbes.com.br/forbes-tech/2026/09/como-as-plataformas-de-redes-sociais-identificam-conteudos-gerados-por-ia/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>BRA 1, 08/09/2026</b> — &ldquo;O fim do rosto plástico: por que agora a moda é
+        parecer natural e saudável&rdquo;. <a href="https://www.bra1.com.br/geral/id-689893/o_fim_do_rosto_plastico__por_que_agora_a_moda_e_parecer_natural_e_saudavel" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Paraná Portal, 31/08/2026</b> — &ldquo;Cliente novo ou cliente fiel? Curso gratuito
+        da Kultivi mostra como transformar o pós-venda em estratégia de crescimento&rdquo;. Fonte
+        do dado de setenta e sete por cento, atribuído pelo texto à pesquisa Neogrid e Opinion
+        Box. <a href="https://www.paranaportal.com/negocios/cliente-novo-ou-cliente-fiel-curso-gratuito-da-kultivi-mostra-como-transformar-o-pos-venda-em-estrategia-de-crescimento/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do radar, 16/09/2026</b> — seis primeiros resultados da busca
+        pública &ldquo;programa de indicação para clínica de estética&rdquo; no YouTube, colhidos
+        hoje às 8h50 (horário de Brasília). Os vídeos acompanhados até segunda — &ldquo;5
+        estratégias secretas para captar pacientes em clínicas e consultórios&rdquo; (11.411
+        visualizações em 14/09) e &ldquo;Como fazer um bom programa de indicação de
+        pacientes?&rdquo; (1.007 em 14/09) — não apareceram na lista de hoje.
+        <a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">ver a busca</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>&bull; <b>Os números do Studio Boti são da própria empresa</b>, repassados pela imprensa.
+        Não tivemos acesso a como foram medidos, em quantas lojas nem em que período. &ldquo;Volta
+        com o dobro da frequência&rdquo; pode refletir quem já era cliente mais assídua antes de
+        usar o serviço.</p>
+      <p>&bull; <b>O crédito em produto</b> apareceu na reportagem da Promoview. Não confirmamos se
+        vale para todos os serviços e todas as lojas.</p>
+      <p>&bull; <b>Não lemos na íntegra a matéria do Paraíba Business</b> nem a do Live MKT News;
+        os dois links passam por agregador. Os detalhes sobre etiqueta de inteligência artificial
+        vieram da Forbes Brasil, que também não diz com que frequência o aviso aparece nem se
+        edição simples de luz e cor dispara o aviso sempre.</p>
+      <p>&bull; <b>O dado de setenta e sete por cento</b> foi citado num texto de divulgação de
+        curso. Não tivemos acesso à pesquisa original, ao ano nem a quantas pessoas foram
+        ouvidas. É dado de consumo em geral, não de clínica.</p>
+      <p>&bull; <b>&ldquo;O fim do rosto plástico&rdquo; é tendência descrita</b> por especialista
+        ouvida pela reportagem, não uma medida. Não há número dizendo quantas pacientes mudaram
+        de preferência.</p>
+      <p>&bull; <b>A medição do YouTube mudou de forma, não só de número.</b> A busca de hoje trouxe
+        outros vídeos, e não sabemos se foi mudança na ordem dos resultados, no jeito de coletar
+        ou nos próprios vídeos. Por isso esta edição não compara visualizações com as edições
+        anteriores.</p>
+      <p>&bull; <b>O sinal de hoje não trouxe dados de anúncios</b> da Meta. Nada nesta edição fala
+        de anúncio pago.</p>
+      <p>&bull; <b>Continua não existindo reportagem brasileira que meça quanto a indicação rende
+        numa clínica de estética.</b> Vigésima edição, mesma lacuna.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este radar não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, retorno de paciente
+          ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, clínica, contábil ou financeira.</b> Regra sobre foto de
+          resultado e sobre indicação passa pelo conselho da profissão de quem atende na sua
+          sala.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO — NUNCA PUBLICAR ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 020 · 16 de setembro de 2026<br>
+    Documento de trabalho · as seções marcadas não vão ao ar
+  </div>
+
+</div>
+</body>
+</html>
