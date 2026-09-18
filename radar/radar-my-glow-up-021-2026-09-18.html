@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 021 · 18 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎧 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A loja passou a responder em cinco minutos. Mas o número que mais cresceu foi o da pergunta feita depois.</h1>
+    <p class="chamada">Uma rede de lojas de Minas colocou um programa para responder no WhatsApp,
+      e a espera do cliente caiu de vinte e cinco para cinco minutos. O dado que interessa à
+      clínica veio junto: cinco vezes mais gente passou a responder quando a loja perguntou
+      como foi a compra. Responder rápido virou o mínimo. O que abre a porta da volta é a
+      pergunta que chega depois.</p>
+    <div class="dateline">Edição Nº 021 · sexta-feira, 18 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#mudou">O que mudou</a>
+        <div class="d">A espera no WhatsApp de uma rede de lojas caiu de vinte e cinco para cinco
+          minutos — e a resposta à pergunta de depois da compra subiu de três para quinze por
+          cento.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a espera que encolheu, o texto que alerta para o
+          marketing sem gente, o homem que virou paciente de rotina, os vídeos sobre indicação
+          que voltaram à busca e o vídeo que ganhou uma visualização em cinquenta e um
+          dias.</div>
+      </li>
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════ 01 ══════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Saiu na quarta: a Edmil, rede de varejo de Minas Gerais, <b>reduziu em
+      setenta e oito por cento o tempo que o cliente espera por resposta no WhatsApp</b>. A fila
+      caiu de vinte e cinco minutos e meio para cinco minutos e meio.</p>
+
+    <p class="texto capitular">O caminho foi juntar numa tela só as conversas que antes se
+      espalhavam por sistemas diferentes e colocar um programa para fazer a primeira triagem das
+      mensagens. As conversas mais difíceis continuam com gente. Mas o número que mais cresceu
+      não foi o da velocidade: <b>a parcela de clientes que responde à pesquisa de depois da
+      compra passou de três para quinze por cento</b>, segundo as reportagens.</p>
+
+    <p class="texto">A tese desta edição é essa: <b>responder rápido virou o mínimo; o que abre
+      a porta da volta é a pergunta que chega depois</b>. Uma rede de lojas descobriu
+      que, quando pergunta &ldquo;como foi?&rdquo; pelo canal certo, cinco vezes mais gente
+      responde. Na clínica, essa resposta é o começo da próxima visita — e, às vezes, de uma
+      paciente nova.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p>&ldquo;Triagem por um programa&rdquo; é o que a sua recepção faz quando lê a mensagem e
+        decide: isto é agendamento, isto é dúvida, isto é reclamação. Só que feito por um
+        programa, em segundos. &ldquo;Pesquisa de pós-venda&rdquo; é a mensagem do dia seguinte
+        perguntando como foi — na clínica, o &ldquo;como você está depois do
+        procedimento?&rdquo;.</p>
+    </div>
+
+    <div class="olho">
+      <p>&ldquo;Responder rápido faz a paciente esperar menos. Perguntar depois é o que faz ela
+        responder de novo.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">25 → 5</div>
+        <div class="lbl">minutos de espera por resposta no WhatsApp da Edmil, <b>antes e
+          depois</b> da mudança, segundo as reportagens</div>
+      </div>
+      <div class="numero">
+        <div class="big">3% → 15%</div>
+        <div class="lbl">dos clientes <b>respondendo à pesquisa de depois da compra</b> — cinco
+          vezes mais gente falando com a loja</div>
+      </div>
+      <div class="numero">
+        <div class="big">3 de 6</div>
+        <div class="lbl">primeiros vídeos da nossa busca de sempre no YouTube <b>falam de
+          indicação</b> hoje — na quarta, eram zero</div>
+      </div>
+      <div class="numero">
+        <div class="big">1</div>
+        <div class="lbl">visualização ganha <b>em cinquenta e um dias</b> pelo vídeo que ensina
+          o que dizer para pedir indicação na clínica</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Vale separar os dois números. O primeiro, a espera menor, é o que todo
+        mundo vende: programa que responde rápido no WhatsApp virou coisa comum. Qualquer
+        empresa de atendimento oferece. Ele resolve um problema real — a paciente que manda
+        mensagem às nove da noite e só ouve resposta no dia seguinte, quando já marcou em outro
+        lugar.</p>
+
+      <p class="texto">O segundo número é mais raro e diz mais sobre a sua agenda. Antes, de
+        cada cem clientes, três respondiam quando a loja perguntava como tinha sido. Depois,
+        quinze. As reportagens ligam isso ao uso do WhatsApp para a pergunta, no lugar de canais
+        que o cliente não abre. Não é prova de que o cliente ficou mais satisfeito. É prova de
+        que ele passou a <b>conversar</b>.</p>
+
+      <p class="texto">Para quem tem clínica, essa conversa depois do atendimento vale mais do
+        que para uma loja. A loja volta a ver o cliente quando ele precisar de outra
+        compra. Você tem um retorno marcado no calendário do rosto dela: manutenção em quatro
+        meses, sessão seguinte em trinta dias. A mensagem de depois é o fio que segura a
+        paciente até lá.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p>Pense na recepção de duas clínicas. Uma atende o telefone no primeiro toque, mas
+          nunca liga depois. A outra demora um pouco mais para atender, mas dois dias depois do
+          procedimento manda: &ldquo;como está a pele? alguma dúvida?&rdquo;. A primeira é
+          rápida. A segunda é lembrada.</p>
+      </div>
+
+      <p class="texto">E é na resposta a essa pergunta que mora a indicação. A paciente que
+        responde &ldquo;amei, minha irmã até perguntou&rdquo; está entregando, de graça, o
+        momento certo de pedir. A que não recebe a pergunta leva o elogio para o almoço de
+        domingo e ninguém na clínica fica sabendo. Nenhum número desta edição garante quanto
+        isso rende numa clínica — ele só mostra onde a conversa acontece.</p>
+
+      <p class="texto">Por isso a tese volta ao começo: <b>responder rápido virou o mínimo</b>.
+        A agenda do mês que vem não se decide na velocidade da primeira resposta. Decide-se na
+        pergunta que alguém da clínica faz depois que a paciente já foi embora.</p>
+    </details>
+  </section>
+
+  <!-- ══════════ 02 ══════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na <b>sua agenda</b> — não na
+      agenda de quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Rede de lojas corta a espera no WhatsApp de vinte e cinco para cinco minutos</h3>
+          <div class="credito"><span class="frescor hoje">🟢 quarta-feira</span><span>Estado de Minas · Portal ClienteSA · 16/09/2026</span></div>
+          <p class="texto">A Edmil juntou numa tela só as conversas com clientes e colocou um
+            programa para separar as mensagens por assunto e mandar cada uma para a pessoa
+            certa. A espera caiu setenta e oito por cento. A mesma rede passou a usar o WhatsApp
+            para a pesquisa de depois da compra, e a resposta subiu de três para quinze por
+            cento.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Em vez de a mensagem
+            ficar esperando alguém ler e decidir o que fazer, o programa lê primeiro e já
+            entrega para quem resolve. As conversas complicadas continuam com uma pessoa da
+            equipe.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que é atendida rápido em outro
+            lugar passa a achar demorado o que antes era normal. E a mensagem de &ldquo;como
+            você está?&rdquo; depois do procedimento, se ainda não sai, é o ponto em que a
+            conversa com ela costuma morrer.</p>
+          <div class="link"><a href="https://www.em.com.br/mundo-corporativo/2026/09/7502293-edmil-reduz-tempo-de-atendimento-em-78-com-ia-no-whatsapp.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>&ldquo;A inteligência artificial não vai acabar com o marketing, mas pode acabar com o marketing humano&rdquo;</h3>
+          <div class="credito"><span class="frescor hoje">🟢 quarta-feira</span><span>Só Sergipe · 16/09/2026</span></div>
+          <p class="texto">O consultor Cleomir Santos alerta que, quando todo mundo usa as mesmas
+            ferramentas para escrever legenda e anúncio, os textos ficam parecidos: diferentes
+            só na aparência. Para ele, mais conteúdo não quer dizer mais relevância, e o risco
+            começa quando a ferramenta deixa de ajudar e passa a fazer tudo.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>É o post que qualquer
+            clínica poderia ter publicado. A legenda certinha, com as mesmas palavras de
+            sempre, que a seguidora passa sem perceber de quem era.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se a legenda da sua clínica poderia ser de
+            qualquer outra, ela não traz paciente para você. O que nenhuma ferramenta escreve
+            é o seu jeito de explicar, a sua sala, a sua história com as pacientes.</p>
+          <div class="link"><a href="https://www.sosergipe.com.br/ia-no-marketing-conexao-humana/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>O homem entrou na rotina da clínica: dermatologista fala do que eles mais procuram</h3>
+          <div class="credito"><span class="frescor antes">🟡 segunda-feira</span><span>Jornal CidadãoNET · 14/09/2026</span></div>
+          <p class="texto">A reportagem ouve uma dermatologista sobre as novidades e os
+            procedimentos mais procurados pelo público masculino. Outra reportagem sobre o
+            mesmo tema, publicada em julho no Dia do Homem, descreve o homem buscando cuidado
+            de pele, cabelo e barba como rotina de manutenção, e não mais como visita
+            ocasional.</p>
+          <p class="texto"><b>Na sua agenda:</b> o paciente homem tende a ser fiel e discreto
+            — e muitas vezes chega porque a mulher, a irmã ou a mãe indicou. Vale perguntar,
+            na primeira consulta dele, quem falou da clínica.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxNTThQWEpqWXpGblNIMFJ1Sm5haTRHXzkzQU56UXk0UEtScUtMcjZHU0w4UXFOQUtQbGlsbTYtTGo4QnBSdFlXeGQ3ZDZmeTAtNzk1VUptNl91eTItRUUwa09mYVlqXzVKdnJDOGtKZ1RxbmwwUjRZWDFCYzhVVmhONnM1WnoyeW5oS1l6clp5TUNTVU9aeDg5cGhCVGdnT0F1eFBnM3B2RUhsaGppVmpESWVQU3ZONWF6dW1vZ3NReV9lZ3RDbGJzbVQ0Qmw?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Medido hoje: os vídeos sobre indicação voltaram aos primeiros lugares da busca</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 18/09/2026</span></div>
+          <p class="texto">Na quarta, a busca de sempre deste radar — &ldquo;programa de
+            indicação para clínica de estética&rdquo; — não trouxe nenhum vídeo sobre indicação
+            entre os seis primeiros. Hoje, três dos seis falam disso. O vídeo sobre captar
+            paciente nova ganhou cento e onze visualizações desde segunda; o de montar programa
+            de indicação, duas.</p>
+          <p class="texto"><b>Na sua agenda:</b> quem procura aprender a organizar indicação
+            encontra material de novo, mas pouca gente está assistindo. O assunto continua mais
+            procurado como &ldquo;trazer paciente&rdquo; do que como &ldquo;pedir
+            indicação&rdquo;. Isso não garante nada a ninguém; só mostra por onde a dúvida
+            entra.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>O vídeo que ensina o que dizer para pedir indicação ganhou uma visualização em cinquenta e um dias</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 29/07 e 18/09/2026</span></div>
+          <p class="texto">Na primeira edição deste radar, em 29 de julho, o vídeo &ldquo;Como
+            conseguir indicações de pacientes (script de indicação para clínicas)&rdquo; tinha
+            sessenta e sete visualizações. Hoje tem sessenta e oito.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Script&rdquo; é
+            o roteiro de fala: as frases prontas que a recepção ou a profissional usa para pedir
+            uma coisa sem ficar sem jeito.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a hora de pedir indicação é a que menos gente
+            aprende a fazer. Quase sempre ela fica para o improviso — e o improviso costuma ser
+            não pedir. O melhor momento para essa frase é a resposta boa da paciente à mensagem
+            de depois.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=TY6GFnN4GA0">clique aqui para ver o vídeo</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════ 03 ══════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu
+      para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Edmil reduz tempo de atendimento em 78% com IA no WhatsApp</b> — Estado de Minas,
+        Mundo Corporativo, 16/09/2026.
+        <a href="https://www.em.com.br/mundo-corporativo/2026/09/7502293-edmil-reduz-tempo-de-atendimento-em-78-com-ia-no-whatsapp.html">ler</a></li>
+
+      <li><b>Edmil reduz em 78% o tempo de atendimento com IA e automação via WhatsApp</b> —
+        Portal ClienteSA, 16/09/2026. Fonte dos números de espera (25min30s para 5min32s), da
+        pesquisa de depois da compra (3% para 15%) e do que continua com a equipe.
+        <a href="https://portal.clientesa.com.br/edmil-reduz-em-78-o-tempo-de-atendimento-com-ia-e-automacao-via-whatsapp/">ler</a></li>
+
+      <li><b>A IA não vai acabar com o marketing. Mas pode acabar com o marketing humano</b> —
+        Cleomir Santos, Só Sergipe, 16/09/2026.
+        <a href="https://www.sosergipe.com.br/ia-no-marketing-conexao-humana/">ler</a></li>
+
+      <li><b>No Dia do Homem, dermatologista fala das novidades e os procedimentos mais
+        procurados por eles</b> — Jornal CidadãoNET, 14/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxNTThQWEpqWXpGblNIMFJ1Sm5haTRHXzkzQU56UXk0UEtScUtMcjZHU0w4UXFOQUtQbGlsbTYtTGo4QnBSdFlXeGQ3ZDZmeTAtNzk1VUptNl91eTItRUUwa09mYVlqXzVKdnJDOGtKZ1RxbmwwUjRZWDFCYzhVVmhONnM1WnoyeW5oS1l6clp5TUNTVU9aeDg5cGhCVGdnT0F1eFBnM3B2RUhsaGppVmpESWVQU3ZONWF6dW1vZ3NReV9lZ3RDbGJzbVQ0Qmw?oc=5">ler</a></li>
+
+      <li><b>Dia do Homem amplia debate sobre autocuidado e procedimentos de estética
+        masculina</b> — Radar Digital Brasília, 14/07/2026. Fonte da descrição do homem
+        buscando cuidado como rotina de manutenção.
+        <a href="https://radardigitalbrasilia.com.br/brasil/dia-do-homem-amplia-debate-sobre-autocuidado-e-procedimentos-de-estetica-masculina/">ler</a></li>
+
+      <li><b>Medição própria do radar</b>, 18/09/2026 — seis primeiros resultados da busca
+        pública &ldquo;programa de indicação para clínica de estética&rdquo; no YouTube:
+        &ldquo;Como conseguir indicações de pacientes (script de indicação para
+        clínicas)&rdquo;, canal Filipe Souza, 68 visualizações; &ldquo;Como fazer um bom
+        programa de indicação de pacientes?&rdquo;, canal Vitor Jaci, 1.009; &ldquo;Como
+        captar clientes para clínicas de estética 2025&rdquo;, canal Mentora da Estética, 483;
+        &ldquo;5 estratégias secretas para captar pacientes em clínicas e
+        consultórios&rdquo;, canal Ricardo Novack, 11.522; &ldquo;Como conseguir clientes por
+        indicação na área da beleza&rdquo;, canal Vitor Felsoza, 735; e um sexto vídeo de
+        título genérico, canal Bel Guerra, 7.323. As comparações usam a edição Nº 019, de
+        14/09 (11.411 e 1.007), e a edição Nº 001, de 29/07 (67).
+        <a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica">ver a busca</a> ·
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0">vídeo do roteiro de indicação</a> ·
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI">vídeo do programa de indicação</a> ·
+        <a href="https://www.youtube.com/watch?v=Y6PCqfCvTdE">vídeo de captação</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>• <b>Os números da Edmil são da própria empresa e de quem forneceu a tecnologia</b>,
+        repassados pela imprensa em texto de divulgação. Não tivemos acesso a como foram
+        medidos, em que período nem com quantos atendimentos.</p>
+      <p>• As reportagens chamam o salto de 3% para 15% de &ldquo;taxa de conversão nas
+        pesquisas de pós-venda&rdquo;. Lemos como <b>a parcela de clientes que responde à
+        pesquisa</b>. Não dá para afirmar que o cliente ficou mais satisfeito, nem que voltou a
+        comprar.</p>
+      <p>• A Edmil é varejo, não saúde. <b>Nada garante que o mesmo aconteça numa
+        clínica</b>, e esta edição não promete isso.</p>
+      <p>• Da reportagem do Jornal CidadãoNET, só confirmamos o título e a data. Não lemos o
+        texto, não sabemos quem é a dermatologista nem quais procedimentos ela cita. O que está
+        no recorte sobre rotina de manutenção vem da reportagem de julho, que ouve um
+        especialista em estética masculina, não uma dermatologista. A ideia de que o paciente
+        homem muitas vezes chega por indicação de alguém da família é leitura deste radar, sem
+        pesquisa que a meça.</p>
+      <p>• A medição do YouTube é uma foto de um dia, numa busca só, e a ordem dos resultados
+        muda de pessoa para pessoa. Na quarta, os vídeos acompanhados tinham saído da lista;
+        hoje voltaram. Não sabemos por quê.</p>
+      <p>• &ldquo;Quem ama cuida&rdquo; apareceu hoje entre os assuntos em alta nas buscas no
+        Brasil. Não deu para confirmar do que se trata, e por isso não entrou como
+        notícia.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ INTERNO — nunca vai ao ar ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 021 · 18 de setembro de 2026<br>
+    Documento de trabalho · o bloco interno não vai ao ar
+  </div>
+
+</div>
+</body>
+</html>
