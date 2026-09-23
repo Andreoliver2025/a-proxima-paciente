@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 023 · 23 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+<style>
+  /* Marca visual da secao que so vai ao ar depois da validacao do Andre.
+     O filtro publico (versao-publica.cjs) remove tudo com a classe .aguardando-validacao. */
+  .aguardando-validacao{position:relative;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    border:1px dashed rgba(143,169,240,.55);border-radius:16px}
+  .aguardando-validacao::before{content:"⏳ Aguarda validação · não publicar ainda";position:absolute;
+    top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--g3)}
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Oito em cada dez horários da agenda são de quem já esteve na sua maca.</h1>
+    <p class="chamada">Um levantamento com mais de dezessete milhões de agendamentos em salões,
+      clínicas e barbearias mostra que só uma em cada sete marcações é de cliente nova. A sua
+      agenda é feita de quem volta. Esta edição trata das duas pontas: quem volta, e quem traz a
+      próxima.</p>
+    <div class="dateline">Edição Nº 023 · quarta-feira, 23 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#movimento">O movimento da semana</a>
+        <div class="d">Oitenta e cinco por cento das marcações vêm de quem já foi atendida. O
+          que isso diz sobre onde a sua agenda cresce — e onde ela vaza.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a conta da agenda, a Anvisa revendo a orientação sobre
+          serviços de estética, o que faz o cliente voltar num restaurante, o mercado de beleza
+          que não para de lançar marca e a medição de hoje.</div>
+      </li>
+      <li>
+        <a href="#nova">Como trazer paciente nova</a>
+        <div class="d">Se só uma em cada sete é nova, cada nova precisa ser a que fica.</div>
+      </li>
+      <li>
+        <a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">A paciente que some sem avisar, e os pequenos gestos que a trazem de
+          volta.</div>
+      </li>
+      <li>
+        <a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div>
+      </li>
+      
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Uma plataforma de agenda online contou os horários marcados em salões,
+      clínicas de estética, barbearias e spas entre julho de 2025 e junho de 2026. Foram mais de
+      dezessete milhões. <b>Oitenta e cinco em cada cem</b> eram de clientes que já tinham sido
+      atendidas ali antes.</p>
+
+    <p class="texto capitular">Sobram quinze. É essa a fatia de primeira vez: pouco mais de uma
+      marcação em cada sete. O levantamento saiu na segunda e na terça, e a própria empresa
+      resume a conclusão: manter a relação com quem já conhece o serviço é o que sustenta o
+      faturamento de quem trabalha com atendimento que se repete.</p>
+
+    <p class="texto">A tese desta edição é essa, e ela volta no fim: <b>a sua agenda é feita de
+      quem volta. Por isso a paciente nova vale pelo tempo que fica — e a pergunta que importa é
+      quem vai trazê-la.</b> Uma paciente que chega pela mão de outra, que já voltou muitas
+      vezes, chega sabendo como você trabalha.</p>
+
+    <div class="olho">
+      <p>&ldquo;A agenda não enche com quem chega. Enche com quem volta — e com quem essas
+        pacientes trazem.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">85%</div>
+        <div class="lbl"><b>das marcações</b> em salões e clínicas foram de clientes que já
+          tinham vindo antes, segundo o levantamento</div>
+      </div>
+      <div class="numero">
+        <div class="big">1 em 7</div>
+        <div class="lbl"><b>marcações foi de primeira vez</b> — catorze vírgula oito por
+          cento</div>
+      </div>
+      <div class="numero">
+        <div class="big">17,7 mi</div>
+        <div class="lbl"><b>horários confirmados</b> entre julho de 2025 e junho de 2026, base do
+          levantamento</div>
+      </div>
+      <div class="numero">
+        <div class="big">74%</div>
+        <div class="lbl"><b>das pessoas</b> dizem que voltariam a um lugar depois de uma
+          experiência marcante, segundo pesquisa citada por especialista em restaurantes</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Comece pelo que o número é, e pelo que ele não é. É a soma de milhares de
+        negócios que usam o mesmo sistema de agenda, de vários tamanhos e ramos. Não é a sua
+        clínica. Mas quase toda dona de clínica, ao ler, reconhece a própria semana: os rostos se
+        repetem, e a novidade é rara.</p>
+
+      <p class="texto">Isso muda a pergunta de sempre. A maioria das aulas e dos anúncios ensina
+        a trazer gente nova — e trazer gente nova importa. Só que ela ocupa uma fatia pequena da
+        agenda. O grosso do mês depende de duas coisas: quanto tempo cada paciente continua
+        voltando e quem ela traz enquanto volta.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p><b>Cliente recorrente</b> é a paciente que já veio pelo menos uma vez e marcou de
+          novo. <b>Primeira vez</b> é a que nunca tinha sentado na sua maca. Se de cada sete
+          horários só um é de primeira vez, é a volta das outras seis que paga o aluguel.</p>
+      </div>
+
+      <p class="texto">A mesma reportagem traz outra expressão que vale guardar: a <b>perda
+        invisível</b>. É a paciente que não reclama, não cancela, não avisa. Simplesmente não
+        marca de novo. Ela não aparece em nenhum relatório de falta, porque não faltou a nada.
+        Só deixou de existir na agenda.</p>
+
+      <p class="texto">Juntando as duas coisas, a conta fica clara. Cada paciente que some sem
+        avisar leva com ela as visitas que faria nos próximos anos. E leva também as amigas que
+        traria. A paciente nova, rara, precisa ser recebida como o começo de uma relação longa,
+        não como uma venda.</p>
+
+      <p class="texto">A edição da semana passada mostrou uma grande rede de beleza medindo quem
+        volta. A de segunda mostrou que fazer anúncio ficou fácil para todo mundo. Esta junta as
+        duas: <b>a volta é o que sustenta a agenda, e a paciente que volta é quem melhor apresenta
+        você para a próxima.</b> Nenhuma dessas duas coisas se compra em anúncio.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda — não na agenda de
+      quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Oitenta e cinco por cento das marcações em salões e clínicas são de quem já veio antes</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Business Moment · 22/09/2026 · Portal Sala da Notícia</span></div>
+          <p class="texto">Uma plataforma de agendamento online analisou os horários confirmados
+            em doze meses, em salões, barbearias, clínicas de estética e spas. Só catorze vírgula
+            oito por cento eram de primeira vez. A empresa também fala em recuperar
+            automaticamente quem parou de marcar.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p><b>Recuperar quem
+            parou de marcar</b> é o que se chama de reativação: uma mensagem que chama de volta a
+            paciente que sumiu. Não é promoção para a lista toda; é um contato com o nome dela, na
+            hora que faz sentido.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de pensar em anúncio novo, vale saber
+            quantas pacientes que vinham com frequência pararam de vir nos últimos seis meses.
+            É ali que o mês costuma vazar.</p>
+          <div class="link"><a href="https://businessmoment.com.br/gendo-17-milhoes-agendamentos-ia-receita-recorrente/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A Anvisa abriu um grupo de trabalho para rever a orientação sobre serviços de estética</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Anvisa (gov.br) · 21/09/2026 · Hojemais · 22/09/2026</span></div>
+          <p class="texto">Na quinta, 17 de setembro, a Anvisa reuniu associações, sindicatos e
+            professores ligados às profissões de estética e cosmetologia. Foi a primeira de uma
+            série de reuniões. O grupo vai discutir uma possível mudança na nota técnica de 2024
+            que orienta a fiscalização de quem oferece serviço estético. Ainda não há data nem
+            texto novo.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p><b>Nota técnica</b> é
+            um documento de orientação. É nele que o fiscal da vigilância sanitária se apoia
+            quando entra na sua clínica para olhar produto, aparelho e o tipo de atendimento
+            feito ali. Mudar a nota muda o que ele confere.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> nada muda hoje. Mas é uma boa semana para
+            conferir se todo produto e aparelho em uso tem registro na Anvisa e se o seu
+            alvará descreve o que você de fato faz. Acompanhe pela associação da sua
+            profissão.</p>
+          <div class="link"><a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-se-reune-com-profissionais-de-estetica-para-debater-servicos-da-area" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>&ldquo;Não é a música clássica que faz o cliente voltar&rdquo;: o que um especialista em restaurantes ensina para a clínica</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>BRA 1 · 22/09/2026</span></div>
+          <p class="texto">O especialista Marcelo Marani diz que ambiente bonito impressiona na
+            primeira visita, mas o que traz a pessoa de volta são pequenos gestos: ser recebida
+            bem, ser percebida, ter um problema pequeno resolvido rápido e sentir que o preço
+            combina com o que recebeu. Ele cita pesquisa em que setenta e quatro por cento dizem
+            que voltariam a um lugar depois de uma experiência marcante.</p>
+          <p class="texto"><b>Na sua agenda:</b> troque &ldquo;restaurante&rdquo; por
+            &ldquo;clínica&rdquo; e o texto serve inteiro. A reforma da recepção pode esperar.
+            Chamar a paciente pelo nome e lembrar do que ela contou na última visita, não.</p>
+          <div class="link"><a href="https://www.bra1.com.br/geral/id-695789/musica_classica_nao_e_o_que_faz_cliente_voltar_ao_restaurante__diz_especialista" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>O mercado de beleza ganhou milhares de marcas novas em quatro anos</h3>
+          <div class="credito"><span class="frescor hoje">🟢 segunda-feira</span><span>Forbes Brasil · 21/09/2026 · Folha do Litoral · 21/09/2026</span></div>
+          <p class="texto">Segundo a Forbes Brasil, foram criadas cerca de cinco mil e setecentas
+            marcas e linhas novas de beleza no país entre 2021 e 2024. Fabricar ficou mais fácil,
+            vender pela internet também, e a consumidora está disposta a experimentar.</p>
+          <p class="texto"><b>Na sua agenda:</b> a sua paciente vê produto novo todo dia, e chega
+            com perguntas sobre o que viu na rede. Quem responde com calma, sem desmerecer, vira
+            a pessoa de confiança dela no meio do barulho — e a pessoa de confiança é a que ela
+            indica.</p>
+          <div class="link"><a href="https://forbes.com.br/forbes-money/2026/09/mercado-de-beleza-no-brasil-crescimento-investimentos/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: o vídeo que ensina a pedir indicação continua com sessenta e oito visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 18, 21 e 23/09/2026</span></div>
+          <p class="texto">Na busca de sempre deste dossiê — &ldquo;programa de indicação para
+            clínica de estética&rdquo; — o vídeo com o roteiro de fala para pedir indicação
+            marcou sessenta e oito visualizações pela terceira medição seguida. O vídeo sobre
+            captar paciente nova ganhou mais cinquenta e oito desde segunda.</p>
+          <p class="texto"><b>Na sua agenda:</b> a conta da semana mostra que a agenda depende de
+            quem volta, mas quase todo mundo segue estudando só como trazer gente nova. Pedir
+            indicação continua sendo assunto de improviso.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="nova">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">Se só uma em cada sete marcações é de primeira vez, a paciente nova é
+      rara. Então ela não pode ser qualquer uma: precisa ser a que tem motivo para ficar.</p>
+
+    <p class="texto">Pense em como cada paciente nova chega. Uma viu um anúncio e está
+      comparando preço com três clínicas. Outra ouviu da cunhada &ldquo;eu fiz lá e
+      adorei&rdquo;. As duas contam como &ldquo;primeira vez&rdquo; na agenda. Mas a segunda já
+      chega com uma pessoa de confiança ligando ela a você.</p>
+
+    <div class="olho">
+      <p>&ldquo;Paciente nova é rara. A que chega pela mão de uma paciente fiel já chega sabendo
+        por que voltar.&rdquo;</p>
+      <span class="quem">Por que a origem da paciente nova importa</span>
+    </div>
+
+    <p class="texto">As suas pacientes que voltam há anos são as melhores apresentadoras da sua
+      clínica. Elas conhecem o seu jeito, a sua pontualidade, o seu cuidado. Quando falam de
+      você, falam de experiência, não de promessa. Mas muitas nunca foram convidadas a
+      falar.</p>
+
+    <div class="nota">
+      <div class="r">O que ajuda a paciente fiel a apresentar você</div>
+      <ul class="lista">
+        <li><b>Saiba quem são.</b> Não as que gastaram mais: as que voltaram mais vezes no último
+          ano.</li>
+        <li><b>Na ficha de toda paciente nova, anote quem indicou.</b> Uma pergunta na recepção
+          basta: &ldquo;como você conheceu a gente?&rdquo;.</li>
+        <li><b>Avise quem indicou quando a amiga vier.</b> Um &ldquo;obrigada, a Paula veio
+          hoje&rdquo; mostra que a indicação chegou e foi bem recebida.</li>
+        <li><b>Respeite quem prefere discrição.</b> Tem paciente que não quer contar que fez
+          procedimento. Anote e nunca insista.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Um cuidado: se a sua profissão tem regra sobre dar recompensa em troca de
+      indicação, siga a do seu conselho. Agradecer e reconhecer não depende de brinde.</p>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">A paciente que mais custa à clínica não é a que reclama. É a que some
+      sem avisar — a <b>perda invisível</b> da reportagem da semana.</p>
+
+    <p class="texto">Ela não cancelou nada, então não aparece em lugar nenhum. Só que, numa
+      agenda em que oito de cada dez horários são de quem volta, cada uma dessas ausências
+      silenciosas pesa. E ninguém percebe até o mês ficar fraco.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p><b>Reativar</b> é chamar de volta quem não aparece há um tempo. Não é mandar promoção.
+        É uma mensagem para uma pessoa, com o nome dela e o que ela fez, perguntando como ela
+        está.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Os pequenos gestos, traduzidos do restaurante para a clínica</div>
+      <ul class="lista">
+        <li><b>Fazer ela se sentir percebida:</b> lembrar o que ela contou da última vez — a
+          viagem, o casamento da filha, a pele que estava sensível.</li>
+        <li><b>Cuidar do tempo dela:</b> se vai atrasar, avise antes de ela chegar, não
+          quando ela já está sentada na recepção.</li>
+        <li><b>Resolver rápido o problema pequeno:</b> uma dúvida depois do procedimento,
+          respondida no mesmo dia, vale mais do que um brinde.</li>
+        <li><b>Combinar preço e entrega:</b> se o valor é alto, a experiência toda precisa estar
+          à altura, da mensagem de confirmação à despedida.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Nenhum desses gestos custa dinheiro. Eles pedem uma coisa só: alguém
+      anotar o que a paciente disse e a data em que ela deveria voltar. O que está anotado
+      pode ser lembrado. O que ficou na cabeça, se perde na semana cheia.</p>
+
+    <div class="acao">
+      <div class="r">O que isso pede desta semana</div>
+      <p>Abra a agenda de seis meses atrás e procure as pacientes que vinham com frequência e
+        <b>não marcaram mais</b>. Não mande nada ainda: só conte quantas são. Esse número é o
+        tamanho da perda invisível da sua clínica — e o ponto de partida para chamar cada uma
+        de volta, uma por uma, com o nome dela.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ESTA SEMANA ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Todos falam com quem já é sua paciente — porque é
+      ela que sustenta a agenda e é ela quem mostra o post para a amiga.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · reels de 30 segundos</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Por que eu anoto o que você me conta&rdquo;</li>
+        <li><b>Roteiro:</b> você, com a ficha na mão (sem mostrar dado de ninguém), explica que
+          anota a pele, o produto que funcionou, o que a paciente comentou. Fecha com &ldquo;da
+          próxima vez, você não precisa começar do zero&rdquo;.</li>
+        <li><b>Por que agora:</b> a notícia da semana mostra que o que faz a cliente voltar é se
+          sentir percebida. Você mostra que isso já é rotina aqui.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · carrossel de 5 telas</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Viu um produto novo na internet? Traz a pergunta para
+          cá&rdquo;</li>
+        <li><b>Telas:</b> todo dia surge uma marca nova; nem tudo serve para a sua pele; nem
+          todo produto tem registro na Anvisa; traga a foto do rótulo na próxima consulta; a gente
+          olha junto, sem julgamento.</li>
+        <li><b>Por que agora:</b> o mercado ganhou milhares de marcas em poucos anos, e a
+          paciente precisa de alguém de confiança para separar o que presta. Não cite marca nem
+          desmereça produto de ninguém.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · story com caixinha de perguntas</div>
+      <ul class="lista">
+        <li><b>Pergunta:</b> &ldquo;O que fez você voltar aqui da segunda vez?&rdquo;</li>
+        <li><b>O que fazer depois:</b> com autorização, reposte duas ou três respostas, sem
+          identificar ninguém que não queira aparecer, e agradeça.</li>
+        <li><b>Por que agora:</b> as respostas mostram, na voz delas, o que segura a sua
+          paciente. E quem lê as respostas de outras pacientes ouve uma recomendação de verdade,
+          não um anúncio.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Um cuidado que vale repetir: nenhum dos três fala de outra clínica, de
+      preço ou de resultado garantido. O assunto é a sua forma de cuidar.</p>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para
+      confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Business Moment, 22/09/2026</b> — levantamento de uma plataforma de agendamento
+        online para salões e clínicas: 17,7 milhões de agendamentos confirmados entre julho de
+        2025 e junho de 2026; 85,2% de clientes recorrentes e 14,8% de primeira vez; expressão
+        &ldquo;perda invisível&rdquo; e recuperação automática de clientes inativos.
+        <a href="https://businessmoment.com.br/gendo-17-milhoes-agendamentos-ia-receita-recorrente/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Portal Sala da Notícia</b> — &ldquo;Mais de 80% dos agendamentos em salões e clínicas
+        são de clientes recorrentes&rdquo;, mesmo levantamento, citando base de 17,8 milhões.
+        <a href="https://portal.saladanoticia.com.br/noticia/61380/mais-de-80-dos-agendamentos-em-saloes-e-clinicas-sao-de-clientes-recorrentes-aponta-gendo" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Anvisa (gov.br), 21/09/2026</b> — &ldquo;Anvisa se reúne com profissionais de
+        estética para debater serviços da área&rdquo;. Reunião de 17/09, grupo de trabalho sobre a
+        Nota Técnica 02/2024, categorias da Lei 13.643/2018.
+        <a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-se-reune-com-profissionais-de-estetica-para-debater-servicos-da-area" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Hojemais, 22/09/2026</b> — &ldquo;Anvisa debate novas regras para serviços de
+        estética&rdquo;. <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZ3RSRHZwcmRYMk45Tk1LbjBoa1JGMXNVQ1lXTFB3SXNBVHM2aHJNR2syeGJnWnBOWEpidm1jYlpTYWNOM1VKUTNIbGdEbjBUaEp1eWlNUDhtWkJNQ254T1pDUVpIM1pXbVNOWGN5RTBaMDlwa0JSaFIyUXI2dHplYnFNZHRtY1pvdHNkZjUxWjh1UWZyWVNHVWdpYVpwYUx3SkJ0SG1CSFJIdw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Jornal de Brasília, 29/07/2026</b> — &ldquo;Anvisa discute regulação dos serviços de
+        estética&rdquo;: a reunião anterior, de 28/07, que anunciou o grupo de trabalho.
+        <a href="https://jornaldebrasilia.com.br/noticias/saude/anvisa-discute-regulacao-dos-servicos-de-estetica/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>BRA 1, 22/09/2026</b> — &ldquo;Música clássica não é o que faz cliente voltar ao
+        restaurante, diz especialista&rdquo;, com Marcelo Marani. Fonte do dado de 74%, que o
+        texto atribui a pesquisa SevenRooms de 2025.
+        <a href="https://www.bra1.com.br/geral/id-695789/musica_classica_nao_e_o_que_faz_cliente_voltar_ao_restaurante__diz_especialista" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Forbes Brasil, 21/09/2026</b> — &ldquo;Explosão da Beleza: o que está por trás da onda
+        de novas marcas no Brasil&rdquo;. Fonte das cerca de 5.700 marcas e submarcas criadas
+        entre 2021 e 2024.
+        <a href="https://forbes.com.br/forbes-money/2026/09/mercado-de-beleza-no-brasil-crescimento-investimentos/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Folha do Litoral, 21/09/2026</b> — &ldquo;Mercado de beleza no Brasil cresce 6,8% em
+        2025&rdquo;. <a href="https://folhadolitoral.com.br/editorias/economia/mercado-de-beleza-no-brasil-cresce-em-2025/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do dossiê, 23/09/2026</b> — busca pública &ldquo;programa de
+        indicação para clínica de estética&rdquo; no YouTube: &ldquo;Como conseguir indicações de
+        pacientes (script de indicação para clínicas)&rdquo;, canal Filipe Souza, 68
+        visualizações (68 em 18/09 e em 21/09); &ldquo;5 estratégias secretas para captar
+        pacientes em clínicas e consultórios&rdquo;, canal Ricardo Novack, 11.638 (11.580 em
+        21/09); &ldquo;Como fazer um bom programa de indicação de pacientes?&rdquo;, canal Vitor
+        Jaci, 1.012 (1.010 em 21/09).
+        <a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">ver a busca</a> ·
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0" rel="nofollow noopener" target="_blank">vídeo do roteiro</a> ·
+        <a href="https://www.youtube.com/watch?v=Y6PCqfCvTdE" rel="nofollow noopener" target="_blank">vídeo de captação</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>&bull; <b>O levantamento da agenda é da própria empresa</b> que vende o sistema,
+        divulgado pela imprensa. Não tivemos acesso a como a conta foi feita, nem a quanto do
+        total vem de clínicas de estética e quanto de salão e barbearia. Serviço de salão se
+        repete mais do que procedimento estético; a proporção na sua clínica pode ser outra.</p>
+      <p>&bull; <b>As duas reportagens citam bases diferentes</b> — 17,7 e 17,8 milhões de
+        agendamentos. A diferença não muda a leitura; usamos o número da reportagem mais
+        recente.</p>
+      <p>&bull; <b>O levantamento não diz de onde vieram as pacientes de primeira vez.</b> Não há
+        dado sobre quantas chegaram por indicação. A ideia de que a paciente indicada chega com
+        mais confiança é leitura deste dossiê, não número.</p>
+      <p>&bull; <b>A Anvisa não divulgou o que pode mudar</b> na nota técnica, nem prazo. Não
+        lemos a matéria do Hojemais na íntegra; o link passa por agregador. Os fatos vieram do
+        texto da própria Anvisa.</p>
+      <p>&bull; <b>O dado de setenta e quatro por cento</b> é de pesquisa sobre restaurantes,
+        citada por um especialista do setor. Não tivemos acesso ao estudo original nem sabemos
+        quantas pessoas foram ouvidas.</p>
+      <p>&bull; <b>As cinco mil e setecentas marcas novas</b> incluem submarcas e linhas, segundo a
+        Forbes Brasil. Não há dado sobre quantas seguem vendendo.</p>
+      <p>&bull; <b>O sinal de hoje não trouxe dados de anúncios</b> da Meta. Nada nesta edição fala
+        de anúncio pago.</p>
+      <p>&bull; <b>Continua não existindo reportagem brasileira que meça quanto a indicação rende
+        numa clínica de estética.</b> Vigésima terceira edição, mesma lacuna.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este dossiê não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, retorno de paciente
+          ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, sanitária, clínica ou contábil.</b> Regra sobre produto,
+          alvará, foto de resultado e indicação passa pela vigilância sanitária e pelo conselho da
+          profissão de quem atende na sua sala.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO — NUNCA PUBLICAR ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 023 · 23 de setembro de 2026<br>
+    Documento de trabalho · as seções marcadas não vão ao ar
+  </div>
+
+</div>
+</body>
+</html>
