@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>A Anvisa suspendeu a orientação de 2024 sobre estética. Nenhuma regra foi liberada. · Dossiê A Próxima Paciente Nº 024</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A Anvisa suspendeu a orientação de 2024 sobre estética. Nenhuma regra foi liberada.</h1>
+    <p class="chamada">Nesta semana, a Anvisa tirou de efeito, por tempo indeterminado, o documento que
+      orientava a fiscalização dos serviços de estética. A própria agência avisa: o que era proibido
+      continua proibido. Quem ler “suspendeu” como “agora pode” coloca em risco a clínica e a confiança
+      de quem indica você.</p>
+    <div class="dateline">Edição Nº 024 · sexta-feira, 25 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">A orientação da Anvisa saiu de cena por um tempo. As regras, não. O que isso quer dizer na sua sala.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a suspensão explicada, um hospital onde o computador já marca um terço das consultas por telefone, a indicação em tempos de inteligência artificial, a tecnologia chegando ao caixa e a medição de hoje.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </div>
+
+  <!-- ═══════════════ PARTE PÚBLICA ═══════════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">A Anvisa <b>suspendeu temporariamente</b> a nota técnica de fevereiro de 2024 que
+      orientava a fiscalização dos serviços de estética e embelezamento.</p>
+
+    <p class="texto capitular">A decisão veio depois da articulação de sindicatos e federações de
+      trabalhadores da beleza. Junto com ela, sai um grupo de trabalho com a Anvisa, o Ministério da Saúde e
+      representantes da categoria. Até esse grupo terminar, o documento fica fora de efeito. Não há prazo.</p>
+
+    <p class="texto">O que importa para a sua semana está no próprio aviso da agência: a suspensão
+      <b>não interrompe</b> as normas sanitárias. Produto que precisava de registro continua precisando.
+      O que era proibido continua proibido. O que cada profissão pode fazer segue definido pelo conselho
+      dela. E a vigilância sanitária da sua cidade continua fiscalizando.</p>
+
+    <div class="olho">
+      <p>“Suspenderam o papel que explicava a regra. A regra continua valendo — e a paciente que indica a
+        gente confia que a gente segue.”</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <div class="traduz"><span class="r">Em português claro</span>
+      <p>Nota técnica é um documento de orientação. Ela não cria regra: explica como aplicar as regras que já
+        existem, e é nela que o fiscal se apoia para saber o que conferir. Tirar a nota de efeito é como
+        recolher o manual de instruções da recepção. A lei que ele explicava continua valendo.</p>
+    </div>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">Por que isso é assunto de indicação, e não só de fiscalização? Porque a notícia tende a
+        circular do jeito errado. Nas redes, “Anvisa suspende” vira depressa “Anvisa libera”. Em agosto, uma
+        professora do ICTQ já precisou desmentir boato sobre bioestimulador. A paciente pode chegar com a
+        manchete no celular e uma pergunta: “agora pode fazer isso aqui?”.</p>
+      <p class="texto">A resposta calma — “nada foi liberado, a regra é a mesma, e eu sigo ela” — é o tipo de
+        atitude que faz a paciente confiar. E é a paciente que confia que fala de você para a amiga. Uma
+        clínica que aproveita a confusão para oferecer o que antes não oferecia pode até atender uma vez.
+        Mas arrisca exatamente o que traz a próxima paciente: a recomendação de quem sabe que ali se
+        trabalha direito.</p>
+      <p class="texto">Vale também olhar para frente. Na quarta, este dossiê contou a primeira reunião do grupo
+        de trabalho, em 17 de setembro. Uma semana depois, a nota foi suspensa. O grupo pode revisar o texto
+        ou escrever uma orientação nova, e a direção ainda não está clara. A melhor fonte para a sua
+        profissão continua sendo o seu conselho e a sua associação, não a manchete da semana.</p>
+      <p class="texto">A ideia desta edição fecha assim: numa semana em que a regra parece ter mudado, quem
+        mostra que nada mudou no próprio cuidado sai mais confiável. E confiança é o que a paciente repassa
+        quando indica.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">2024</div><div class="lbl">ano da <b>nota técnica</b> da Anvisa agora suspensa, sem prazo para voltar</div></div>
+      <div class="numero"><div class="big">1 em 3</div><div class="lbl">marcações <b>por telefone</b> num grande hospital de Lisboa já acontecem sem nenhuma pessoa na linha</div></div>
+      <div class="numero"><div class="big">&lt; 2 em 10</div><div class="lbl">pacientes ali ainda pedem para <b>falar com uma pessoa</b> — eram 4 em 10 em 2024</div></div>
+      <div class="numero"><div class="big">68</div><div class="lbl">visualizações do vídeo que ensina a <b>pedir indicação</b>, pela quarta medição seguida</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Anvisa suspende a orientação sobre estética, mas avisa que as regras sanitárias continuam valendo</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Taktá · 23/09/2026 · TVBV · 24/09/2026 · Contracs · 24/09/2026</span></div>
+          <p class="texto">A nota técnica de 2024 sobre serviços de estética deixou de valer enquanto um grupo de
+            trabalho reavalia o tema. Sindicatos e federações de trabalhadores da beleza pediram a suspensão:
+            dizem que a nota não considerava a formação da categoria nem a rotina dos salões e clínicas. A
+            Anvisa diz que nada do que era proibido passou a ser permitido.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>Grupo de trabalho é uma mesa de conversa sem data para acabar: governo, agência e categoria
+              sentam para rever a orientação. Pode sair um texto novo ou uma revisão do antigo. Até lá, vale o
+              que já estava na lei.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> prepare a equipe para a pergunta “agora pode?”. A resposta é que
+            nada mudou no que se faz na sua sala. Quem responde isso com segurança passa confiança.</p>
+          <div class="link"><a href="https://takta.com.br/brasil/suspensao-de-nota-da-anvisa-nao-altera-regras-sanitarias-para-servicos-de-estetica-entenda/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Num hospital de Lisboa, o computador já marca sozinho um terço das consultas por telefone</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>ECO (Portugal) · 25/09/2026</span></div>
+          <p class="texto">O Hospital da Luz conta que um terço das consultas marcadas por telefone não passa por
+            nenhum atendente. Quando o sistema começou, em 2024, quatro em cada dez pacientes pediam para
+            falar com uma pessoa. Hoje são menos de dois. Segundo o hospital, ninguém foi demitido: a equipe
+            passou a procurar os pacientes em vez de só esperar a ligação.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>É um programa de inteligência artificial que atende a ligação, entende o que a pessoa quer e
+              encaixa o horário na agenda, como uma recepcionista que não sai para almoçar. Os casos
+              complicados continuam com gente.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a sua paciente está se acostumando a marcar com máquina. O que a
+            máquina não faz é alguém da clínica lembrar dela pelo nome. É para isso que serve o tempo que
+            sobra na recepção.</p>
+          <div class="link"><a href="https://eco.sapo.pt/2026/09/25/inteligencia-artificial-ja-suporta-um-terco-das-marcacoes-de-consultas-e-exames-no-hospital-da-luz/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Em tempos de inteligência artificial, a indicação continua movendo negócio, diz jornal da Baixada Santista</h3>
+          <div class="credito"><span class="frescor hoje">🟢 quarta-feira</span><span>Boqnews · 23/09/2026</span></div>
+          <p class="texto">Um jornal regional de Santos publicou, na quarta, uma reportagem com o título
+            “Em tempos de inteligência artificial, indicações movimentam negócios na Baixada Santista”. Só
+            conseguimos ler o título; o que falta está na lista do que não deu para confirmar.</p>
+          <p class="texto"><b>Na sua agenda:</b> junte com o recorte anterior. A máquina pode marcar o horário.
+            Quem ajuda a escolher a clínica, muitas vezes, continua sendo a amiga que já foi.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxPMWZBRW9GRFhTelM3X1JPa3cxWEs5MW5mc09aX0pxcFg1QjZVU1JsRVFUbk14dS1YSGpwSVFxMlZna0xsVWtqSmsxX0p1bVpUX2ZvX25EY2FCQzhJMnFxSnRzTEdZdGNELU5CREg2MDh3X0J4YTVYUWdsSnUzR25VdHRTOG4wZXRldXRuckh4dklBbHktc1hDMk5TRHRUV3hFOXlwTmxRc0VoS2FHcUgzWmVBSEYyaTA?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Empresários discutem levar a inteligência artificial do post para o caixa</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Exame · 23/09/2026</span></div>
+          <p class="texto">Num encontro de empresas em crescimento em São Paulo, na terça, o assunto foi o passo
+            seguinte ao texto e à imagem feitos com inteligência artificial: usar a mesma tecnologia em
+            tarefas de dentro do negócio, como cobrança, contas a pagar e controle do caixa.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>Até agora, a maioria usou esses programas para escrever legenda e fazer arte. A conversa passou
+              para o trabalho repetido do escritório, aquele que ninguém vê e que come a tarde da recepção.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> repare quais tarefas repetidas mais tomam tempo da sua recepção na
+            semana. Esse é o tempo que poderia estar indo para a paciente que sumiu.</p>
+          <div class="link"><a href="https://exame.com/negocios/comunidade-neex-mostra-como-a-ia-esta-saindo-do-marketing-e-chegando-ao-caixa-das-empresas/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: o vídeo que ensina a pedir indicação segue parado em sessenta e oito visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 18, 21, 23 e 25/09/2026</span></div>
+          <p class="texto">Na busca de sempre deste dossiê, “programa de indicação para clínica de estética”, o
+            vídeo com o roteiro de fala para pedir indicação marcou sessenta e oito visualizações pela quarta
+            medição seguida. Na busca sobre chamar de volta quem sumiu, o tutorial com inteligência
+            artificial passa de mil.</p>
+          <p class="texto"><b>Na sua agenda:</b> o recorte 02 mostra a máquina assumindo o telefone. Este mostra que
+            pedir indicação ainda é assunto que quase ninguém estuda. É justamente a parte que depende de
+            você.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto" style="margin-top:var(--sp-4)">A ideia volta aqui para fechar: a orientação saiu de cena,
+      as regras não. Numa semana de manchete confusa, a clínica que responde com calma e segue a regra de
+      sempre é a que a paciente tem motivo para recomendar.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar vem logo
+      abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Taktá No Ar, 23/09/2026</b> — “Suspensão de nota da Anvisa não altera regras sanitárias para
+        serviços de estética; entenda”. Nota Técnica 2/2024/SEI/GGTES/DIRE3/ANVISA, publicada em fevereiro de
+        2024; lista do que continua valendo; citação da Anvisa.
+        <a href="https://takta.com.br/brasil/suspensao-de-nota-da-anvisa-nao-altera-regras-sanitarias-para-servicos-de-estetica-entenda/">ler</a></li>
+      <li><b>TVBV Online, 24/09/2026</b> — “Anvisa suspende orientação para serviços de estética; veja o que
+        muda”: suspensão temporária; possibilidade de revisão da nota ou de orientação nova.
+        <a href="https://www.tvbv.com.br/anvisa-suspende-orientacao-para-servicos-de-estetica-veja-o-que-muda/">ler</a></li>
+      <li><b>Contracs-CUT, 24/09/2026</b> — “Articulação avança e Anvisa suspende temporariamente Nota Técnica
+        sobre serviços de estética”: entidades que pediram a suspensão, motivo alegado e composição do grupo
+        de trabalho. <a href="https://contracs.org.br/2026/09/24/articulacao-avanca-e-anvisa-suspende-temporariamente-nota-tecnica-sobre-servicos-de-estetica/">ler</a></li>
+      <li><b>Anvisa (gov.br), 21/09/2026</b> — “Anvisa se reúne com profissionais de estética para debater
+        serviços da área”: a reunião de 17/09, citada na edição anterior.
+        <a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-se-reune-com-profissionais-de-estetica-para-debater-servicos-da-area">ler</a></li>
+      <li><b>ICTQ, 21/08/2026</b> — “Professora do ICTQ desmente fake news sobre bioestimuladores nas redes
+        sociais”. <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxOYmowQ1BycEFJc3hBcU5rQ3JkOHdJX05wMWowVTBrdGJfcEtQTUphTDFSQVdBZE81VlAyVGd5c0R6eTVHeGJyQzZsZ1oySGJtVmhPREliQ1RkRXRQWlBSQ2lhY05Kc09Sb1ppdUdqZDJMMDNmMG9CbXhaNTF3b2p4dU41UTFFZmxSS2hWVlVUZ2tIUnFaVXBKekI0VjZnUHFJdGc5VVQ3V19JcW9JV0lyUHNYcjc4czdCUl9XUTN3?oc=5">ler (via agregador)</a></li>
+      <li><b>ECO (Portugal), 25/09/2026</b> — “Inteligência artificial já suporta um terço das marcações de
+        consultas e exames no Hospital da Luz”: um terço das marcações por telefone sem intervenção humana;
+        pedidos para falar com atendente de 40% (2024) para menos de 20%; nenhuma demissão, segundo o hospital.
+        <a href="https://eco.sapo.pt/2026/09/25/inteligencia-artificial-ja-suporta-um-terco-das-marcacoes-de-consultas-e-exames-no-hospital-da-luz/">ler</a></li>
+      <li><b>Boqnews, 23/09/2026</b> — “Em tempos de inteligência artificial, indicações movimentam negócios
+        na Baixada Santista”.
+        <a href="https://news.google.com/rss/articles/CBMitwFBVV95cUxPMWZBRW9GRFhTelM3X1JPa3cxWEs5MW5mc09aX0pxcFg1QjZVU1JsRVFUbk14dS1YSGpwSVFxMlZna0xsVWtqSmsxX0p1bVpUX2ZvX25EY2FCQzhJMnFxSnRzTEdZdGNELU5CREg2MDh3X0J4YTVYUWdsSnUzR25VdHRTOG4wZXRldXRuckh4dklBbHktc1hDMk5TRHRUV3hFOXlwTmxRc0VoS2FHcUgzWmVBSEYyaTA?oc=5">ler (via agregador)</a></li>
+      <li><b>Exame, 23/09/2026</b> — “Comunidade NEEX mostra como a IA está saindo do marketing e chegando ao
+        caixa das empresas”: encontro de 22/09 em São Paulo.
+        <a href="https://exame.com/negocios/comunidade-neex-mostra-como-a-ia-esta-saindo-do-marketing-e-chegando-ao-caixa-das-empresas/">ler</a></li>
+      <li><b>Medição própria do dossiê, 25/09/2026</b> — busca pública no YouTube “programa de indicação para
+        clínica de estética”: “Como conseguir indicações de pacientes (script de indicação para clínicas)”,
+        canal Filipe Souza, 68 visualizações (68 também em 18, 21 e 23/09). Busca “recuperação e reativação
+        de leads com IA”: “IA + WhatsApp: como reativar leads mortos”, 1.006 visualizações.
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0">vídeo do roteiro</a> ·
+        <a href="https://www.youtube.com/watch?v=-L4soVK6XrI">vídeo de reativação</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>• Não encontramos o comunicado original da Anvisa sobre a suspensão. Os fatos vieram de três
+        reportagens que o citam, e elas concordam entre si. Nenhuma informa a data exata do ato nem prazo
+        para o grupo de trabalho terminar.<br>
+        • Não sabemos se a vigilância sanitária do seu estado ou da sua cidade mudou algo na forma de
+        fiscalizar. A suspensão é da orientação nacional; estados e municípios seguem com as próprias regras.<br>
+        • Da reportagem da Baixada Santista, só lemos o título. Não sabemos quais negócios ela cita, se há
+        clínica de estética entre eles, nem se traz algum número.<br>
+        • O caso de Lisboa é de hospital, com marcação por telefone, em Portugal. Não é clínica de estética
+        nem WhatsApp no Brasil. Serve como sinal de hábito, não como comparação direta. A informação de que
+        ninguém foi demitido é do próprio hospital.<br>
+        • A matéria do encontro de empresários foi lida por resumo. Não sabemos quais empresas contaram usar
+        a tecnologia no caixa nem com que resultado.<br>
+        • Continua não existindo reportagem brasileira que meça quanto a indicação rende numa clínica de
+        estética. Vigésima quarta edição, mesma lacuna.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este dossiê não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, volta de paciente ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de qualquer coisa que você monte.</li>
+        <li><b>Sem orientação jurídica, sanitária ou clínica.</b> O que a sua profissão pode fazer é definido pelo seu conselho e pela vigilância sanitária.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PARTE INTERNA — NUNCA VAI AO AR ═══════════════ -->
+
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 024 · 25 de setembro de 2026<br>
+    Documento de trabalho · as seções marcadas não vão ao ar
+  </div>
+
+</div>
+</body>
+</html>
