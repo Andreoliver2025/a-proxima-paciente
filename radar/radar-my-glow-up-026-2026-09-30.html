@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 026 · 30 de setembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+<style>
+  /* Marca visual da secao que so vai ao ar depois da validacao do Andre.
+     O filtro publico (versao-publica.cjs) remove tudo com a classe .aguardando-validacao. */
+  .aguardando-validacao{position:relative;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    border:1px dashed rgba(143,169,240,.55);border-radius:16px}
+  .aguardando-validacao::before{content:"⏳ Aguarda validação · não publicar ainda";position:absolute;
+    top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--g3)}
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>A partir de amanhã, a mensagem que o sistema manda deixa de ser de graça.</h1>
+    <p class="chamada">Nesta quinta, 1º de outubro, o WhatsApp oficial das empresas passa a cobrar
+      também pelas respostas dadas à cliente. O WhatsApp do seu celular não muda. O que muda é a
+      conta de quem manda mensagem em quantidade — e o valor da mensagem que tem nome.</p>
+    <div class="dateline">Edição Nº 026 · quarta-feira, 30 de setembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li>
+        <a href="#movimento">O movimento da semana</a>
+        <div class="d">O WhatsApp das empresas começa a cobrar por resposta. Quem paga, quem não
+          paga e por que a mensagem com nome ficou ainda mais valiosa.</div>
+      </li>
+      <li>
+        <a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a cobrança de amanhã, programas que trabalham sozinhos
+          dentro da lista de pacientes, o que as marcas de Milão deixam nas mãos de gente, a
+          estética da longevidade e a medição de hoje.</div>
+      </li>
+      <li>
+        <a href="#nova">Como trazer paciente nova</a>
+        <div class="d">A conversa mais valiosa não é a que você começa. É a que a amiga começa.</div>
+      </li>
+      <li>
+        <a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">Menos mensagens, mais certeiras: o plano de cuidado como motivo de volta.</div>
+      </li>
+      <li>
+        <a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div>
+      </li>
+      
+      <li>
+        <a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para
+          confirmar.</div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">A partir desta quinta, 1º de outubro, o WhatsApp oficial para empresas
+      passa a cobrar pelas <b>respostas</b> que a empresa dá à cliente dentro de uma conversa.
+      Até hoje, essas respostas eram de graça.</p>
+
+    <p class="texto capitular">A mudança vale para quem usa o WhatsApp ligado a um sistema — a
+      agenda online que confirma horário, o programa que avisa quem sumiu, o atendimento
+      automático. <b>O aplicativo WhatsApp Business que você instala no celular não é
+      afetado</b>, segundo as empresas que vendem o acesso oficial. Quem conversa pelo celular
+      continua sem pagar por mensagem.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>mensagem em quantidade passou a
+      ter conta; a mensagem com nome continua valendo mais do que qualquer disparo. E a mais
+      valiosa de todas nem sai da clínica — é a que a sua paciente manda para a amiga.</b></p>
+
+    <div class="olho">
+      <p>&ldquo;A partir de amanhã, cada mensagem que o sistema manda tem custo. Então cada uma
+        precisa ter motivo e nome.&rdquo;</p>
+      <span class="quem">A frase para levar à reunião de equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero">
+        <div class="big">1º/10</div>
+        <div class="lbl"><b>começa a cobrança</b> das respostas no WhatsApp oficial das empresas</div>
+      </div>
+      <div class="numero">
+        <div class="big">0</div>
+        <div class="lbl"><b>mudança no aplicativo do celular</b>: o WhatsApp Business gratuito
+          segue sem cobrança por mensagem</div>
+      </div>
+      <div class="numero">
+        <div class="big">1.000</div>
+        <div class="lbl"><b>respostas grátis por mês</b> para cada número ligado a sistema,
+          segundo empresas que vendem o acesso oficial</div>
+      </div>
+      <div class="numero">
+        <div class="big">72 h</div>
+        <div class="lbl"><b>de conversa sem custo</b> quando a paciente chega clicando num
+          anúncio que abre o WhatsApp, segundo a Zenvia</div>
+      </div>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Primeiro, separe as duas coisas que o mercado chama de &ldquo;WhatsApp
+        Business&rdquo;. Uma é o aplicativo verde que fica no celular da recepção. A outra é o
+        WhatsApp oficial ligado a um sistema, que as empresas de tecnologia revendem. A cobrança
+        de amanhã é só na segunda.</p>
+
+      <div class="traduz">
+        <span class="r">Em português claro</span>
+        <p><b>API do WhatsApp</b> é a &ldquo;tomada&rdquo; que liga o WhatsApp a outro programa —
+          à agenda, à lista de pacientes, a um robô de atendimento. <b>Mensagem de serviço</b> é a
+          resposta que a clínica dá depois que a paciente escreveu. <b>Mensagem de utilidade</b> é
+          o aviso prático: confirmação de horário, lembrete, recibo.</p>
+      </div>
+
+      <p class="texto">Até agora, a regra era simples: se a paciente escrevia primeiro, as
+        respostas da clínica nas vinte e quatro horas seguintes saíam de graça. A partir de
+        amanhã, cada resposta conta. No Brasil, as empresas que revendem o serviço falam em cerca
+        de três centavos e meio por mensagem, depois das mil primeiras do mês em cada número.</p>
+
+      <p class="texto">Para a clínica pequena, que atende pelo celular, nada muda na conta. Mas
+        ela vai ouvir falar disso. O sistema de agenda pode mudar o que cobra. O vendedor de
+        atendimento automático vai precisar explicar quanto custa cada conversa. E quem manda
+        lembrete, confirmação e &ldquo;faz tempo que você não vem&rdquo; para centenas de
+        pacientes vai começar a contar mensagens.</p>
+
+      <p class="texto">Uma frase de um texto do setor resume o efeito: agora a conta cai
+        &ldquo;sobre quem responde, não sobre quem inicia o contato&rdquo;. Conversa longa e
+        sem rumo passa a ter custo. Conversa curta, com motivo claro, sai mais barata e,
+        de quebra, é a que a paciente prefere.</p>
+
+      <p class="texto">Na segunda, este dossiê mostrou os sistemas de agenda avisando sozinhos
+        quem sumiu há trinta, sessenta ou noventa dias. A notícia de hoje completa a cena: o
+        aviso existe, mas cada mensagem que sai dele passa a ter preço. <b>Mandar para todo
+        mundo deixa de ser o caminho natural.</b> Mandar para a pessoa certa, com o nome dela e
+        um motivo, volta a ser.</p>
+
+      <p class="texto">E há uma mensagem que não passa por sistema nenhum: a da paciente
+        satisfeita que escreve para a amiga &ldquo;vai lá, eu fui e adorei&rdquo;. Ela não custa
+        nada à clínica, chega com confiança e faz a amiga escrever primeiro. A ideia volta no
+        fim desta edição.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda — não na agenda de
+      quem escreveu a notícia.</p>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>O WhatsApp oficial das empresas começa a cobrar pelas respostas nesta quinta</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Dinamize · 29/09/2026 · Clickmassa · 24/09/2026 · Zenvia</span></div>
+          <p class="texto">A partir de 1º de outubro, as respostas que a empresa dá dentro de uma
+            conversa e os avisos práticos, como confirmação de horário, passam a ser cobrados no
+            WhatsApp ligado a sistema. Cada número tem uma cota de mil respostas grátis por mês,
+            segundo empresas revendedoras. O aplicativo do celular fica de fora.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Pense no WhatsApp
+            oficial como uma linha telefônica comercial: até ontem, atender a ligação da paciente
+            era de graça; a partir de amanhã, cada resposta entra na conta, depois de uma
+            franquia mensal.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se você usa um sistema que manda mensagem pelo
+            WhatsApp, pergunte ao fornecedor nesta semana se a mensalidade muda e quantas
+            mensagens a sua clínica manda por mês. Se atende só pelo celular, nada muda.</p>
+          <div class="link"><a href="https://www.dinamize.com.br/blog/cobranca-whatsapp-outubro-26/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Chegam os &ldquo;pilotos&rdquo;: programas que trabalham sozinhos dentro da lista de clientes</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Estado de Minas (conteúdo corporativo) · 29/09/2026 · Valor Econômico · 29/09/2026</span></div>
+          <p class="texto">Uma empresa brasileira de tecnologia lançou na segunda um aplicativo
+            que instala sete assistentes de inteligência artificial dentro da lista de clientes
+            de pequenas e médias empresas. Cada um cuida de uma tarefa: ler em que etapa está
+            cada venda, limpar cadastro repetido, organizar as prioridades do dia.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p><b>Agente de IA</b> é
+            um programa que faz uma tarefa sozinho, sem alguém clicar em cada passo. É como uma
+            auxiliar de recepção que só arruma as fichas — e não faz mais nada.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> você vai ouvir &ldquo;agente de IA&rdquo; em
+            toda proposta de sistema daqui para a frente. A pergunta que separa promessa de
+            ferramenta é uma só: &ldquo;qual tarefa ele faz sozinho, e quem confere?&rdquo;.</p>
+          <div class="link"><a href="https://www.em.com.br/mundo-corporativo/2026/09/7510585-grupo-tlj-lanca-cockpit-ai-equipe-de-agentes-de-ia-no-crm.html" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Em Milão, as marcas de beleza deixam a máquina na operação e a gente no vínculo</h3>
+          <div class="credito"><span class="frescor">🟡 semana passada</span><span>Revista Live Marketing · 22/09/2026</span></div>
+          <p class="texto">Na Milano Beauty Week, de 16 a 20 de setembro, as marcas mostraram uma
+            divisão clara: inteligência artificial para análise, estoque e personalização;
+            atendimento de gente para a experiência. A frase de uma consultora ouvida pela
+            revista: a tecnologia &ldquo;entra para resolver escala, repetição e análise, e sai de
+            cena quando o objetivo é criar vínculo&rdquo;.</p>
+          <p class="texto"><b>Na sua agenda:</b> a regra serve para a clínica do mesmo jeito. Deixe
+            a máquina confirmar horário e lembrar da data. A mensagem que pergunta como a pele
+            reagiu, e a que agradece uma indicação, é sua.</p>
+          <div class="link"><a href="https://revistalivemarketing.com.br/milano-beauty-week-evidencia-papel-da-inteligencia-artificial-nas-operacoes-e-resgata-valor-do-presencial-no-mercado-de-beleza/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>A estética da longevidade: menos transformação, mais acompanhamento ao longo dos anos</h3>
+          <div class="credito"><span class="frescor">🟡 este mês</span><span>SEGS · 11/09/2026 · republicado por Bem Paraná e outros</span></div>
+          <p class="texto">Especialistas ouvidas pela reportagem descrevem uma mudança de procura:
+            sai o &ldquo;rejuvenescer a qualquer custo&rdquo;, entra o cuidado que preserva a
+            identidade e acompanha o envelhecimento com naturalidade. A reportagem fala até em
+            pacientes pedindo para desfazer procedimentos.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p><b>Longevidade
+            saudável</b>, na estética, quer dizer tratar a pele e o rosto como algo que se cuida
+            por anos, em etapas — e não como uma correção feita de uma vez.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> quem procura acompanhamento procura alguém para
+            anos. Um plano de cuidado com as próximas etapas, explicado na saída, dá à paciente um
+            motivo concreto para voltar — sem promessa de resultado.</p>
+          <div class="link"><a href="https://www.segs.com.br/demais/455265-longevidade-saudavel-e-a-nova-tendencia-na-area-da-estetica" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: o vídeo sobre chamar de volta quem sumiu parou em mil e oito visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 23, 28 e 30/09/2026</span></div>
+          <p class="texto">Na busca &ldquo;recuperação e reativação de clientes com IA&rdquo;, o vídeo
+            mais visto ensina a reativar contatos antigos pelo WhatsApp com um programa. Marcou
+            mil e oito visualizações, igual a segunda. Hoje, a busca de sempre deste dossiê —
+            &ldquo;programa de indicação para clínica de estética&rdquo; — não trouxe resultado na
+            nossa coleta.</p>
+          <p class="texto"><b>Na sua agenda:</b> quase todo o conteúdo sobre trazer paciente de
+            volta ensina a mandar mensagem em quantidade. A partir de amanhã, esse caminho tem
+            conta. Pedir indicação e agradecer quem indica continua sem quase ninguém
+            ensinando.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=-L4soVK6XrI" rel="nofollow noopener" target="_blank">clique aqui para ver o vídeo</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="nova">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">Com a cobrança de amanhã, fica mais fácil ver uma coisa que já era
+      verdade: a conversa mais valiosa não é a que a clínica começa. É a que a paciente nova
+      começa — porque uma amiga mandou.</p>
+
+    <p class="texto">Quando a Paula recebe da Renata &ldquo;vai na clínica da Ana, eu confio&rdquo;,
+      três coisas acontecem. A primeira mensagem para a clínica sai da Paula. Ela chega sabendo
+      o seu jeito de atender. E você não precisou mandar nada para ninguém.</p>
+
+    <div class="olho">
+      <p>&ldquo;O anúncio faz a paciente perguntar o preço. A amiga faz a paciente perguntar o
+        horário.&rdquo;</p>
+      <span class="quem">Por que a indicação chega diferente</span>
+    </div>
+
+    <p class="texto">Para isso acontecer mais vezes, a paciente satisfeita precisa de duas coisas:
+      um convite claro e algo fácil de repassar. A maioria das clínicas não oferece nenhuma das
+      duas. A paciente gosta, mas não sabe o que dizer nem para onde mandar a amiga.</p>
+
+    <div class="nota">
+      <div class="r">O que facilita a indicação</div>
+      <ul class="lista">
+        <li><b>Uma mensagem pronta para encaminhar.</b> Curta, com o nome da clínica, o seu
+          e o número para marcar. A paciente só aperta &ldquo;encaminhar&rdquo;.</li>
+        <li><b>Um jeito de saber quem trouxe quem.</b> Peça à amiga para dizer o nome de quem
+          indicou na primeira mensagem, e anote na ficha.</li>
+        <li><b>Um obrigado quando a amiga vier.</b> Mensagem sua, escrita à mão, sem desconto.</li>
+        <li><b>Respeito a quem prefere discrição.</b> Nem toda paciente quer contar que fez
+          procedimento. Convide uma vez e não insista.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Um cuidado: se a sua profissão tem regra sobre dar recompensa em troca de
+      indicação, siga a do seu conselho. Agradecer e reconhecer não depende de brinde.</p>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">A partir de amanhã, a lógica de &ldquo;manda para todo mundo e vê quem
+      responde&rdquo; fica mais cara para quem usa sistema. Para todas as clínicas, ela sempre
+      foi fraca: mensagem igual para cem nomes soa como a de qualquer lugar.</p>
+
+    <p class="texto">A saída é trocar quantidade por motivo. Uma paciente volta mais fácil quando
+      a mensagem tem uma razão que é só dela: a próxima etapa do tratamento, o intervalo entre
+      sessões que chegou, a dúvida que ela deixou na última visita.</p>
+
+    <div class="traduz">
+      <span class="r">Em português claro</span>
+      <p><b>Plano de cuidado</b> é o combinado, feito na saída, das próximas etapas: o que fazer
+        em casa, quando voltar e por quê. Ele transforma o &ldquo;faz tempo que você não
+        vem&rdquo; em &ldquo;chegou a hora da sua próxima etapa&rdquo;.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Menos mensagens, mais certeiras</div>
+      <ul class="lista">
+        <li><b>Combine a próxima etapa antes de ela sair.</b> Anote a data na ficha e diga a ela
+          em voz alta.</li>
+        <li><b>Uma mensagem por motivo.</b> Lembrete da etapa, pergunta sobre a pele, obrigado pela
+          indicação. Nada de &ldquo;promoção da semana&rdquo; para todas.</li>
+        <li><b>Escreva como você fala.</b> Com o nome dela e o que ela fez. Mensagem curta, que
+          se responde com uma frase.</li>
+        <li><b>Quem sumiu recebe uma mensagem só, pessoal.</b> Se não responder, respeite. Insistir
+          não traz de volta.</li>
+      </ul>
+    </div>
+
+    <p class="texto">A reportagem sobre longevidade ajuda aqui. Se a paciente procura quem a
+      acompanhe por anos, o motivo para voltar já existe — só precisa estar combinado e
+      anotado. Nenhum resultado é garantido; o compromisso é com o acompanhamento.</p>
+
+    <div class="acao">
+      <div class="r">O que isso pede desta semana</div>
+      <p>Pegue as cinco últimas pacientes que você atendeu. Para cada uma, escreva na ficha
+        <b>qual é a próxima etapa e quando</b>. Se não houver nada combinado, esse é o furo por onde
+        a paciente some sem avisar.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ESTA SEMANA ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Todos puxam a conversa para o seu WhatsApp pelo lado
+      da paciente — ela escreve primeiro, e escreve com vontade.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · reels de 30 segundos</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Aqui a gente combina a sua próxima etapa antes de você sair&rdquo;</li>
+        <li><b>Roteiro:</b> você, na saída da sala, mostra (sem expor ninguém) o papel ou a ficha
+          com o cuidado de casa e a data da próxima visita. Fecha com &ldquo;cuidar da pele é
+          acompanhamento, não é uma vez só&rdquo;.</li>
+        <li><b>Por que agora:</b> a procura por cuidado de longo prazo aparece nas reportagens do
+          mês. Você mostra que já trabalha assim.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · carrossel de 5 telas</div>
+      <ul class="lista">
+        <li><b>Título:</b> &ldquo;Envelhecer bem não é apagar o tempo&rdquo;</li>
+        <li><b>Telas:</b> naturalidade virou o novo cuidado; preservar traços, não trocar de rosto;
+          cuidado em etapas, ao longo dos anos; o que você faz em casa conta tanto quanto a
+          sessão; converse com a gente sobre o seu plano.</li>
+        <li><b>Por que agora:</b> a tendência da longevidade está nas notícias. Sem prometer
+          resultado, sem antes e depois, sem citar produto.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · story com link para o WhatsApp</div>
+      <ul class="lista">
+        <li><b>Texto:</b> &ldquo;Tem uma amiga que vive falando que quer cuidar da pele? Manda este
+          story para ela.&rdquo;</li>
+        <li><b>O que fazer depois:</b> coloque o link que abre o WhatsApp da clínica e peça que a
+          amiga diga quem mandou. Anote o nome na ficha.</li>
+        <li><b>Por que agora:</b> é a indicação no formato mais simples: a paciente repassa, a amiga
+          escreve primeiro, e você sabe quem trouxe quem.</li>
+      </ul>
+    </div>
+
+    <p class="texto">Um cuidado que vale repetir: nenhum dos três fala de outra clínica, de preço
+      ou de resultado garantido. O assunto é a sua forma de cuidar.</p>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para
+      confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Dinamize, 29/09/2026</b> — &ldquo;Nova cobrança do WhatsApp em outubro: entenda o que
+        muda&rdquo;. Mensagens de serviço e de utilidade passam a ser cobradas a partir de 1º/10 na
+        plataforma oficial, com valor por mensagem entregue.
+        <a href="https://www.dinamize.com.br/blog/cobranca-whatsapp-outubro-26/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Clickmassa, 01/09/2026, atualizado em 24/09/2026</b> — &ldquo;Nova cobrança da API do
+        WhatsApp: o que muda em outubro&rdquo;. Fonte da cota de mil mensagens de serviço grátis por
+        mês por número e da afirmação de que o aplicativo gratuito e o WhatsApp comum não são
+        atingidos.
+        <a href="https://clickmassa.com.br/nova-cobranca-whatsapp-api/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Zenvia, 28/07/2026, atualizado em 30/07/2026</b> — &ldquo;Novas regras de cobrança do
+        WhatsApp Business 2026&rdquo;. A cobrança vale só para quem usa a API por meio de um
+        revendedor; o aplicativo do celular não é afetado; conversas iniciadas por anúncio de
+        clique para WhatsApp têm janela de 72 horas sem custo.
+        <a href="https://zenvia.com/blog/novas-regras-de-cobranca-do-whatsapp-business-2026/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>E-Commerce Brasil, 19/08/2026</b> — &ldquo;Novo custo do WhatsApp: o que muda a partir de
+        outubro e como reduzir o impacto&rdquo;, artigo de Vanessa Botega (Omnichat). Fonte da frase
+        &ldquo;a cobrança recai sobre quem responde, não sobre quem inicia o contato&rdquo;.
+        <a href="https://www.ecommercebrasil.com.br/artigos/novo-custo-do-whatsapp-o-que-muda-a-partir-de-outubro-e-como-reduzir-o-impacto" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Estado de Minas, 29/09/2026</b> — texto sobre o lançamento de uma equipe de
+        assistentes de inteligência artificial para a lista de clientes, na seção de conteúdo
+        corporativo. Sete assistentes, lançamento em 28/09, voltado a pequenas e médias empresas. Mesmo texto no Valor Econômico e no Radar Digital
+        Brasília.
+        <a href="https://www.em.com.br/mundo-corporativo/2026/09/7510585-grupo-tlj-lanca-cockpit-ai-equipe-de-agentes-de-ia-no-crm.html" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Revista Live Marketing, 22/09/2026</b> — &ldquo;Milano Beauty Week evidencia papel da
+        inteligência artificial nas operações e resgata valor do presencial no mercado de
+        beleza&rdquo;. Frase de Luciana Andrade (Brand&amp;Stories).
+        <a href="https://revistalivemarketing.com.br/milano-beauty-week-evidencia-papel-da-inteligencia-artificial-nas-operacoes-e-resgata-valor-do-presencial-no-mercado-de-beleza/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>SEGS, 11/09/2026</b> — &ldquo;Longevidade saudável é a nova tendência na área da
+        estética&rdquo;, republicado por Bem Paraná, aRede e outros.
+        <a href="https://www.segs.com.br/demais/455265-longevidade-saudavel-e-a-nova-tendencia-na-area-da-estetica" rel="nofollow noopener" target="_blank">ler</a> ·
+        <a href="https://www.bemparana.com.br/noticias/economia/longevidade-saudavel-e-a-nova-tendencia-na-area-da-estetica/" rel="nofollow noopener" target="_blank">Bem Paraná</a></li>
+      <li><b>Medição própria do dossiê, 30/09/2026</b> — busca pública no YouTube &ldquo;recuperação e
+        reativação de leads com IA&rdquo;: &ldquo;IA + WhatsApp: como reativar leads mortos e vender
+        mais&rdquo;, canal O Almanaque de Gåbriel Oliveira, 1.008 visualizações (1.006 em 23/09; 1.008
+        em 28/09). A busca &ldquo;programa de indicação para clínica de estética&rdquo; não retornou
+        resultado na coleta de hoje.
+        <a href="https://www.youtube.com/watch?v=-L4soVK6XrI" rel="nofollow noopener" target="_blank">ver o vídeo</a> ·
+        <a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">ver a busca de indicação</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>&bull; <b>A cota de mil respostas grátis por número</b> aparece em textos de empresas que
+        revendem o WhatsApp oficial. Não conferimos hoje na página da Meta, e nem todos os textos
+        do setor a mencionam.</p>
+      <p>&bull; <b>O valor por mensagem</b> veio de empresas revendedoras. Cada revendedor pode
+        cobrar a mais pelo próprio serviço; o custo final para a clínica depende do contrato.</p>
+      <p>&bull; <b>Não sabemos quais sistemas de agenda vão repassar o custo</b> para a clínica, nem
+        quando. Nenhum anunciou isso nas fontes que lemos.</p>
+      <p>&bull; <b>O texto sobre os &ldquo;pilotos&rdquo;</b> é conteúdo corporativo, escrito a partir
+        do que a própria empresa divulgou. Os números dela não foram conferidos, e o produto não
+        é feito para clínica de estética.</p>
+      <p>&bull; <b>A reportagem sobre longevidade</b> ouve especialistas, sem pesquisa com número.
+        A &ldquo;reversão de procedimentos&rdquo; é relato, não medição.</p>
+      <p>&bull; <b>A busca de indicação no YouTube não respondeu hoje</b>, assim como duas outras
+        buscas. Por isso a medição de sempre do vídeo de roteiro de indicação ficou para a
+        próxima edição.</p>
+      <p>&bull; <b>O sinal de hoje não trouxe dados de anúncios</b> da Meta. Nada nesta edição fala
+        de desempenho de anúncio pago.</p>
+      <p>&bull; <b>Continua não existindo reportagem brasileira que meça quanto a indicação rende
+        numa clínica de estética.</b> Vigésima sexta edição, mesma lacuna.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este dossiê não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, volta de paciente ou
+          faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de
+          qualquer coisa que você monte.</li>
+        <li><b>Sem indicação de marca.</b> Citar uma empresa não é recomendar que você a use.</li>
+        <li><b>Sem orientação jurídica, sanitária, clínica ou contábil.</b> Regra sobre indicação,
+          foto de resultado e procedimento passa pelo conselho da profissão de quem atende na sua
+          sala.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO — NUNCA PUBLICAR ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 026 · 30 de setembro de 2026<br>
+    Documento de trabalho · as seções marcadas não vão ao ar
+  </div>
+
+</div>
+</body>
+</html>
