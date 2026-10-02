@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>A máquina já compara. Quem escolhe onde ir ainda é a confiança. · Dossiê A Próxima Paciente Nº 027</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A máquina já compara. Quem escolhe onde ir ainda é a confiança.</h1>
+    <p class="chamada">Uma pesquisa divulgada nesta quinta mostra que quase nove em cada dez brasileiros
+      pretendem usar inteligência artificial para comprar na Black Friday. Mas só quinze em cada cem deixariam
+      a máquina escolher a loja. Para a clínica, o recado é direto: a pesquisa mudou de lugar, a decisão não.</p>
+    <div class="dateline">Edição Nº 027 · sexta-feira, 2 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">As pessoas passaram a pesquisar com inteligência artificial, mas não entregam a ela a escolha de onde ir. O que pesa é a reputação.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a pesquisa da Black Friday, a máquina que não pode indicar candidato, a desconfiança da indicação paga, o primeiro dia da cobrança no WhatsApp das empresas e a medição de hoje.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </div>
+
+  <!-- ═══════════════ PARTE PÚBLICA ═══════════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Oitenta e sete em cada cem consumidores dizem que vão usar inteligência artificial nas
+      compras da Black Friday. Só <b>quinze em cada cem</b> aceitariam que ela escolhesse onde comprar.</p>
+
+    <p class="texto capitular">A pesquisa é do Reclame AQUI e saiu nesta quinta, 1º de outubro. As pessoas usam
+      a máquina para comparar e achar desconto. Na hora de escolher a loja, pesam a reputação da empresa e a
+      avaliação de quem já comprou. E sessenta e quatro em cada cem descartariam a loja indicada pela máquina
+      se ela tivesse avaliação ruim. A pesquisa fala de compras, não de clínica de estética.</p>
+
+    <p class="texto">A ideia desta edição: <b>a pesquisa mudou de lugar, mas a escolha continua sendo de
+      confiança.</b> E confiança se pede emprestada a quem já foi. É exatamente o que acontece quando a sua
+      paciente diz à amiga: “vai lá, eu fui e gostei”.</p>
+
+    <div class="olho">
+      <p>“A máquina ajuda a comparar. Quem faz a pessoa escolher a gente é quem já foi e falou bem.”</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">O que muda para a clínica não é a máquina em si. É o caminho que a pessoa faz antes de
+        mandar a primeira mensagem. Ela pode perguntar a um assistente de conversa o que é um procedimento,
+        quanto tempo dura, o que perguntar na avaliação. Depois, vai olhar quem já foi na clínica.</p>
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>Inteligência artificial, aqui, é o programa de conversa no celular — como o ChatGPT ou o Gemini —
+          a quem a pessoa faz perguntas como faria a uma amiga que entende do assunto. Ele responde, compara e
+          resume. A pesquisa mostra que a maioria ainda confere o que ele diz.</p>
+      </div>
+      <p class="texto">Na mesma pesquisa, a reputação da empresa e a avaliação de outros consumidores aparecem
+        logo depois do valor como o que decide a compra. Outra pesquisa, de maio, mostrou que quase metade das
+        pessoas tem dificuldade de saber se a sugestão da máquina é imparcial ou paga. Quando a fonte é
+        duvidosa, a palavra de quem a pessoa conhece ganha peso.</p>
+      <p class="texto">Um cuidado honesto: nenhuma das duas pesquisas mediu o setor de estética. Não sabemos
+        quantas pacientes já perguntam a uma máquina antes de marcar. A ideia volta no fim desta edição.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">87 em 100</div><div class="lbl">pretendem usar <b>inteligência artificial</b> nas compras da Black Friday, segundo o Reclame AQUI</div></div>
+      <div class="numero"><div class="big">15 em 100</div><div class="lbl">deixariam a máquina <b>escolher a loja</b> por elas</div></div>
+      <div class="numero"><div class="big">64 em 100</div><div class="lbl">descartariam a indicação da máquina se a loja tivesse <b>avaliação ruim</b></div></div>
+      <div class="numero"><div class="big">68</div><div class="lbl">visualizações do vídeo que ensina a <b>pedir indicação</b>, o mesmo número há duas semanas</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Na Black Friday, a máquina compara — mas quase ninguém deixa ela escolher a loja</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Reclame AQUI, via JD1 Notícias · 01/10/2026</span></div>
+          <p class="texto">A pesquisa mostra a inteligência artificial sendo usada para comparar modelos e caçar
+            desconto. A escolha final continua com a pessoa, que confere reputação e avaliações antes de
+            decidir.</p>
+          <p class="texto"><b>Na sua agenda:</b> procure a sua clínica como uma paciente nova faria, no Google e
+            no Instagram. O que aparece primeiro é o que a amiga da sua paciente vai ver antes de escrever.</p>
+          <div class="link"><a href="https://www.jd1noticias.com/economia/2026/10/01/87-dos-brasileiros-pretendem-usar-inteligencia-artificial-nas-compras-da-black-friday.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Na eleição, a máquina foi proibida de indicar — e os testes mostram que nem todas obedecem</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>Olhar Digital · 30/09/2026 · Canaltech</span></div>
+          <p class="texto">A Justiça Eleitoral proibiu os programas de inteligência artificial de recomendar
+            candidato, mesmo a pedido. Em teste do Canaltech com cinco programas, dois evitaram indicar em todos
+            os casos; três deram ao menos uma resposta que pode ferir a regra.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>“Indicar” é a palavra da semana. Para voto, a regra agora diz que a máquina não pode. Para loja,
+              serviço ou clínica, não há regra igual — e a resposta muda de programa para programa.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a indicação da máquina oscila. A indicação de uma paciente que
+            saiu satisfeita, não. É ela que vale cuidar.</p>
+          <div class="link"><a href="https://canaltech.com.br/inteligencia-artificial/o-que-acontece-se-voce-perguntar-as-ias-em-quem-votar-testamos-5-delas/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Quase metade não sabe dizer se a sugestão da máquina é imparcial ou paga</h3>
+          <div class="credito"><span class="frescor antes">🟡 maio</span><span>Branddi, via O Observador · 05/2026</span></div>
+          <p class="texto">Com quinhentos entrevistados em todos os estados, a pesquisa mostrou que cinquenta e
+            quatro em cada cem já compraram algo indicado por inteligência artificial. Mas quarenta e cinco em
+            cada cem tiveram dificuldade de saber se a sugestão era imparcial ou patrocinada.</p>
+          <p class="texto"><b>Na sua agenda:</b> a dúvida “isso é anúncio?” não existe quando quem indica é uma
+            amiga. É por isso que o pedido de indicação, feito na hora certa, pesa diferente de qualquer
+            propaganda.</p>
+          <div class="link"><a href="https://www.oobservador.com/2026/05/54-dos-brasileiros-ja-compraram.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Começou ontem a cobrança das respostas no WhatsApp oficial das empresas</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Dinamize · 29/09/2026 · Clickmassa · 24/09/2026</span></div>
+          <p class="texto">Desde 1º de outubro, as respostas e os avisos práticos que saem do WhatsApp ligado a um
+            sistema passaram a ter custo por mensagem, depois de uma cota mensal. O aplicativo WhatsApp Business
+            do celular segue de fora, segundo as empresas que vendem o acesso oficial.</p>
+          <p class="texto"><b>Na sua agenda:</b> se o seu sistema de agenda manda lembrete pelo WhatsApp, a
+            próxima fatura dele é a hora de conferir se algo mudou. Se você atende pelo celular, nada mudou.</p>
+          <div class="link"><a href="https://www.dinamize.com.br/blog/cobranca-whatsapp-outubro-26/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: o vídeo que ensina a pedir indicação segue em sessenta e oito visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 18/09 a 02/10/2026</span></div>
+          <p class="texto">A busca de sempre deste dossiê, “programa de indicação para clínica de estética”,
+            voltou a funcionar hoje. O vídeo com o roteiro para pedir indicação marcou sessenta e oito
+            visualizações, o mesmo número de todas as medições desde 18 de setembro. Na mesma busca, um vídeo
+            sobre atrair paciente nova passa de onze mil.</p>
+          <p class="texto"><b>Na sua agenda:</b> todo mundo estuda como chamar paciente nova. Quase ninguém
+            estuda como pedir à paciente satisfeita que fale da clínica. É o espaço que continua vazio.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">A ideia volta aqui para fechar: a pessoa pode até pesquisar com a máquina. Mas, quando
+      escolhe onde vai deitar na maca, ela confia em quem já foi. A paciente satisfeita que fala da sua clínica
+      continua sendo a indicação que nenhum programa substitui.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar vem logo
+      abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>JD1 Notícias, 01/10/2026</b> — “87% dos brasileiros pretendem usar inteligência artificial nas
+        compras da Black Friday”. Pesquisa do Reclame AQUI: 87% vão usar IA; 71% para comparar modelos; 44%
+        para achar desconto; 15% deixariam a IA escolher a loja; 4% sem conferir; 64% descartariam loja com
+        avaliação negativa; reputação (28%) e avaliações (22%) entre os fatores de decisão.
+        <a href="https://www.jd1noticias.com/economia/2026/10/01/87-dos-brasileiros-pretendem-usar-inteligencia-artificial-nas-compras-da-black-friday.html">ler</a></li>
+      <li><b>Canaltech, setembro de 2026</b> — “O que acontece se você perguntar às IAs em quem votar? Testamos
+        5 delas”. Regra da Justiça Eleitoral contra recomendação de candidato por IA; resultado do teste com
+        cinco programas.
+        <a href="https://canaltech.com.br/inteligencia-artificial/o-que-acontece-se-voce-perguntar-as-ias-em-quem-votar-testamos-5-delas/">ler</a></li>
+      <li><b>Olhar Digital, 30/09/2026</b> — “Eleições: posso perguntar para a IA em que votar?”.
+        <a href="https://olhardigital.com.br/2026/09/30/videos/eleicoes-posso-perguntar-para-a-ia-em-que-votar">ler</a></li>
+      <li><b>O Observador, maio de 2026</b> — “54% dos brasileiros já compraram produtos indicados por
+        inteligência artificial”. Pesquisa da Branddi, janeiro de 2026, 500 entrevistados em todos os estados:
+        54% já compraram; 34% repetiram; 45% tiveram dificuldade de saber se a sugestão era imparcial ou
+        patrocinada. Também noticiada pela CartaCapital.
+        <a href="https://www.oobservador.com/2026/05/54-dos-brasileiros-ja-compraram.html">ler</a></li>
+      <li><b>Dinamize, 29/09/2026</b> — “Nova cobrança do WhatsApp em outubro: entenda o que muda”.
+        <a href="https://www.dinamize.com.br/blog/cobranca-whatsapp-outubro-26/">ler</a></li>
+      <li><b>Clickmassa, atualizado em 24/09/2026</b> — “Nova cobrança da API do WhatsApp: o que muda em
+        outubro”. Fonte da cota mensal e da afirmação de que o aplicativo do celular não é atingido.
+        <a href="https://clickmassa.com.br/nova-cobranca-whatsapp-api/">ler</a></li>
+      <li><b>Medição própria do dossiê, 02/10/2026</b> — busca pública no YouTube “programa de indicação para
+        clínica de estética”: “Como conseguir indicações de pacientes (script de indicação para clínicas)”, canal
+        Filipe Souza, 68 visualizações (68 em 18, 21, 23, 25 e 28/09; sem medição em 30/09); “5 estratégias
+        secretas para captar pacientes em clínicas e consultórios”, canal Ricardo Novack, 11.897
+        visualizações.
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0">vídeo do roteiro</a> ·
+        <a href="https://www.youtube.com/watch?v=Y6PCqfCvTdE">vídeo sobre paciente nova</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>• A pesquisa do Reclame AQUI chegou por reportagem. Não localizamos o relatório original, o tamanho da
+        amostra nem o período da coleta.<br>
+        • Nenhuma das pesquisas mede clínicas de estética. Não sabemos quantas pacientes perguntam a uma
+        máquina antes de marcar procedimento.<br>
+        • Do teste do Canaltech, lemos o resumo publicado; não reproduzimos as perguntas nem conferimos as
+        respostas de cada programa.<br>
+        • A cota mensal grátis e o fato de o aplicativo do celular ficar de fora vêm de empresas que revendem o
+        WhatsApp oficial. Não conferimos hoje na página da Meta. Também não sabemos quais sistemas de agenda
+        vão repassar o custo.<br>
+        • Continua não existindo reportagem brasileira que meça quanto a indicação rende numa clínica de
+        estética. Vigésima sétima edição, mesma lacuna.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Regras que este dossiê não quebra</div>
+      <ul class="lista">
+        <li><b>Sem promessa de resultado.</b> Nada aqui garante agenda cheia, volta de paciente ou faturamento.</li>
+        <li><b>É negócio entre empresas.</b> A paciente nunca paga nada para participar de qualquer coisa que você monte.</li>
+        <li><b>Sem indicação de marca.</b> Citar uma empresa ou um programa não é recomendar que você o use.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PARTE INTERNA — NUNCA VAI AO AR ═══════════════ -->
+
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 027 · 2 de outubro de 2026<br>
+    Documento de trabalho · as seções marcadas não vão ao ar
+  </div>
+
+</div>
+</body>
+</html>
