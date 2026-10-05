@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>A paciente que mais se perde é a que pediu valor e ninguém respondeu · Dossiê A Próxima Paciente Nº 028</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A paciente que mais se perde é a que pediu valor e ninguém respondeu</h1>
+    <p class="chamada">Uma aceleradora de clínicas de saúde e estética disse, na sexta, que a maior perda de
+      dinheiro está na pessoa que pediu informação e não recebeu retorno. E que quem acompanha a paciente depois
+      do procedimento ganha volta e indicação sem gastar mais com anúncio. O boca a boca não é sorte: fica
+      imprevisível quando ninguém responde.</p>
+    <div class="dateline">Edição Nº 028 · segunda-feira, 5 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <div class="sumario">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">Quem ensina clínica a crescer apontou onde o dinheiro escapa: no retorno que não foi dado, antes e depois do procedimento.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a mensagem que ficou sem resposta, o perfil do Instagram que deixa marcar, um número bonito sem fonte, o boato do WhatsApp pago e a medição de hoje.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </div>
+
+  <!-- ═══════════════ PARTE PÚBLICA ═══════════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">“A maior perda é o paciente que pediu informação e nunca recebeu retorno.” A frase é do
+      diretor comercial de uma aceleradora de clínicas, em reportagem publicada na sexta, 2 de outubro.</p>
+
+    <p class="texto capitular">Na mesma reportagem, o diretor de experiência da empresa diz que o cuidado começa
+      na primeira resposta e continua depois do procedimento. Segundo ele, quem acompanha a paciente depois
+      ganha retorno e indicação sem aumentar o gasto com anúncio. O diretor de marketing chama o boca a boca de
+      valioso, mas “imprevisível”.</p>
+
+    <p class="texto">A ideia desta edição: <b>o boca a boca não é sorte. Ele fica imprevisível quando ninguém dá
+      retorno</b> — nem para quem pediu valor, nem para quem já saiu da maca. As duas pontas são a mesma
+      conversa no WhatsApp, em dias diferentes.</p>
+
+    <div class="olho">
+      <p>“Ninguém fica sem resposta aqui: nem quem pediu valor, nem quem já fez o procedimento.”</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">A reportagem é sobre uma empresa que vende método e sistema de gestão para clínicas. É
+        material de divulgação da própria empresa, publicado em espaço corporativo de jornal. As frases são
+        opinião de quem vende o serviço, não resultado de pesquisa. Não há número de clínicas atendidas nem
+        medição do que mudou.</p>
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>Quando a reportagem fala em “follow-up”, quer dizer uma coisa simples: voltar a falar com a pessoa
+          no dia combinado. A paciente que perguntou o valor na terça recebe uma mensagem na quinta. A que fez
+          o procedimento recebe outra uma semana depois, perguntando como está.</p>
+      </div>
+      <p class="texto">O que vale guardar é a ligação entre as duas pontas. A paciente bem acompanhada depois do
+        procedimento é a mesma que, um dia, fala da clínica para a amiga. E a amiga, quando escreve, cai de novo
+        na primeira ponta: precisa de resposta. Se ela também fica sem retorno, a indicação morre na
+        recepção.</p>
+      <p class="texto">Um cuidado honesto: a reportagem não traz dado de estética sobre quantas pacientes se
+        perdem por falta de resposta. A ideia volta no fim desta edição.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">3 a 4</div><div class="lbl">publicações por semana no Instagram, a frequência sugerida em artigo da <b>Exame</b> para negócios de beleza</div></div>
+      <div class="numero"><div class="big">1.000</div><div class="lbl">respostas grátis por mês, por número, no <b>WhatsApp oficial das empresas</b>; o aplicativo do celular segue sem cobrança</div></div>
+      <div class="numero"><div class="big">20.304</div><div class="lbl">visualizações do vídeo mais visto na busca por <b>fidelização</b> — e ele ensina a captar cliente nova</div></div>
+      <div class="numero"><div class="big">68</div><div class="lbl">visualizações do vídeo que ensina a <b>pedir indicação</b>, igual em todas as medições desde 18 de setembro</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>“A maior perda é quem pediu informação e não recebeu retorno”</h3>
+          <div class="credito"><span class="frescor hoje">🟢 sexta</span><span>Estado de Minas, Mundo Corporativo · 02/10/2026</span></div>
+          <p class="texto">Uma aceleradora de clínicas de saúde e estética divide a operação em cinco frentes:
+            atrair paciente, vender, administrar, cuidar da experiência e usar tecnologia. O diretor comercial
+            aponta a falta de retorno como a maior perda. O de experiência diz que acompanhar depois do
+            procedimento traz volta e indicação.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>“Lead” é a paciente que pediu informação e não voltou. “Follow-up” é voltar a falar com ela no
+              dia combinado. É o caderninho da recepção, só que sem esquecer ninguém.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> abra o WhatsApp da clínica e conte quantas conversas da semana
+            passada terminaram com uma pergunta de valor sem resposta. Esse número é o seu ponto de partida.</p>
+          <div class="link"><a href="https://www.em.com.br/mundo-corporativo/2026/10/7513281-jdp-med-cria-forma-de-gerir-e-aumentar-o-lucro-de-clinicas.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>O perfil do Instagram que vende é o que deixa a paciente marcar sem esperar</h3>
+          <div class="credito"><span class="frescor hoje">🟢 sábado</span><span>Exame, coluna Bússola · 03/10/2026</span></div>
+          <p class="texto">Artigo assinado pelo dirigente de uma empresa de agendamento recomenda antes e depois,
+            bastidores, depoimentos e o link de agendamento pronto na descrição do perfil. Lembra que beleza
+            vive de quem volta: o cuidado depois do atendimento é o que faz a visita virar hábito.</p>
+          <p class="texto"><b>Na sua agenda:</b> toque no seu próprio perfil como se fosse uma paciente nova.
+            Se, para marcar, ela precisa mandar mensagem e esperar, você voltou ao recorte 01. E antes e depois
+            só com autorização por escrito da paciente, sem prometer resultado.</p>
+          <div class="link"><a href="https://exame.com/bussola/como-setor-de-beleza-pode-usar-o-instagram-para-alavancar-vendas/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>“Oito em cada dez querem fazer procedimento”: o número circula, a pesquisa não aparece</h3>
+          <div class="credito"><span class="frescor hoje">🟢 sábado</span><span>Leite Quente News, artigo de opinião · 03/10/2026</span></div>
+          <p class="texto">Um artigo assinado por um cirurgião diz que mais de oito em cada dez brasileiros têm
+            interesse em algum procedimento estético. E que quase três em cada quatro que já fizeram preferem
+            resultado natural. O texto não diz quem fez a pesquisa, com quantas pessoas, nem quando.</p>
+          <p class="texto"><b>Na sua agenda:</b> antes de repetir um número no seu post ou na conversa de
+            avaliação, procure de onde ele veio. Número sem fonte, dito pela clínica, vira promessa da
+            clínica.</p>
+          <div class="link"><a href="https://www.leitequenteenews.com.br/2026/10/quando-estetica-deixa-de-ser-escolha-e.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Primeira semana da cobrança no WhatsApp das empresas: o boato de “WhatsApp pago” segue rodando</h3>
+          <div class="credito"><span class="frescor hoje">🟢 esta semana</span><span>O Tempo · 01/10/2026 · Tribuna de Jundiaí · 21/09/2026</span></div>
+          <p class="texto">Desde 1º de outubro, o WhatsApp oficial ligado a sistemas cobra pelas respostas que
+            passam da cota mensal grátis. Uma mensagem que circula entre pequenos negócios diz que “o WhatsApp
+            Business vai ser pago”. Os dois jornais esclarecem: o aplicativo do celular segue sem cobrança, e a
+            paciente nunca paga para mandar mensagem.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>Existem dois WhatsApp de empresa. O aplicativo do seu celular, que você mesma usa, continua
+              igual. O outro é a versão ligada a um sistema, que manda lembrete e responde sozinha. Só esse
+              passou a ter conta.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se receber a corrente, não troque de número nem pague nada por
+            causa dela. Se o seu sistema de agenda manda lembrete pelo WhatsApp, pergunte ao fornecedor se a
+            mensalidade muda.</p>
+          <div class="link"><a href="https://www.otempo.com.br/economia/2026/10/1/whatsapp-business-muda-cobranca-de-empreendedores-por-mensagens-entenda-quem-sera-afetado">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: até quem busca “fidelização” encontra primeiro vídeo de paciente nova</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 05/10/2026</span></div>
+          <p class="texto">Na busca “fidelização de clientes clínica de estética”, o vídeo mais visto, com vinte
+            mil visualizações, ensina a captar cliente nova. Os vídeos sobre fazer a paciente voltar ficam entre
+            três e quatro mil. E o roteiro para pedir indicação segue em sessenta e oito, há duas semanas e
+            meia.</p>
+          <p class="texto"><b>Na sua agenda:</b> pouca gente estuda como cuidar de quem já veio. Quem cuida,
+            cuida quase sozinha — e é aí que a sua clínica se diferencia.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=fideliza%C3%A7%C3%A3o+de+clientes+cl%C3%ADnica+de+est%C3%A9tica">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">A ideia volta aqui para fechar: o boca a boca não é sorte. A paciente bem acompanhada
+      depois do procedimento é a que fala da clínica. A amiga que ela manda precisa de resposta no mesmo dia.
+      Quando as duas pontas recebem retorno, a indicação deixa de ser surpresa e vira rotina da recepção.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar vem logo
+      abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Estado de Minas, Mundo Corporativo, 02/10/2026</b> — reportagem sobre uma aceleradora de clínicas
+        de saúde e estética e sua metodologia de cinco frentes. Frases atribuídas aos diretores comercial
+        (“a maior perda é o paciente que pediu informação e nunca recebeu follow-up”), de experiência
+        (acompanhar depois do procedimento traz retorno e indicação sem ampliar anúncio) e de marketing (boca a
+        boca “imprevisível”). Também republicada pelo Portal UAI e pelo Portal Comunique-se.
+        <a href="https://www.em.com.br/mundo-corporativo/2026/10/7513281-jdp-med-cria-forma-de-gerir-e-aumentar-o-lucro-de-clinicas.html">ler</a></li>
+      <li><b>Exame, coluna Bússola, 03/10/2026</b> — “Como setor de beleza pode usar o Instagram para alavancar
+        vendas”. Artigo de opinião: antes e depois, bastidores, depoimentos; três ou quatro publicações por
+        semana; link de agendamento na descrição do perfil; cuidado depois da venda para a cliente voltar.
+        <a href="https://exame.com/bussola/como-setor-de-beleza-pode-usar-o-instagram-para-alavancar-vendas/">ler</a></li>
+      <li><b>Leite Quente News, 03/10/2026</b> — artigo de opinião de cirurgião com os números “mais de 80% têm
+        interesse em procedimento estético” e “74% preferem resultado natural”, sem indicar a pesquisa.
+        <a href="https://www.leitequenteenews.com.br/2026/10/quando-estetica-deixa-de-ser-escolha-e.html">ler</a></li>
+      <li><b>O Tempo, 01/10/2026</b> — “WhatsApp Business muda cobrança de empreendedores por mensagens; entenda
+        quem será afetado”. Cobrança na versão ligada a sistemas, depois de mil mensagens grátis por mês por
+        número; aplicativo do celular segue grátis.
+        <a href="https://www.otempo.com.br/economia/2026/10/1/whatsapp-business-muda-cobranca-de-empreendedores-por-mensagens-entenda-quem-sera-afetado">ler</a></li>
+      <li><b>Tribuna de Jundiaí, 21/09/2026</b> — “WhatsApp Business será pago a partir de outubro? Mensagem
+        assusta pequenos negócios, mas cobrança não funciona como parece”. Fonte do boato e do esclarecimento
+        de que quem manda mensagem para a empresa não paga.
+        <a href="https://tribunadejundiai.com.br/economia/whatsapp-business-sera-pago-a-partir-de-outubro-mensagem-assusta-pequenos-negocios-mas-cobranca-nao-funciona-como-parece/">ler</a></li>
+      <li><b>Medição própria do dossiê, 05/10/2026</b> — buscas públicas no YouTube. “Fidelização de clientes
+        clínica de estética”: “5 estratégias para captar clientes para clínica de estética”, canal Professor
+        Heitor Cruz, 20.304 visualizações; “Fidelização de clientes na estética”, canal Estética com Thais
+        Coelho, 4.335; “Fidelização de clientes na estética”, Podcast Estética na TV, 3.768. “Programa de
+        indicação para clínica de estética”: “Como conseguir indicações de pacientes (script de indicação para
+        clínicas)”, canal Filipe Souza, 68 visualizações (68 em 18, 21, 23, 25, 28/09 e 02/10).
+        <a href="https://www.youtube.com/watch?v=yhWcc0qXO4A">vídeo sobre cliente nova</a> ·
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0">vídeo do roteiro</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <ul>
+        <li>• A reportagem da aceleradora é conteúdo de divulgação da própria empresa. Não traz número de
+          clínicas atendidas nem medição de resultado. As frases são opinião de quem vende o serviço.</li>
+        <li>• Não encontramos a pesquisa por trás dos números “mais de 80%” e “74%”. Por isso eles aparecem só
+          no recorte que fala justamente disso, e não como dado deste dossiê.</li>
+        <li>• Nas fontes de hoje não há dado do setor de estética sobre quantas pacientes se perdem por falta
+          de resposta.</li>
+        <li>• A medição do YouTube é uma foto do dia: a ordem da busca muda conforme quem pesquisa e quando.</li>
+        <li>• <b>Aviso:</b> citar uma empresa, um jornal ou um vídeo não é recomendar que você o use.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PARTE INTERNA — NUNCA VAI AO AR ═══════════════ -->
+
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 028 · 5 de outubro de 2026<br>
+    Documento de trabalho · as seções marcadas não vão ao ar
+  </div>
+
+</div>
+</body>
+</html>
