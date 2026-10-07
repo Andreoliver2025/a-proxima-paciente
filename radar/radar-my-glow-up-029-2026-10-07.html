@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 029 · 7 de outubro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+<style>
+  /* Marca visual da secao que so vai ao ar depois da validacao do Andre.
+     O filtro publico (versao-publica.cjs) remove tudo com a classe .aguardando-validacao. */
+  .aguardando-validacao{position:relative;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    border:1px dashed rgba(143,169,240,.55);border-radius:16px}
+  .aguardando-validacao::before{content:"⏳ Aguarda validação · não publicar ainda";position:absolute;
+    top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--g3)}
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Sete em cada dez ainda anotam a agenda no caderno. E é nele que mora a paciente que volta.</h1>
+    <p class="chamada">O setor de beleza fatura bilhões, mas a maioria dos salões e clínicas ainda
+      controla horário e caixa à mão. Ao mesmo tempo, um levantamento mostra que oitenta e cinco em cada
+      cem horários marcados são de quem já é cliente. A próxima paciente quase sempre já passou pela
+      sua maca — se alguém anotou.</p>
+    <div class="dateline">Edição Nº 029 · quarta-feira, 7 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a>
+        <div class="d">A gestão no caderno, e por que a ficha da paciente é onde mora o próximo horário.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: o caderno, quem volta, a rede que não sabe quem está sumindo, a Anvisa e a medição de hoje.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a>
+        <div class="d">Uma pergunta na primeira conversa: &ldquo;quem te falou da gente?&rdquo;.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">A data do próximo retorno, escrita antes de ela levantar da maca.</div></li>
+      <li><a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+      
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link — e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">&ldquo;Setor de beleza fatura bilhões, mas gestão de salões e clínicas ainda é
+      feita no caderno.&rdquo; Foi a manchete do <b>O Globo</b> nesta segunda, 5 de outubro.</p>
+
+    <p class="texto capitular">O número por trás dela é do Sebrae: menos de trinta em cada cem salões,
+      barbearias, clínicas de estética e spas usam algum sistema de gestão. O resto marca horário no
+      caderno, faz conta na calculadora e controla o caixa de memória. Os textos que repetem o dado lembram
+      o efeito: horário sobreposto, cancelamento e cliente que não volta.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>a próxima paciente quase sempre já
+      passou pela sua maca.</b> Ela está no caderno, na conversa antiga do WhatsApp, na memória da
+      recepção. O que falta não é paciente nova. É saber quem veio, quando deve voltar e quem trouxe quem.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Primeiro, um cuidado honesto. Não conseguimos abrir o texto completo do O Globo. O
+        número do Sebrae que circula nesta semana aparece em textos patrocinados por uma empresa que vende
+        sistema de gestão para beleza, publicados no Estado de Minas e no Portal UAI. O Sebrae é fonte séria;
+        a pesquisa original, com data e tamanho da amostra, não está nos textos.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Sistema de gestão&rdquo; é o programa onde ficam a agenda, o caixa e a ficha de cada
+          paciente. &ldquo;Ficha&rdquo;, aqui, é o mínimo: nome, telefone, o que fez, quando fez e quando
+          deve voltar. Não precisa ser programa caro. Uma planilha bem cuidada já é ficha.</p>
+      </div>
+
+      <p class="texto">O segundo dado da semana completa o primeiro. Uma plataforma de agendamento contou
+        dezessete milhões e setecentos mil horários confirmados entre julho de 2025 e junho de 2026, em
+        salões, barbearias, clínicas de estética e spas. Oitenta e cinco em cada cem foram marcados por
+        quem já era cliente.</p>
+
+      <p class="texto">Junte os dois. A maior parte da agenda vem de quem já veio. E a maior parte das
+        clínicas não tem, num lugar só, a lista de quem veio. Quem anota no caderno até sabe quem está
+        marcado amanhã. O difícil é saber quem não marcou há três meses — porque quem some não deixa
+        página escrita.</p>
+
+      <div class="olho">
+        <p>&ldquo;A paciente que sumiu não aparece no caderno. Ela aparece na página que ninguém
+          escreveu.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">É a mesma história que este dossiê vem contando. Na segunda, a perda estava na
+        paciente que pediu valor e ficou sem resposta. Na semana passada, a mensagem com nome valia mais
+        que o disparo. Hoje, o ponto anterior a tudo: para chamar pelo nome, para agradecer quem indicou,
+        para lembrar o retorno, alguém precisa ter anotado.</p>
+
+      <p class="texto">Um limite do dado: os oitenta e cinco em cada cem vêm dos clientes da própria
+        plataforma, que é paga e mistura salão, barbearia e clínica. Não é retrato da estética. E nada aqui
+        diz quanto uma clínica ganha ao organizar a ficha. O que dá para afirmar é o mecanismo: sem registro,
+        não há como chamar de volta quem sumiu.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">7 em 10</div>
+        <div class="lbl">salões e clínicas de beleza <b>sem sistema de gestão</b>, segundo o Sebrae</div></div>
+      <div class="numero"><div class="big">85 em 100</div>
+        <div class="lbl">horários marcados <b>por quem já era cliente</b>, numa plataforma de agendamento</div></div>
+      <div class="numero"><div class="big">1,1 milhão</div>
+        <div class="lbl">de <b>pequenos negócios</b> ativos de beleza e estética no país</div></div>
+      <div class="numero"><div class="big">68</div>
+        <div class="lbl">visualizações do vídeo que ensina a <b>pedir indicação</b>, igual desde 18 de setembro</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>O setor fatura bilhões, mas a agenda ainda mora no caderno</h3>
+          <div class="credito"><span class="frescor hoje">🟢 segunda</span><span>O Globo · 05/10/2026 · Estado de Minas e Portal UAI (conteúdo patrocinado) · 18/09 e 05/10/2026</span></div>
+          <p class="texto">Segundo o Sebrae, cerca de setenta em cada cem pequenos negócios de beleza
+            funcionam sem sistema de gestão. Agenda no caderno, comissão na calculadora, caixa em planilha
+            solta. Os textos ligam isso a horário sobreposto e a cliente que não volta.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>Não é sobre comprar programa. É sobre ter, num lugar só, quem veio, o que fez e quando deve
+              voltar. Caderno serve para amanhã; não serve para lembrar de quem sumiu.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> abra o caderno ou a agenda de julho. Quantas pacientes que
+            estavam lá não aparecem em outubro? Esse número é o seu ponto de partida.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMihAJBVV95cUxQUmo3UWhRN1o5Y090VlFabXJncmdMdHg1UzNlZEpiazg1NnM0a3JtcnRfLWxuMXY1QjZfaE12V3hjOHlxSXFMYnA1QzFKb1gtQUpBMHEzRGFYMWMxZlhhd2RBcWx0SWx0QzJFN3NVa2ZiWmxyMU5MN3kyaG5XeDR6NnlOMGYzR204N0pMeFFPOHRBQ1YxZ3BNbE1rclNpSUlNNlJVRlNzVTZoU0x5NXN1QzdSekptZFRSTldaTXRkRDV1YlZaSWtCYnl4eTZzUEFRalJXV04zVE4yZ25zbzVBM1NOZXk1TXNvUGF1SmtFVzJFcVhHMVdVYkhmTnF6Y0VaNmlSTA?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Oitenta e cinco em cada cem horários são de quem já é cliente</h3>
+          <div class="credito"><span class="frescor antes">🟡 duas semanas</span><span>Business Moment · 22/09/2026</span></div>
+          <p class="texto">Uma plataforma de agendamento contou dezessete milhões e setecentos mil horários
+            confirmados em doze meses. Oitenta e cinco em cada cem foram marcados por clientes que já
+            tinham vindo antes. A empresa agora vende ferramentas para avisar quem parou de marcar.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Cliente recorrente&rdquo; é a paciente que volta. O dado diz que a agenda de quem usa
+              essa plataforma é feita, quase toda, de gente que já conhece a casa.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> antes de pensar em anúncio, olhe para quem já veio. É
+            dali que sai a maior parte dos horários — inclusive os da amiga que ela indica.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNc2pjZEVtcUdtY2hqbnVkRDBsQ3RrbUhGTlVxTTYwVlpYbG5mZU9DbG9kb2picXVTLURxSGdoN3hqYi1xSE1NT2k5VDRiQ0I0M2czSzd2V3d6dnZwZEdVMzZTU2s0UGU5Qi1Pa2pwR2lBSUtaX0RhUmVmNnNTaFkzNFd1YUV5VWZHdVHSAZIBQVVfeXFMUFcwejYzeWl5WjRMdXFncHRRMC1aZWJOQmN0UXFqQ1JPSURtZmZLaWQwN0lSajBGSXFMOFhPUERZb3VlMmRzMWp5eUdqT2FldUk4a3J1V1hkb2tDRHJFZUNqdTc0cXpUN2dQdS1DNUg0bFd1TTlrZlhyNDIzU2kwNmxWbldQR2VUMUhPTnV3WWhZa1E?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Uma rede com treze unidades também não sabe, num lugar só, quem está para sumir</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Exame · 06/10/2026</span></div>
+          <p class="texto">A Exame visitou uma rede de beleza que fatura cerca de vinte e três milhões de
+            reais por ano. Entre os gargalos apontados: cada unidade usa um sistema diferente, e a rede não
+            enxerga, junto, quantas vezes a cliente vem nem quem corre risco de parar. Outro ponto: falta o
+            botão de WhatsApp no caminho digital.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Risco de parar&rdquo; é a paciente que vinha todo mês e está há sessenta dias sem
+              marcar. Quem tem a lista vê; quem não tem, só percebe quando ela já foi para outra.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> tamanho não resolve. O problema da rede grande é o mesmo
+            da clínica de uma sala. Confira se o seu perfil e o seu site levam direto ao WhatsApp em um
+            toque.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE4yUmdsY25INFhjM3VVMkZxdlNpQU5XSHBmVTZ0T1JWOXczX3VSWnFJdC1SNlRZalRXb0xNajhWVDRjZjRYZ0dsc0hnR2RnRjZaaFpncFdIc09YUkZ0WnhVdUkyT2J4OUdZYVM0VElMMA?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>A Anvisa abriu conversa com os profissionais de estética sobre as regras do setor</h3>
+          <div class="credito"><span class="frescor antes">🟡 este mês</span><span>Governo Federal · 21/09/2026 · Anvisa, reunião de 28/07/2026</span></div>
+          <p class="texto">A Anvisa recebeu representantes de esteticistas e cosmetólogos para discutir a
+            nota técnica que orienta a fiscalização dos serviços de estética. Em pauta, o uso de produtos e
+            aparelhos regularizados. A agência propôs um grupo de trabalho com gente de várias regiões.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Produto regularizado&rdquo; é o que tem registro na Anvisa. &ldquo;Nota técnica&rdquo; é
+              a orientação que a vigilância sanitária usa quando visita a clínica. Nada mudou ainda: a
+              conversa começou.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> a ficha também protege. Anote, para cada procedimento, o
+            produto usado e o lote. Se a vigilância perguntar, a resposta está escrita.</p>
+          <div class="link"><a href="https://jornaldebrasilia.com.br/noticias/saude/anvisa-discute-regulacao-dos-servicos-de-estetica/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: o vídeo que ensina a pedir indicação segue em sessenta e oito visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 07/10/2026</span></div>
+          <p class="texto">Na busca &ldquo;programa de indicação para clínica de estética&rdquo;, o roteiro
+            para pedir indicação marca sessenta e oito visualizações, o mesmo número desde 18 de setembro.
+            Na mesma busca, um vídeo sobre captar paciente nova passa de doze mil.</p>
+          <p class="texto"><b>Na sua agenda:</b> quase ninguém estuda como pedir à paciente satisfeita que
+            fale da clínica. É um espaço vazio — e quem o ocupa começa com uma pergunta simples, que está na
+            próxima seção.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">A paciente nova que mais confia em você chega pela boca de quem já foi. Mas só dá
+      para cuidar dessa indicação se você souber de onde ela veio.</p>
+
+    <p class="texto">Faça uma pergunta na primeira conversa, sempre a mesma: <b>&ldquo;Como você conheceu a
+      gente?&rdquo;</b>. Se a resposta for um nome, escreva na ficha da paciente nova e na ficha de quem
+      indicou. Sem isso, a indicação acontece, mas ninguém agradece, e quem indicou não sabe que fez
+      diferença.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span>
+      <p>&ldquo;Programa de indicação&rdquo; é só isto, organizado: saber quem trouxe quem e reconhecer quem
+        trouxe. Antes do prêmio, vem a anotação.</p>
+    </div>
+
+    <p class="texto">Na semana passada, este dossiê sugeriu um convite pronto para a paciente fiel repassar,
+      com o nome dela escrito. A pergunta de hoje fecha a outra ponta: quando a amiga chega, a recepção
+      confirma quem mandou. É assim que a indicação deixa de ser surpresa.</p>
+
+    <p class="texto">Um cuidado: se a sua profissão tem regra sobre recompensa por indicação, siga a do seu
+      conselho. Agradecer e reconhecer é sempre permitido.</p>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">Se a maior parte da agenda vem de quem já veio, a pergunta da semana é simples:
+      <b>quando cada paciente deveria voltar?</b></p>
+
+    <p class="texto">Todo procedimento tem um tempo natural de retorno. Você sabe qual é o de cada um. O que
+      se perde é escrever a data. Antes de a paciente levantar da maca, anote na ficha: &ldquo;próximo
+      retorno sugerido: semana tal&rdquo;. E diga isso a ela, com o motivo.</p>
+
+    <p class="texto">Quando a data chegar e ela não tiver marcado, a mensagem já tem nome e motivo:
+      &ldquo;Oi, Carla, faz três meses do seu procedimento. Quer que eu reserve um horário para a
+      reavaliação?&rdquo;. Não é cobrança. É cuidado com data.</p>
+
+    <div class="olho">
+      <p>&ldquo;Cada paciente sai da maca com a data do próximo retorno escrita — na ficha dela e na
+        nossa.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">E para quem já sumiu: comece pelas que vinham com frequência e pararam. Uma mensagem
+      individual, do WhatsApp da clínica, sem desconto e sem pressa. Quem responder, volta para a ficha com
+      data nova.</p>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Use no seu jeito, com a sua cara, sem prometer resultado.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <ul class="lista">
+        <li><b>&ldquo;O que eu anoto na sua ficha depois do procedimento.&rdquo;</b> Mostre a ficha (sem
+          dados de ninguém): data, produto, lote, próximo retorno. Fecho: &ldquo;é por isso que eu te
+          chamo na hora certa&rdquo;. Mostra cuidado e explica a mensagem que ela vai receber.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <ul class="lista">
+        <li><b>&ldquo;Quando voltar depois de cada procedimento.&rdquo;</b> Um cartão por procedimento que
+          você faz, com o tempo de retorno que você recomenda e o porquê. Último cartão: &ldquo;não lembra
+          quando foi o seu? Me chama que eu olho na sua ficha&rdquo;.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <ul class="lista">
+        <li><b>&ldquo;Você chegou aqui por indicação de quem?&rdquo;</b> Caixinha de pergunta. Repostar
+          as respostas, com autorização, agradecendo quem indicou pelo nome. Reconhece a paciente fiel na
+          frente de todo mundo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar
+      está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>O Globo, 05/10/2026</b> — &ldquo;Setor de beleza fatura bilhões, mas gestão de salões e
+        clínicas ainda é feita no caderno&rdquo;. Manchete usada na abertura.
+        <a href="https://news.google.com/rss/articles/CBMihAJBVV95cUxQUmo3UWhRN1o5Y090VlFabXJncmdMdHg1UzNlZEpiazg1NnM0a3JtcnRfLWxuMXY1QjZfaE12V3hjOHlxSXFMYnA1QzFKb1gtQUpBMHEzRGFYMWMxZlhhd2RBcWx0SWx0QzJFN3NVa2ZiWmxyMU5MN3kyaG5XeDR6NnlOMGYzR204N0pMeFFPOHRBQ1YxZ3BNbE1rclNpSUlNNlJVRlNzVTZoU0x5NXN1QzdSekptZFRSTldaTXRkRDV1YlZaSWtCYnl4eTZzUEFRalJXV04zVE4yZ25zbzVBM1NOZXk1TXNvUGF1SmtFVzJFcVhHMVdVYkhmTnF6Y0VaNmlSTA?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Estado de Minas, Networking e Negócios, 18/09/2026</b> — &ldquo;Pesquisa aponta que 7 em cada
+        10 salões e clínicas de beleza ainda não usam sistema de gestão&rdquo;. Dado atribuído ao Sebrae
+        (menos de 30% usam sistema integrado); mais de 1,1 milhão de pequenos negócios ativos de beleza e
+        estética; horário sobreposto e cliente que não volta. Conteúdo patrocinado por empresa de sistema de
+        gestão.
+        <a href="https://www.em.com.br/networking-e-negocios/2026/09/7503439-pesquisa-aponta-que-7-em-cada-10-saloes-e-clinicas-de-beleza-ainda-nao-usam-sistema-de-gestao.html" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Portal UAI, 05/10/2026</b> — &ldquo;Do secador ao caixa: profissionais da beleza também
+        precisam cuidar da gestão&rdquo;. Retoma o dado do Sebrae (70% sem gestão estruturada). Conteúdo
+        patrocinado.
+        <a href="https://www.uai.com.br/networking-e-negocios/2026/10/05/do-secador-ao-caixa-profissionais-da-beleza-tambem-precisam-cuidar-da-gestao/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Business Moment, 22/09/2026</b> — release de uma plataforma de agendamento para beleza: 17,7 milhões de agendamentos e
+        crescimento de 36,5% em contas ativas. Período de julho de 2025 a junho de 2026; 85,2% dos agendamentos feitos
+        por clientes recorrentes. Dados divulgados pela própria empresa.
+        <a href="https://news.google.com/rss/articles/CBMiigFBVV95cUxNc2pjZEVtcUdtY2hqbnVkRDBsQ3RrbUhGTlVxTTYwVlpYbG5mZU9DbG9kb2picXVTLURxSGdoN3hqYi1xSE1NT2k5VDRiQ0I0M2czSzd2V3d6dnZwZEdVMzZTU2s0UGU5Qi1Pa2pwR2lBSUtaX0RhUmVmNnNTaFkzNFd1YUV5VWZHdVHSAZIBQVVfeXFMUFcwejYzeWl5WjRMdXFncHRRMC1aZWJOQmN0UXFqQ1JPSURtZmZLaWQwN0lSajBGSXFMOFhPUERZb3VlMmRzMWp5eUdqT2FldUk4a3J1V1hkb2tDRHJFZUNqdTc0cXpUN2dQdS1DNUg0bFd1TTlrZlhyNDIzU2kwNmxWbldQR2VUMUhPTnV3WWhZa1E?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Exame, 06/10/2026</b> — &ldquo;Rede de beleza fatura R$ 23 milhões e encara desafio de escalar
+        cultura&rdquo;. Rede com treze unidades; gargalos de lista de clientes dispersa, padronização e
+        caminho digital sem botão de WhatsApp.
+        <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE4yUmdsY25INFhjM3VVMkZxdlNpQU5XSHBmVTZ0T1JWOXczX3VSWnFJdC1SNlRZalRXb0xNajhWVDRjZjRYZ0dsc0hnR2RnRjZaaFpncFdIc09YUkZ0WnhVdUkyT2J4OUdZYVM0VElMMA?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Jornal de Brasília / Anvisa, reunião de 28/07/2026</b> — Anvisa recebe representantes de
+        esteticistas, cosmetólogos e técnicos em estética para discutir a Nota Técnica 2/2024; proposta de
+        grupo de trabalho. Tema retomado em nota do Governo Federal de 21/09/2026.
+        <a href="https://jornaldebrasilia.com.br/noticias/saude/anvisa-discute-regulacao-dos-servicos-de-estetica/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do dossiê, 07/10/2026</b> — busca pública no YouTube &ldquo;programa de
+        indicação para clínica de estética&rdquo;: &ldquo;Como conseguir indicações de pacientes (script de
+        indicação para clínicas)&rdquo;, 68 visualizações (68 em todas as medições desde 18/09); &ldquo;5
+        estratégias secretas para captar pacientes em clínicas e consultórios&rdquo;, 12.028 visualizações.
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0" rel="nofollow noopener" target="_blank">ver</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>Não abrimos o texto completo do O Globo nem o da Exame: usamos a manchete e o resumo publicado; os
+        detalhes da rede de treze unidades vêm de resumo de busca. A pesquisa original do Sebrae, com data e
+        amostra, não aparece nos textos que citam o número. O dado de oitenta e cinco em cada cem é da base de
+        clientes de uma empresa, não do setor de estética como um todo. Não conseguimos abrir a nota do
+        Governo Federal de 21/09; o conteúdo descrito é o da reunião de julho. Nenhuma fonte desta edição mede
+        quanto uma clínica ganha ao organizar a ficha.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 029 · quarta-feira, 7 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
