@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 033 · 14 de outubro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Mais um lote proibido pela Anvisa. Quando a amiga perguntar &ldquo;é seguro?&rdquo;, a sua paciente sabe responder?</h1>
+    <p class="chamada">Nesta terça, a Anvisa proibiu um lote de tirzepatida, o remédio de algumas canetas para
+      emagrecer. É o quarto aviso deste ano sobre produto que passa pela clínica ou pela paciente. Quem sabe o que foi 
+      aplicado nela tem como falar de você com segurança.</p>
+    <div class="dateline">Edição Nº 033 · quarta-feira, 14 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a>
+        <div class="d">Mais um lote proibido. E a pergunta que chega antes de toda indicação.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Quatro avisos da Anvisa em 2026: o lote de ontem, a toxina falsa, os produtos da internet e o bioestimulador falso.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a>
+        <div class="d">Dê à paciente que indica a resposta para a pergunta da amiga.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">A notícia assusta. A sua mensagem pode acalmar, e reabrir a conversa.</div></li>
+      <li><a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+      
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Nesta terça, 13 de outubro, a Anvisa proibiu a venda e o uso de um lote de
+      <b>tirzepatida</b> feito para farmácia de manipulação. É o remédio de algumas canetas para emagrecer.</p>
+
+    <p class="texto capitular">Segundo a reportagem, a empresa já tinha recebido ordem para destruir esse lote e
+      não cumpriu. Agora ele precisa ser apreendido e recolhido. Em 2026, foi o quarto aviso da agência sobre
+      produto que passa pela clínica ou pela paciente. Os outros três: toxina falsa, bioestimulador falso e produtos vendidos pela
+      internet sem registro.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>antes de indicar você, a sua paciente vai ouvir
+      da amiga &ldquo;mas é seguro?&rdquo;. Quem sabe o que foi aplicado nela tem como responder. Quem não
+      sabe, fica quieta.</b> Na edição anterior, este dossiê falou de apontar a máquina para quem indica. Agora, o que
+      essa paciente precisa ter na mão para indicar com tranquilidade.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">O lote de ontem não é de produto de clínica de estética: é de matéria-prima para farmácia
+        de manipulação. Mas ele cai em cima de um assunto que já está na sua recepção. A edição anterior
+        trouxe o alerta de especialista sobre a caneta sem acompanhamento. Muitas pacientes usam, e muitas
+        compram manipulada.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Lote&rdquo; é o grupo de unidades fabricadas juntas, com o mesmo número impresso na caixa.
+          Quando a Anvisa proíbe um lote, não está proibindo o remédio inteiro. Está dizendo: aquelas caixas
+          com aquele número não podem ser vendidas nem usadas.</p>
+      </div>
+
+      <p class="texto">Os outros três avisos do ano tocam a sua maca mais de perto. Em fevereiro, unidades
+        falsas de um bioestimulador de colágeno. Em julho, cinco produtos vendidos pela internet por uma empresa
+        sem autorização, entre eles ácido hialurônico e fios. Em agosto, um lote falso de toxina botulínica, que
+        o próprio fabricante disse nunca ter trazido ao Brasil.</p>
+
+      <div class="olho">
+        <p>&ldquo;Aqui, toda paciente sai sabendo o que foi aplicado nela, com o número do lote.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">Agora, a ligação com a sua agenda. Indicação de procedimento estético é diferente de
+        indicação de restaurante. A amiga não pergunta só se ficou bonito. Pergunta quem fez, com o quê, e se
+        dá para confiar. Notícia de produto falso deixa essa pergunta mais frequente.</p>
+
+      <p class="texto">É a mesma história das últimas quartas, contada de outro ângulo. A lista das fiéis, o
+        convite para repassar, a ficha de três linhas, a mensagem para quem indica. Hoje entra uma peça que
+        faltava: o que a paciente leva para casa e mostra quando falam de você. O passo da semana, na seção 06,
+        é esse cartão.</p>
+
+      <p class="texto">Um limite honesto: nenhuma das fontes desta edição mede se paciente informada indica mais.
+        Isso é raciocínio, não pesquisa. O que as fontes mostram é que produto falso e sem registro circulou em
+        2026, e que a própria Anvisa pede a profissionais e pacientes que confiram o registro antes de usar.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Quatro recortes, todos da Anvisa. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">4</div>
+        <div class="lbl">avisos da Anvisa em 2026 sobre <b>produto que passa por clínica</b> de estética ou pela paciente dela</div></div>
+      <div class="numero"><div class="big">5</div>
+        <div class="lbl">produtos proibidos de uma vez em julho, vendidos <b>pela internet sem autorização</b></div></div>
+      <div class="numero"><div class="big">2</div>
+        <div class="lbl">falsificações confirmadas em 2026 <b>pelo próprio fabricante</b>: um bioestimulador e uma toxina</div></div>
+      <div class="numero"><div class="big">19 de 19</div>
+        <div class="lbl">locais fiscalizados numa operação da Anvisa em 2025 tinham <b>alguma irregularidade</b></div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Anvisa proíbe lote de tirzepatida, o remédio de algumas canetas para emagrecer</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Brasil em Folhas · 13/10/2026 · Resolução da Anvisa publicada no Diário Oficial</span></div>
+          <p class="texto">A agência proibiu vender, manipular e usar um lote de tirzepatida em pó, destinado a
+            farmácias de manipulação. A empresa tinha ordem de destruir o lote e, segundo a reportagem, não
+            cumpriu. A Anvisa mandou apreender e recolher.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Manipulada&rdquo; é a versão feita na farmácia, a partir de um pó comprado de fornecedor.
+              A proibição vale só para esse lote. A reportagem não diz se ele chegou a ser vendido.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se a paciente contar que usa caneta manipulada, anote na ficha e
+            oriente que ela converse com o médico que acompanha. Não comente dose nem marca: isso é do médico.</p>
+          <div class="link"><a href="https://www.brasilemfolhas.com.br/2026/10/anvisa-proibe-lote-de-tirzepatida-da-farmausa-e-determina-recolhimento/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Toxina botulínica falsa: o fabricante disse que nunca trouxe aquele lote ao Brasil</h3>
+          <div class="credito"><span class="frescor antes">🟡 agosto</span><span>Agência GBC · 28/08/2026 · Resolução da Anvisa</span></div>
+          <p class="texto">A Anvisa mandou apreender um lote falsificado de uma toxina botulínica de marca
+            conhecida. A empresa dona do registro avisou que nunca importou aquele lote. A embalagem também não
+            batia com a original.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>A reportagem lembra: não é a toxina inteira que está proibida, só as caixas falsas. A orientação é
+              conferir no sistema da Anvisa se o registro está &ldquo;ativo&rdquo; e comprar de fornecedor
+              confiável.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> guarde a nota de compra e anote o lote de cada frasco na ficha da
+            paciente. Se um dia sair um aviso, você sabe em minutos quem recebeu o quê.</p>
+          <div class="link"><a href="https://agenciagbc.com/2026/08/28/anvisa-proibe-venda-de-lote-falsificado-de-botox-e-determina-apreensao-no-brasil/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Cinco produtos de estética vendidos pela internet proibidos de uma vez</h3>
+          <div class="credito"><span class="frescor antes">🟡 julho</span><span>BNews São Paulo · 31/07/2026 · Resolução da Anvisa publicada no Diário Oficial</span></div>
+          <p class="texto">Entre eles, um skinbooster, ácido hialurônico e fios de sustentação. A loja online que
+            vendia não tinha autorização para funcionar, e os produtos não tinham registro. A proibição vale para
+            lotes feitos a partir de novembro de 2024.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Registro&rdquo; é a permissão da Anvisa para o produto ser vendido e usado no Brasil.
+              &ldquo;Autorização de funcionamento&rdquo; é a permissão para a empresa vender. O produto pode
+              ser verdadeiro e, mesmo assim, a loja não poder vendê-lo.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> antes de fechar compra com fornecedor novo, confira o registro do
+            produto no site da Anvisa. Se não aparecer, não use.</p>
+          <div class="link"><a href="https://www.bnewssaopaulo.com.br/amp/noticias/politica/anvisa-proibe-venda-de-skinbooster-filorga-fios-loyoderm-e-acido-hialuronico-irregular.html" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Bioestimulador de colágeno falso foi achado pelo dono da marca</h3>
+          <div class="credito"><span class="frescor antes">🟡 fevereiro</span><span>Oeste Mais · 26/02/2026 · decisão da Anvisa de 25/02</span></div>
+          <p class="texto">A empresa dona do registro encontrou no mercado caixas com código de lote fora do
+            padrão, rótulo em outra língua e cores diferentes. A Anvisa proibiu vender e usar o produto
+            falsificado em todo o país.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Bioestimulador&rdquo; é o injetável que estimula a pele a produzir colágeno. O falso pode
+              não ter a composição nem a conservação do original. Pela caixa, dá para desconfiar.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> abra a embalagem na frente da paciente. Ela vê a caixa lacrada, o
+            rótulo em português e o lote. Isso é cuidado, e ela vai lembrar.</p>
+          <div class="link"><a href="https://www.oestemais.com/saude/2026/02/26/anvisa-proibe-comercializacao-de-bioestimulador-de-colageno-falsificado/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">Toda indicação passa por uma pergunta: &ldquo;e é seguro?&rdquo;. A sua paciente
+      precisa ter a resposta na mão.</p>
+
+    <p class="texto">Pense na conversa que acontece longe da clínica. A amiga elogia o resultado e quer saber
+      onde foi. Logo depois vem a dúvida, porque ela também viu a notícia da toxina falsa. Se a sua paciente
+      só puder dizer &ldquo;ah, confio nela&rdquo;, a amiga talvez fique em dúvida.</p>
+
+    <p class="texto">Agora imagine que ela abre o WhatsApp e mostra: o nome do procedimento, o produto, a
+      marca, o lote e a foto da caixa lacrada. Ela não está vendendo você. Está mostrando como você trabalha. E
+      é isso que a amiga queria ouvir.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span>
+      <p>Não precisa ser documento bonito. Uma mensagem com quatro linhas e uma foto basta. O que importa é
+        que fique no celular dela, pronto para mostrar, sem precisar pedir para você.</p>
+    </div>
+
+    <p class="texto">Um cuidado: o cartão informa, não promete. Nada de prometer resultado nem
+      de comparar com outras clínicas. E siga as regras do seu conselho sobre o que pode dizer de produto e de
+      procedimento.</p>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">A notícia de produto falso assusta a paciente. A sua mensagem pode acalmar, e reabrir a
+      conversa com quem sumiu.</p>
+
+    <p class="texto">Quem fez procedimento com você há alguns meses pode ter visto a manchete e ficado com a
+      pulga atrás da orelha. Ela não vai ligar para perguntar. Mas, se você escrever primeiro, a conversa
+      começa por cuidado, e não por venda.</p>
+
+    <p class="texto">Um modelo: &ldquo;Oi, Ana, tudo bem? Saiu notícia esta semana sobre produto falso em
+      estética. Só para você ficar tranquila: o que usamos em você tem registro na Anvisa, e o lote está
+      anotado na sua ficha. Se quiser, te mando a foto. E faz cinco meses do seu procedimento: quer marcar uma
+      avaliação?&rdquo;</p>
+
+    <div class="olho">
+      <p>&ldquo;Antes de a paciente perguntar se é seguro, a gente já mandou a resposta.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">Só mande se for verdade. Se a ficha dela não tem o lote, comece a anotar a partir de hoje e
+      deixe essa mensagem para as próximas pacientes. E use a coluna &ldquo;próximo retorno&rdquo; da ficha de
+      três linhas: comece por quem passou da data.</p>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Use no seu jeito, com a sua cara, sem prometer resultado.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <ul class="lista">
+        <li><b>&ldquo;O que eu faço antes de abrir qualquer produto na sua frente.&rdquo;</b> Mostre as mãos
+          pegando a caixa lacrada, o rótulo em português e o número do lote em close. Fecho: &ldquo;você tem o
+          direito de saber o que vai na sua pele&rdquo;. Sem mostrar marca em destaque.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <ul class="lista">
+        <li><b>&ldquo;Três perguntas para fazer antes de qualquer procedimento.&rdquo;</b> Cartão 1: qual
+          produto vai ser usado? Cartão 2: ele tem registro na Anvisa? Cartão 3: qual é o lote, e posso ver a
+          caixa? Último: &ldquo;aqui, você sai com as três respostas no WhatsApp&rdquo;. Informa sem atacar
+          ninguém.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <ul class="lista">
+        <li><b>&ldquo;Você já perguntou o que foi aplicado em você?&rdquo;</b> Enquete: sim ou nunca pensei
+          nisso. No story seguinte: &ldquo;quem quiser, me chama que eu mando o cartão do seu último
+          procedimento&rdquo;. Quem responder abriu a conversa, e isso vai para a ficha.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar
+      está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Brasil em Folhas, 13/10/2026</b> — &ldquo;Anvisa proíbe lote de tirzepatida da FarmaUSA e
+        determina recolhimento&rdquo;. Resolução-RE nº 4.009, publicada no Diário Oficial da União em
+        13/10/2026; lote HXTZ251015 de tirzepatida em pó liofilizado para uso magistral, da FarmaUSA
+        Pharmaceutical Ltda.; motivo citado: descumprimento do Termo de Interdição para Destruição nº 35/2026;
+        proibidos comercialização, distribuição, manipulação e uso, com apreensão e recolhimento.
+        <a href="https://www.brasilemfolhas.com.br/2026/10/anvisa-proibe-lote-de-tirzepatida-da-farmausa-e-determina-recolhimento/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Agência GBC, 28/08/2026</b> — &ldquo;Anvisa proíbe venda de lote falsificado de Botox e determina
+        apreensão no Brasil&rdquo;. Produto: Dysport 500U, lote P22686 (COMP-007736); a detentora do registro
+        informou que nunca importou o lote; embalagem diferente da original; orientação de conferir a situação
+        do registro no sistema da Anvisa e comprar de fornecedor confiável. Número da resolução (RE nº
+        3.356/2026) visto apenas em resumo de busca.
+        <a href="https://agenciagbc.com/2026/08/28/anvisa-proibe-venda-de-lote-falsificado-de-botox-e-determina-apreensao-no-brasil/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>BNews São Paulo, 31/07/2026</b> — &ldquo;Anvisa proíbe venda de skinbooster Filorga, fios Loyoderm
+        e ácido hialurônico irregular&rdquo;. Resolução nº 2.959/2026; cinco dispositivos médicos vendidos pela
+        internet pela Dhermashop Saúde Ltda., sem Autorização de Funcionamento e sem registro; vale para lotes
+        fabricados a partir de 13/11/2024; orientação de verificar o registro antes da compra ou do uso.
+        <a href="https://www.bnewssaopaulo.com.br/amp/noticias/politica/anvisa-proibe-venda-de-skinbooster-filorga-fios-loyoderm-e-acido-hialuronico-irregular.html" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Oeste Mais, 26/02/2026</b> — &ldquo;Anvisa proíbe comercialização de bioestimulador de colágeno
+        falsificado&rdquo;. Decisão de 25/02/2026; unidades falsas de Sculptra, lote A00203, identificadas pela
+        Galderma Brasil (código de lote fora do padrão, rótulo em outra língua, cores e informações diferentes);
+        proibidos comercialização, distribuição, fabricação, importação, propaganda e uso.
+        <a href="https://www.oestemais.com/saude/2026/02/26/anvisa-proibe-comercializacao-de-bioestimulador-de-colageno-falsificado/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Diário do Pará, 13/02/2025</b> — &ldquo;Anvisa encontra botox vencido e outras irregularidades em
+        clínicas de estética&rdquo;. Operação &ldquo;Estética com Segurança&rdquo;: 19 estabelecimentos
+        inspecionados em seis cidades, todos com alguma irregularidade; produtos sem registro, toxinas vencidas,
+        seringas reutilizadas e falta de prontuário. Dado usado no quadro de números.
+        <a href="https://diariodopara.com.br/dr-responde/anvisa-encontra-botox-vencido-e-outras-irregularidades-em-clinicas-de-estetica/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Dossiê A Próxima Paciente, edições Nº 029 (07/10) e Nº 032 (14/10)</b> — a ficha de três linhas e o
+        alerta sobre a caneta sem acompanhamento, retomados nas seções 01, 04 e 06.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>Não abrimos as resoluções no Diário Oficial; os números de resolução e de lote vêm das reportagens. A
+        reportagem sobre a tirzepatida não diz se o lote chegou a ser vendido nem se houve problema de
+        qualidade. Sobre o bioestimulador falso, as fontes divergem: uma fala só do lote A00203, outra sugere
+        proibição mais ampla. A operação com dezenove locais irregulares é de fevereiro de 2025, não deste ano.
+        A contagem de &ldquo;quatro avisos em 2026&rdquo; é deste dossiê, a partir dessas reportagens, e pode
+        haver outros. Não conferimos o passo a passo atual da consulta de registro no site da Anvisa. E nenhuma
+        fonte mede se paciente que recebe o cartão do procedimento indica mais: isso é raciocínio, não dado.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ INTERNO · nunca publicado ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 033 · quarta-feira, 14 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
