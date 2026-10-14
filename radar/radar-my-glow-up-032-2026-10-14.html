@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 032 · 14 de outubro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+<style>
+  /* Marca visual da secao que so vai ao ar depois da validacao do Andre.
+     O filtro publico (versao-publica.cjs) remove tudo com a classe .aguardando-validacao. */
+  .aguardando-validacao{position:relative;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    border:1px dashed rgba(143,169,240,.55);border-radius:16px}
+  .aguardando-validacao::before{content:"⏳ Aguarda validação · não publicar ainda";position:absolute;
+    top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--g3)}
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>A inteligência artificial já escreve o seu post. Quase ninguém a usa para trazer a próxima paciente.</h1>
+    <p class="chamada">Um estudo sobre marketing na América Latina, noticiado ontem, mostra onde as empresas
+      colocam a máquina: sete em cada dez usos são para fazer conteúdo. Menos de quinze em cada cem servem
+      para trazer dinheiro. Na clínica, a conta é parecida, e a resposta está na ficha da paciente.</p>
+    <div class="dateline">Edição Nº 032 · quarta-feira, 14 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a>
+        <div class="d">A máquina foi parar na legenda. O que traz paciente continua em outro lugar.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a máquina na legenda, o dado guardado e não usado, o alerta das canetas, a conversa que perde a venda e a medição de hoje.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a>
+        <div class="d">Use a máquina que já escreve o seu post para escrever o agradecimento de quem indica.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">A mensagem do dia seguinte, e a resposta que não pode demorar.</div></li>
+      <li><a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+      
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">&ldquo;Apenas 15% das áreas de marketing na América Latina utilizam IA para
+      impulsionar receita.&rdquo; Foi a manchete do portal <b>TI Inside</b> nesta terça, 13 de outubro.</p>
+
+    <p class="texto capitular">O número vem de um estudo da consultoria NTT Data sobre marketing digital na
+      região. A inteligência artificial já está nas empresas, mas quase toda em duas tarefas: fazer conteúdo
+      e responder conversa. Usos que trazem dinheiro de forma direta, como escolher a quem falar e quando,
+      ficam abaixo de quinze em cada cem.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>a máquina já escreve a sua legenda. A próxima
+      paciente ainda vem de quem passou pela sua maca, e alguém precisa lembrar de pedir.</b> Nas últimas
+      semanas, este dossiê falou da ficha anotada e da mensagem com nome. Hoje, a pergunta é para que você
+      está usando a ferramenta que já tem no celular.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Os números completos saíram antes, em 5 de outubro, na revista Propmark. Segundo a
+        reportagem, sessenta e nove em cada cem usos da inteligência artificial no marketing da região são
+        para produzir conteúdo e imagem. Quarenta e cinco em cada cem, para conversar com o cliente. O que
+        mira receita fica abaixo de quinze.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Produzir conteúdo&rdquo; é a máquina escrever a legenda, o texto do carrossel, a ideia do
+          reels. &ldquo;Usar para receita&rdquo; é outra coisa: é a máquina olhar a sua lista de pacientes e
+          dizer quem está para voltar, quem sumiu e quem costuma indicar. Uma enfeita a vitrine. A outra
+          enche a agenda.</p>
+      </div>
+
+      <p class="texto">O mesmo estudo traz um segundo dado, mais revelador. Setenta em cada cem empresas usam
+        os próprios dados para escolher a quem falar. Mas só catorze em cada cem ajustam a mensagem pelo que a
+        pessoa fez. E só sete em cada cem ligam o resultado do marketing ao dinheiro que entrou.</p>
+
+      <div class="olho">
+        <p>&ldquo;A máquina escreve o post. Quem traz a próxima paciente é a paciente que já saiu
+          feliz daqui.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">Traga isso para a clínica. Se você usa a inteligência artificial, é provável que seja
+        para a legenda. Nada contra: post ajuda a ser lembrada. Mas a agenda, como mostrou a edição de 7 de
+        outubro, é feita na maior parte de quem já veio. E de quem chega pela boca dessas pacientes.</p>
+
+      <p class="texto">É a mesma história contada de outro ângulo. Na quarta passada, a ficha de três linhas.
+        Na sexta, o programa que manda a mensagem, mas não sabe para quem. Hoje, a ferramenta que você já tem,
+        apontada para o lugar errado. O passo da semana, na seção 06, é apontá-la para quem indica você.</p>
+
+      <p class="texto">Um limite honesto: o estudo fala de áreas de marketing de empresas, não de clínica. Não
+        conseguimos abrir o relatório original nem o texto do TI Inside; usamos a reportagem da Propmark, que
+        não informa quantas empresas foram ouvidas. Nada aqui diz quanto uma clínica ganha usando a máquina de
+        outro jeito. O que dá para afirmar é onde ela está sendo usada hoje.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">69 em 100</div>
+        <div class="lbl">usos da inteligência artificial no marketing da região são <b>para fazer conteúdo</b></div></div>
+      <div class="numero"><div class="big">menos de 15</div>
+        <div class="lbl">em cada cem usos são <b>para trazer dinheiro</b> de forma direta</div></div>
+      <div class="numero"><div class="big">145</div>
+        <div class="lbl">notificações de <b>reação grave suspeita</b> às canetas para emagrecer, de 2020 a 2025, segundo a Anvisa</div></div>
+      <div class="numero"><div class="big">69</div>
+        <div class="lbl">visualizações do vídeo que ensina a <b>pedir indicação</b>; o de fidelidade passa de nove mil</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Na América Latina, a inteligência artificial do marketing está quase toda na legenda</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>TI Inside · 13/10/2026 · Propmark · 05/10/2026 · estudo da NTT Data</span></div>
+          <p class="texto">O estudo mostra que as empresas usam a máquina, sobretudo, para fazer conteúdo e para
+            responder conversas. Os usos ligados direto a receita, como prever quem vai comprar e acompanhar
+            quem pediu informação, não chegam a quinze em cada cem.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Acompanhar quem pediu informação&rdquo; é o que o marketing chama de nutrir o lead: voltar
+              a falar, com calma, com a paciente que perguntou o valor e não marcou.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se a sua ferramenta só escreve post, ela trabalha na vitrine.
+            Experimente pedir a ela outra coisa esta semana: um rascunho de mensagem para uma paciente
+            específica. A seção 06 mostra como.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxNRXlqQ3YtMXA3YXdUem43eW5hY2xMSmMwTXprXy1FNUxCZTBmeVZDWlJRQTdZVi1qLTZCcTlHNVUwc0l3b2xaWm5LM2tSYmdvdjV4TmZNNVR1VnNzd2EyY1BiNkRCeTZYaHdUdTdEX0x1OGVwVkVOMTBaYWh1SGg2ckJhaXlGTWctNldSZ0RsRXpPNk9BQ2ZNQWEzQnBQS2JQQlFBakFPUTduNmhPNUVHenR3SmNjejRHX3JQMUswRjM?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Quase todo mundo guarda os dados do cliente. Poucos usam para falar com cada um</h3>
+          <div class="credito"><span class="frescor antes">🟡 9 dias</span><span>Propmark · 05/10/2026 · estudo da NTT Data</span></div>
+          <p class="texto">No mesmo estudo, a maioria das empresas diz usar os próprios dados para escolher a
+            quem falar. Mas só catorze em cada cem mudam a mensagem conforme o que a pessoa fez, como a última
+            compra ou o último contato.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Personalizar pelo comportamento&rdquo;, na clínica, é a mensagem que diz &ldquo;faz três
+              meses do seu procedimento&rdquo; em vez de &ldquo;temos promoção esta semana&rdquo;. O dado é o
+              mesmo da ficha; a diferença é usar.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> a ficha só trabalha quando vira mensagem com nome e com motivo.
+            Se você montou a de três linhas na semana passada, ela já basta para isso.</p>
+          <div class="link"><a href="https://propmark.com.br/?p=133891" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Canetas para emagrecer: novo alerta de especialista sobre o uso por conta própria</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>Portal Tri Notícias · 14/10/2026 · Anvisa, alerta de 09/02/2026, via Portal de Prefeitura</span></div>
+          <p class="texto">Uma reportagem de hoje traz um endocrinologista alertando para os riscos da caneta sem
+            acompanhamento. O alerta repete o que a Anvisa disse em fevereiro: o risco de inflamação grave do
+            pâncreas cresceu com o uso fora da indicação, sobretudo para emagrecer sem necessidade clínica.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Caneta&rdquo; é o remédio injetável para diabetes e obesidade que virou moda para perder
+              peso. Desde junho de 2025, a farmácia só vende com receita retida. Prescrever é do médico.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> parte das suas pacientes usa ou vai usar. Na ficha, pergunte
+            sempre: &ldquo;está usando algum remédio, inclusive caneta? Quem acompanha?&rdquo;. Se ela contar dor
+            forte na barriga, a orientação da Anvisa é procurar atendimento médico na hora.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNaG91Q3EyN2NuaVRTRGg1U3kwMWJ4NFltRlJpUWFXTWZUS19mYUFjU0hYdUhXU1VNR2M4bEItSzczS1BweTBFY2dPSXNTcWtXc2NWSzNKQ3QtdUE3eGJrTXlKaklDSGV3aGVIdUxleGZ1b1pMNnpGRGNqWlhiNVJzSzE3U01KdFJIWTdURGR1LXl6cndzNzVNbG1iWFkySE1zNHE4ajdLXzJXR0JIQ015V2NDOUljSEtHYWEtTC1n?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>&ldquo;A venda não se perde na decisão. Ela se perde na conversa&rdquo;</h3>
+          <div class="credito"><span class="frescor antes">🟡 maio</span><span>ABC da Comunicação · 04/05/2026 · dado da Opinion Box</span></div>
+          <p class="texto">O texto cita uma pesquisa: seis em cada dez brasileiros já desistiram de uma compra
+            depois de uma experiência ruim. E aponta a demora na resposta como um dos pontos em que o
+            WhatsApp perde cliente: &ldquo;quando a resposta demora, o cliente já está avaliando outra
+            opção&rdquo;.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Experiência ruim&rdquo; pode ser resposta que não veio, valor sem explicação ou mensagem
+              automática que não entende a pergunta. O título fala de WhatsApp; a pesquisa, de compra em geral.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que perguntou o valor do procedimento à noite e só
+            teve resposta no dia seguinte talvez já tenha falado com outra clínica. Combine com a equipe um
+            prazo máximo de resposta, e quem cobre quando você estiver na maca.</p>
+          <div class="link"><a href="https://www.abcdacomunicacao.com.br/62-dos-consumidores-ja-desistiram-de-comprar-no-whatsapp-e-empresas-nem-sabem-quanto-dinheiro-estao-perdendo/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: ensinar fidelidade tem plateia; ensinar a pedir indicação, quase nenhuma</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 14/10/2026</span></div>
+          <p class="texto">Na busca &ldquo;programa de indicação para clínica de estética&rdquo;, o vídeo com
+            roteiro para pedir indicação segue em sessenta e nove visualizações. Na mesma busca, uma aula do
+            Sebrae do Paraná sobre como criar programa de fidelidade passa de nove mil.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Fidelidade&rdquo; é fazer a paciente voltar. &ldquo;Indicação&rdquo; é fazer a paciente
+              trazer outra. Quase todo conteúdo ensina a primeira. A segunda depende de uma conversa que pouca
+              gente aprendeu a ter.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> pedir indicação continua sendo terreno vazio. Quem faz isso com
+            naturalidade, e agradece quem indicou, sai na frente sem precisar de anúncio.</p>
+          <div class="link"><a href="https://www.youtube.com/results?search_query=programa+de+indica%C3%A7%C3%A3o+para+cl%C3%ADnica+de+est%C3%A9tica" rel="nofollow noopener" target="_blank">clique aqui para ver a busca</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">A máquina que escreve a sua legenda também escreve um agradecimento. A diferença é
+      para quem ele vai.</p>
+
+    <p class="texto">Post fala com todo mundo e com ninguém. A paciente nova que mais confia em você chega
+      pela boca de quem já foi. Essa conversa acontece no celular da sua paciente, com a amiga dela. Você não
+      controla, mas pode dar o empurrão: um obrigado com nome e um convite fácil de repassar.</p>
+
+    <p class="texto">Se você já usa um assistente como o ChatGPT para legenda, peça a ele outra coisa:
+      &ldquo;escreva uma mensagem curta e carinhosa para agradecer uma paciente que me indicou para uma amiga.
+      Tom próximo, sem desconto, sem exagero&rdquo;. Depois, reescreva com o seu jeito e um detalhe que só
+      você sabe.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span>
+      <p>&ldquo;Assistente&rdquo; é o programa em que você digita um pedido e ele devolve um texto. Ele não
+        conhece a sua paciente. Por isso, <b>não cole lá dados de saúde nem o nome completo</b>: use o primeiro
+        nome no máximo, e complete o resto no seu WhatsApp. Ficha de paciente é dado protegido por lei.</p>
+    </div>
+
+    <p class="texto">Um cuidado: se a sua profissão tem regra sobre recompensa por indicação, siga a do seu
+      conselho. Agradecer e reconhecer é sempre permitido.</p>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">A volta começa antes da data do retorno. Começa na mensagem do dia seguinte.</p>
+
+    <p class="texto">Um dia depois do procedimento, mande uma mensagem individual: &ldquo;Oi, Carla, como você
+      acordou hoje? Qualquer coisa, me chama&rdquo;. Não é venda. É a prova de que alguém lembrou dela fora da
+      maca. E é a conversa em que dúvida, incômodo e elogio aparecem cedo.</p>
+
+    <p class="texto">Aproveite para conferir a ficha. Se ela usa caneta para emagrecer ou outro remédio, isso
+      está anotado? A pergunta mostra cuidado, e a resposta ajuda você a planejar o próximo procedimento junto
+      com quem acompanha a paciente.</p>
+
+    <div class="olho">
+      <p>&ldquo;Mensagem de paciente não espera o fim do expediente. Combinamos quem responde quando eu estou
+        na maca.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">E para quem já sumiu: use a coluna &ldquo;próximo retorno&rdquo; da ficha da semana
+      passada. Comece pelas que passaram da data. Uma mensagem por vez, com o nome e o motivo, sem desconto.
+      Quem responder ganha data nova na ficha.</p>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Use no seu jeito, com a sua cara, sem prometer resultado.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <ul class="lista">
+        <li><b>&ldquo;O que a inteligência artificial faz aqui na clínica, e o que ela nunca vai fazer.&rdquo;</b>
+          Mostre de leve o assistente escrevendo uma legenda. Corte para você atendendo, ouvindo a paciente.
+          Fecho: &ldquo;a máquina me ajuda a escrever; quem cuida de você sou eu&rdquo;.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <ul class="lista">
+        <li><b>&ldquo;Está usando caneta para emagrecer? Me conte antes do procedimento.&rdquo;</b> Cartão 1:
+          a pergunta. Cartão 2: por que a profissional precisa saber dos remédios em uso. Cartão 3: a caneta é
+          remédio, com receita e acompanhamento médico. Último: &ldquo;na dúvida, fale com o seu médico e me
+          avise&rdquo;. Informa sem receitar nada.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <ul class="lista">
+        <li><b>&ldquo;Como você prefere ser lembrada do seu retorno?&rdquo;</b> Enquete: WhatsApp ou ligação.
+          Quem responder já disse que quer ser lembrada, e isso vai para a ficha. É a permissão de que falamos
+          na sexta, pedida de um jeito leve.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar
+      está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>TI Inside, 13/10/2026</b> — &ldquo;Apenas 15% das áreas de marketing na América Latina utilizam
+        IA para impulsionar receita&rdquo;. Manchete usada na abertura.
+        <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxNRXlqQ3YtMXA3YXdUem43eW5hY2xMSmMwTXprXy1FNUxCZTBmeVZDWlJRQTdZVi1qLTZCcTlHNVUwc0l3b2xaWm5LM2tSYmdvdjV4TmZNNVR1VnNzd2EyY1BiNkRCeTZYaHdUdTdEX0x1OGVwVkVOMTBaYWh1SGg2ckJhaXlGTWctNldSZ0RsRXpPNk9BQ2ZNQWEzQnBQS2JQQlFBakFPUTduNmhPNUVHenR3SmNjejRHX3JQMUswRjM?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Propmark, 05/10/2026</b> — &ldquo;Uso avançado de IA para gerar receita fica abaixo de 15% na AL,
+        diz NTT Data&rdquo;. Estudo &ldquo;Digital Marketing in Latin America 2026&rdquo;: 69% dos usos em
+        conteúdo e design, 45% em conversa com o cliente, menos de 15% em usos voltados a receita; 70% usam
+        dados próprios para escolher público, 14% personalizam pelo comportamento; 35% ligam indicadores
+        digitais aos objetivos da empresa, 7% a métricas financeiras.
+        <a href="https://propmark.com.br/?p=133891" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Portal Tri Notícias, 14/10/2026</b> — &ldquo;Canetas emagrecedoras: endocrinologista alerta para
+        os riscos da automedicação&rdquo;. Manchete usada no recorte 03.
+        <a href="https://news.google.com/rss/articles/CBMivgFBVV95cUxNaG91Q3EyN2NuaVRTRGg1U3kwMWJ4NFltRlJpUWFXTWZUS19mYUFjU0hYdUhXU1VNR2M4bEItSzczS1BweTBFY2dPSXNTcWtXc2NWSzNKQ3QtdUE3eGJrTXlKaklDSGV3aGVIdUxleGZ1b1pMNnpGRGNqWlhiNVJzSzE3U01KdFJIWTdURGR1LXl6cndzNzVNbG1iWFkySE1zNHE4ajdLXzJXR0JIQ015V2NDOUljSEtHYWEtTC1n?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Portal de Prefeitura, 10/02/2026</b> — &ldquo;Uso crescente de canetas emagrecedoras leva Anvisa
+        a emitir novo alerta&rdquo;. Alerta de 09/02/2026 sobre pancreatite aguda com dulaglutida, liraglutida,
+        semaglutida e tirzepatida; 145 notificações de suspeita de evento adverso e seis suspeitas de óbito
+        entre 2020 e 07/12/2025; aumento ligado ao uso fora da indicação; receita retida na farmácia desde junho
+        de 2025; orientação de procurar atendimento médico diante de dor abdominal intensa.
+        <a href="https://portaldeprefeitura.com.br/brasil/uso-crescente-de-canetas-emagrecedoras-leva-anvisa-a-emitir-novo/614909/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>ABC da Comunicação, 04/05/2026</b> — &ldquo;62% dos consumidores já desistiram de comprar no
+        WhatsApp e empresas nem sabem quanto dinheiro estão perdendo&rdquo;. Dado atribuído à Opinion Box
+        (62% já desistiram de uma compra após experiência negativa); frases sobre demora na resposta e
+        &ldquo;a venda se perde na conversa&rdquo;, de um executivo de empresa de software de vendas.
+        <a href="https://www.abcdacomunicacao.com.br/62-dos-consumidores-ja-desistiram-de-comprar-no-whatsapp-e-empresas-nem-sabem-quanto-dinheiro-estao-perdendo/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do dossiê, 14/10/2026</b> — busca pública no YouTube &ldquo;programa de
+        indicação para clínica de estética&rdquo;: &ldquo;Como conseguir indicações de pacientes (script de
+        indicação para clínicas)&rdquo;, 69 visualizações (68 de 18/09 a 09/10; 69 em 12/10).
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0" rel="nofollow noopener" target="_blank">ver</a></li>
+      <li><b>Medição própria do dossiê, 14/10/2026</b> — mesma busca: &ldquo;Como criar um programa de
+        fidelidade? Passo a passo fácil&rdquo;, Sebrae PR, 9.316 visualizações.
+        <a href="https://www.youtube.com/watch?v=MF4aT6-6hxI" rel="nofollow noopener" target="_blank">ver</a></li>
+      <li><b>Dossiê A Próxima Paciente, edições Nº 029 (07/10) e Nº 030 (09/10)</b> — a ficha de três linhas e
+        a permissão para receber mensagem, retomadas nas seções 04, 05 e 06.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>Não abrimos o texto do TI Inside nem o relatório original da NTT Data; os números vêm da reportagem da
+        Propmark, que não informa quantas empresas nem quais países entraram no estudo. O estudo é sobre áreas
+        de marketing de empresas, não sobre clínicas. Não abrimos o texto do Portal Tri Notícias: usamos a
+        manchete, e os fatos sobre risco vêm do alerta da Anvisa de fevereiro. No texto da ABC da Comunicação,
+        o título fala de WhatsApp, mas o dado da Opinion Box é sobre compra em geral, sem amostra nem data; a
+        frase sobre demora é opinião de um executivo, sem pesquisa. As visualizações do YouTube mudam a cada
+        hora e não medem o que acontece na clínica. Nenhuma fonte desta edição mede quantas pacientes chegam
+        por agradecimento ou convite.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 032 · quarta-feira, 14 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
