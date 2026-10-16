@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Edição Nº 036 · 16/10/2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Tem paciente desistindo na conversa do WhatsApp, antes de chegar à maca. E ela não avisa.</h1>
+    <p class="chamada">Uma notícia diz que 62% dos consumidores já desistiram de comprar pelo WhatsApp, e que
+      as empresas nem sabem quanto perdem com isso. Na clínica, essa é a paciente que pediu o preço, esperou a
+      resposta e foi embora. Ela não reclama. Ela só para de responder.</p>
+    <div class="dateline">Edição Nº 036 · sexta-feira, 16 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">A desistência no WhatsApp ganhou número. E por que ela também apaga uma indicação.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a conversa que esfria, quanto fatura a maioria dos salões, a Anvisa conversando com a estética, o pacote por assinatura e um vídeo sobre indicação de pacientes.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O QUE MUDOU ══════════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Uma notícia do portal ABC da Comunicação pôs número em algo que toda recepção
+      conhece: <b>62% dos consumidores</b> já desistiram de comprar pelo WhatsApp. E, segundo o título, as
+      empresas nem sabem quanto dinheiro estão perdendo.</p>
+
+    <p class="texto capitular">Na sua clínica, essa desistência tem rosto. É a moça que perguntou o valor do
+      procedimento numa terça à noite, recebeu a resposta na quinta e já tinha marcado em outro lugar. Ela não
+      some da agenda, porque nunca chegou a entrar nela. Por isso ninguém sente falta.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: a paciente que desiste na conversa não leva só o
+      procedimento dela. Leva também a amiga que ela indicaria depois. Indicação nasce de quem foi bem atendida,
+      e o atendimento começa na primeira mensagem, não na maca.</p>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">Esta edição continua as duas anteriores, publicadas hoje. Elas falavam da paciente que
+        já veio e parou de voltar. Aqui o problema acontece um passo antes: a pessoa que quis vir e não foi
+        respondida a tempo. Uma clínica pode cuidar bem de quem já é paciente e, mesmo assim, perder gente
+        na porta.</p>
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Desistir de comprar no WhatsApp&rdquo; é a conversa que esfria: a pessoa pede informação,
+          espera, cansa e não volta. Nos sistemas de venda isso tem nome em inglês, &ldquo;lead perdido&rdquo;.
+          Na clínica, é a paciente que pediu o preço e nunca marcou.</p></div>
+      <p class="texto">Um limite honesto: só deu para ler o título da notícia, que é de maio. Não sabemos quem
+        fez o levantamento, quantas pessoas foram ouvidas nem se havia clínicas entre as empresas. O número
+        mostra que o problema é comum. Ele não mede o que acontece na sua recepção. Isso está anotado nas
+        fontes.</p>
+      <p class="texto">Dá para ter a sua própria medida sem número de fora: olhe as conversas da última semana
+        que terminaram com uma pergunta da paciente e nenhuma resposta da clínica. Quantas foram?</p>
+    </details>
+
+    <div class="olho"><p>&ldquo;Quem pergunta o preço e não recebe resposta não volta para reclamar. Ela marca
+      com outra.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span></div>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><span class="big">62%</span><span class="lbl">dos consumidores já <b>desistiram de comprar</b> pelo WhatsApp, segundo o título de uma notícia de maio</span></div>
+      <div class="numero"><span class="big">R$ 50 mil</span><span class="lbl">por mês: a <b>maioria dos salões</b> de beleza do Brasil fatura menos que isso, segundo um levantamento citado em setembro</span></div>
+      <div class="numero"><span class="big">10%</span><span class="lbl">foi quanto o <b>setor de beleza</b> cresceu no primeiro trimestre de 2026, segundo a consultoria Circana, citada pela CNN Brasil</span></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Seis em cada dez pessoas já desistiram de comprar pelo WhatsApp</h3>
+          <div class="credito"><span class="frescor antes">🟡 segunda, 04/05</span><span>ABC da Comunicação</span></div>
+          <p class="texto">A notícia diz que 62% dos consumidores já abandonaram uma compra na conversa do
+            WhatsApp e que as empresas não sabem quanto perdem. Só deu para ler o título.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Desistir no WhatsApp&rdquo; é a conversa que fica sem resposta, ou com resposta tarde
+              demais. A pessoa não diz que foi embora. Ela só não escreve mais.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a pergunta que chega fora do horário é a que mais esfria. Vale
+            combinar com a equipe quem responde primeiro na manhã seguinte, antes de abrir a agenda do dia.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNmFPT1AtV3B4UW80X2toNUwwMWxZUGhoRnVFRm5vMVRGUWM2SklidTZFbzVUU3BRUUxnSXM1dFdjYXI5aVAtLVFoNWo4WFM4SnhaeXJPQzR0ZWZsblJIV1A0X0h2VHFZZnRwRFhWd3dMdnpXUzdtQmxqTS1pSEdMLUZrMFpJNjRsd1dsME1DU3RWZ1R4cXRMTlBLUk93M25OR1FxZzBPQnA3R1JOTW9WdWRNOXhYVmZEbElkOUMwbTZVZXlvWTdmaXZ3VnJoTlZqYjR0c194WldpSHAwOXc?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A maioria dos salões de beleza fatura menos de cinquenta mil reais por mês</h3>
+          <div class="credito"><span class="frescor antes">🟡 sexta, 18/09</span><span>Portal UAI</span></div>
+          <p class="texto">Um levantamento citado pelo portal aponta que a maior parte dos salões do país fica
+            abaixo desse valor mensal. O título fala de salões; não diz se clínicas de estética entraram na
+            conta.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Faturamento&rdquo; é tudo o que entra no caixa no mês, antes de pagar aluguel, produto e
+              equipe. Não é o lucro.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> com caixa apertado, anúncio pago pesa. A paciente que já confia
+            em você e conta para uma amiga é um caminho que não depende de verba de anúncio. Vale saber quem são
+            as pacientes que mais trazem gente.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxNWHpidGoxM1pMV3V1aEtJVHVpSnRtSjhmVGdyQll6WUNMRF81NTdiSlZTX3Q0RWhOQXU5LUxWMmQzUWVmRmZUUGxXc3VPTXJEVlV0X0p6aGg4bjc4c0R6N2NXcXd0anUxRWZDZENiSUdsa2MtNkZyaVVjeDdIbGdsNmJtWWM4eURWZS1kYnBEVkhsdUZ5bXhDOVg1T1BzNFBlN2Y5SHhhcU5nOF84bEwzRUYtTUw4VzVrQ0ZfbjJ2dzhKSmZjWEVObU1zMlIyMy10ejRfeWtrQzBzT2I5TlFUOEFn?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>A Anvisa sentou com profissionais de estética para discutir as regras dos serviços</h3>
+          <div class="credito"><span class="frescor antes">🟡 segunda, 21/09</span><span>Governo Federal</span></div>
+          <p class="texto">A Anvisa se reuniu com profissionais da área para debater os serviços de estética. Em
+            julho, o Jornal de Brasília já tinha noticiado que a agência discute a regulação do setor. Nas fontes
+            desta edição, ainda não há regra nova publicada.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Regulação&rdquo; é o conjunto de regras sobre quem pode fazer cada procedimento, em que
+              tipo de sala e com quais cuidados. A Anvisa é a agência do governo que fiscaliza produto e serviço
+              de saúde.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> regra nova costuma cobrar papel em dia. Vale conferir se a ficha
+            de cada paciente e o termo assinado antes do procedimento estão guardados e fáceis de achar.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPT0NPaGFOd3c5STk1NmJQZ1VDYUU4M1BZQ2lHZXlkTzF1R3BGMWIxWkM5NVctU051QWcwbEduQ2F3Q1dyQ3M4cTg5LWNKRks0U0VCU2daeElvYjZsQ1c4N2dSSGhjYUdLa1gxUTc4SnFvVGhuMWotRER4MFVLdllBSk5TRjE2N1FHS08wT3c2S25PaElDNWtTbEN5UEtTNVhhUHJVV3A4NFFWQnY5TVNUWUpjT3ZXN1RHcjRvLU9CTDl6bE1LdmdDUEZ6MHRtb1VJNEcw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Pacote por assinatura chega ao salão e à barbearia, como na plataforma de filmes</h3>
+          <div class="credito"><span class="frescor antes">🟡 terça, 31/03</span><span>Diário Indústria &amp; Comércio</span></div>
+          <p class="texto">A reportagem fala do modelo de assinatura ganhando força no setor de beleza: a cliente
+            paga um valor fixo por mês e volta com frequência combinada. O texto trata de salão e barbearia, não
+            de clínica.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Assinatura&rdquo; é o mesmo jeito de pagar da plataforma de filmes: um valor todo mês, em
+              vez de pagar cada vez que vem.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> procedimento de manutenção, com retorno marcado, é onde esse
+            formato mais se parece com a rotina da clínica. Antes de criar qualquer pacote, vale checar com quem
+            orienta a sua clínica o que pode ser oferecido assim.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPaTd2WHVHRFFKbk54RjhQSFdqU2pkZW45THhrN3R3cjlUOE5lWlgza2NuMWxueEFLTXlwVEdPVmZhOGpyUXFZR0loN216ejIxa1NRclN0b0M5ZEQzWjN1MG9Kci1zTjhhQnZzVEdzbjMzRk9pTnJNTXdVSGFRTFBRblFYUEpxcDhiaWlGNkVHc04wcmY2bUFwZHk5OThoOUFwVHVmbGd5aVNraVQ4bXJVNWVQZEdvQ04tTmhEQ09nM2pudXZNUjFocnJiNzJwT0JPS0E?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Um vídeo pergunta o que faz um bom programa de indicação de pacientes</h3>
+          <div class="credito"><span class="frescor antes">🟡 coleta de hoje</span><span>YouTube · Vitor Jaci</span></div>
+          <p class="texto">O vídeo &ldquo;Como fazer um bom programa de indicação de pacientes?&rdquo; tinha mil e
+            vinte e duas visualizações na coleta de hoje. É conteúdo de quem ensina, não pesquisa.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Programa de indicação&rdquo; é o combinado com a paciente: ela traz uma amiga e a clínica
+              reconhece isso de algum jeito. A amiga indicada não paga nada a mais por ter vindo indicada.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de criar qualquer combinado, vale saber quem já indica sem
+            pedir. Na próxima paciente nova, a recepção pode perguntar e anotar: &ldquo;quem te falou da
+            gente?&rdquo;.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=wMx70A949cI" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">Volta a ideia do começo: indicação nasce de quem foi bem atendida. E o bom atendimento não
+      começa na maca. Começa quando alguém responde a primeira mensagem.</p>
+  </section>
+
+  <!-- ══════════════ 03 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>ABC da Comunicação</b> — &ldquo;62% dos consumidores já desistiram de comprar no WhatsApp e empresas
+        nem sabem quanto dinheiro estão perdendo&rdquo;, 04/05/2026.
+        <a href="https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNmFPT1AtV3B4UW80X2toNUwwMWxZUGhoRnVFRm5vMVRGUWM2SklidTZFbzVUU3BRUUxnSXM1dFdjYXI5aVAtLVFoNWo4WFM4SnhaeXJPQzR0ZWZsblJIV1A0X0h2VHFZZnRwRFhWd3dMdnpXUzdtQmxqTS1pSEdMLUZrMFpJNjRsd1dsME1DU3RWZ1R4cXRMTlBLUk93M25OR1FxZzBPQnA3R1JOTW9WdWRNOXhYVmZEbElkOUMwbTZVZXlvWTdmaXZ3VnJoTlZqYjR0c194WldpSHAwOXc?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Portal UAI</b> — &ldquo;Maioria dos salões de beleza no Brasil fatura menos de R$ 50 mil por mês,
+        aponta levantamento&rdquo;, 18/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMi4gFBVV95cUxNWHpidGoxM1pMV3V1aEtJVHVpSnRtSjhmVGdyQll6WUNMRF81NTdiSlZTX3Q0RWhOQXU5LUxWMmQzUWVmRmZUUGxXc3VPTXJEVlV0X0p6aGg4bjc4c0R6N2NXcXd0anUxRWZDZENiSUdsa2MtNkZyaVVjeDdIbGdsNmJtWWM4eURWZS1kYnBEVkhsdUZ5bXhDOVg1T1BzNFBlN2Y5SHhhcU5nOF84bEwzRUYtTUw4VzVrQ0ZfbjJ2dzhKSmZjWEVObU1zMlIyMy10ejRfeWtrQzBzT2I5TlFUOEFn?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Governo Federal (Anvisa)</b> — &ldquo;Anvisa se reúne com profissionais de estética para debater
+        serviços da área&rdquo;, 21/09/2026.
+        <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxPT0NPaGFOd3c5STk1NmJQZ1VDYUU4M1BZQ2lHZXlkTzF1R3BGMWIxWkM5NVctU051QWcwbEduQ2F3Q1dyQ3M4cTg5LWNKRks0U0VCU2daeElvYjZsQ1c4N2dSSGhjYUdLa1gxUTc4SnFvVGhuMWotRER4MFVLdllBSk5TRjE2N1FHS08wT3c2S25PaElDNWtTbEN5UEtTNVhhUHJVV3A4NFFWQnY5TVNUWUpjT3ZXN1RHcjRvLU9CTDl6bE1LdmdDUEZ6MHRtb1VJNEcw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Jornal de Brasília</b> — &ldquo;Anvisa discute regulação dos serviços de estética&rdquo;, 29/07/2026.
+        Citado como contexto no recorte 03, a partir do título na coleta de hoje.</li>
+      <li><b>Diário Indústria &amp; Comércio</b> — &ldquo;Do streaming ao salão e barbearia: modelo de assinatura
+        ganha força no setor de beleza&rdquo;, 31/03/2026.
+        <a href="https://news.google.com/rss/articles/CBMi0gFBVV95cUxPaTd2WHVHRFFKbk54RjhQSFdqU2pkZW45THhrN3R3cjlUOE5lWlgza2NuMWxueEFLTXlwVEdPVmZhOGpyUXFZR0loN216ejIxa1NRclN0b0M5ZEQzWjN1MG9Kci1zTjhhQnZzVEdzbjMzRk9pTnJNTXdVSGFRTFBRblFYUEpxcDhiaWlGNkVHc04wcmY2bUFwZHk5OThoOUFwVHVmbGd5aVNraVQ4bXJVNWVQZEdvQ04tTmhEQ09nM2pudXZNUjFocnJiNzJwT0JPS0E?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>CNN Brasil</b> — &ldquo;Setor de beleza no Brasil cresceu 10% no 1º trimestre, diz Circana&rdquo;,
+        07/06/2026. Usado só no quadro de números.
+        <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPazFKMGdsd0l5Y3pfeGg2Y3h6WlYtd1J2bXZRN2YwMjgxVVlCb2pPUXBNeW5ZN1ctSms3bG5oUWVFOUJJOExIemQ4VDhvVFlka3NlU095dUFqdUpQZmZnaTYtM2JxVnFvaGtvbmM4aC12OXBRc2pOVUJ0WDgxRFFEZWxKMVhhMTkxT2M3aXN0dC1lbnQwQThZNjlGUkwwT2hHX3UtTmxR?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>YouTube, Vitor Jaci</b> — &ldquo;Como fazer um bom programa de indicação de pacientes?&rdquo;, 1.022
+        visualizações na coleta de 16/10/2026.
+        <a href="https://www.youtube.com/watch?v=wMx70A949cI" rel="nofollow noopener" target="_blank">ver</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>O texto completo das notícias: os links chegam por um agregador de notícias e não abriram o conteúdo.
+        Esta edição usa só o que está no título. Não deu para saber quem fez o levantamento dos 62%, quantas
+        pessoas responderam, nem se clínicas entraram na conta. O limite de cinquenta mil reais fala de salões,
+        não de clínicas, e a origem do levantamento não aparece no título. Não sabemos o que foi decidido na
+        reunião da Anvisa, nem se haverá regra nova e quando. A reportagem sobre assinatura é de março. A data de
+        publicação do vídeo não veio na coleta. Nenhuma fonte aqui mede quantas indicações uma clínica deixa de
+        receber por responder tarde.</p></div>
+  </section>
+
+  <!-- ══════════════ INTERNO · nunca publicado ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 036 · sexta-feira, 16 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
