@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Edição Nº 035 · 16/10/2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A clínica ainda anota a agenda no caderno. E o caderno não avisa quando uma paciente some.</h1>
+    <p class="chamada">Uma reportagem do jornal O Globo mostrou que o setor de beleza fatura bilhões, mas boa
+      parte dos salões e clínicas ainda se organiza no papel. O papel não é o problema. O problema é que ninguém
+      fica sabendo de quem parou de vir.</p>
+    <div class="dateline">Edição Nº 035 · sexta-feira, 16 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">A gestão no caderno virou manchete. E a pergunta que vem antes de qualquer ferramenta.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: o caderno, a rede que cresceu e quer manter o jeito de atender, o Instagram, quem está entrando na área da beleza e os vídeos sobre fidelizar.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O QUE MUDOU ══════════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">No dia 5 de outubro, O Globo publicou uma reportagem com um título que muita dona de
+      clínica vai reconhecer: o setor de beleza fatura bilhões, mas a gestão de salões e clínicas ainda é feita
+      no caderno.</p>
+
+    <p class="texto capitular">Na sua recepção, isso tem um efeito que não aparece no papel. O caderno guarda
+      quem marcou. Ele não guarda quem deixou de marcar. A paciente que voltava a cada três meses e parou não
+      deixa rastro: some em silêncio, e ninguém percebe a tempo de chamar.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: antes de pensar em ferramenta, responda uma
+      pergunta. Você sabe, hoje, quais pacientes não voltam há mais de três meses? Se a resposta depende de
+      folhear o caderno inteiro, é ali que a paciente está escapando.</p>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">Esta edição continua a anterior, publicada mais cedo hoje. Lá, a pergunta era o que a
+        ferramenta tem que fazer na sua semana. Aqui, ela fica mais simples: para mandar mensagem a quem sumiu,
+        primeiro alguém precisa saber quem sumiu. Sem essa lista, nenhuma ferramenta tem o que fazer.</p>
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Gestão no caderno&rdquo; é a agenda, o pagamento e a ficha da paciente anotados à mão. Funciona
+          para o dia de hoje. O que ele não faz é olhar para trás e avisar: &ldquo;essa paciente vinha todo mês e
+          faz noventa dias que não aparece&rdquo;.</p></div>
+      <p class="texto">Um limite honesto: só deu para ler o título da reportagem. O link chega por um agregador de
+        notícias e não abriu o texto inteiro. Por isso esta edição não cita nenhum número de dentro dela. Isso
+        está anotado nas fontes.</p>
+    </details>
+
+    <div class="olho">&ldquo;O caderno mostra quem marcou. A gente precisa saber quem parou de marcar.&rdquo;
+      <span class="quem">A frase para levar à equipe</span></div>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><span class="big">6,8%</span><span class="lbl">foi quanto o mercado de beleza no Brasil cresceu em 2025, segundo o título de uma notícia de setembro</span></div>
+      <div class="numero"><span class="big">R$ 23 mi</span><span class="lbl">é o faturamento de uma rede de beleza que agora diz ter o desafio de manter o seu jeito de atender ao crescer</span></div>
+      <div class="numero"><span class="big">20.732</span><span class="lbl">visualizações de um vídeo sobre como trazer cliente nova para a clínica de estética</span></div>
+      <div class="numero"><span class="big">4.346</span><span class="lbl">visualizações do vídeo mais visto, na mesma coleta, sobre fazer voltar a cliente que já veio. Cerca de cinco vezes menos</span></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Beleza fatura bilhões, mas a clínica ainda se organiza no caderno</h3>
+          <div class="credito"><span class="frescor">🟡 segunda, 05/10</span><span>O Globo</span></div>
+          <p class="texto">A reportagem aponta que, mesmo num setor que movimenta bilhões, salões e clínicas
+            ainda controlam a gestão no papel. Só deu para ler o título.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Gestão&rdquo; é tudo que mantém a clínica de pé fora da maca: a agenda, o que entrou e saiu do
+              caixa e a ficha de cada paciente com o histórico dela.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> mesmo no caderno, dá para separar uma página só para quem não
+            voltou. Quem fecha a agenda do dia anota ali o nome de quem faltou e não remarcou.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxPWWVWTV9JYUh0UlFsM0pEMTZJcHV4RlJQVzRZWWRYenhrSHhVamp2NTdzcWVQRnk4Qzd6aTlvcW5mTlhUOUdZNUNUMENaV1NpZjBqd0NBNnZ6WV9qYWFxSnRnaDRYY3E5c01leHQzN2xsS0w4TFR0Y1hQZzFNUjV1SmJ0bzhlSk9HVnlPSHpMWUZXdVF1VnVLaUtFMnVJNGhTVm1qZk5hNkoyLVQ3anpNWWcyNmZSQmstSVdCSzVjYXk3bTVSMUNrQTIyRzRHZVQwWUVHY0pHX0lFa3lPWFdHQWRNd0lUbVZTb2NGRjlncDNZT3JycVHSAYQCQVVfeXFMUFJqN1FoUTdaOWNPdFZRWm1yZ3JnTHR4NVMzZWRKYms4NTZzNGtybXJ0Xy1sbjF2NUI2X2hNdld4Yzh5cUlxTGJwNUMxSm9YLUFKQTBxM0RhWDFjMWZYYXdkQXFsdElsdEMyRTdzVWtmYlpscjFOTDd5MmhuV3g0ejZ5TjBmM0dtODdKTHhRTzh0QUNWMWdwTWxNa3JTaUlJTTZSVUZTc1U2aFNMeTVzdUM3UnpKbWRUUk5XWk10ZEQ1dWJWWklrQmJ5eHk2c1BBUWpSV1dOM1ROMmduc281QTNTTmV5NU1zb1BhdUprRVcyRXFYRzFXVWJIZk5xemNFWjZpUkw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Rede de beleza fatura vinte e três milhões e esbarra no desafio de manter o seu jeito</h3>
+          <div class="credito"><span class="frescor">🟡 quarta, 07/10</span><span>Exame</span></div>
+          <p class="texto">A reportagem conta de uma rede de beleza que cresceu e agora enfrenta o desafio de
+            &ldquo;escalar a cultura&rdquo;. Só deu para ler o título.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Escalar a cultura&rdquo; é fazer a sala nova atender do mesmo jeito que a primeira. É a
+              recepcionista nova saber chamar a paciente pelo nome e lembrar do procedimento que ela fez.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> o jeito de atender que faz a paciente voltar costuma morar na
+            cabeça da dona. Escreva três coisas que você sempre faz no pós-procedimento e entregue à equipe.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE4yUmdsY25INFhjM3VVMkZxdlNpQU5XSHBmVTZ0T1JWOXczX3VSWnFJdC1SNlRZalRXb0xNajhWVDRjZjRYZ0dsc0hnR2RnRjZaaFpncFdIc09YUkZ0WnhVdUkyT2J4OUdZYVM0VElMMA?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Como o setor de beleza pode usar o Instagram para vender</h3>
+          <div class="credito"><span class="frescor">🟡 sábado, 03/10</span><span>Exame</span></div>
+          <p class="texto">Mais um texto sobre o Instagram como vitrine de vendas para a beleza. Só deu para ler
+            o título.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>No Instagram, a paciente pergunta pela mensagem direta, a &ldquo;DM&rdquo;. É a mesma pergunta que
+              chega no WhatsApp, só que por outra porta da recepção.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> o post traz quem pergunta. Virar horário marcado depende de
+            alguém responder e anotar o nome. Combine quem olha as mensagens do Instagram e em que horário.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxQNHp5d3M2aUhJTVlNZUdVNFpib0FRd3V4V3pqTFNETFNFY0dOckRxQXU0YXJkT1ZWMUJwcjFOREJjV3A5Y05MeGtRZk9GcWt4a3ZzVHdFQmVZc2I4bmRXT3lWQTdpUmVMb3RtSGdHUC1xVllTcEFFWkhYaEJXb3NmMUlqbUlxU2o1YkpOTzJPU0xEUTBMMnc?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Guia de hoje ensina por onde começar a ganhar dinheiro na área da beleza</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje, 16/10</span><span>Serasa</span></div>
+          <p class="texto">Um guia publicado hoje explica por onde começar para quem quer trabalhar e ganhar
+            dinheiro com beleza. Só deu para ler o título.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>Um guia assim é sinal de procura: gente pensando em abrir o próprio espaço. Não é dado sobre
+              quantas abriram de fato.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> quando aparece mais opção perto da paciente, quem já conhece a
+            sua maca é quem você mais precisa manter perto. Comece pela lista de quem já fez procedimento com você.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9UdGs0ZVpZQzVIYnF4blpiZFZQV05kTUJEMUtBcW84eVZhU253bzhRYzZBTjFNeGQ0UnZIMzYyYWN4dVFrOFd1dW5NcHU4c1NtbGJ4ZjlDanM1SVE2eFZlQ2NCVGtZM0kwODU0anBJaUlMUQ?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Fazer a cliente voltar rende menos vídeo do que buscar cliente nova</h3>
+          <div class="credito"><span class="frescor">🟡 sem data</span><span>YouTube · Estética com Thais Coelho e Professor Heitor Cruz</span></div>
+          <p class="texto">Entre os vídeos coletados hoje, o mais visto sobre trazer cliente nova para a clínica de
+            estética tem cerca de cinco vezes mais visualizações do que o mais visto sobre fidelizar quem já veio.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Fidelizar&rdquo; é fazer a paciente voltar. Visualização mostra o que as pessoas procuram
+              assistir, não o que funciona melhor na clínica.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a atenção de todo mundo vai para a paciente nova. A que já veio
+            costuma ficar sem ninguém olhando por ela. É essa que a página &ldquo;quem não voltou&rdquo; protege.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=uuXb6LCA69M" rel="nofollow noopener" target="_blank">clique aqui para ver o vídeo sobre fidelizar</a> ·
+            <a href="https://www.youtube.com/watch?v=yhWcc0qXO4A" rel="nofollow noopener" target="_blank">clique aqui para ver o vídeo sobre cliente nova</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">Voltando à ideia do começo: as cinco notícias falam de crescer, vender e atrair. Nenhuma
+      fala de quem já passou pela sua maca e não voltou. Essa lista é sua, e ela começa numa pergunta: quem não
+      volta há mais de três meses?</p>
+  </section>
+
+  <!-- ══════════════ 03 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar
+      está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>O Globo, 05/10/2026</b> — &ldquo;Setor de beleza fatura bilhões, mas gestão de salões e clínicas ainda
+        é feita no caderno&rdquo;. Só a manchete foi lida.
+        <a href="https://news.google.com/rss/articles/CBMi9gFBVV95cUxPWWVWTV9JYUh0UlFsM0pEMTZJcHV4RlJQVzRZWWRYenhrSHhVamp2NTdzcWVQRnk4Qzd6aTlvcW5mTlhUOUdZNUNUMENaV1NpZjBqd0NBNnZ6WV9qYWFxSnRnaDRYY3E5c01leHQzN2xsS0w4TFR0Y1hQZzFNUjV1SmJ0bzhlSk9HVnlPSHpMWUZXdVF1VnVLaUtFMnVJNGhTVm1qZk5hNkoyLVQ3anpNWWcyNmZSQmstSVdCSzVjYXk3bTVSMUNrQTIyRzRHZVQwWUVHY0pHX0lFa3lPWFdHQWRNd0lUbVZTb2NGRjlncDNZT3JycVHSAYQCQVVfeXFMUFJqN1FoUTdaOWNPdFZRWm1yZ3JnTHR4NVMzZWRKYms4NTZzNGtybXJ0Xy1sbjF2NUI2X2hNdld4Yzh5cUlxTGJwNUMxSm9YLUFKQTBxM0RhWDFjMWZYYXdkQXFsdElsdEMyRTdzVWtmYlpscjFOTDd5MmhuV3g0ejZ5TjBmM0dtODdKTHhRTzh0QUNWMWdwTWxNa3JTaUlJTTZSVUZTc1U2aFNMeTVzdUM3UnpKbWRUUk5XWk10ZEQ1dWJWWklrQmJ5eHk2c1BBUWpSV1dOM1ROMmduc281QTNTTmV5NU1zb1BhdUprRVcyRXFYRzFXVWJIZk5xemNFWjZpUkw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Exame, 07/10/2026</b> — &ldquo;Rede de beleza fatura R$ 23 milhões e encara desafio de escalar
+        cultura&rdquo;. Só a manchete foi lida.
+        <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE4yUmdsY25INFhjM3VVMkZxdlNpQU5XSHBmVTZ0T1JWOXczX3VSWnFJdC1SNlRZalRXb0xNajhWVDRjZjRYZ0dsc0hnR2RnRjZaaFpncFdIc09YUkZ0WnhVdUkyT2J4OUdZYVM0VElMMA?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Exame, 03/10/2026</b> — &ldquo;Como setor de beleza pode usar o Instagram para alavancar
+        vendas&rdquo;. Só a manchete foi lida.
+        <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxQNHp5d3M2aUhJTVlNZUdVNFpib0FRd3V4V3pqTFNETFNFY0dOckRxQXU0YXJkT1ZWMUJwcjFOREJjV3A5Y05MeGtRZk9GcWt4a3ZzVHdFQmVZc2I4bmRXT3lWQTdpUmVMb3RtSGdHUC1xVllTcEFFWkhYaEJXb3NmMUlqbUlxU2o1YkpOTzJPU0xEUTBMMnc?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Serasa, 16/10/2026</b> — &ldquo;Como ganhar dinheiro na área da beleza: por onde começar&rdquo;. Só a
+        manchete foi lida.
+        <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9UdGs0ZVpZQzVIYnF4blpiZFZQV05kTUJEMUtBcW84eVZhU253bzhRYzZBTjFNeGQ0UnZIMzYyYWN4dVFrOFd1dW5NcHU4c1NtbGJ4ZjlDanM1SVE2eFZlQ2NCVGtZM0kwODU0anBJaUlMUQ?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Folha do Litoral News, 21/09/2026</b> — &ldquo;Mercado de beleza no Brasil cresce 6,8% em
+        2025&rdquo;. Só a manchete foi lida.
+        <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxQOTBoeUlTRUlNcjZTbUJPLTA1VjNJVHV5WENfdG1tcHhta3FBVTlOVFd4dkpSRUtOdUZSalFEdFh1QjFXcnF0MmtEWVF5eWQ3eF9ZYlJqdTA2NWtXQ0ExQnlta0VpSEFfRF9EWmI4VHV2Ul8yc3NobTlpeXdsaW1VYTllb3BYYmJrSFJPREFoNldtMkd3YkVJ?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>YouTube, Estética com Thais Coelho</b> — vídeo sobre fidelização de clientes na estética, 4.346
+        visualizações na coleta de 16/10/2026.
+        <a href="https://www.youtube.com/watch?v=uuXb6LCA69M" rel="nofollow noopener" target="_blank">ver</a></li>
+      <li><b>YouTube, Professor Heitor Cruz</b> — &ldquo;5 estratégias para captar clientes para clínica de
+        estética&rdquo;, 20.732 visualizações na coleta de 16/10/2026.
+        <a href="https://www.youtube.com/watch?v=yhWcc0qXO4A" rel="nofollow noopener" target="_blank">ver</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>O texto completo das cinco notícias: os links chegam por um agregador de notícias e não abriram o
+        conteúdo. Esta edição usa só o que está no título. Não deu para saber quantas clínicas a reportagem do
+        O Globo ouviu, nem de onde vem o número de 6,8% (quem mediu e o que entra como &ldquo;mercado de
+        beleza&rdquo;). A data de publicação dos vídeos não veio na coleta. A comparação &ldquo;cinco vezes&rdquo;
+        é entre dois vídeos da mesma busca, não uma pesquisa sobre o interesse das clínicas. Nenhuma fonte aqui
+        mede quantas pacientes uma clínica perde por não acompanhar quem parou de vir.</p></div>
+  </section>
+
+  <!-- ══════════════ INTERNO · nunca publicado ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 035 · sexta-feira, 16 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
