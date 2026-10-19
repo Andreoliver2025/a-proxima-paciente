@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Edição Nº 037 · 19/10/2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>As grandes marcas de beleza estão usando inteligência artificial para conhecer cada cliente pelo nome. A sua clínica já faz isso na ficha.</h1>
+    <p class="chamada">Na sexta, o diretor de tecnologia da L&rsquo;Oréal Brasil esteve em Salvador para falar de
+      beleza e inteligência artificial. No sábado, o Paraná anunciou palestra gratuita sobre o mesmo assunto. A
+      conversa chegou perto. E ela gira em torno de algo que a clínica pequena já tem: saber quem é a paciente e
+      quem ela trouxe.</p>
+    <div class="dateline">Edição Nº 037 · segunda-feira, 19 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a>
+        <div class="d">A inteligência artificial da beleza saiu do laboratório e foi para o palco. O que isso tem a ver com a sua ficha de paciente.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a L&rsquo;Oréal em Salvador, uma palestra gratuita sobre IA, o programa que simula o rosto antes de desfazer um preenchimento, a estética crescendo mais que a média e um vídeo sobre conversas esquecidas no WhatsApp.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O QUE MUDOU ══════════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na sexta-feira, a revista Let&rsquo;s Go Bahia noticiou que <b>Wiliam Potenti, diretor de
+      tecnologia da L&rsquo;Oréal Brasil</b>, foi a Salvador para um encontro sobre beleza, tecnologia e
+      inteligência artificial.</p>
+
+    <p class="texto capitular">Quando a maior empresa de beleza do mundo leva esse assunto para fora de São Paulo,
+      é sinal de que ele deixou de ser conversa de laboratório. O que as grandes marcas buscam com a tecnologia é,
+      no fundo, conhecer cada cliente: o que ela usa, quando volta, o que recomenda para as amigas.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: a clínica pequena já sabe de cor o que a grande marca
+      paga caro para descobrir. Ela sabe o nome da paciente e quem a indicou. Basta não deixar isso só na memória
+      da recepção.</p>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">A notícia de Salvador não foi a única do fim de semana. No sábado, o portal Bem Paraná
+        anunciou uma palestra gratuita para quem quer aprender a usar a inteligência artificial nos negócios. Em
+        dois dias, o mesmo assunto apareceu no palco de uma multinacional e no convite aberto a qualquer
+        empreendedor.</p>
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Inteligência artificial&rdquo;, na beleza, costuma querer dizer um programa que lê muita
+          informação sobre a cliente e sugere o próximo passo: um produto, uma mensagem, um retorno. Na clínica,
+          essa informação mora na ficha da paciente e na conversa do WhatsApp.</p></div>
+      <p class="texto">Um limite honesto: das duas notícias, só deu para ler o título. Não sabemos o que o diretor
+        da L&rsquo;Oréal disse em Salvador, nem quem dá a palestra no Paraná. Esta edição não atribui a eles
+        nenhuma frase. O que dá para afirmar é o movimento: o tema está circulando, e vai chegar à sua recepção
+        como oferta de ferramenta.</p>
+      <p class="texto">Quando chegar, vale ter a sua própria régua. A ficha da sua clínica responde, hoje, a duas
+        perguntas: quando essa paciente veio pela última vez, e quem falou de você para ela? Se responde, você já
+        tem o que muita tecnologia promete organizar.</p>
+    </details>
+
+    <div class="olho"><p>&ldquo;A grande marca gasta fortuna para saber o nome da cliente. A gente já sabe o nome
+      dela e de quem ela trouxe.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span></div>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><span class="big">6,8%</span><span class="lbl">foi quanto o <b>mercado de beleza</b> no Brasil cresceu em 2025, segundo a Folha do Litoral News</span></div>
+      <div class="numero"><span class="big">36,6%</span><span class="lbl">foi o crescimento do <b>faturamento com estética</b> dentro de clínicas odontológicas, segundo O Globo</span></div>
+      <div class="numero"><span class="big">quase o dobro</span><span class="lbl">é o tamanho que o <b>mercado mundial de beleza</b> deve ter até 2035, segundo a VEJA</span></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>O diretor de tecnologia da L&rsquo;Oréal Brasil levou beleza e inteligência artificial para Salvador</h3>
+          <div class="credito"><span class="frescor hoje">🟢 sexta, 16/10</span><span>Revista Let&rsquo;s Go Bahia</span></div>
+          <p class="texto">Wiliam Potenti, responsável pela tecnologia da L&rsquo;Oréal no Brasil, participou de um
+            encontro sobre beleza, tecnologia e inteligência artificial na capital baiana. Só deu para ler o título.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;CIO&rdquo;, o cargo que aparece na notícia, é a sigla em inglês para o diretor que cuida da
+              tecnologia e das informações da empresa. Na clínica, quem faz esse papel costuma ser você, com a
+              agenda e o celular.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> quando a indústria fala de tecnologia, o assunto desce para o
+            consultório em forma de oferta. Vale saber, antes da primeira visita de vendedor, o que a sua ficha de
+            paciente já guarda.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxNWnZObm1oVXZDb3ZQNmc5dkRRazJVVDdSY05EVEJ3LU80bmNxZW1GWlM4NDFXaXVGbHMzamZZeHRJRW82eUVIQTh3cUtuXzJKUnh1SXhhd3M3NEFBaEE0WGNHZ19lOHVoeHY3TUpxenVGRnJPOS1ORDM0S2VZNTdPUTJMQjVIc0hBa2xuam41Mi1wSW83MjViTjkyMUpSWlpXSmIyTnJlbFItVUR5NGtQai1Ga0Q3Z1NhZ1NTS1I3bU96VmdwWDQ4cmtTVUNxN3l5Y283MVJDUHQtdHdQSlR2VjNvOXg1TmJ0d0lqX0xraw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Palestra gratuita promete ensinar a usar inteligência artificial nos negócios</h3>
+          <div class="credito"><span class="frescor hoje">🟢 sábado, 17/10</span><span>Bem Paraná</span></div>
+          <p class="texto">O portal anunciou um encontro aberto e sem custo para quem quer aprender a usar a
+            inteligência artificial no próprio negócio. O título não diz a data, o local nem quem fala.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Usar IA no negócio&rdquo;, na prática, é deixar um programa escrever uma mensagem, organizar
+              uma lista ou responder uma pergunta repetida. Ele não substitui o seu olhar sobre a paciente.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> evento gratuito é um jeito barato de entender o assunto antes de
+            pagar por ele. Se for, leve uma pergunta da sua rotina, por exemplo: &ldquo;como eu lembro a paciente
+            de que está na hora de voltar?&rdquo;.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxQVURaUTlZSmtveDl4ekNKajZZOG9DZmQ4U1FkRUxmdFA0dmtJbEl1V0NTdC1pOVBSODdJbkUzalcyLXZyYTd6cExRUllEWnliSkx1Y3RBQVJDMnRvdEktQ05ENFVUV0ZsLTN2UFNjMmUxMjZrOXYwTkxnaUwzOFp5TDZGQ3lzbXPSAYwBQVVfeXFMTVpPZXR1R1NvRzdmX2hpM0tCZFUxcFJMOFVnWDc0ZzF2djdoaFEwQzlJbTkzbGVrMG5PZmJhbzJGc2NLV0xodzNnN0RkNEF0N1FoTDN2aVB1NjJ2cms2bWR1MnlSUlY3T2V6clRVelFVanFOX0pULUFDeTIydS1NTlFhcW9ISXlPejJYMHM?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Programa de computador mostra o rosto com menos volume antes de desfazer um preenchimento</h3>
+          <div class="credito"><span class="frescor antes">🟡 quinta, 25/06</span><span>O Globo</span></div>
+          <p class="texto">A reportagem conta que a inteligência artificial está sendo usada para simular como o
+            rosto ficaria com menos volume, e virou apoio na conversa sobre reverter preenchimentos.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Simular o rosto&rdquo; é gerar uma imagem aproximada a partir de uma foto da paciente. É uma
+              ilustração para a conversa, não uma garantia de como o resultado vai ficar.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> qualquer imagem mostrada na consulta vira expectativa na cabeça da
+            paciente. Se a sua clínica usa ou pensa em usar algo assim, vale anotar na ficha o que foi mostrado e
+            que se tratava de uma simulação.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxPNEZET1JlN2w3ckxTZzZRcnNLRmdzMU5Za24yT2N6RmFQYmVaWjBRLW5xX01UcXJHREhuZXJVV1AtMmx3Q1RyY3J4eUlzT1hpNkEteFZGdXpLTWw4NXY2MklfSkxwcjZac1haZHJGcktWNG5jd0x5TFZDMWZ4MG5hcVVUWXVDbWhrQlZDUkJyQkEyUFFoS2NYV19yV0hHQ20xRnpWWFM4cURwNHdEUmVwR2lxMEUtM2JKRVBkSVdxTDE0YzQxbzNTM3pVamRqNlhLeGg1ejJrNHJvN3dyTk1KeFMzRDEtdjjSAfYBQVVfeXFMT0tMMklaYkpjUEVlUG00Mklzd1BITW9fWmlpZTlRd1BpRmdxZTBQdEhDRjE1U0dwdVBPeVptMm1feDMxdV9JZHhINTc1aGJtOThaaXZSdUdqYVNuVngzbEh5RTlEdGpTeWhjdzVTYUlpUzRnMEhZcTB5WThxWWJnUjI1REVoZjJhSGdhUFZNaThDemQyOG81c3dSSWJzaXhCbmhtZndRUURyMk5kSEM0QXdXUXVlX1VNWGdGS2lEY09VYWx0QmxkOGZ5OWJGcG5lMWF3YVN3aDR0Q3Uzd3JJbXBuQW5MSkVBSDFuNDRkVW1WRDV0ZDhR?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>A estética cresce acima da média e abre espaço para mais gente entrar no setor</h3>
+          <div class="credito"><span class="frescor antes">🟡 quarta, 05/08</span><span>Times Brasil · CNBC</span></div>
+          <p class="texto">A reportagem diz que a estética cresce mais do que a média e que isso abre espaço para
+            expansão. O título não informa de quanto é esse crescimento.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Abrir espaço para expansão&rdquo; quer dizer que mais clínicas, redes e franquias tendem a
+              abrir as portas. Para a paciente, é mais opção perto de casa.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> com mais clínicas na região, a paciente tem para onde ir. A que já
+            confia em você, e já contou de você para uma amiga, é a parte da agenda que a clínica nova da esquina
+            não compra com anúncio.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPMkhlc2FSWVpwUE1Rc0FZeHdZcFczOXBqcjJVNzBoQkNfcTY3MDVYU1llYUhuRVJvSXdvZnJiblgtQjNGMm9vY1FwOXExNWJBZG14alBiMVRKRkxXZGVIbFhFdmNDZWJRRE9FbUIxZ05FaExQd3E3cWt6ZTJCbWlucHhPanpDeTRlN1MzcWdxWjZ2Ukk2WWtsTTRxaGZqNGw4WVVfY2JDWjRrZw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Um vídeo ensina a usar um programa para retomar conversas esquecidas no WhatsApp</h3>
+          <div class="credito"><span class="frescor antes">🟡 coleta de hoje</span><span>YouTube · André Prezoto</span></div>
+          <p class="texto">O vídeo &ldquo;Criei um Agente de IA que Recupera Leads Esquecidos no WhatsApp&rdquo; tinha
+            sessenta e sete visualizações na coleta de hoje. É conteúdo de quem ensina, não pesquisa, e não fala de
+            clínica.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Agente de IA&rdquo; é um programa que responde e escreve sozinho. &ldquo;Lead
+              esquecido&rdquo; é a pessoa que pediu informação e ficou sem retorno. Na clínica, é a paciente que
+              perguntou o preço e nunca marcou.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de qualquer programa, as conversas esquecidas já estão no
+            seu celular. A diferença entre retomar e incomodar é o tom: quem escreve sabe o nome dela e o que ela
+            perguntou.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=cd-TtzA0xhM" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">Volta a ideia do começo: a grande marca paga caro para conhecer a cliente pelo nome. Na sua
+      clínica, esse conhecimento já existe. Ele vale mais quando sai da memória da recepção e fica anotado na
+      ficha, junto com o nome de quem indicou.</p>
+  </section>
+
+  <!-- ══════════════ 03 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>Revista Let&rsquo;s Go Bahia</b> — &ldquo;Salvador recebe Wiliam Potenti, CIO da L&rsquo;Oréal
+        Brasil, para encontro sobre beleza, tecnologia e inteligência artificial&rdquo;, 16/10/2026.
+        <a href="https://news.google.com/rss/articles/CBMi7wFBVV95cUxNWnZObm1oVXZDb3ZQNmc5dkRRazJVVDdSY05EVEJ3LU80bmNxZW1GWlM4NDFXaXVGbHMzamZZeHRJRW82eUVIQTh3cUtuXzJKUnh1SXhhd3M3NEFBaEE0WGNHZ19lOHVoeHY3TUpxenVGRnJPOS1ORDM0S2VZNTdPUTJMQjVIc0hBa2xuam41Mi1wSW83MjViTjkyMUpSWlpXSmIyTnJlbFItVUR5NGtQai1Ga0Q3Z1NhZ1NTS1I3bU96VmdwWDQ4cmtTVUNxN3l5Y283MVJDUHQtdHdQSlR2VjNvOXg1TmJ0d0lqX0xraw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Bem Paraná</b> — &ldquo;Quer aprender a usar a inteligência artificial nos negócios? Palestra
+        gratuita dará as dicas&rdquo;, 17/10/2026.
+        <a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxQVURaUTlZSmtveDl4ekNKajZZOG9DZmQ4U1FkRUxmdFA0dmtJbEl1V0NTdC1pOVBSODdJbkUzalcyLXZyYTd6cExRUllEWnliSkx1Y3RBQVJDMnRvdEktQ05ENFVUV0ZsLTN2UFNjMmUxMjZrOXYwTkxnaUwzOFp5TDZGQ3lzbXPSAYwBQVVfeXFMTVpPZXR1R1NvRzdmX2hpM0tCZFUxcFJMOFVnWDc0ZzF2djdoaFEwQzlJbTkzbGVrMG5PZmJhbzJGc2NLV0xodzNnN0RkNEF0N1FoTDN2aVB1NjJ2cms2bWR1MnlSUlY3T2V6clRVelFVanFOX0pULUFDeTIydS1NTlFhcW9ISXlPejJYMHM?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>O Globo</b> — &ldquo;Inteligência artificial simula rosto com menos volume e vira aliada na reversão
+        dos preenchimentos&rdquo;, 25/06/2026.
+        <a href="https://news.google.com/rss/articles/CBMi5wFBVV95cUxPNEZET1JlN2w3ckxTZzZRcnNLRmdzMU5Za24yT2N6RmFQYmVaWjBRLW5xX01UcXJHREhuZXJVV1AtMmx3Q1RyY3J4eUlzT1hpNkEteFZGdXpLTWw4NXY2MklfSkxwcjZac1haZHJGcktWNG5jd0x5TFZDMWZ4MG5hcVVUWXVDbWhrQlZDUkJyQkEyUFFoS2NYV19yV0hHQ20xRnpWWFM4cURwNHdEUmVwR2lxMEUtM2JKRVBkSVdxTDE0YzQxbzNTM3pVamRqNlhLeGg1ejJrNHJvN3dyTk1KeFMzRDEtdjjSAfYBQVVfeXFMT0tMMklaYkpjUEVlUG00Mklzd1BITW9fWmlpZTlRd1BpRmdxZTBQdEhDRjE1U0dwdVBPeVptMm1feDMxdV9JZHhINTc1aGJtOThaaXZSdUdqYVNuVngzbEh5RTlEdGpTeWhjdzVTYUlpUzRnMEhZcTB5WThxWWJnUjI1REVoZjJhSGdhUFZNaThDemQyOG81c3dSSWJzaXhCbmhtZndRUURyMk5kSEM0QXdXUXVlX1VNWGdGS2lEY09VYWx0QmxkOGZ5OWJGcG5lMWF3YVN3aDR0Q3Uzd3JJbXBuQW5MSkVBSDFuNDRkVW1WRDV0ZDhR?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Times Brasil · CNBC</b> — &ldquo;Estética cresce acima da média e abre espaço para expansão&rdquo;,
+        05/08/2026.
+        <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxPMkhlc2FSWVpwUE1Rc0FZeHdZcFczOXBqcjJVNzBoQkNfcTY3MDVYU1llYUhuRVJvSXdvZnJiblgtQjNGMm9vY1FwOXExNWJBZG14alBiMVRKRkxXZGVIbFhFdmNDZWJRRE9FbUIxZ05FaExQd3E3cWt6ZTJCbWlucHhPanpDeTRlN1MzcWdxWjZ2Ukk2WWtsTTRxaGZqNGw4WVVfY2JDWjRrZw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>YouTube, André Prezoto</b> — &ldquo;Criei um Agente de IA que Recupera Leads Esquecidos no
+        WhatsApp&rdquo;, 67 visualizações na coleta de 19/10/2026.
+        <a href="https://www.youtube.com/watch?v=cd-TtzA0xhM" rel="nofollow noopener" target="_blank">ver</a></li>
+      <li><b>Folha do Litoral News</b> — &ldquo;Mercado de beleza no Brasil cresce 6,8% em 2025&rdquo;,
+        21/09/2026. Usado só no quadro de números.
+        <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxQOTBoeUlTRUlNcjZTbUJPLTA1VjNJVHV5WENfdG1tcHhta3FBVTlOVFd4dkpSRUtOdUZSalFEdFh1QjFXcnF0MmtEWVF5eWQ3eF9ZYlJqdTA2NWtXQ0ExQnlta0VpSEFfRF9EWmI4VHV2Ul8yc3NobTlpeXdsaW1VYTllb3BYYmJrSFJPREFoNldtMkd3YkVJ?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>O Globo</b> — &ldquo;Faturamento com estética em clínicas odontológicas cresce 36,6%&rdquo;,
+        01/09/2026. Usado só no quadro de números.
+        <a href="https://news.google.com/rss/articles/CBMi0wFBVV95cUxOTDVsM25kSnNYc29OQnNGb3NpNzdFN04zMjVjSW1sMHNlX0lYRVVBdWc2OG45Y1g3dWhXa052TlBCVF9hb3o5c3VJX2FqT3VhVDc3RUZrbHdXN3FKWG1ESlB5YlREc0d1V2ZSR0lBMnVHYVpOLWlfN1lmdU9LcXlyRkVZRHBJQkUtUXM4b2ZqRGJmcmNvanBXc0VnRktSV2w4ODdfVWI4T0ttdzVTZEJiR1daMWEwMGtVZUZxQ2JUb3lBRjdFbHJsSzB0dzFDazFkZlRN0gHiAUFVX3lxTE5pX01McUZNWUVNai1CWVNDV3N3UWx5Q1dpemo2d0JNWUVscDlvbG9fU2lpejFrVzlDb2t4SE0tMnoycGVvbjMtTTJUNUVldndHT2NHbVVfNi13NGp6eHpzV1ptZjZPeGNDUUNpQ3VpaVNnODRTZEJ6Wml0U0JKWmUzN2h3NEJwT3RTNmxOc2c4SWtZd0t6Smk0U01zYW8wbUdmYVVYTmM5WXhDZ1ctTTBwQTEtQTF4Qjk1NENNbUdteW5pUkVRNUtPWEFsZC1XcTUtNlhYRkV0QkVpMlZMU0ZJbnc?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>VEJA</b> — &ldquo;Mercado global de beleza deve quase dobrar até 2035 e redes brasileiras apostam em
+        nichos para crescer&rdquo;, 29/07/2026. Usado só no quadro de números.
+        <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxOQWJDcUhLclhGWmpaSVJWYXI2S1Q2SWEwRFl2eGh6anh2SFh3Vk1hOTRuVXFrZmUwdTJzMmlmV2x1b28wU3FOb0pBMXd4QXJTMlVkUko2Z1d6Nk1Qa0RiSFFINVd0SHBaemVwX2pPRDhjZ0IyZUQwZFVCTUY2NHBYbTkzdE05eUFHYUhBaVNLWXZnSkNMQWZ1NzBsemQxNlljdWZ1c0I1dEFVam00T3lrLVFzZXBGZnJpeklqYlRfQ3k1S2pxdGRKWHdteDRpdEVtdEZTSw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>O texto completo das notícias: os links chegam por um agregador de notícias e não abriram o conteúdo.
+        Esta edição usa só o que está no título. Não sabemos o que foi dito no encontro de Salvador, nem quem
+        organizou. Da palestra no Paraná, não temos data, local nem palestrante. Não sabemos quais programas a
+        reportagem do O Globo descreve nem quem os usa. A reportagem da CNBC não traz no título de quanto é o
+        crescimento da estética. O número de 36,6% fala de clínicas odontológicas, não de clínicas de estética, e
+        o título não diz o período medido. A data de publicação do vídeo não veio na coleta. Nenhuma fonte aqui
+        mede quantas pacientes uma clínica ganha ou perde por usar, ou não usar, inteligência artificial.</p></div>
+  </section>
+
+  <!-- ══════════════ INTERNO · nunca publicado ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 037 · segunda-feira, 19 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
