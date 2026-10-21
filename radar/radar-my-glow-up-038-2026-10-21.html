@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 038 · 21 de outubro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+<style>
+  /* Marca visual da secao que so vai ao ar depois da validacao do Andre.
+     O filtro publico (versao-publica.cjs) remove tudo com a classe .aguardando-validacao. */
+  .aguardando-validacao{position:relative;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    border:1px dashed rgba(143,169,240,.55);border-radius:16px}
+  .aguardando-validacao::before{content:"⏳ Aguarda validação · não publicar ainda";position:absolute;
+    top:-11px;left:16px;background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--g3)}
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Um em cada quatro pequenos negócios já usa inteligência artificial para fazer post. A pergunta que traz a próxima paciente continua sendo sua: &ldquo;quem te indicou?&rdquo;</h1>
+    <p class="chamada">Uma pesquisa do Sebrae em Pernambuco, noticiada esta semana, mostra onde a máquina entrou no
+      pequeno negócio: na imagem, no vídeo e no texto do anúncio. O mesmo Sebrae avisa para não colocar
+      informação sigilosa de cliente nessas ferramentas. Na clínica, quem indicou quem é justamente o dado que
+      nenhuma máquina tem, e que só a sua recepção consegue perguntar.</p>
+    <div class="dateline">Edição Nº 038 · quarta-feira, 21 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a>
+        <div class="d">A máquina entrou no pequeno negócio pela vitrine. A porta de entrada da paciente continua com você.</div></li>
+      <li><a href="#novidades">As novidades</a>
+        <div class="d">Cinco recortes: a pesquisa do Sebrae, o aviso sobre dado de cliente, a análise de pele por IA, a máquina que ainda não chegou à gestão e a medição de hoje.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a>
+        <div class="d">A amiga que chegou por indicação merece uma primeira visita diferente.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a>
+        <div class="d">Quem indicou também é paciente. O obrigado não é cobrança de retorno.</div></li>
+      <li><a href="#postar">O que postar esta semana</a>
+        <div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+      
+      <li><a href="#fontes">De onde veio cada informação</a>
+        <div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ══════════════ 01 · O MOVIMENTO DA SEMANA ══════════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">&ldquo;IA já é usada por 25% dos pequenos negócios de Pernambuco no marketing.&rdquo; Foi a
+      manchete do portal <b>Movimento Econômico</b> nesta segunda, 19 de outubro.</p>
+
+    <p class="texto capitular">O número vem da pesquisa Pulso dos Pequenos Negócios, do Sebrae. Um em cada quatro
+      donos de pequeno negócio no estado já usa a inteligência artificial com frequência para divulgar a empresa.
+      E entre quem usa, setenta e sete em cada cem fazem imagem e vídeo com ela.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>a máquina chegou ao pequeno negócio pela vitrine.
+      A porta de entrada da próxima paciente continua sendo uma pergunta que só você faz: &ldquo;quem te
+      indicou?&rdquo;</b></p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">O Diário de Pernambuco publicou os mesmos números no dia 15. Além dos vinte e cinco em cada
+        cem que usam com frequência, vinte e um já testaram. E trinta e dois em cada cem dos que ainda não usam
+        pretendem começar. Para escrever texto de e-mail, post e anúncio, são sessenta e nove em cada cem.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span>
+        <p>&ldquo;Usar inteligência artificial no marketing&rdquo;, nessa pesquisa, é quase sempre pedir a um
+          programa como o ChatGPT ou o Gemini que faça a arte, o vídeo ou a legenda. É a vitrine da clínica. Não é
+          a ferramenta que sabe quem é a sua paciente, quando ela volta ou quem ela trouxe.</p>
+      </div>
+
+      <p class="texto">Há duas semanas, este dossiê mostrou a mesma conta em empresas grandes da América Latina: a
+        máquina estava quase toda na legenda. Agora o retrato é do pequeno negócio brasileiro, mais perto da sua
+        clínica. E traz um detalhe novo: o medo.</p>
+
+      <p class="texto">Segundo o especialista do Sebrae-PE ouvido pelo Diário de Pernambuco, um dos receios de quem
+        ainda não usa é compartilhar informação. O Movimento Econômico registra o aviso do próprio Sebrae: dado
+        confidencial não deve ser colocado nessas ferramentas sem critério, e dado de cliente tem proteção da
+        lei.</p>
+
+      <div class="olho">
+        <p>&ldquo;A máquina faz a arte do post. Quem trouxe a paciente nova, só a gente sabe, e só se a gente
+          perguntar.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">Traga isso para a clínica. A sua ficha guarda o que nenhuma ferramenta de post tem: quem
+        veio, quando, e por meio de quem. Nas últimas quartas, você montou a ficha, agradeceu quem indica e
+        entregou o cartão do procedimento. Falta a ponta que fecha o círculo: perguntar, na chegada, quem indicou a
+        paciente nova.</p>
+
+      <p class="texto">Um limite honesto: a pesquisa é de pequenos negócios de Pernambuco, de todos os setores, não
+        só de estética. As reportagens não informam quantas pessoas foram ouvidas. Nada aqui diz quantas pacientes
+        chegam por indicação na sua clínica. O que dá para afirmar é onde a máquina está sendo usada hoje.</p>
+    </details>
+  </section>
+
+  <!-- ══════════════ 02 · AS NOVIDADES ══════════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">25 em 100</div>
+        <div class="lbl">pequenos negócios de Pernambuco já usam inteligência artificial <b>com frequência para divulgar</b></div></div>
+      <div class="numero"><div class="big">77 em 100</div>
+        <div class="lbl">de quem usa faz <b>imagem e vídeo</b> com ela</div></div>
+      <div class="numero"><div class="big">46 em 100</div>
+        <div class="lbl">pequenos empreendedores no país usam a máquina <b>no dia a dia da gestão</b>, segundo o Sebrae Nacional</div></div>
+      <div class="numero"><div class="big">18</div>
+        <div class="lbl">visualizações do vídeo novo que junta <b>indicação e paciente que sumiu</b></div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Um em cada quatro pequenos negócios de Pernambuco já usa inteligência artificial para divulgar</h3>
+          <div class="credito"><span class="frescor hoje">🟢 segunda</span><span>Movimento Econômico · 19/10/2026 · Diário de Pernambuco · 15/10/2026 · pesquisa Pulso dos Pequenos Negócios, do Sebrae</span></div>
+          <p class="texto">A pesquisa mostra que o uso está quase todo na vitrine. Entre quem usa, a maioria faz
+            imagem, vídeo e texto de post e anúncio. O Sebrae-PE fez na segunda um encontro com o tema &ldquo;quem
+            tem medo da IA?&rdquo;.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Com frequência&rdquo; quer dizer que já virou rotina, como abrir o WhatsApp de manhã. Outros
+              vinte e um em cada cem só testaram uma vez ou outra.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> usar a máquina para o post libera tempo. Use esse tempo para a
+            conversa que ela não faz: perguntar à paciente nova como ela chegou até você.</p>
+          <div class="link"><a href="https://movimentoeconomico.com.br/eventos/2026/10/19/ia-ja-e-usada-por-25-dos-pequenos-negocios-de-pernambuco-no-marketing/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>O Sebrae avisa: informação sigilosa de cliente não vai para o chat da máquina</h3>
+          <div class="credito"><span class="frescor hoje">🟢 segunda</span><span>Movimento Econômico · 19/10/2026 · Diário de Pernambuco · 15/10/2026</span></div>
+          <p class="texto">Na mesma reportagem, o Sebrae lembra que informação confidencial não deve ser colocada
+            nessas ferramentas sem critério, e cita a lei de proteção de dados. O especialista ouvido diz que o medo
+            de compartilhar informação é um dos motivos de quem ainda não usa.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>A &ldquo;lei de proteção de dados&rdquo; é a LGPD. Na clínica, nome completo, foto do rosto,
+              procedimento feito e remédio em uso são dados protegidos. Dado de saúde tem cuidado ainda maior.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se você pede ajuda à máquina para escrever mensagem, peça o
+            modelo sem dado nenhum da paciente. O nome e o detalhe pessoal você completa no seu WhatsApp.</p>
+          <div class="link"><a href="https://www.diariodepernambuco.com.br/economia/2026/10/11726740-pesquisa-do-sebrae-indica-que-25-dos-empreendedores-pernambucanos-usam-ia-nos-negocios.html" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Análise de pele por inteligência artificial vira manchete com promessa de faturamento</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Terra · 20/10/2026</span></div>
+          <p class="texto">O Terra publicou ontem que a análise de pele com inteligência artificial &ldquo;pode
+            elevar faturamento de clínicas&rdquo;. Não conseguimos abrir o texto; usamos só a manchete.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Análise de pele por IA&rdquo; é um aparelho ou aplicativo que fotografa o rosto e aponta
+              manchas, poros e linhas. A foto do rosto, ligada ao nome da paciente, é dado protegido.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> se alguém oferecer o aparelho esta semana, pergunte três coisas
+            antes do preço. Onde a foto fica guardada? Quem mais tem acesso? A paciente autoriza por escrito? E
+            desconfie de quem garante faturamento.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxORlNpb3hEelpIdlVVMHBMUWNzcmhvNW9CcVBCeXVHZHBuQXBuT0dIYTVvQllCUGtKSnJNVU0yLVk3TjZ3YnZ5aFFkUjVua2VGS0JlUXlydWNDT0h2R2dVc1lBRUpzNjdwS2Q0Wkdpb1hkZjc5OGRxMExxZWp2T01kaHRFMVJuUy0zajRXajh6bWlmeklvbVBncGFuT3c5V3hmQlZuUENaRW9YTXVDSlJaVVVzd0Zib1k4ZlIxRG1oTUlKenFLTmlxbjY4SDdiU3M5RWYxSw?oc=5" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>No país, a máquina já está no celular do pequeno empreendedor. Na gestão, só em metade</h3>
+          <div class="credito"><span class="frescor antes">🟡 abril</span><span>Folha de Pernambuco · 30/04/2026 · Agência O Globo · dados do Sebrae Nacional</span></div>
+          <p class="texto">Segundo o Sebrae Nacional, mais de oito em cada dez micro e pequenos empreendedores usam
+            alguma ferramenta de inteligência artificial. Quando a pergunta é sobre o funcionamento do negócio, o
+            número cai para quarenta e seis em cada cem. O economista do Sebrae explica: a urgência do pequeno é
+            vender.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Processos do negócio&rdquo; é o que acontece depois que a paciente chega: agenda, retorno,
+              ficha, quem indicou quem. É a parte menos visível, e a que faz a paciente voltar.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> o post traz gente para olhar. O que transforma quem olhou em
+            paciente fiel é o depois da maca. Reserve meia hora desta semana para esse depois.</p>
+          <div class="link"><a href="https://www.folhape.com.br/economia/pequenas-empresas-precisam-investir-em-ia-para-alem-da-area-de-vendas/484192/" rel="nofollow noopener" target="_blank">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: um vídeo novo junta indicação e paciente que sumiu, e ainda quase ninguém viu</h3>
+          <div class="credito"><span class="frescor hoje">🟢 medido hoje</span><span>Medição própria no YouTube · 21/10/2026</span></div>
+          <p class="texto">Na busca &ldquo;programa de indicação para clínica de estética&rdquo;, apareceu um vídeo
+            sobre como organizar o crescimento da clínica com indicação e reativação. Tem dezoito visualizações. O
+            roteiro para pedir indicação, acompanhado aqui há semanas, está em sessenta e nove.</p>
+          <div class="traduz"><span class="r">Em português claro</span>
+            <p>&ldquo;Reativação&rdquo; é chamar de volta a paciente que sumiu. &ldquo;Crescimento orgânico&rdquo;
+              é crescer sem pagar anúncio: com quem volta e com quem chega pela boca de quem já veio.</p>
+          </div>
+          <p class="texto"><b>Na sua agenda:</b> o assunto começa a aparecer, mas ainda tem pouca plateia. Quem
+            organiza isso na própria clínica agora faz algo que pouca gente está ensinando.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=leKycwlue9U" rel="nofollow noopener" target="_blank">clique aqui para ver</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ 03 · COMO TRAZER PACIENTE NOVA ══════════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+
+    <p class="abertura">A paciente que chega por indicação já vem com meia confiança. A outra metade se ganha na
+      primeira visita.</p>
+
+    <p class="texto">Ela não chegou pelo anúncio. Chegou porque alguém de confiança falou de você. Por isso, a
+      primeira coisa que ela precisa sentir é que a amiga tinha razão. Receba pelo nome. Explique cada passo
+      antes de tocar. E não comece pela tabela de preço.</p>
+
+    <p class="texto">Combine com quem atende o WhatsApp uma frase para o primeiro contato. Quando a paciente nova
+      escrever, a resposta inclui a pergunta: &ldquo;que bom ter você aqui! Como você conheceu a clínica?&rdquo;.
+      Se ela citar uma amiga, a recepção anota na ficha, na coluna &ldquo;quem indicou&rdquo;.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span>
+      <p>Perguntar &ldquo;como você conheceu&rdquo; não é burocracia. É a única forma de saber se o post, o
+        anúncio ou a indicação trouxe aquela paciente. Sem a pergunta, a clínica não sabe a quem agradecer.</p>
+    </div>
+
+    <p class="texto">Um cuidado: se a sua profissão tem regra sobre recompensa por indicação, siga a do seu
+      conselho. Agradecer e reconhecer é sempre permitido.</p>
+  </section>
+
+  <!-- ══════════════ 04 · COMO FAZER A PACIENTE VOLTAR ══════════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+
+    <p class="abertura">Quem indica também é paciente. E é a paciente que mais merece ser lembrada.</p>
+
+    <p class="texto">Quando você agradecer quem indicou, resista à vontade de emendar &ldquo;e aproveita para
+      marcar o seu retorno&rdquo;. O obrigado é um obrigado. Se o retorno dela estiver perto, mande outra mensagem
+      em outro dia, com o nome e o motivo: &ldquo;faz três meses do seu procedimento&rdquo;.</p>
+
+    <p class="texto">Para quem já sumiu, use a coluna &ldquo;próximo retorno&rdquo; da ficha. Comece pelas que
+      passaram da data. Uma mensagem por vez, escrita por você, sem desconto. Se pedir ajuda à máquina, peça só o
+      modelo: &ldquo;escreva uma mensagem curta e carinhosa para uma paciente que não volta há alguns
+      meses&rdquo;, sem nome, sem procedimento, sem foto.</p>
+
+    <div class="olho">
+      <p>&ldquo;Pode pedir ajuda à máquina para escrever. A ficha da paciente não sai daqui.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">Quem responder ganha data nova na ficha. Quem não responder não recebe cobrança. Recebe, no
+      máximo, outra mensagem daqui a algumas semanas, com outro motivo.</p>
+  </section>
+
+  <!-- ══════════════ 05 · O QUE POSTAR ══════════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Três ganchos prontos. Use no seu jeito, com a sua cara, sem prometer resultado.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <ul class="lista">
+        <li><b>&ldquo;A pergunta que eu faço para toda paciente nova.&rdquo;</b> Você, na recepção ou no
+          consultório, olhando para a câmera: &ldquo;quando alguém chega aqui pela primeira vez, eu pergunto: quem
+          te indicou? Porque essa pessoa merece um obrigado&rdquo;. Fecho: &ldquo;se você veio por alguém, me
+          conta&rdquo;. Sem mostrar paciente nem nome.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <ul class="lista">
+        <li><b>&ldquo;Onde fica a sua foto de antes e depois?&rdquo;</b> Cartão 1: a pergunta. Cartão 2: aqui a
+          sua ficha e as suas fotos ficam com a clínica, não em aplicativo de terceiros. Cartão 3: nenhuma foto sua
+          vai para rede social sem você autorizar por escrito. Último: &ldquo;quer saber o que está anotado sobre
+          você? É só pedir&rdquo;. Informa e passa segurança.</li>
+      </ul>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <ul class="lista">
+        <li><b>&ldquo;Conta pra mim: quem te apresentou a clínica?&rdquo;</b> Use a caixinha de perguntas, que
+          chega só para você. Não peça para marcar a amiga no story: nem toda paciente quer que saibam onde ela faz
+          procedimento. Cada resposta vira uma anotação na ficha e um obrigado.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ 06 · O QUE FAZER ESTA SEMANA (aguarda validação) ══════════════ -->
+  
+
+  <!-- ══════════════ 07 · FONTES ══════════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está
+      logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Movimento Econômico, 19/10/2026</b> — &ldquo;IA já é usada por 25% dos pequenos negócios de
+        Pernambuco no marketing&rdquo;. Pesquisa Pulso dos Pequenos Negócios (13ª edição), do Sebrae: 25% usam IA
+        em marketing e comunicação; 21% já testaram; 32% dos que não usam pretendem adotar; entre quem usa, 77%
+        fazem imagem e vídeo e 69% textos de e-mail, post e anúncio. Aviso do Sebrae sobre não inserir informação
+        confidencial nas plataformas e sobre a LGPD. Encontro &ldquo;Alta Performance: Digital que dá Lucro&rdquo;,
+        com a palestra &ldquo;Quem tem medo da IA?&rdquo;.
+        <a href="https://movimentoeconomico.com.br/eventos/2026/10/19/ia-ja-e-usada-por-25-dos-pequenos-negocios-de-pernambuco-no-marketing/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Diário de Pernambuco, 15/10/2026</b> — &ldquo;Pesquisa do Sebrae indica que 25% dos empreendedores
+        pernambucanos usam IA nos negócios&rdquo;. Mesmos números, uso &ldquo;regular&rdquo;; especialista do
+        Sebrae-PE cita a falta de conhecimento sobre o tema e receios como o de compartilhar informações.
+        <a href="https://www.diariodepernambuco.com.br/economia/2026/10/11726740-pesquisa-do-sebrae-indica-que-25-dos-empreendedores-pernambucanos-usam-ia-nos-negocios.html" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Terra, 20/10/2026</b> — &ldquo;Análise de pele com IA pode elevar faturamento de clínicas&rdquo;.
+        Só a manchete, usada no recorte 03.
+        <a href="https://news.google.com/rss/articles/CBMi1AFBVV95cUxORlNpb3hEelpIdlVVMHBMUWNzcmhvNW9CcVBCeXVHZHBuQXBuT0dIYTVvQllCUGtKSnJNVU0yLVk3TjZ3YnZ5aFFkUjVua2VGS0JlUXlydWNDT0h2R2dVc1lBRUpzNjdwS2Q0Wkdpb1hkZjc5OGRxMExxZWp2T01kaHRFMVJuUy0zajRXajh6bWlmeklvbVBncGFuT3c5V3hmQlZuUENaRW9YTXVDSlJaVVVzd0Zib1k4ZlIxRG1oTUlKenFLTmlxbjY4SDdiU3M5RWYxSw?oc=5" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Folha de Pernambuco, 30/04/2026 (Agência O Globo)</b> — &ldquo;Pequenas empresas precisam investir
+        em IA para além da área de vendas, dizem especialistas&rdquo;. Dados da Unidade de Gestão e Estratégia do
+        Sebrae Nacional: mais de 80% dos micro e pequenos empreendedores usam alguma ferramenta de IA; 46% em
+        processos do negócio; uso em marketing e divulgação de 74% entre MEIs e 59% entre micro e pequenas.
+        <a href="https://www.folhape.com.br/economia/pequenas-empresas-precisam-investir-em-ia-para-alem-da-area-de-vendas/484192/" rel="nofollow noopener" target="_blank">ler</a></li>
+      <li><b>Medição própria do dossiê, 21/10/2026</b> — busca pública no YouTube &ldquo;programa de indicação
+        para clínica de estética&rdquo;: &ldquo;Indicação e reativação: como estruturar o crescimento orgânico da
+        clínica&rdquo;, 18 visualizações.
+        <a href="https://www.youtube.com/watch?v=leKycwlue9U" rel="nofollow noopener" target="_blank">ver</a></li>
+      <li><b>Medição própria do dossiê, 21/10/2026</b> — mesma busca: &ldquo;Como conseguir indicações de
+        pacientes (script de indicação para clínicas)&rdquo;, 69 visualizações.
+        <a href="https://www.youtube.com/watch?v=TY6GFnN4GA0" rel="nofollow noopener" target="_blank">ver</a></li>
+      <li><b>Dossiê A Próxima Paciente, edições Nº 029 (07/10), Nº 032 e Nº 033 (14/10)</b> — a ficha de três
+        linhas, o obrigado a quem já indica, o estudo sobre a máquina na legenda e o cartão do procedimento,
+        retomados nas seções 01, 04 e 06.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>As reportagens sobre a pesquisa do Sebrae não informam quantas pessoas foram ouvidas nem como; a
+        pesquisa é de pequenos negócios de Pernambuco de todos os setores, não de clínicas. Não abrimos o relatório
+        original do Sebrae. Sobre o encontro do Sebrae-PE, o Movimento Econômico fala em 19 de outubro e o Diário de
+        Pernambuco em &ldquo;segunda-feira (18)&rdquo;; 18 de outubro foi domingo, por isso usamos só
+        &ldquo;segunda&rdquo;. Não abrimos o texto do Terra: usamos só a manchete, e não sabemos de onde vem a ideia
+        de faturamento maior. Os dados do Sebrae Nacional são de abril e a reportagem não traz amostra. As
+        visualizações do YouTube mudam a cada hora e não medem o que acontece na clínica; não assistimos ao vídeo
+        novo. Nenhuma fonte desta edição mede quantas pacientes chegam por indicação, nem o efeito de um obrigado.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 08 · INTERNO ══════════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 038 · quarta-feira, 21 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
