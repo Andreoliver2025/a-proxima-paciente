@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 041 · 23 de outubro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Já existe programa que sopra a resposta para o vendedor no meio da conversa. Ele só sabe o que alguém anotou antes.</h1>
+    <p class="chamada">Uma empresa de tecnologia para vendas voltou ao noticiário nesta semana. A ferramenta dela acompanha a conversa, puxa o histórico do cliente e sugere o que responder. Na sua clínica, a resposta para &ldquo;vou pensar&rdquo; também mora num lugar só: a ficha da paciente.</p>
+    <div class="dateline">Edição Nº 041 · sexta-feira, 23 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A máquina que sugere a resposta durante a venda, e de onde ela tira essa resposta.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: o dono que enxerga a conversa, a resposta em menos de um segundo e dois vídeos sobre ter e manter cliente.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Cada fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">A máquina entrou na conversa de venda. Não para falar no lugar do vendedor, mas para soprar no ouvido dele.</p>
+    <p class="texto capitular">Na quarta-feira, dia 21, o site Startups publicou que a empresa LPH usa inteligência artificial para dar ao gestor uma visão maior do que a equipe de vendas faz. Em julho, a mesma empresa já tinha apresentado um programa que acompanha a reunião e sugere, em menos de um segundo, o que responder quando o cliente hesita. A sugestão sai do histórico que a equipe anotou antes.</p>
+    <p class="texto">A ideia desta edição, que volta no fim: a melhor resposta para &ldquo;está caro&rdquo; ou &ldquo;vou pensar&rdquo; não é uma frase pronta. É lembrar quem é aquela paciente. E nenhuma máquina lembra o que ninguém escreveu na ficha.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Objeção&rdquo; é o motivo que a pessoa dá para não fechar agora: o preço, o medo da agulha, a viagem, o &ldquo;vou ver com calma&rdquo;. &ldquo;Histórico no sistema&rdquo; é a ficha da paciente com tudo o que ela já fez, falou e perguntou.</p></div>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">A ferramenta foi feita para venda entre empresas, não para clínica. Mas a lógica é a mesma da sua recepção. Quando a paciente some depois de pedir o preço, responde bem quem sabe se ela já fez o procedimento, se teve medo da última vez, se veio indicada por uma amiga.</p>
+      <p class="texto">A própria empresa diz, em texto pago por ela, que muito negócio se perde por não saber responder à hesitação do cliente. O número é dela, de venda entre empresas, e não mede clínica nenhuma. O que dá para levar é a ordem das coisas: primeiro se anota, depois se responde melhor.</p>
+      <p class="texto">Um limite honesto: da notícia do dia 21 só lemos o título. Não sabemos o que exatamente o gestor passa a ver. E nada aqui diz que um programa assim traz mais paciente para a sua agenda.</p>
+    </details>
+
+    <div class="olho">
+      <p>&ldquo;Antes de responder o &lsquo;vou pensar&rsquo;, abra a ficha. A resposta está no que ela já te contou.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Quatro recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">&lt; 1 s</div><div class="lbl">é o tempo que a empresa diz levar para <b>sugerir a resposta</b> quando o cliente hesita, durante a conversa</div></div>
+      <div class="numero"><div class="big">68 em 100</div><div class="lbl">negócios perdidos que a <b>própria empresa</b> liga à dificuldade de responder à hesitação, em venda entre empresas</div></div>
+      <div class="numero"><div class="big">7.496</div><div class="lbl">visualizações de um vídeo com <b>seis dicas para ter mais clientes</b> na estética, medido hoje</div></div>
+      <div class="numero"><div class="big">1.582</div><div class="lbl">visualizações de um vídeo sobre <b>fazer a cliente da estética voltar</b>, medido hoje</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Programa dá ao dono uma visão do que a equipe faz nas conversas de venda</h3>
+          <div class="credito"><span class="frescor antes">🟡 21/10</span><span>Startups · 21/10/2026</span></div>
+          <p class="texto">Segundo o título da reportagem, a LPH usa inteligência artificial para &ldquo;ampliar a visão do gestor comercial sobre a equipe de vendas&rdquo;. Ou seja: quem manda passa a enxergar as conversas que não acompanhou.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Gestor comercial&rdquo; é quem cuida das vendas. Na clínica pequena, é você. A pergunta é a mesma: você sabe o que foi respondido para a paciente que não marcou?</p></div>
+          <p class="texto"><b>Na sua agenda:</b> as conversas do WhatsApp que não viraram horário são a parte da venda que ninguém olha. É ali que a paciente some sem avisar.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPcS0zTE1BRm1XdUp6UXRoWmwtTXNBSzJlRU1ORGFCdWlOaGhhOFUyRTdoOG0yMzJlOVhZUm5nM3hjeUZkUGxhM0xfSjB6bjBzR1A1eTRZbV9QMksyeXo5bExud2FiQzFEX3dJd2RfYklBZEFSSFdrNmM4ZjFCS0swTDJBY0NNMXlpUERLYTBKRUVsc3kxUTZqemlfU3ZaUzBxMjltamxMcDZ2NTBPUGN4RHZtZDJTZw?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A máquina sugere a resposta em menos de um segundo, mas tira a resposta da ficha do cliente</h3>
+          <div class="credito"><span class="frescor antes">🟡 julho</span><span>Startups · 03/07/2026 · conteúdo pago pela empresa</span></div>
+          <p class="texto">O programa da LPH acompanha a reunião e sugere o que dizer quando o cliente hesita. A empresa diz que a sugestão vem das informações e do histórico registrados no sistema. Ela também lançou um treino que simula conversas reais, para preparar vendedor novo.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Coaching ao vivo&rdquo; é como ter uma colega experiente ao lado, cochichando a resposta. &ldquo;Simulação&rdquo; é ensaiar o atendimento antes, como treinar a abordagem com uma colega antes da paciente chegar.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> qualquer sugestão, de gente ou de máquina, só é boa se a ficha estiver preenchida. O que a paciente disse sobre medo, preço e prazo vale anotar na hora.</p>
+          <div class="link"><a href="https://startups.com.br/branded-content/leads-per-hour-lanca-coaching-ao-vivo-com-ia-para-acelerar-vendas-b2b/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Um vídeo sobre fazer a cliente da estética voltar passa de mil e quinhentas visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>YouTube · canal Dra Priscila Ribeiro · medido em 23/10/2026</span></div>
+          <p class="texto">&ldquo;Como fidelizar clientes na Estética&rdquo; aparece hoje na busca sobre fazer a cliente voltar. É a primeira vez que este vídeo entra no dossiê. Não assistimos: medimos só o título e quantas pessoas viram.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Fidelizar&rdquo; é fazer a paciente voltar, e voltar por escolha dela, não porque ganhou desconto.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que volta é a mais fácil de anotar bem. Ela já te conhece. Pergunte o que mudou desde a última vez e escreva na ficha.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=PIM3ZjkHuWc">clique aqui para ver</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Seis dicas para ter mais clientes na estética somam quase sete mil e quinhentas visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>YouTube · ESTETICLASS ONLINE, Dra. Ilana Lopes · medido em 23/10/2026</span></div>
+          <p class="texto">O vídeo aparece na mesma busca. O título chegou ao nosso sinal traduzido para o inglês; o canal é brasileiro. Também não assistimos.</p>
+          <p class="texto"><b>Na sua agenda:</b> quem procura &ldquo;mais clientes&rdquo; é bem mais gente do que quem procura &ldquo;fazer a cliente voltar&rdquo;. Só que a cliente que volta já está na sua ficha, e não depende de anúncio.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=6lxDy1LfAyE">clique aqui para ver</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">Voltando à ideia do começo: a máquina já sopra respostas na venda. Mas ela não inventa o que a paciente te contou. Quem lembra dela responde melhor, com programa ou sem. E é a ficha bem cuidada que deixa essa lembrança à mão.</p>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo.</p>
+
+    <ol class="src">
+      <li><b>Startups, 21/10/2026</b> — &ldquo;LPH usa IA para ampliar visão do gestor comercial sobre a equipe de vendas&rdquo;. Usado na seção 01 e no recorte 01. Só o título foi lido. <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxPcS0zTE1BRm1XdUp6UXRoWmwtTXNBSzJlRU1ORGFCdWlOaGhhOFUyRTdoOG0yMzJlOVhZUm5nM3hjeUZkUGxhM0xfSjB6bjBzR1A1eTRZbV9QMksyeXo5bExud2FiQzFEX3dJd2RfYklBZEFSSFdrNmM4ZjFCS0swTDJBY0NNMXlpUERLYTBKRUVsc3kxUTZqemlfU3ZaUzBxMjltamxMcDZ2NTBPUGN4RHZtZDJTZw?oc=5">ler</a></li>
+      <li><b>Startups, 03/07/2026</b> — &ldquo;Leads Per Hour lança coaching ao vivo com IA para acelerar vendas B2B&rdquo;, conteúdo patrocinado, assinado pela própria empresa. Sugestão de resposta em menos de um segundo, com base no histórico do cliente; treino por simulação; levantamento da empresa que liga 68% dos negócios perdidos à dificuldade de responder objeções. Usado na seção 01 e no recorte 02. <a href="https://startups.com.br/branded-content/leads-per-hour-lanca-coaching-ao-vivo-com-ia-para-acelerar-vendas-b2b/">ler</a></li>
+      <li><b>YouTube, medido em 23/10/2026</b> — &ldquo;Como fidelizar clientes na Estética.&rdquo;, canal Dra Priscila Ribeiro, 1.582 visualizações. Recorte 03. <a href="https://www.youtube.com/watch?v=PIM3ZjkHuWc">ver</a></li>
+      <li><b>YouTube, medido em 23/10/2026</b> — vídeo de seis dicas para ter mais clientes na estética, canal ESTETICLASS ONLINE, Dra. Ilana Lopes, 7.496 visualizações. Recorte 04. <a href="https://www.youtube.com/watch?v=6lxDy1LfAyE">ver</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span>
+      <p>O conteúdo da reportagem do dia 21: lemos só o título, então não sabemos o que o gestor passa a ver nem se há algum número. O dado de 68% é da própria empresa, em texto pago por ela, sobre venda entre empresas; não vale para clínica e não foi checado por mais ninguém. Os dois vídeos não foram assistidos. A Globo publicou no dia 22 uma matéria sobre doze soluções do programa Rocket 2026; não conseguimos abrir e ela ficou de fora. Nada nesta edição mede efeito na sua agenda.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 041 · sexta-feira, 23 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
