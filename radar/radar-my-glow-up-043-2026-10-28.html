@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 043 · 28 de outubro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Metade de quem demonstra interesse se perde no retorno que ninguém fez. Na clínica, esse retorno tem nome: a paciente que pediu o valor e sumiu.</h1>
+    <p class="chamada">Um levantamento publicado hoje, feito em lojas de carro, mostra que metade dos interessados some depois da primeira conversa, porque ninguém volta a procurar. A clínica conhece bem esse silêncio. A diferença é que, aqui, muitas dessas pessoas chegaram pela indicação de uma paciente sua.</p>
+    <div class="dateline">Edição Nº 043 · quarta-feira, 28 de outubro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a><div class="d">Metade dos interessados se perde depois da primeira conversa. O motivo não é o valor: é o retorno que ficou na memória de alguém.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: o retorno que ninguém fez, a anotação que mostra onde a conversa trava, os médicos falsos feitos por máquina, a lei da saúde estética e um vídeo sobre quem a equipe abandona.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a><div class="d">A amiga indicada que pediu o valor e não marcou ainda é uma indicação. Só falta a segunda mensagem.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a><div class="d">&ldquo;Vou falar com o meu marido&rdquo; não é um não. É uma data que ninguém combinou.</div></li>
+      <li><a href="#postar">O que postar esta semana</a><div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+    </ol>
+    
+    <ol style="counter-reset:sm 6;border-top:0;margin-top:0">
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">&ldquo;Metade desse investimento se perde no retorno que ninguém fez.&rdquo; A frase é de Fernanda Jacques, que dirige a Picmo, uma empresa de Florianópolis. Saiu hoje no portal <b>Economia SC</b>.</p>
+
+    <p class="texto capitular">A empresa olhou 36 lojas de carro, de janeiro a março deste ano. Segundo o levantamento, as lojas perdem em média metade das pessoas interessadas depois da primeira conversa, porque ninguém volta a procurar. Em alguns casos, a perda chegou a oito em cada dez. O motivo apontado: o retorno depende da memória e da disciplina de cada vendedor.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: a paciente que pediu o valor e sumiu quase nunca disse não. Ela ficou esperando uma segunda mensagem que dependia da memória de alguém. E, na clínica, muitas dessas pessoas chegaram porque uma paciente sua falou de você.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">A reportagem lista as etapas que costumam atrasar a compra de um carro: o test-drive, a proposta, a conversa com a família e a resposta do banco sobre o financiamento. Em cada uma, a pessoa para e espera. Se ninguém volta a procurar, o interesse esfria. Segundo o texto, essas vendas paradas só aparecem no fim do mês, quando já é tarde.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>A reportagem fala em &ldquo;lead qualificado&rdquo;. Na clínica, é a pessoa que mandou mensagem, perguntou do procedimento, quis saber o valor e não marcou. Não é curiosa: chegou a pedir informação. &ldquo;Acompanhamento&rdquo; é a segunda mensagem, a terceira, o retorno combinado.</p></div>
+
+      <p class="texto">Traga isso para a sua recepção. Na clínica, as etapas têm outros nomes, mas são as mesmas: &ldquo;vou ver a minha agenda&rdquo;, &ldquo;vou falar com o meu marido&rdquo;, &ldquo;vou esperar o salário cair&rdquo;. Em cada uma, a paciente espera um retorno. Se o retorno depende de alguém lembrar no meio de um dia cheio de maca, ele não acontece.</p>
+
+      <div class="olho">
+        <p>&ldquo;Quem pediu o valor e não marcou não disse não. Disse &lsquo;agora não&rsquo;. A gente é que esqueceu de perguntar quando.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">Tem um detalhe que a loja de carro não tem. Na clínica, parte de quem pede o valor chega indicada por uma paciente. Quando essa pessoa some, você perde duas vezes: a paciente nova que não veio e o obrigado que não chegou a quem indicou. A segunda mensagem cuida das duas.</p>
+
+      <p class="texto">Um limite honesto: o texto da Economia SC é conteúdo pago pela própria empresa, e o levantamento é dela, em lojas de carro. Ele não mede nenhuma clínica. Também não mostra quantas vendas o retorno recupera. O que dá para trazer para a sua agenda é a causa: o retorno que depende só da memória falha.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">metade</div><div class="lbl">das pessoas interessadas se perde depois da primeira conversa, nas <b>lojas de carro</b> que a Picmo estudou</div></div>
+      <div class="numero"><div class="big">36</div><div class="lbl">lojas de carro, de janeiro a março de 2026, formam esse <b>levantamento da própria empresa</b></div></div>
+      <div class="numero"><div class="big">97</div><div class="lbl">perfis falsos de médicos, <b>feitos com inteligência artificial</b>, foram apontados pelo governo federal no YouTube</div></div>
+      <div class="numero"><div class="big">6</div><div class="lbl">profissões o projeto de lei no Senado quer reconhecer na <b>saúde estética</b></div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Lojas de carro perdem metade dos interessados no retorno que ninguém fez</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>Economia SC · 28/10/2026 · conteúdo pago (marcado como &ldquo;Branded Content&rdquo;)</span></div>
+          <p class="texto">A Picmo, de Florianópolis, estudou 36 lojas e diz que metade das pessoas interessadas some depois do primeiro contato. O programa dela lê as anotações da loja e manda, todo dia, pelo WhatsApp, a lista de quem o vendedor precisa procurar.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>É um lembrete diário: &ldquo;hoje, procure estas pessoas, e por este motivo&rdquo;. Não é a máquina conversando com o cliente. É a máquina tirando o retorno da memória do vendedor.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> separe dez minutos, no começo do dia, para ver quem pediu informação e ainda não marcou. Sem lista, esse retorno não sai.</p>
+          <div class="link"><a href="https://economiasc.com/2026/10/28/startup-de-florianopolis-usa-ia-para-recuperar-as-vendas-que-concessionarias-de-veiculos-perdem-depois-do-primeiro-contato/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Anotar cada conversa, do primeiro oi até o fechamento, mostra onde ela trava</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Estado de Minas · 27/10/2026 · conteúdo de agência de marketing</span></div>
+          <p class="texto">O texto é sobre indústria, mas a receita serve para qualquer negócio. Segundo a agência ouvida, registrar cada oportunidade do primeiro contato até o fechamento mostra onde a venda para e por quê. É esse registro que diz quem vale a pena procurar de novo.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Registrar a oportunidade&rdquo; é anotar, na ficha, o dia em que a pessoa chamou, o que ela perguntou e onde a conversa parou. Pode ser no caderno da recepção.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> quando a conversa parar, anote o motivo com uma palavra: valor, data, marido, medo. Em um mês, você vê qual motivo mais trava a sua agenda.</p>
+          <div class="link"><a href="https://www.em.com.br/networking-e-negocios/2026/10/7528537-integracao-entre-marketing-e-vendas-ajuda-industria-a-recuperar-negocios.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Médicos falsos, feitos por máquina, vendem tratamento sem comprovação na internet</h3>
+          <div class="credito"><span class="frescor antes">🟡 10/09</span><span>Rádio Mirante News · 10/09/2026 · e manchete da Rede Atlântida, 06/10/2026</span></div>
+          <p class="texto">Segundo a reportagem, o governo federal apontou 97 perfis falsos de médicos no YouTube, criados com inteligência artificial. A Advocacia-Geral da União pediu ao Google que tirasse o conteúdo do ar. Em outubro, uma manchete da Rede Atlântida falou em IA usada &ldquo;para vender estética duvidosa&rdquo;.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Perfil falso feito por IA&rdquo; é um rosto e uma voz que parecem de um profissional de verdade, mas foram fabricados pelo computador. A orientação da reportagem ao público: conferir a identidade e o registro antes de seguir uma recomendação.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> deixe o seu nome completo e o seu registro no conselho fáceis de achar, no perfil e na primeira mensagem. Com tanta desconfiança, a indicação de uma pessoa conhecida pesa ainda mais.</p>
+          <div class="link"><a href="https://m.imirante.com/mirantenews/noticias/sao-luis/2026/09/10/ia-cria-medicos-falsos-e-acende-alerta-juridico">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Projeto no Senado quer reconhecer a saúde estética como área de seis profissões</h3>
+          <div class="credito"><span class="frescor antes">🟡 08/10</span><span>Bom Dia Sorocaba · 08/10/2026 · ficha do PL 3.698/2026 no Senado</span></div>
+          <p class="texto">O projeto, do senador Izalci Lucas, cita biologia, biomedicina, enfermagem, farmácia, fisioterapia e fonoaudiologia. Foi apresentado em julho e, segundo a página do Senado, ainda espera o primeiro encaminhamento. Na Câmara, há outro projeto com a mesma lista de profissões.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Aguardando despacho&rdquo; quer dizer que o projeto ainda não foi mandado para nenhuma comissão. Nada muda hoje: vale o que o seu conselho já permite.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> nada a fazer agora, além de seguir a regra do seu conselho. Se a sua paciente perguntar, você explica que o assunto está em discussão.</p>
+          <div class="link"><a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/175160">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: vídeo sobre retomar quem a equipe abandonou passa de novecentas visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>YouTube · canal Víctor Pérez · contagem de 28/10/2026</span></div>
+          <p class="texto">O vídeo, em espanhol, fala de usar inteligência artificial para voltar a falar com quem a equipe deixou sem resposta. Tinha 957 visualizações hoje. O título promete uma porcentagem de recuperação que não conseguimos conferir.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Quem a equipe abandona&rdquo; é a conversa que começou e ficou sem retorno. É o mesmo assunto do recorte 01, dito por quem vende o serviço.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> desconfie de número pronto de recuperação. O que vale para a sua clínica é contar, você mesma, quantas voltaram depois do seu retorno.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=AzZl8VFZozQ">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+    <p class="abertura">A amiga indicada que pediu o valor e não marcou ainda é uma indicação. Ela só está parada no meio do caminho.</p>
+
+    <p class="texto">Pense no caminho dela. A sua paciente falou de você. A amiga mandou mensagem, perguntou e recebeu o valor. Depois, silêncio. Na maioria das vezes, ela não escolheu outra clínica. Ela ficou para depois, e ninguém lembrou de quando era esse depois.</p>
+
+    <p class="texto">A segunda mensagem para quem chegou por indicação é mais fácil que qualquer anúncio. Ela já conhece alguém que confia em você. Se foi ela mesma quem contou quem indicou, você pode lembrar com cuidado: &ldquo;a Carla falou com tanto carinho de você, fiquei feliz que você chamou&rdquo;. Sem pressão, sem desconto.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>Use o nome de quem indicou só se a própria pessoa contou para você. Não diga o que a sua paciente fez, nem quando. Isso é dado de saúde dela, e ela não autorizou contar.</p></div>
+
+    <p class="texto">E num tempo em que até médico falso aparece em vídeo, a indicação de uma pessoa de verdade vale mais. Mostre quem você é: nome completo, registro, foto real do consultório. Se a sua profissão tem regra sobre recompensa por indicação, siga a do seu conselho. Agradecer a quem indicou é sempre permitido.</p>
+  </section>
+
+  <!-- ═════════ 04 ═════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+    <p class="abertura">&ldquo;Vou falar com o meu marido&rdquo; não é um não. É uma data que ninguém combinou.</p>
+
+    <p class="texto">Na loja de carro, a compra para na conversa com a família e na resposta do banco. Na clínica, para no &ldquo;vou ver a agenda&rdquo;, no &ldquo;vou esperar o salário&rdquo;, no &ldquo;vou pensar&rdquo;. Cada uma dessas frases tem um tempo. O erro é encerrar a conversa sem perguntar qual é.</p>
+
+    <p class="texto">Experimente fechar toda conversa parada com uma pergunta simples: &ldquo;posso te chamar de novo na semana que vem, para ver como ficou?&rdquo;. Se ela disser sim, você ganhou permissão e uma data. Anote as duas. O retorno deixa de ser cobrança e vira combinado.</p>
+
+    <div class="olho">
+      <p>&ldquo;Antes de encerrar, eu pergunto: quando posso te chamar de novo? E anoto.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">A mesma pergunta serve para a paciente que já fez o procedimento e sumiu. A data de retorno da ficha é o seu combinado com ela. Mande a mensagem com o nome dela e o motivo, sem desconto. Quem não responder não recebe cobrança. Recebe, no máximo, outra mensagem daqui a algumas semanas.</p>
+  </section>
+
+  <!-- ═════════ 05 ═════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+    <p class="abertura">Três ganchos prontos. Use no seu jeito, com a sua cara, sem prometer resultado e sem mostrar paciente.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <p class="texto">&ldquo;Pediu o valor e sumiu? Tudo bem, de verdade.&rdquo; Você, olhando para a câmera: &ldquo;muita gente me pergunta o valor e depois some. Eu entendo: tem a agenda, tem o orçamento, tem a conversa em casa. Não precisa decidir hoje&rdquo;. Fecho: &ldquo;se você está nesse lugar, me chama e me diz quando é um bom momento. Eu anoto e te procuro&rdquo;. Tira o peso de quem ficou com vergonha de responder.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <p class="texto">&ldquo;Como saber se quem vai te atender é de verdade.&rdquo; Cartão 1: o título. Cartão 2: procure o nome completo. Cartão 3: confira o registro no conselho da profissão. Cartão 4: veja o endereço e fotos reais do lugar. Cartão 5: desconfie de promessa de resultado garantido. Último: o seu nome e o seu registro. Informa, protege a paciente e mostra quem você é, sem vender procedimento.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <p class="texto">Enquete: &ldquo;Você já pediu o valor de um procedimento e não marcou?&rdquo; Opções: &ldquo;já&rdquo; e &ldquo;nunca&rdquo;. No story seguinte, a caixinha: &ldquo;o que te fez deixar para depois?&rdquo;. As respostas chegam só para você e mostram, com as palavras delas, onde a conversa trava na sua clínica.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 — aguardando validação do André ═════════ -->
+  
+
+  <section class="materia" id="fecho">
+    <p class="texto">A ideia volta aqui, e é por ela que a edição fecha. Metade de quem demonstra interesse se perde no retorno que ninguém fez. Na clínica, essa pessoa tem nome, tem uma pergunta parada no WhatsApp e, muitas vezes, uma amiga que falou de você. Ela não disse não. Esta semana, pergunte quando pode chamar de novo. E chame.</p>
+  </section>
+
+  <!-- ═════════ 07 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Economia SC, 28/10/2026</b> — &ldquo;Startup de Florianópolis usa IA para recuperar as vendas que concessionárias de veículos perdem depois do primeiro contato&rdquo;, Redação, marcado como &ldquo;Branded Content&rdquo; (conteúdo pago). Levantamento da Picmo em 36 lojas de 36 grupos e 20 marcas, de janeiro a março de 2026: perda média de metade dos interessados depois do primeiro contato, até 80% em alguns casos; causa atribuída à memória e à disciplina de cada vendedor; etapas de test-drive, proposta, família e banco; frase de Fernanda Jacques. Usado nas seções 01, 02, 04 e 06. <a href="https://economiasc.com/2026/10/28/startup-de-florianopolis-usa-ia-para-recuperar-as-vendas-que-concessionarias-de-veiculos-perdem-depois-do-primeiro-contato/">ler</a></li>
+      <li><b>Estado de Minas, 27/10/2026</b> — &ldquo;Integração entre marketing e vendas ajuda indústria a recuperar negócios&rdquo;, seção Networking e Negócios, conteúdo com a visão de uma agência de marketing. Registro de cada oportunidade do primeiro contato ao fechamento mostra onde a venda trava. Recorte 02. <a href="https://www.em.com.br/networking-e-negocios/2026/10/7528537-integracao-entre-marketing-e-vendas-ajuda-industria-a-recuperar-negocios.html">ler</a></li>
+      <li><b>Rádio Mirante News (imirante), 10/09/2026</b> — &ldquo;IA cria médicos falsos e acende alerta jurídico&rdquo;. 97 perfis falsos de médicos no YouTube, criados com IA, apontados pelo governo federal; notificação da AGU ao Google; orientação de conferir identidade e registro. Recorte 03 e seção 03. <a href="https://m.imirante.com/mirantenews/noticias/sao-luis/2026/09/10/ia-cria-medicos-falsos-e-acende-alerta-juridico">ler</a></li>
+      <li><b>Rede Atlântida, 06/10/2026</b> — &ldquo;Perfis falsos, produtos milagrosos: como a IA virou arma para vender estética duvidosa&rdquo;. Só a manchete, como chegou ao sinal do dossiê. Recorte 03. <a href="https://news.google.com/rss/articles/CBMikwJBVV95cUxNUlNiaGRMcEE2ZU9XZ0pHTkVRbDQ0TFlkRzJMX1NuVWVNTVFTQXVTa0VXUmk0YXRVRGJPNHBCMDdXbnRGc2RWY0NxNTNCWjlVTnJKTjlHTy1PZFJ6aHU0X19vWDVRcDBLVllqR3JsRGg3NDN1M3RuMnc5Ul9Gcy1xMncyQXJuUGFOSGlDVE5yNTI4Y2lyYy1TaVoxbkFCOEU1Z2lBWnJuenhPNnc3d3RQNHB3c00zelJmbTZkQjNKdk5meU9YZ1pNZHFBT09LZUlZYURIZjBZZjlETlNLX2d2SzlUbkZDWTF5UTBxY3FYUlB6R0dpakQwQ1Niem1FMU9iWDhpbUJsRVdIU3lGSEgtUEdhWQ?oc=5">ler</a></li>
+      <li><b>Bom Dia Sorocaba, 08/10/2026</b> — &ldquo;Projeto reconhece saúde estética como área de atuação de seis profissões&rdquo;. Só a manchete, como chegou ao sinal. Recorte 04. <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNd1BCakZkTXViZkdlQnkycXFNSjhnbFFTTndlYjN5S3A1STNXLVlfdldGSWhPeWlLWmNDV0F1MG1XTDZvdlBaZEhDYkg4bDlMLWJjV1VKMVZ0NnJWcUJwNTVYV2dQRzdWRDU2Qm01N291NUF4SWlGWFBWR0U2eVlGbWxXWDRpVC1YSVhOSHBVRnBWcmxzYU5vbVctcmZyejhMek5INS1FeS0xbzhGdE9HbVZuUExOVXRE?oc=5">ler</a></li>
+      <li><b>Senado Federal, ficha do PL 3.698/2026</b> — autor senador Izalci Lucas (PL/DF), apresentado em 14/07/2026; saúde estética como área de biologia, biomedicina, enfermagem, farmácia, fisioterapia e fonoaudiologia; situação &ldquo;aguardando despacho&rdquo;, página atualizada em 22/07/2026. Recorte 04. <a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/175160">ler</a></li>
+      <li><b>Câmara dos Deputados, 2025</b> — &ldquo;Relator busca consenso para projeto que amplia rol de profissionais que atuam com saúde estética&rdquo; (PL 2717/2019, mesma lista de profissões). Recorte 04. <a href="https://www.camara.leg.br/noticias/1223451-relator-busca-consenso-para-projeto-que-amplia-rol">ler</a></li>
+      <li><b>YouTube, canal Víctor Pérez</b> — &ldquo;Así recuperamos con IA el 70% de leads que tu equipo abandona&rdquo; (aparece no sinal com o título em inglês), 957 visualizações em 28/10/2026, segundo o sinal do dossiê. Recorte 05. <a href="https://www.youtube.com/watch?v=AzZl8VFZozQ">ler</a></li>
+      <li><b>Dossiê A Próxima Paciente, edições Nº 029, Nº 032, Nº 033, Nº 038 e Nº 040</b> — a ficha de três linhas, o obrigado a quem já indica, o cartão do procedimento, a pergunta &ldquo;quem te indicou?&rdquo; e a conversa de revisão, retomados nas seções 04 e 06.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>O levantamento da Picmo é da própria empresa, publicado como conteúdo pago, e foi feito só em lojas de carro; não sabemos como as 36 lojas foram escolhidas, e ele não mede nenhuma clínica nem quantas vendas o retorno recupera. O texto do Estado de Minas também é a opinião de uma agência que vende o serviço. A reportagem da Mirante não diz qual órgão do governo identificou os 97 perfis. Não abrimos o texto da Rede Atlântida nem o do Bom Dia Sorocaba, só as manchetes; não sabemos se o Bom Dia Sorocaba trata do mesmo projeto do Senado. Não abrimos o vídeo do Víctor Pérez e não conferimos a porcentagem do título. Nenhuma fonte desta edição mede se a segunda mensagem traz paciente de volta numa clínica.</p></div>
+  </section>
+
+  <!-- ═════════ 08 — INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 043 · quarta-feira, 28 de outubro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
