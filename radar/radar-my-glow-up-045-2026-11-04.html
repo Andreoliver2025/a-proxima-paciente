@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 045 · 4 de novembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>A fábrica do laser quer falar direto com a sua paciente. Ela pode criar a vontade. Quem escolhe onde fazer ainda é a amiga que já fez com você.</h1>
+    <p class="chamada">Uma fabricante brasileira de aparelhos de laser anunciou ontem que vai investir em propaganda e relacionamento também com quem procura tratamento, não só com médicos e clínicas. A pergunta &ldquo;vocês têm esse aparelho?&rdquo; deve chegar mais vezes ao seu WhatsApp. A resposta que faz a paciente marcar, porém, continua vindo de alguém em quem ela confia.</p>
+    <div class="dateline">Edição Nº 045 · quarta-feira, 4 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a><div class="d">A fabricante do aparelho vai falar com a paciente. O aparelho se compra; a confiança, não.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: a fábrica que quer criar procura, os cremes que prometiam rejuvenescer e foram proibidos, o bronzeamento artificial que segue proibido e um vídeo sobre indicação de paciente particular.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a><div class="d">&ldquo;Vocês têm o laser tal?&rdquo; é o começo de uma conversa, não um teste de catálogo.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a><div class="d">O cuidado não termina quando a paciente levanta da maca.</div></li>
+      <li><a href="#postar">O que postar esta semana</a><div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+    </ol>
+    
+    <ol style="counter-reset:sm 6;border-top:0;margin-top:0">
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">&ldquo;Uma parceria não termina quando o equipamento chega à clínica.&rdquo; A frase é de Patricia Moro, diretora comercial da VYDENCE Medical, fabricante de lasers de São Carlos, no interior de São Paulo. Saiu ontem, num texto patrocinado pela própria empresa no portal do <b>Valor</b>.</p>
+
+    <p class="texto capitular">A empresa diz que já vendeu mais de três mil unidades de um dos seus aparelhos e que está em quarenta países. A novidade é o plano: mais propaganda, comunicação e experiências também para quem procura tratamento. O objetivo declarado é despertar interesse e gerar procura nas clínicas parceiras.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: a fábrica pode fazer a paciente querer um tratamento. Mas o mesmo aparelho está em milhares de clínicas. O que faz ela escolher a sua é a palavra de quem já passou pela sua maca. A vontade pode vir da propaganda; a escolha continua vindo da confiança.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">O texto do Valor é conteúdo pago pela fabricante, e quase tudo nele é a empresa falando de si. Mesmo assim, ele mostra uma direção. Quem fabrica o aparelho quer que a paciente conheça a marca e o nome do tratamento antes de chegar à clínica. Fala em apoiar o profissional na construção da própria marca e em aumentar o valor que a paciente percebe.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Gerar demanda&rdquo; é fazer a pessoa querer o tratamento antes de conversar com você. &ldquo;Clínica parceira&rdquo; é a que comprou o aparelho da marca. Na prática, a paciente pode chegar já sabendo o nome da máquina, e perguntando por ele.</p></div>
+
+      <p class="texto">Isso tem dois lados para a sua agenda. O bom: chega gente com interesse pronto, sem você pagar o anúncio. O delicado: se a paciente chega pela marca da máquina, ela pode comparar clínica por preço, como quem compara loja. E o mesmo texto lembra que o Brasil foi o segundo país do mundo em procedimentos estéticos em 2025. Há muita clínica oferecendo coisa parecida.</p>
+
+      <div class="olho">
+        <p>&ldquo;A máquina, outra clínica também tem. O jeito como eu cuido de você, não.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">É aqui que a indicação pesa. Quando a amiga conta como foi atendida, ela não fala do aparelho. Fala de quem explicou, de quem mandou mensagem no dia seguinte, de quem foi honesta sobre o que dava e o que não dava para fazer. Isso não vem na caixa do equipamento. É o que a sua paciente leva para a roda de amigas.</p>
+
+      <p class="texto">Um limite honesto: o texto é patrocinado e não traz datas, valores nem os canais da campanha. Não sabemos quando ela começa nem se vai chegar à sua cidade. Também não há nenhum dado sobre quantas pacientes a propaganda de uma marca leva a uma clínica. O que dá para trazer para a sua agenda é a preparação: saber o que responder quando a pergunta chegar.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Quatro recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">2º</div><div class="lbl">lugar do Brasil no mundo em <b>procedimentos estéticos</b> em 2025, segundo a sociedade internacional de cirurgia plástica, citada no texto do Valor</div></div>
+      <div class="numero"><div class="big">três mil</div><div class="lbl">unidades vendidas de um único aparelho de laser, <b>segundo a própria fabricante</b></div></div>
+      <div class="numero"><div class="big">3</div><div class="lbl">cosméticos que prometiam <b>tirar rugas e rejuvenescer</b> foram proibidos pela Anvisa em setembro</div></div>
+      <div class="numero"><div class="big">682</div><div class="lbl">visualizações, medidas hoje, de um vídeo sobre <b>aumentar a indicação</b> de pacientes particulares</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Fabricante brasileira de laser vai fazer propaganda também para quem procura tratamento</h3>
+          <div class="credito"><span class="frescor hoje">🟢 ontem</span><span>Valor · 03/11/2026 · conteúdo patrocinado pela empresa</span></div>
+          <p class="texto">A VYDENCE Medical diz que vai investir em comunicação, experiências e relacionamento com médicos e com o público. Quer que mais gente conheça os tratamentos e procure as clínicas que usam os aparelhos dela. A empresa também promete treinamento e acompanhamento depois da venda.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Pós-venda&rdquo; é o suporte que a fábrica dá depois que a clínica compra: treinar a equipe, tirar dúvida de uso, acompanhar. É o mesmo cuidado que a sua paciente espera de você depois do procedimento.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> combine com a recepção uma resposta para &ldquo;vocês têm o aparelho tal?&rdquo;. Se tiver, diga e convide para uma avaliação. Se não tiver, explique o que você faz e por quê. Nunca prometa resultado.</p>
+          <div class="link"><a href="https://news.symplexia.com/pt-br/2026/11/entretenimento/livros/com-tecnologia-brasileira-vydence-reforca-marca-e-estrategia-de-expansao-global/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Anvisa proíbe três cosméticos que prometiam tirar rugas e rejuvenescer</h3>
+          <div class="credito"><span class="frescor antes">🟡 21/09</span><span>O Povo e A Crítica · setembro de 2026 · manchete do Jornal DR1</span></div>
+          <p class="texto">Segundo as reportagens, a Anvisa proibiu a fabricação, a venda e o uso de três produtos de uma mesma linha. Eles estavam registrados como cosméticos, mas, para a agência, tinham características de uso invasivo. A orientação ao público foi parar de usar e guardar embalagem e nota.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Registrado como cosmético&rdquo; é o produto que pode ser vendido como creme ou sérum. Se ele age como algo que entra na pele, precisa de outro tipo de registro. Foi essa diferença que a Anvisa apontou.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> confira, no site da Anvisa, o registro de cada produto que você usa ou indica para casa. E não repita na sua divulgação a promessa que vem escrita na embalagem.</p>
+          <div class="link"><a href="https://www.opovo.com.br/trends/?p=26857">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>O bronzeamento artificial continua proibido no país, às portas do verão</h3>
+          <div class="credito"><span class="frescor antes">🟡 31/10</span><span>ES Brasil · 31/10/2026 · resolução RDC 56/2009 da Anvisa</span></div>
+          <p class="texto">Uma reportagem de sábado lembrou que as câmaras de bronzeamento artificial com fins estéticos seguem proibidas. A regra é da Anvisa, de 2009, e vale para todo o território nacional. No Espírito Santo, a Justiça suspendeu uma lei estadual que tentava liberar as câmaras.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Câmara de bronzeamento&rdquo; é a cama de luz que imita o sol para escurecer a pele. Ela está proibida para fins de beleza, mesmo que alguma lei local diga o contrário.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> com o verão chegando, a pergunta sobre &ldquo;pegar uma cor&rdquo; vai aparecer. Responda com a regra e ofereça só o que a sua profissão permite.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9WY3JfdDQxRTlpc2NhM3p6VDBvYWlRLVdWUmJiTFQ1QlN0bDJMOXNxNktROUd0dHhjRXlsaE5KS3Q3Q1FsajcxUmEzeHNMd3dWTElkWGNNRDNLdHpLeXpTS05YSnpfX3E1U1JsbktVcFExUQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Medido hoje: vídeo sobre aumentar a indicação de pacientes particulares chega a seiscentas e oitenta e duas visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>YouTube · canal Marketing para Consultório · contagem de 04/11/2026</span></div>
+          <p class="texto">O vídeo, de uma agência que atende médicos, fala em captar mais pacientes por indicação. É novo no nosso radar. A plateia ainda é pequena perto dos vídeos sobre anúncio, que passam de trinta mil visualizações.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Paciente particular&rdquo; é quem paga do próprio bolso, sem convênio. É o caso da quase totalidade da estética.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> enquanto quase todo mundo fala de anúncio, pouca gente organiza a indicação. Esse é um espaço que você ocupa com o que já tem: pacientes satisfeitas.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=LIppqYsNd_w">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+    <p class="abertura">&ldquo;Vocês têm o laser tal?&rdquo; é o começo de uma conversa. Não é um teste de catálogo.</p>
+
+    <p class="texto">Quando a paciente chega perguntando pelo nome de uma máquina, ela está dizendo o que quer resolver. Pergunte isso primeiro: &ldquo;o que te fez procurar esse tratamento?&rdquo;. A resposta mostra se ela quer a marca ou quer o resultado que viu em alguém.</p>
+
+    <p class="texto">Na maioria das vezes, o que ela viu foi alguém. Uma amiga, uma colega, uma parente. É por isso que a indicação continua sendo o caminho mais curto até a sua maca. A propaganda faz a pessoa querer; a amiga diz onde ir. Quando você pergunta &ldquo;como você chegou até aqui?&rdquo;, descobre qual dos dois trouxe essa paciente.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>Anote em cada ficha de onde a paciente veio: indicação (de quem), anúncio, Instagram, ou procura pela marca do aparelho. Em um mês, você sabe qual porta traz mais gente para a sua agenda.</p></div>
+
+    <p class="texto">Se ela veio indicada, agradeça a quem indicou, sem contar nada do que a amiga vai fazer. Se a sua profissão tem regra sobre recompensa por indicação, siga a do seu conselho. Agradecer é sempre permitido.</p>
+  </section>
+
+  <!-- ═════════ 04 ═════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+    <p class="abertura">A fábrica diz que a parceria não termina quando o aparelho chega à clínica. O seu cuidado também não termina quando a paciente levanta da maca.</p>
+
+    <p class="texto">Pense nos dias depois do procedimento. A paciente está em casa, olhando no espelho, com dúvida se aquela vermelhidão é normal. Se ninguém da clínica aparece, ela fica sozinha com a dúvida. Se você manda uma mensagem, ela se sente cuidada. E é dessa sensação que ela fala para as amigas.</p>
+
+    <p class="texto">Combine dois contatos para todo procedimento. O primeiro, poucos dias depois: &ldquo;como você está? Alguma dúvida?&rdquo;. O segundo, na data de revisão ou de manutenção que está na ficha, com o nome dela e o motivo. Sem desconto, sem urgência.</p>
+
+    <div class="olho">
+      <p>&ldquo;A minha paciente não precisa lembrar de voltar. Quem lembra sou eu.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">E quem sumiu há meses? Um vídeo novo no nosso radar, sobre reativar clientes que pararam de comprar, tinha seiscentas e noventa e três visualizações hoje. O assunto cresce. Na clínica, a regra é simples: mande só para quem já conversou com você, pelo mesmo número, e aceite o &ldquo;agora não&rdquo; sem insistir.</p>
+  </section>
+
+  <!-- ═════════ 05 ═════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+    <p class="abertura">Três ganchos prontos. Use no seu jeito, com a sua cara, sem prometer resultado e sem mostrar paciente.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <p class="texto">&ldquo;O aparelho é o mesmo em muitas clínicas. Então, o que muda?&rdquo; Você, ao lado do equipamento: &ldquo;essa máquina existe em muitos lugares. O que muda é a avaliação antes, a explicação honesta do que ela faz e do que ela não faz, e o acompanhamento depois&rdquo;. Fecho: &ldquo;se você está pensando em algum tratamento, me chama e me conta o que quer resolver&rdquo;. Mostra o seu cuidado, não o catálogo.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <p class="texto">&ldquo;Antes de comprar um creme que promete rejuvenescer.&rdquo; Cartão 1: o título. Cartão 2: procure o número de registro na embalagem. Cartão 3: confira esse número no site da Anvisa. Cartão 4: desconfie de promessa de &ldquo;efeito de procedimento&rdquo; em creme. Cartão 5: na dúvida, pergunte a uma profissional. Último: o seu nome, a sua profissão e o seu registro. Informa, protege e mostra quem você é.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <p class="texto">Enquete: &ldquo;Como você escolhe onde fazer um procedimento?&rdquo; Opções: &ldquo;indicação de alguém&rdquo; e &ldquo;propaganda ou Instagram&rdquo;. No story seguinte, a caixinha: &ldquo;o que te fez confiar na última clínica que você escolheu?&rdquo;. As respostas chegam só para você e mostram, com as palavras delas, o que pesa na decisão.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 — aguardando validação do André ═════════ -->
+  
+
+  <section class="materia" id="fecho">
+    <p class="texto">A ideia volta aqui, e é por ela que a edição fecha. A fábrica pode fazer a paciente querer um tratamento, e talvez faça isso com mais força a partir de agora. Mas o aparelho está em milhares de clínicas. O que leva a paciente até a sua é a palavra de quem já foi cuidada por você. Esta semana, cuide de quem acabou de sair da sua maca. E deixe nas mãos dela um jeito de contar para a próxima.</p>
+  </section>
+
+  <!-- ═════════ 07 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Valor, 03/11/2026</b> — &ldquo;Com tecnologia brasileira, VYDENCE reforça marca e estratégia de expansão global&rdquo;, conteúdo patrocinado pela empresa (o endereço original traz &ldquo;patrocinado&rdquo;), lido na reprodução da Symplexia Labs. Frases de Patricia Moro, diretora comercial, e de Anahi Bevilacqua, chefe global de marketing; mais de três mil unidades da plataforma Etherea; presença em quarenta países; plano de propaganda, comunicação, experiências e relacionamento com médicos e público, para gerar procura nas clínicas parceiras; treinamento e acompanhamento pós-venda; Brasil em segundo lugar mundial em procedimentos estéticos em 2025, com cerca de três milhões e duzentos mil procedimentos, segundo a ISAPS. Usado nas seções 01, 02, 03, 04 e 06. <a href="https://news.symplexia.com/pt-br/2026/11/entretenimento/livros/com-tecnologia-brasileira-vydence-reforca-marca-e-estrategia-de-expansao-global/">ler</a></li>
+      <li><b>Valor, 03/11/2026, como chegou ao sinal do dossiê</b> — manchete no Google Notícias. <a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxQNUx6LUJsOUd1T1h2T1ZZcGc5cXlrOHc4dnkza2hYajVlQmdiUEdvYVJKc0hhNmlybGFXNkdqV29EMFpySU1ISTFIUmdOYkNQSlJ0dXVBazZhS3BzOUc4ZlNuSEtRRDlsU283bHdUcXlZOGJvZHNNaFJmUldSd0hPSk9NMUZyUEdOZ1BVSEJhcUpGWGRMb0pEaU5yTkl3VUpBTHd2Tko5Q3B0Z1RkWE10NG4xcXJBcWRYTElKLTU4ZkR1R2pZWjU4N1RPdW5jVElGeTE1U09ncTZleHBFNEV0UG9yaXBINk1ZTmc?oc=5">ler</a></li>
+      <li><b>O Povo e A Crítica, setembro de 2026</b> — proibição pela Anvisa de três cosméticos da linha Smart GR (Smart Exo Skin Pro, Smart Hyaluclar Micro e Smart Mesoeffect Micro), que prometiam reduzir rugas e rejuvenescer, por terem características de uso invasivo apesar do registro como cosmético; orientação de suspender o uso. Recorte 02 e gancho 2. <a href="https://www.opovo.com.br/trends/?p=26857">ler</a> · <a href="https://acritica.net/saude/anvisa-proibe-agua-sanitaria-d-casa-cosmeticos-smart-gr/">ler</a></li>
+      <li><b>Jornal DR1, 24/09/2026</b> — &ldquo;Anvisa proíbe água sanitária e cosméticos com promessas de rejuvenescimento&rdquo;. Só a manchete, como chegou ao sinal. Recorte 02. <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxOY3NfZFNTcXFLVTNCeGRzOEFab0NZeGVIUTY3cldSb3g0Q1ZybzUtS0J2NGxJQmVWQnozQUJfeGEtWnhUdW03N3RUOHd5SmtyWUpSXzZtMExVTDRaN2tPck92WW5TcU1jRjRnUGU4NEtOU0NpV0czTEZFRWJDMUlfWDQ0eHlQWC1XSU1fVlVvanF4RFlrakxCbi1HTjVyM3VVank0?oc=5">ler</a></li>
+      <li><b>ES Brasil, 31/10/2026</b> — &ldquo;Bronzeamento artificial segue proibido: veja riscos e regras&rdquo;. Só a manchete, como chegou ao sinal. Recorte 03. <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9WY3JfdDQxRTlpc2NhM3p6VDBvYWlRLVdWUmJiTFQ1QlN0bDJMOXNxNktROUd0dHhjRXlsaE5KS3Q3Q1FsajcxUmEzeHNMd3dWTElkWGNNRDNLdHpLeXpTS05YSnpfX3E1U1JsbktVcFExUQ?oc=5">ler</a></li>
+      <li><b>Anvisa, RDC 56, de 9 de novembro de 2009</b> — proíbe em todo o território nacional a importação, a venda, o aluguel e o uso de equipamentos de bronzeamento artificial com fins estéticos. Recorte 03. <a href="https://www.conjur.com.br/wp-content/uploads/2023/09/resolucao-anvisa-proibe-bronzeamento.pdf">ler</a></li>
+      <li><b>ES Hoje</b> — &ldquo;TJES suspende lei estadual que regulamentava câmaras de bronzeamento artificial&rdquo; (Lei Estadual 12.327/2024). Recorte 03. <a href="https://eshoje.com.br/?p=774160">ler</a></li>
+      <li><b>YouTube, canal Marketing para Consultório</b> — &ldquo;Como aumentar a taxa de indicação de pacientes particulares? Captar mais pacientes por indicação&rdquo;, 682 visualizações em 04/11/2026, segundo o sinal do dossiê. Recorte 04. <a href="https://www.youtube.com/watch?v=LIppqYsNd_w">ler</a></li>
+      <li><b>YouTube, canal Cid Bezerra</b> — &ldquo;Como Reativar Clientes Inativos e Vender Muito Mais&rdquo;, 693 visualizações em 04/11/2026, segundo o sinal do dossiê. Seção 04. <a href="https://www.youtube.com/watch?v=YftNAWG8K3w">ler</a></li>
+      <li><b>YouTube, canal Victor Rocha</b> — &ldquo;A Melhor Estratégia Atual para Clínicas de Estética&rdquo;, 32.312 visualizações em 04/11/2026, usado como referência de &ldquo;vídeos sobre anúncio&rdquo;. Recorte 04. <a href="https://www.youtube.com/watch?v=RsPDlK1C_lA">ler</a></li>
+      <li><b>Dossiê A Próxima Paciente, edições Nº 029, 032, 033, 038, 040 e 043</b> — a ficha de três linhas, o obrigado a quem indica, o cartão do procedimento, a pergunta &ldquo;quem te indicou?&rdquo;, a conversa de revisão e o retorno para quem pediu o valor, retomados nas seções 04 e 06.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>O texto da VYDENCE é conteúdo pago pela própria empresa; os números de unidades vendidas e de países são dela e não foram conferidos de forma independente. Ele não traz datas, valores nem canais da campanha para o público, e não sabemos se ela chegará a todas as regiões. Uma página de rede social cita outro sobrenome para a chefe de marketing; usamos o que está no texto. O número da ISAPS foi lido no texto patrocinado, não no relatório original. Sobre os cosméticos, as reportagens divergem no dia da semana da decisão (21 de setembro); não abrimos a publicação no Diário Oficial. Não abrimos o texto do ES Brasil, só a manchete; a regra nacional foi conferida na resolução da Anvisa, e a suspensão da lei capixaba no ES Hoje, sem a data da decisão. Não assistimos aos vídeos citados. Nenhuma fonte desta edição mede quantas pacientes a propaganda de uma marca leva a uma clínica, nem o efeito da mensagem de acompanhamento sobre a indicação.</p></div>
+  </section>
+
+  <!-- ═════════ 08 — INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 045 · quarta-feira, 4 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
