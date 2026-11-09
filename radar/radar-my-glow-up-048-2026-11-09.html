@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 048 · 9 de novembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A Anvisa abriu o prazo para reescrever as regras da estética. Até lá, a regra de hoje continua valendo.</h1>
+    <p class="chamada">Saiu no Diário Oficial de 3 de novembro: um grupo de trabalho tem cento e oitenta dias para propor como os serviços de estética devem ser regulados. Na mesma semana, uma clínica de Teresina foi interditada, inclusive pelo que anunciava nas redes. A mudança vem com hora marcada; a fiscalização não espera.</p>
+    <div class="dateline">Edição Nº 048 · segunda-feira, 9 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">O grupo da Anvisa que vai rever as regras da estética saiu do papel, com prazo até o começo de maio.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Três recortes: o grupo oficializado, a clínica interditada em Teresina e o alerta da Anvisa sobre preenchedor.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">A conversa sobre as regras da estética virou portaria, com nome, composição e prazo.</p>
+    <p class="texto capitular">A Anvisa publicou no Diário Oficial de 3 de novembro a Portaria 1.182. Ela cria um grupo de trabalho para estudar os serviços de estética no país e apontar riscos e lacunas. O grupo tem cento e oitenta dias, o que leva ao começo de maio de 2027, se não houver prorrogação.</p>
+    <p class="texto">O grupo não decide nada sozinho: ele entrega pareceres que vão embasar uma futura regra de boas práticas. Têm vaga técnicos da Anvisa e do Ministério da Saúde, seis professoras e seis entidades do setor, como o Sindestética de São Paulo, a ANESCO e a SBEC.</p>
+    <p class="texto">A ideia desta edição, que volta no fim: a regra nova ainda não saiu, e a de hoje continua valendo. A clínica que guarda o registro de tudo, da ficha ao frasco e ao post, atravessa a mudança sem susto.</p>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto">Esta é a continuação de uma história que o dossiê acompanha desde setembro. Em 17 de setembro, a Anvisa reuniu associações e sindicatos de estética. Em 23 de setembro, suspendeu a orientação de 2024 que a fiscalização usava como referência para esses serviços. Agora, o grupo prometido ganhou portaria.</p>
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Portaria&rdquo; é o documento oficial que cria o grupo e diz quem participa. &ldquo;Nota técnica&rdquo; é a orientação que a fiscalização leva quando visita a clínica. &ldquo;Boas práticas&rdquo; é a lista do que precisa existir para o serviço funcionar com segurança.</p></div>
+      <p class="texto">O ponto que mais confunde: a orientação suspensa não liberou nada. A própria Anvisa escreveu que as exigências da lei seguem valendo, e que a licença e a vistoria continuam com a vigilância da sua cidade e do seu estado.</p>
+      <div class="olho">
+        <p>&ldquo;A regra nova ainda não saiu. A de hoje vale, e a gente cumpre e guarda prova.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+      <p class="texto">Um limite honesto: ninguém sabe ainda o que o grupo vai propor. Qualquer post dizendo que &ldquo;a Anvisa vai proibir&rdquo; ou &ldquo;vai liberar&rdquo; esse ou aquele procedimento está adiantando uma decisão que não existe.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Três recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">180</div><div class="lbl">dias de prazo para o grupo da Anvisa, contados de 3 de novembro, <b>podendo ser prorrogado</b></div></div>
+      <div class="numero"><div class="big">6</div><div class="lbl">entidades do setor de estética com <b>vaga no grupo</b>, ao lado de seis professoras</div></div>
+      <div class="numero"><div class="big">3</div><div class="lbl">órgãos <b>juntos</b> na vistoria que interditou a clínica em Teresina</div></div>
+      <div class="numero"><div class="big">4</div><div class="lbl">tipos de preenchedor no <b>alerta de segurança</b> da Anvisa deste ano</div></div>
+    </div>
+
+    <div class="recortes">
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Anvisa oficializa o grupo que vai rever as regras dos serviços de estética</h3>
+          <div class="credito"><span class="frescor hoje">🟢 03/11</span><span>Atlas Público · Portaria 1.182 da Anvisa, Diário Oficial de 03/11/2026</span></div>
+          <p class="texto">A portaria foi assinada em 15 de outubro e publicada no dia 3. O grupo é consultivo: estuda o cenário, aponta problemas e entrega pareceres. A decisão final continua com a Anvisa.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Consultivo&rdquo; quer dizer que o grupo dá opinião técnica, mas não muda regra nenhuma. É como uma reunião de equipe que prepara a proposta; quem assina é a direção.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> nada muda na vistoria de amanhã. Se você é filiada a uma das entidades do grupo, é por ela que a sua opinião chega lá. Vale perguntar como ela vai ouvir as associadas.</p>
+          <div class="link"><a href="https://atlaspublico.com.br/noticias/anvisa-institui-grupo-de-trabalho-para-subsidiar-regulacao-97129">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Clínica de Teresina é interditada, e o que ela anunciava nas redes entrou na lista de problemas</h3>
+          <div class="credito"><span class="frescor hoje">🟢 05/11</span><span>Portal Clube News · 06/11/2026 · Vigilância Sanitária de Teresina, CRM-PI e Ministério Público do Piauí</span></div>
+          <p class="texto">A clínica funcionava sem licença sanitária e com o cadastro na Receita inativo. Os fiscais acharam produtos vencidos e sem registro na Anvisa. O Ministério Público disse que ela oferecia procedimentos nas redes sociais em desacordo com as normas.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Perfurocortante&rdquo; é agulha, lâmina e tudo que fura ou corta. Precisa ir para a caixa própria, nunca para o lixo comum, e isso também foi apontado na vistoria.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> separe meia hora para reler os seus posts de oferta. O que a clínica publica também é olhado na fiscalização, não só o que acontece na maca.</p>
+          <div class="link"><a href="https://portalclubenews.com/2026/11/06/clinica-de-estetica-e-interditada-por-propaganda-enganosa-e-com-medicamentos-irregulares-em-teresina/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Anvisa lembra: preenchedor só na região e no volume que a bula permite, e a paciente leva o cartão do produto</h3>
+          <div class="credito"><span class="frescor antes">🟡 12/03</span><span>Anvisa, Informe de Segurança nº 01/2026 · resumo no Legismap</span></div>
+          <p class="texto">O alerta vale para ácido hialurônico, hidroxiapatita de cálcio, ácido polilático e PMMA. A Anvisa pede que o profissional confira região e volume nas instruções de uso. Também pede que entregue à paciente o cartão do produto e guarde uma cópia na ficha.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Cartão de rastreabilidade&rdquo; é a etiqueta que vem com o produto, com nome, lote e validade. Com ele, dá para saber exatamente o que foi aplicado, se um dia aparecer alguma complicação.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> confira se a equipe entrega o cartão em todo preenchimento e cola a cópia na ficha. É cuidado que a paciente vê e registro que a fiscalização encontra.</p>
+          <div class="link"><a href="https://legismap.com.br/conteudos/artigos-e-noticias/noticias-anvisa-em-12-03-2026">clique aqui para ler</a></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="texto">De volta à ideia do começo: a regra da estética vai ser reescrita, mas ainda não foi. Enquanto o grupo trabalha, vale a de hoje. A clínica que tem licença, cartão do produto na ficha e post revisado não precisa esperar maio para ficar tranquila. E é essa tranquilidade que a paciente conta para a amiga.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <ol class="src">
+      <li><b>Atlas Público, novembro de 2026</b> — &ldquo;Anvisa institui grupo de trabalho para subsidiar regulação dos serviços de estética&rdquo;. Portaria 1.182, publicada no Diário Oficial em 03/11/2026 e assinada em 15/10/2026; caráter consultivo; composição; prazo de 180 dias, prorrogável. Seção 01, painel de números e recorte 01. <a href="https://atlaspublico.com.br/noticias/anvisa-institui-grupo-de-trabalho-para-subsidiar-regulacao-97129">clique aqui para ler</a></li>
+      <li><b>Anvisa (gov.br), 23/09/2026</b> — &ldquo;Anvisa suspende temporariamente Nota Técnica sobre serviços de estética&rdquo;. A suspensão não autoriza procedimento proibido; licença e vistoria seguem com as vigilâncias locais. Análise completa da seção 01. <a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-suspende-temporariamente-nota-tecnica-sobre-servicos-de-estetica">clique aqui para ler</a></li>
+      <li><b>Anvisa (gov.br), 21/09/2026</b> — &ldquo;Anvisa se reúne com profissionais de estética para debater serviços da área&rdquo;. Reunião de 17/09 e anúncio do grupo de trabalho. Análise completa da seção 01. <a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-se-reune-com-profissionais-de-estetica-para-debater-servicos-da-area">clique aqui para ler</a></li>
+      <li><b>Portal Clube News, 06/11/2026</b> — &ldquo;Clínica de estética é interditada por propaganda enganosa e com medicamentos irregulares em Teresina&rdquo;. Vistoria de 05/11 com Gevisa, CRM-PI e MPPI. Painel de números e recorte 02. <a href="https://portalclubenews.com/2026/11/06/clinica-de-estetica-e-interditada-por-propaganda-enganosa-e-com-medicamentos-irregulares-em-teresina/">clique aqui para ler</a></li>
+      <li><b>Portal O Dia</b> — &ldquo;Clínica de estética que funcionava sem alvará é interditada em Teresina&rdquo;. Confirma a interdição. Recorte 02. <a href="https://portalodia.com/noticias/saude/clinica-de-estetica-que-funcionava-sem-alvara-e-interditada-em-teresina-600000291.html">clique aqui para ler</a></li>
+      <li><b>Portal AZ</b> — &ldquo;Clínica de estética é interditada com produtos vencidos em Teresina&rdquo;. Confirma a interdição e a condição para reabrir. Recorte 02. <a href="https://www.portalaz.com.br/noticia/geral/99634/clinica-de-estetica-e-interditada-com-produtos-vencidos-em-teresina/">clique aqui para ler</a></li>
+      <li><b>Legismap, 12/03/2026</b> — resumo da notícia da Anvisa sobre o Informe de Segurança nº 01/2026: produtos citados, região e volume da bula, cartão de rastreabilidade, canais de notificação. Painel de números e recorte 03. <a href="https://legismap.com.br/conteudos/artigos-e-noticias/noticias-anvisa-em-12-03-2026">clique aqui para ler</a></li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>(1) Não lemos a Portaria 1.182 direto no Diário Oficial; os dados vêm da reportagem do Atlas Público, que cita o texto. (2) A data final do grupo é uma conta nossa: cento e oitenta dias a partir de 3 de novembro caem no começo de maio de 2027, e o prazo pode ser prorrogado. (3) As reportagens de Teresina não dizem o nome da clínica nem quais regras de publicidade foram descumpridas. (4) Um portal do Espírito Santo republicou hoje, 9 de novembro, o alerta sobre preenchedor, mas a página não abriu para nós; o alerta original da Anvisa é de março. (5) O que o grupo vai propor: nenhuma fonte diz, e não especulamos.</p></div>
+  </section>
+
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 048 · segunda-feira, 9 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
