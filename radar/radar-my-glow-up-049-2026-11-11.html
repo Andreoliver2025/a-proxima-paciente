@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 049 · 11 de novembro de 2026</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Na Black Friday, todo mundo grita desconto. Quem a paciente escuta é a amiga que já fez com você.</h1>
+    <p class="chamada">A Black Friday é no dia 27, daqui a pouco mais de duas semanas. Um estudo sobre a temporada do ano passado mostra que as marcas fizeram quase dois terços das postagens e ficaram com menos de um quinto da reação do público. Quem prendeu a atenção foi gente comum mostrando o que comprou de verdade.</p>
+    <div class="dateline">Edição Nº 049 · quarta-feira, 11 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a><div class="d">A oferta fala alto e é pouco ouvida. A experiência de verdade fala baixo e é ouvida.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: a Black Friday que ninguém escutou, as experiências que ninguém lembra, a distância entre dizer que indica e indicar, a máquina que olha a pele e um vídeo sobre quem sumiu.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a><div class="d">Se for fazer promoção, faça ela passar pela mão de quem já gostou.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a><div class="d">Quem sumiu não precisa de desconto. Precisa de um motivo para lembrar de você.</div></li>
+      <li><a href="#postar">O que postar esta semana</a><div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+    </ol>
+    
+    <ol style="counter-reset:sm 6;border-top:0;margin-top:0">
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na Black Friday do ano passado, as marcas fizeram sessenta e cinco de cada cem postagens sobre a data no Instagram e no TikTok. Ficaram com menos de dezenove de cada cem curtidas, comentários e compartilhamentos.</p>
+
+    <p class="texto capitular">O levantamento é da agência BR Media e saiu no <b>Meio &amp; Mensagem</b> em outubro. Quem levou a atenção foram pessoas comuns e criadores de conteúdo: um quarto das postagens, três quartos da reação. Os vídeos de alguém mostrando uma compra de verdade tiveram seis vezes e meia mais reação do que os vídeos de oferta. &ldquo;O consumidor não está procurando só desconto&rdquo;, resumiu a diretora da agência.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: na sua clínica, o post de promoção é a voz da marca. A paciente que conta como foi cuidada é a voz de gente. Em novembro, quando todo mundo grita desconto, a voz que faz a próxima paciente marcar é a da amiga que já passou pela sua maca.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto">Um limite logo de saída: o estudo olhou o varejo, não a estética. Ele mediu loja, roupa, eletrônico. Mas o comportamento que ele descreve é o mesmo que você vê no seu WhatsApp. Post de preço passa. História de quem fez, fica.</p>
+
+      <p class="texto">Na estética, esse efeito tende a ser maior, não menor. Procedimento não é televisão: é no rosto, no corpo, e não tem troca. Nas duas últimas semanas, este dossiê contou a fiscalização dobrando em clínicas do Distrito Federal e a Anvisa abrindo prazo para rever as regras do setor. A paciente que lê essas notícias passa a perguntar &ldquo;é seguro aí?&rdquo; antes de perguntar &ldquo;quanto custa?&rdquo;.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Interação&rdquo; ou &ldquo;engajamento&rdquo; é gente reagindo ao post: curtindo, comentando, mandando para alguém. &ldquo;Criador de conteúdo&rdquo; é quem posta sobre a própria vida e tem gente que acompanha, de dez pessoas a um milhão. A sua paciente que posta uma foto depois do procedimento, do jeito dela, faz o papel de criadora.</p></div>
+
+      <p class="texto">O próprio Procon dá essa orientação em toda Black Friday. Antes de fechar um pacote estético, a consumidora deve buscar referências de pessoas que já foram atendidas por aquele profissional, e pedir o contrato por escrito. Ou seja: o órgão de defesa do consumidor manda a paciente perguntar para a amiga.</p>
+
+      <div class="olho">
+        <p>&ldquo;Desconto atrai quem compara preço. Indicação traz quem já chega confiando.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto">Isso não quer dizer que promoção é proibida ou errada. Quer dizer que, sozinha, ela compete com todas as outras clínicas da cidade pelo menor preço. E traz a paciente que vai embora na próxima oferta. Se você for fazer alguma condição especial em novembro, siga as regras do seu conselho sobre anúncio de preço. E pense em entregá-la pela mão de quem já foi cuidada por você, como está na seção 03.</p>
+
+      <p class="texto">Mais um limite honesto: os dados são da Black Friday de 2025, embora o estudo leve o nome de 2026. Nenhuma fonte desta edição mede quantas pacientes uma promoção ou uma indicação leva a uma clínica de estética.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">18,6%</div><div class="lbl">da reação do público ficou com as <b>marcas</b> na Black Friday de 2025, que fizeram 65% das postagens, segundo a BR Media</div></div>
+      <div class="numero"><div class="big">6,5×</div><div class="lbl">mais reação para vídeos de alguém <b>mostrando uma compra de verdade</b> do que para vídeos de oferta, no mesmo estudo</div></div>
+      <div class="numero"><div class="big">60%</div><div class="lbl">das pessoas dizem que a <b>indicação de amigos e família</b> pesou na última compra, segundo a Ipsos</div></div>
+      <div class="numero"><div class="big">8,7</div><div class="lbl">vezes por ano, em média, um cliente satisfeito <b>recomenda</b> uma marca, no mesmo levantamento da Ipsos</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Na última Black Friday, quase ninguém reagiu ao post de oferta das marcas</h3>
+          <div class="credito"><span class="frescor antes">🟡 15/10</span><span>Meio &amp; Mensagem · estudo da agência BR Media com dados de 2025</span></div>
+          <p class="texto">A agência acompanhou seis redes sociais entre novembro e dezembro do ano passado. Oitenta e seis de cada cem marcas falaram só de promoção. Metade dos posts de marca nem explicava para que servia o produto. A reação foi para quem testava, ensinava ou mostrava.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Postar &ldquo;tudo com desconto&rdquo; é o equivalente a deixar o folheto no balcão. Mostrar, ensinar e contar é o equivalente a conversar com a paciente na recepção.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de montar a arte de &ldquo;Black Friday&rdquo;, pergunte se o post explica para que serve o procedimento e para quem ele não é indicado. Se não explica, ele vai ser só mais um folheto.</p>
+          <div class="link"><a href="https://www.meioemensagem.com.br/marketing/black-friday-publico-confia-mais-em-creators-que-marcas">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Quase metade das experiências de compra é esquecida, diz pesquisa da Ipsos</h3>
+          <div class="credito"><span class="frescor antes">🟡 18/06</span><span>Ipsos · dados regionais apresentados em São Paulo</span></div>
+          <p class="texto">Para quarenta e sete de cada cem entrevistados, a experiência com uma marca não deixa marca nenhuma. Do outro lado, quem cria vínculo de verdade volta mais: oitenta e dois de cada cem, contra sessenta e oito entre os só satisfeitos.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Vínculo emocional&rdquo; é a paciente sentir que você lembra dela, e não só do procedimento dela. É o nome dito na recepção, a mensagem depois, a pergunta sobre a viagem que ela comentou.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> escolha um detalhe pessoal por paciente e anote na ficha. É ele que transforma um atendimento bom em um atendimento que ela conta para alguém.</p>
+          <div class="link"><a href="https://www.ipsos.com/pt-br/node/1078071">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Muita gente diz que indicaria. Bem menos gente indica de fato</h3>
+          <div class="credito"><span class="frescor antes">🟡 19/10</span><span>Startups · texto patrocinado por uma empresa de programas de indicação</span></div>
+          <p class="texto">O texto cita um estudo da universidade Texas Tech: oitenta e três de cada cem clientes satisfeitos dizem que indicariam uma empresa, e só vinte e nove indicam. É conteúdo pago e o estudo original não foi localizado, por isso o número vai com cautela.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>A paciente que sai feliz da sua maca não é, automaticamente, a paciente que indica. Entre gostar e indicar existe um empurrão: alguém pedir, e dar a ela um jeito fácil de passar adiante.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> conte quantas pacientes elogiaram você neste mês e quantas trouxeram alguém. A diferença entre os dois números é o espaço que você tem para trabalhar.</p>
+          <div class="link"><a href="https://startups.com.br/branded-content/o-raio-x-economico-da-indicacao-o-que-os-dados-dizem-sobre-o-canal-mais-barato-do-mercado/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Ministério da Saúde e Einstein testam um programa que ajuda a reconhecer doenças de pele por foto</h3>
+          <div class="credito"><span class="frescor hoje">🟢 06/11</span><span>Mercado &amp; Consumo · 06/11/2026</span></div>
+          <p class="texto">A ferramenta, ainda em estudo, foi feita para ajudar profissionais do SUS a separar casos de doenças como hanseníase e esporotricose. Nos testes, acertou cerca de oito em cada dez vezes. Os próprios criadores dizem que ela não substitui a avaliação de quem atende.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Inteligência artificial que analisa a pele&rdquo;, aqui, é um programa que olha a foto e sugere o que pode ser. Quem confirma e decide continua sendo a profissional.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente vai chegar cada vez mais com &ldquo;o aplicativo disse que minha pele tem&hellip;&rdquo;. Receba a informação, faça a sua avaliação e explique a diferença. Nunca prometa resultado com base no que a máquina viu.</p>
+          <div class="link"><a href="https://mercadoeconsumo.com.br/06/11/2026/tecnologia/sus-e-einstein-desenvolvem-ia-para-identificacao-de-doencas-de-pele/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Medido hoje: vídeo sobre reativar cliente que parou de comprar chega a setecentas e dezessete visualizações</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>YouTube · canal Cid Bezerra · contagem de 11/11/2026</span></div>
+          <p class="texto">Há uma semana, o mesmo vídeo tinha seiscentas e noventa e três. É pouco perto dos vídeos sobre anúncio, que passam de trinta e duas mil. Mas é um dos que mais cresceram na nossa busca desta semana.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Reativar cliente inativo&rdquo; é voltar a falar com a paciente que sumiu. Ela já te conhece, já confiou em você uma vez.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de pagar anúncio para achar gente nova, olhe para quem já passou pela sua maca e não volta há mais de seis meses. A seção 04 diz como falar com ela.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=YftNAWG8K3w">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+    <p class="abertura">Se for fazer promoção em novembro, faça ela passar pela mão de quem já gostou de você.</p>
+
+    <p class="texto">Pense em duas cenas. Na primeira, uma desconhecida vê o seu post de desconto entre outros vinte posts de desconto. Na segunda, ela recebe da amiga uma mensagem: &ldquo;fiz com ela, foi ótimo, toma o contato&rdquo;. A clínica é a mesma. A chance de ela marcar não é.</p>
+
+    <p class="texto">Por isso, se você tiver uma condição especial para a temporada, experimente entregá-la como convite. A paciente que gostou recebe um convite para passar para uma amiga. A amiga chega dizendo quem indicou. E você agradece às duas.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Convite&rdquo; aqui é uma mensagem curta, com o nome da clínica, o seu nome e o contato, que a paciente encaminha para quem ela quiser. Ninguém precisa baixar nada.</p></div>
+
+    <p class="texto">E pergunte sempre, na primeira conversa: &ldquo;como você chegou até mim?&rdquo;. Se a resposta for o nome de uma paciente, anote na ficha. Lembra da distância entre dizer que indica e indicar, do recorte 03? Quem indicou uma vez mostrou que atravessa essa distância. É com ela que você fala primeiro.</p>
+
+    <p class="texto">Se a sua profissão tem regra sobre recompensa por indicação ou sobre anúncio de preço, siga a do seu conselho. Agradecer é sempre permitido.</p>
+  </section>
+
+  <!-- ═════════ 04 ═════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+    <p class="abertura">Em novembro, muita clínica manda a mesma mensagem de desconto para a lista inteira. A paciente que sumiu recebe dez dessas. A sua precisa ser diferente.</p>
+
+    <p class="texto">Quem sumiu não precisa de desconto. Precisa de um motivo para lembrar de você. E o melhor motivo é ela mesma: o procedimento que fez, a data que passou, a dúvida que ela tinha na época.</p>
+
+    <div class="olho">
+      <p>&ldquo;Para quem sumiu, eu não mando oferta. Mando lembrança.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <p class="texto">Uma mensagem possível: &ldquo;Oi, Carla, aqui é a [seu nome]. Lembrei de você porque já faz uns meses do seu último cuidado com a gente. Como está a pele? Se quiser, separo um horário para a gente olhar com calma.&rdquo; Sem preço, sem prazo acabando, sem &ldquo;só hoje&rdquo;.</p>
+
+    <p class="texto">A pesquisa da Ipsos, no recorte 02, mostra por que isso funciona melhor do que a oferta: quem sente vínculo volta mais do que quem só ficou satisfeito. Mande só para quem já é paciente, pelo mesmo número. E aceite o &ldquo;agora não&rdquo; sem insistir: ele também é uma resposta que mantém a porta aberta.</p>
+  </section>
+
+  <!-- ═════════ 05 ═════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+    <p class="abertura">Três ganchos prontos. O estudo da semana diz o que segura a atenção: mostrar, ensinar e contar. Use do seu jeito, sem prometer resultado e sem mostrar paciente.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <p class="texto">&ldquo;O que acontece antes de eu encostar em você.&rdquo; Você, em trinta segundos, mostrando a sala pronta: a ficha preenchida, a conversa de avaliação, o produto com a embalagem e o registro à vista. Fecho: &ldquo;em novembro vai ter muita oferta. Aqui, a avaliação vem antes do preço&rdquo;. É o &ldquo;mostrar de verdade&rdquo; que o estudo mediu, sem expor ninguém.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <p class="texto">&ldquo;Quatro perguntas antes de fechar um pacote estético na Black Friday.&rdquo; Cartão 1: o título. Cartão 2: quem vai aplicar, e qual é o registro dessa pessoa? Cartão 3: qual é o produto, e ele tem registro na Anvisa? Cartão 4: você conhece alguém que já foi atendida ali? Cartão 5: o que você contratou está escrito, com cópia para você? Último: &ldquo;Essas são orientações do Procon. Aqui você pode perguntar tudo.&rdquo; Com o seu nome, a sua profissão e o seu registro.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <p class="texto">Caixinha: &ldquo;Quem te apresentou à sua primeira clínica de estética?&rdquo;. No story seguinte, você agradece, sem nomear ninguém: &ldquo;esta clínica cresceu de amiga em amiga. Obrigada a cada uma que trouxe alguém&rdquo;. As respostas chegam só para você e mostram, nas palavras delas, quanto a indicação pesa.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 — aguardando validação do André ═════════ -->
+  
+
+  <section class="materia" id="fecho">
+    <p class="texto">A ideia volta aqui, e é por ela que a edição fecha. Nas próximas duas semanas, o celular da sua paciente vai se encher de desconto, e a maior parte vai passar sem ninguém ver. O que ela vai escutar é alguém em quem confia dizendo &ldquo;fiz com ela, foi ótimo&rdquo;. Esta semana, antes de falar com a cidade inteira, fale com quem já falou bem de você.</p>
+  </section>
+
+  <!-- ═════════ 07 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Meio &amp; Mensagem, 15/10/2026</b> — &ldquo;Black Friday: público confia mais em creators que marcas&rdquo;, de Amanda Schnaider, sobre o estudo &ldquo;Black Friday 2026: um retrato da influência na maior temporada do varejo&rdquo;, da BR Media. Seis redes sociais monitoradas entre 1º de novembro e 10 de dezembro de 2025; marcas com 65% das postagens e 18,6% das interações; criadores com 25,4% das postagens e 74,8% do engajamento; 86,5% das marcas falando de promoção; 51,3% dos posts de marca sem explicar para que serve o produto; conteúdos mostrando compras com 6,5 vezes mais engajamento que os de oferta; frase de Andrea Cabral. Seções 01, 02, 03 e 05. <a href="https://www.meioemensagem.com.br/marketing/black-friday-publico-confia-mais-em-creators-que-marcas">ler</a></li>
+      <li><b>Ipsos, 18/06/2026</b> — &ldquo;Experiências de consumo são esquecíveis para 47% dos entrevistados&rdquo;, estudo CX Global Insights com dados regionais apresentados em São Paulo. Cerca de 60% influenciados por indicação de amigos, familiares ou contatos nas redes; 8,7 recomendações por ano de um cliente satisfeito; permanência de 82% entre clientes com vínculo emocional contra 68% entre os só satisfeitos. Seções 02 e 04. <a href="https://www.ipsos.com/pt-br/node/1078071">ler</a></li>
+      <li><b>Startups, 19/10/2026</b> — &ldquo;O raio-x econômico da indicação: o que os dados dizem sobre o canal mais barato do mercado&rdquo;, conteúdo patrocinado assinado por uma empresa de programas de indicação. Dele vem o número atribuído à Texas Tech University: 83% dizem que indicariam, 29% indicam. Recorte 03 e seção 03. <a href="https://startups.com.br/branded-content/o-raio-x-economico-da-indicacao-o-que-os-dados-dizem-sobre-o-canal-mais-barato-do-mercado/">ler</a></li>
+      <li><b>Mercado &amp; Consumo, 06/11/2026</b> — &ldquo;SUS e Einstein desenvolvem IA para identificação de doenças de pele&rdquo;: ferramenta Cutis-AI, do Ministério da Saúde com o Einstein Hospital Israelita, em estudo; cerca de mil e quatrocentos pacientes e mais de quatro mil imagens analisadas; acerto de cerca de 80%; apoio que não substitui a avaliação clínica. Recorte 04. <a href="https://mercadoeconsumo.com.br/06/11/2026/tecnologia/sus-e-einstein-desenvolvem-ia-para-identificacao-de-doencas-de-pele/">ler</a></li>
+      <li><b>Folhapress, no Acessa.com, 23/11/2023</b> — &ldquo;Saiba como comprar pacotes estéticos com segurança na Black Friday&rdquo;, com orientação do Procon de Ribeirão Preto: buscar referências de pessoas que já foram atendidas pelo profissional e guardar cópia do contrato assinado. Seções 01 e 05. <a href="https://www.acessa.com/noticias/2023/11/187795-saiba-como-comprar-pacotes-esteticos-com-seguranca-na-black-friday.html">ler</a></li>
+      <li><b>YouTube, canal Cid Bezerra</b> — &ldquo;Como Reativar Clientes Inativos e Vender Muito Mais&rdquo;, 717 visualizações em 11/11/2026 e 693 em 04/11/2026, segundo o sinal do dossiê. Recorte 05. <a href="https://www.youtube.com/watch?v=YftNAWG8K3w">ler</a></li>
+      <li><b>YouTube, canal Victor Rocha</b> — &ldquo;A Melhor Estratégia Atual para Clínicas de Estética&rdquo;, 32.637 visualizações em 11/11/2026, usado como referência de &ldquo;vídeos sobre anúncio&rdquo;. Recorte 05. <a href="https://www.youtube.com/watch?v=RsPDlK1C_lA">ler</a></li>
+      <li><b>Dossiê A Próxima Paciente, edições Nº 043, 045, 047 e 048</b> — o retorno para quem pediu o valor, a mensagem de sete dias depois, a fiscalização em clínicas do Distrito Federal e o grupo de trabalho da Anvisa, retomados nas seções 01 e 06.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>O estudo da BR Media mediu o varejo em geral, não clínicas de estética, e os dados são da Black Friday de 2025, apesar do nome. Não abrimos o relatório original, só a reportagem. Na pesquisa da Ipsos, a página não deixa claro se os números regionais são só do Brasil ou da América Latina. O número da Texas Tech (83% contra 29%) aparece num texto patrocinado por uma empresa que vende programas de indicação, sem título, ano nem link do estudo; não o encontramos. A orientação do Procon é de 2023, de um Procon municipal, e a repetimos porque segue a regra geral de defesa do consumidor. A ferramenta do Ministério da Saúde está em estudo e foi feita para doenças de pele no SUS, não para estética. Não assistimos aos vídeos citados. Nenhuma fonte desta edição mede quantas pacientes uma promoção, um agradecimento ou um convite levam a uma clínica.</p></div>
+  </section>
+
+  <!-- ═════════ 08 — INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 049 · quarta-feira, 11 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
