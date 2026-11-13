@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 050 · Todo mundo disputa a paciente nova</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Todo mundo corre atrás da paciente nova. Quase ninguém chama de volta quem já veio.</h1>
+    <p class="chamada">Faltam duas semanas para a Black Friday. Medimos hoje os vídeos que este dossiê acompanha desde outubro: o que ensina clínica a anunciar ganhou mais de mil e cem visualizações em três semanas. O que ensina a chamar de volta quem sumiu ganhou catorze.</p>
+    <div class="dateline">Edição Nº 050 · sexta-feira, 13 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Nesta edição">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A conta de hoje: para onde o setor está olhando a duas semanas da Black Friday.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: anúncio contra reativação, captar contra manter, o festival do Recife que discute inteligência artificial e a fabricante brasileira de laser que mira fora do país.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Cada fonte com data e link, e o que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ═════════════ PARTE PÚBLICA ═════════════ -->
+
+  <section class="materia publico" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Em vinte e três dias, o vídeo que ensina clínica de estética a anunciar ganhou <b>mais de mil e cem visualizações</b>. O que ensina a chamar de volta, pelo WhatsApp, quem pediu informação e sumiu ganhou <b>catorze</b>.</p>
+
+    <p class="texto capitular">A medição é deste dossiê. Contamos os mesmos vídeos do YouTube em 21 de outubro e hoje, 13 de novembro. Isso não mede o que acontece na sua clínica. Mede para onde o setor está olhando: para a paciente nova, a do anúncio.</p>
+
+    <p class="texto">A Black Friday é no dia 27. Nas próximas duas semanas, quase toda clínica da sua cidade vai disputar a mesma paciente nova, com anúncio e desconto. A ideia desta edição, que volta no fim: a paciente que já passou pela sua maca é a que menos gente está disputando agora.</p>
+
+    <div class="olho">
+      <p>&ldquo;Na Black Friday, todo mundo briga pela paciente nova. A que já te conhece está esperando alguém lembrar dela.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto"><b>Como medimos.</b> Desde outubro, o dossiê acompanha os mesmos vídeos de uma busca fixa no YouTube sobre clínica de estética: anúncio, como trazer paciente nova, fidelização, indicação e reativação. Em cada medição, anotamos o contador público de visualizações. Hoje repetimos a contagem e comparamos com a de 21 de outubro.</p>
+
+      <p class="texto"><b>O que apareceu.</b> O vídeo sobre anúncio para negócio local foi de trinta e um mil seiscentos e trinta e seis para trinta e dois mil setecentos e quarenta. O de captar clientes para clínica ganhou quinhentas e trinta e cinco. O de fidelização na estética ganhou doze. O de reativar, com inteligência artificial e WhatsApp, quem sumiu ganhou catorze. Outro vídeo sobre reativar cliente parado foi de setecentas e dezessete, na quarta, para setecentas e vinte hoje.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Reativar lead morto&rdquo;, como diz o título de um desses vídeos, é mandar mensagem para a paciente que pediu informação ou já foi atendida e depois sumiu. &ldquo;Lead&rdquo; é a pessoa que demonstrou interesse. &ldquo;Morto&rdquo; é o jeito do vendedor dizer que ela parou de responder. Na clínica, é aquela conversa parada no seu WhatsApp desde agosto.</p></div>
+
+      <p class="texto"><b>Os limites.</b> Visualização não é paciente. Um vídeo pode ter muita audiência e não mudar nada na agenda de ninguém. São poucos vídeos, um por tema, e o contador do YouTube conta a mesma pessoa mais de uma vez. O que a medição mostra é a direção do interesse, não um resultado.</p>
+
+      <p class="texto"><b>O que isso continua.</b> Na quarta, este dossiê contou que, na Black Friday passada, a reação do público foi para gente mostrando o que viveu, e não para o post de oferta. A conta de hoje é o outro lado da mesma moeda: o setor aprende a gritar mais alto para quem não conhece a clínica, e pouco a conversar com quem já conhece.</p>
+    </details>
+  </section>
+
+  <section class="materia publico" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+
+    <p class="abertura">Quatro recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">+1.104</div><div class="lbl">visualizações em 23 dias no vídeo sobre <b>anúncio para clínica</b> (31.636 → 32.740)</div></div>
+      <div class="numero"><div class="big">+14</div><div class="lbl">no mesmo período no vídeo sobre <b>chamar de volta quem sumiu</b>, com IA e WhatsApp (1.015 → 1.029)</div></div>
+      <div class="numero"><div class="big">+12</div><div class="lbl">no vídeo sobre <b>fidelização na estética</b> (4.348 → 4.360)</div></div>
+      <div class="numero"><div class="big">14 dias</div><div class="lbl">até a <b>Black Friday</b>, em 27 de novembro</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Em três semanas, o vídeo sobre anúncio ganhou mil e cem visualizações. O de chamar de volta quem sumiu, catorze</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>Medição do dossiê · YouTube · 21/10 e 13/11/2026</span></div>
+          <p class="texto">O vídeo &ldquo;IA + WhatsApp: como reativar leads mortos e vender mais&rdquo; tem pouco mais de mil visualizações e quase parou de crescer. Enquanto isso, o vídeo sobre anúncio para negócio local segue somando centenas por semana.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Inteligência artificial no WhatsApp&rdquo;, nesse vídeo, é um programa que escreve e manda sozinho a mensagem para quem parou de responder. A ideia é a mesma de você abrir a lista de pacientes e mandar um &ldquo;oi, sumida&rdquo;, só que feita por uma máquina.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de pensar em anúncio para novembro, abra o WhatsApp da clínica e conte quantas conversas pararam sem agendamento nos últimos três meses. Esse número é a sua lista de quem já te conhece e ninguém chamou.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=-L4soVK6XrI">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Ensinar a captar paciente nova atrai mais de quarenta vezes o público de ensinar a manter quem já vem</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>Medição do dossiê · YouTube · 21/10 e 13/11/2026</span></div>
+          <p class="texto">No mesmo período, um vídeo sobre estratégias para captar clientes para clínica de estética ganhou quinhentas e trinta e cinco visualizações. Um vídeo sobre fidelização na estética, com dicas de atendimento, ganhou doze.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Captar&rdquo; é trazer gente que nunca veio. &ldquo;Fidelizar&rdquo; é fazer quem já veio voltar e confiar em você. O primeiro aparece na agenda de amanhã. O segundo aparece na agenda do ano que vem.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> na reunião da equipe, divida o tempo de conversa sobre novembro em duas partes iguais: uma para quem vai chegar, outra para quem já veio. Se a segunda parte ficar vazia, é ali que está o trabalho.</p>
+          <div class="link"><a href="https://www.youtube.com/watch?v=uuXb6LCA69M">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Festival de tecnologia no Recife discute, nesta semana, o efeito da inteligência artificial em negócios e serviços</h3>
+          <div class="credito"><span class="frescor hoje">🟢 11/11</span><span>Movimento Econômico · 11/11/2026</span></div>
+          <p class="texto">O Rec&rsquo;n&rsquo;Play, festival de tecnologia do Recife, vai de 11 a 14 de novembro. Segundo o portal Movimento Econômico, a programação debate o impacto da inteligência artificial nos negócios, na educação, no marketing e nos serviços. Em agosto, uma edição do festival dedicada à saúde já tinha discutido a experiência do paciente.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Quando o assunto sai do mundo da tecnologia e vai para festival aberto, é sinal de que ele chega logo ao balcão do comércio comum. A sua paciente vai encontrar cada vez mais atendimento feito por máquina, na loja, no banco, na farmácia.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se a paciente se acostumar a ser atendida por máquina em todo lugar, a mensagem que lembra o nome dela e o procedimento que ela fez passa a ser o que diferencia a sua clínica. Confira se a sua recepção tem essas informações à mão quando responde.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxOWlZnamU1Q0NMVl81d2xJTkhnZHduQ3NuSmxQcWJVbDJaNEdYX0dpSDU5ME54RjhZRTE1YklHMXgtUU02eFh4V0hrSFIxVnlOX25WR2lDYnlzck9VNURKSjVoU3pyeC1JWjgxNEdXd0J6UTJROW1uLXVkZ18yVG1DQzNkZ3Z1emhsbXNsNXRYMDhtOVhTbDdQV3hmSXdpUUlRYmdmQ1NYVWxmWFFGYWxHOGlPcVFZSVFJbGtKbEV2WXV4dGN2MHlhSGdnRW8?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Fabricante brasileira de equipamentos estéticos reforça a marca para crescer fora do país</h3>
+          <div class="credito"><span class="frescor antes">🟡 03/11</span><span>Valor Econômico · 03/11/2026</span></div>
+          <p class="texto">O Valor Econômico publicou que a Vydence, empresa brasileira de equipamentos a laser e de luz para estética, reforça a marca e a estratégia de expansão global. Segundo reportagem de 2025 do Times Brasil, ela já exportava para mais de trinta países quando foi comprada pelo grupo Medsystems.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Expansão global&rdquo; é a empresa vender os aparelhos dela em outros países. Para você, o que interessa não é de onde o aparelho vem, e sim se ele tem registro na Anvisa e se quem opera foi treinada para ele.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> quando a paciente perguntar &ldquo;esse aparelho é bom?&rdquo;, tenha pronta uma resposta curta: o registro do equipamento e o seu treinamento. Nunca responda com promessa de resultado.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxQNUx6LUJsOUd1T1h2T1ZZcGc5cXlrOHc4dnkza2hYajVlQmdiUEdvYVJKc0hhNmlybGFXNkdqV29EMFpySU1ISTFIUmdOYkNQSlJ0dXVBazZhS3BzOUc4ZlNuSEtRRDlsU283bHdUcXlZOGJvZHNNaFJmUldSd0hPSk9NMUZyUEdOZ1BVSEJhcUpGWGRMb0pEaU5yTkl3VUpBTHd2Tko5Q3B0Z1RkWE10NG4xcXJBcWRYTElKLTU4ZkR1R2pZWjU4N1RPdW5jVElGeTE1U09ncTZleHBFNEV0UG9yaXBINk1ZTmfSAfgBQVVfeXFMT0ZsdDlPbUllNUFrWXlTaEMyWVFpdHlRYU9zWm8wWllDUTVBLWxUYlAtYmJ0UHV5elM4a3RscXUwR1JLalYzYXhGTnpkR1k2d1hDYmc4YTRaa2VBamJlcmlXc1c2MmYySUNRaUx2REphWEVENWsxdlZiV2s2aV9sS1BuYnRmU2JVSnl3eHFka3J1Ry1NX29wamJqVUlfNzRvMUlURXlDUHNkWUdhRGxMMmFNS19OSllyY2RIYjNEWTltZmVMOHkxVldmVnNWUjlUWjktaTVwVzlVeVplZkRDeURZVEN5NHhKM1dtSzVSTHRlSHUzM1otTFk?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="materia publico" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>Medição própria do dossiê, 13/11/2026</b> — YouTube, canal O Almanaque de Gåbriel Oliveira: &ldquo;IA + WhatsApp: Como Reativar Leads Mortos e Vender Mais&rdquo;, 1.029 visualizações (1.015 em 21/10, edição 040). Recorte 01. <a href="https://www.youtube.com/watch?v=-L4soVK6XrI">ver</a></li>
+      <li><b>Medição própria do dossiê, 13/11/2026</b> — YouTube, canal Victor Rocha: &ldquo;A Melhor Estratégia Atual para Clínicas de Estética | Tráfego para Negócio Local&rdquo;, 32.740 visualizações (31.636 em 21/10, edição 039). Seção 01 e painel de números. <a href="https://www.youtube.com/watch?v=RsPDlK1C_lA">ver</a></li>
+      <li><b>Medição própria do dossiê, 13/11/2026</b> — YouTube, canal Professor Heitor Cruz: &ldquo;5 estratégias para captar clientes para clínica de estética&rdquo;, 21.407 visualizações (20.872 em 21/10, edição 040). Recorte 02. <a href="https://www.youtube.com/watch?v=yhWcc0qXO4A">ver</a></li>
+      <li><b>Medição própria do dossiê, 13/11/2026</b> — YouTube, canal Estética com Thais Coelho: vídeo sobre fidelização de clientes na estética, 4.360 visualizações (4.348 em 21/10, edição 040). Recorte 02. <a href="https://www.youtube.com/watch?v=uuXb6LCA69M">ver</a></li>
+      <li><b>Medição própria do dossiê, 13/11/2026</b> — YouTube, canal Cid Bezerra: &ldquo;Como Reativar Clientes Inativos e Vender Muito Mais&rdquo;, 720 visualizações (717 em 11/11, edição 049). Análise completa da seção 01. <a href="https://www.youtube.com/watch?v=YftNAWG8K3w">ver</a></li>
+      <li><b>Movimento Econômico, 11/11/2026</b> — &ldquo;Rec&rsquo;n&rsquo;Play debate impacto da IA nos negócios, educação, marketing e serviços&rdquo;. Recorte 03. <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxOWlZnamU1Q0NMVl81d2xJTkhnZHduQ3NuSmxQcWJVbDJaNEdYX0dpSDU5ME54RjhZRTE1YklHMXgtUU02eFh4V0hrSFIxVnlOX25WR2lDYnlzck9VNURKSjVoU3pyeC1JWjgxNEdXd0J6UTJROW1uLXVkZ18yVG1DQzNkZ3Z1emhsbXNsNXRYMDhtOVhTbDdQV3hmSXdpUUlRYmdmQ1NYVWxmWFFGYWxHOGlPcVFZSVFJbGtKbEV2WXV4dGN2MHlhSGdnRW8?oc=5">ler</a></li>
+      <li><b>Movimento Econômico, 27/08/2026</b> — edição de saúde do Rec&rsquo;n&rsquo;Play: inteligência artificial e integração de dados nos negócios de saúde do Recife. Recorte 03. <a href="https://movimentoeconomico.com.br/eventos/2026/08/27/recnplay-ia-e-integracao-de-dados-redesenham-negocios-de-saude-no-recife/">ler</a></li>
+      <li><b>Valor Econômico, 03/11/2026</b> — &ldquo;Com tecnologia brasileira, VYDENCE reforça marca e estratégia de expansão global&rdquo;. Recorte 04. <a href="https://news.google.com/rss/articles/CBMi6gFBVV95cUxQNUx6LUJsOUd1T1h2T1ZZcGc5cXlrOHc4dnkza2hYajVlQmdiUEdvYVJKc0hhNmlybGFXNkdqV29EMFpySU1ISTFIUmdOYkNQSlJ0dXVBazZhS3BzOUc4ZlNuSEtRRDlsU283bHdUcXlZOGJvZHNNaFJmUldSd0hPSk9NMUZyUEdOZ1BVSEJhcUpGWGRMb0pEaU5yTkl3VUpBTHd2Tko5Q3B0Z1RkWE10NG4xcXJBcWRYTElKLTU4ZkR1R2pZWjU4N1RPdW5jVElGeTE1U09ncTZleHBFNEV0UG9yaXBINk1ZTmfSAfgBQVVfeXFMT0ZsdDlPbUllNUFrWXlTaEMyWVFpdHlRYU9zWm8wWllDUTVBLWxUYlAtYmJ0UHV5elM4a3RscXUwR1JLalYzYXhGTnpkR1k2d1hDYmc4YTRaa2VBamJlcmlXc1c2MmYySUNRaUx2REphWEVENWsxdlZiV2s2aV9sS1BuYnRmU2JVSnl3eHFka3J1Ry1NX29wamJqVUlfNzRvMUlURXlDUHNkWUdhRGxMMmFNS19OSllyY2RIYjNEWTltZmVMOHkxVldmVnNWUjlUWjktaTVwVzlVeVplZkRDeURZVEN5NHhKM1dtSzVSTHRlSHUzM1otTFk?oc=5">ler</a></li>
+      <li><b>Times Brasil, 2025</b> — &ldquo;Medsystems adquire Vydence Medical e acelera expansão internacional no setor estético&rdquo;: exportação para mais de trinta países. Recorte 04. <a href="https://timesbrasil.com.br/empresas-e-negocios/medsystems-adquire-vydence-medical-e-acelera-expansao-internacional-no-setor-estetico/">ler</a></li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>Das reportagens do Rec&rsquo;n&rsquo;Play (11/11) e da Vydence no Valor (03/11), lemos só o título e o resumo da busca, não o texto inteiro. Por isso os recortes 03 e 04 não citam número nem frase de ninguém. As datas do festival, de 11 a 14 de novembro, vêm de uma página de assuntos do Movimento Econômico. As visualizações são o contador público do YouTube, que conta a mesma pessoa mais de uma vez. Nenhuma fonte desta edição mede quantas pacientes um anúncio ou uma mensagem de retorno leva a uma clínica de estética.</p></div>
+  </section>
+
+  <!-- ═════════════ PARTE INTERNA — NUNCA PUBLICAR ═════════════ -->
+
+  
+
+  <div class="assinatura">
+    Na Black Friday, todo mundo disputa a paciente nova.<br>
+    A que já passou pela sua maca é a que menos gente está chamando.<br>
+    Dossiê A Próxima Paciente · por My Glow Up · Nº 050 · 13/11/2026
+  </div>
+
+</div>
+</body>
+</html>
