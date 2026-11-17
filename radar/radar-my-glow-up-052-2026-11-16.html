@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 052 · Na Black Friday, tem clínica vendendo um ano de volta</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Na Black Friday deste ano, tem clínica vendendo desconto. E tem clínica vendendo um ano de volta.</h1>
+    <p class="chamada">Faltam onze dias para a Black Friday. Em Brasília, uma clínica nova começou a campanha oferecendo um clube de doze meses, e não só um pacote mais barato. No Espírito Santo, as promoções de beleza já tomam o mês inteiro.</p>
+    <div class="dateline">Edição Nº 052 · segunda-feira, 16 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Nesta edição">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A Black Friday que vende um ano de clube, e por que a pergunta certa é quando ela volta.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: o clube de doze meses, a promoção que virou mês inteiro, o que a regra dos médicos permite em desconto e a paciente que chega pedindo o aparelho da novela.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Cada fonte com data e link, e o que não deu para confirmar.</div></li>
+      
+    </ol>
+  </nav>
+
+  <!-- ═════════════ PARTE PÚBLICA ═════════════ -->
+
+  <section class="materia publico" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">A Majô Beauty &amp; Clinic, unidade aberta em junho na Asa Norte, em Brasília, anunciou a primeira Black Friday dela. O desconto chega a <b>setenta por cento</b>. Mas o que abre a campanha é outra coisa: <b>um clube de doze meses</b>.</p>
+    <p class="texto capitular">Até 20 de novembro, no que a clínica chama de &ldquo;Esquenta Black&rdquo;, quem entra no clube ganha uma sessão de cortesia, desconto em um pacote e os benefícios de sócia por um ano. Ou seja: a promoção não termina no dia 30. Ela marca a paciente para os próximos doze meses.</p>
+    <p class="texto">A ideia desta edição, que volta no fim: o desconto traz a paciente uma vez. O que decide a sua agenda de janeiro é o motivo que ela leva para casa para voltar.</p>
+
+    <div class="olho">
+      <p>&ldquo;Antes de decidir o desconto, decida quando ela volta.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+      <p class="texto"><b>O que a campanha oferece.</b> Segundo o blog Glau na Capital, a Black Friday da clínica vai de 21 a 30 de novembro. O maior desconto está nos pacotes de depilação a laser, com quatro áreas e dez sessões. Protocolos de estética facial e corporal também chegam a setenta por cento.</p>
+      <p class="texto"><b>Repare nas dez sessões.</b> Um pacote de dez sessões é, na prática, dez visitas marcadas para os próximos meses. A paciente que compra em novembro precisa voltar em dezembro, janeiro, fevereiro. Se ninguém lembrar dela, a sessão fica parada e a relação esfria.</p>
+      <p class="texto"><b>O clube muda a conta.</b> O clube de doze meses faz a mesma coisa de forma mais clara: transforma uma compra de um dia em um vínculo de um ano. Há ainda uma ação no dia 18, com sessão de fotos e um crédito que vale só naquele dia.</p>
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Clube&rdquo; ou &ldquo;assinatura&rdquo;, aqui, é a paciente pagar um valor por mês e, em troca, ter vantagens na clínica durante um ano. Para você, a diferença cabe numa frase: o desconto vende um procedimento. O clube vende o retorno.</p></div>
+      <p class="texto"><b>Os limites.</b> É o anúncio de uma única clínica, publicado em um blog de Brasília. Não sabemos quantas pacientes vão aderir, nem se o clube funciona. É um exemplo de como uma clínica está montando a data, não uma prova de resultado.</p>
+      <p class="texto"><b>O que isso continua.</b> Na sexta e hoje cedo, este dossiê mostrou que o setor olha muito para a paciente nova. Este caso mostra uma clínica tentando usar a data da paciente nova para garantir a paciente de volta.</p>
+    </details>
+  </section>
+
+  <section class="materia publico" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Quatro recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">até 70%</div><div class="lbl">de desconto anunciado por uma clínica de Brasília para a <b>Black Friday</b></div></div>
+      <div class="numero"><div class="big">12 meses</div><div class="lbl">de <b>clube</b> oferecidos pela mesma clínica antes da data</div></div>
+      <div class="numero"><div class="big">o mês todo</div><div class="lbl">de promoção em clínicas e salões da <b>Grande Vitória</b>, segundo A Tribuna</div></div>
+      <div class="numero"><div class="big">11 dias</div><div class="lbl">até a <b>Black Friday</b>, em 27 de novembro</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Clínica de Brasília abre a Black Friday vendendo um clube de um ano, não só desconto</h3>
+          <div class="credito"><span class="frescor hoje">🟢 09/11</span><span>Glau na Capital · 09/11/2026</span></div>
+          <p class="texto">Os descontos chegam a setenta por cento entre 21 e 30 de novembro. Antes disso, até o dia 20, a clínica oferece entrada em um clube de doze meses, com uma sessão de cortesia e desconto em pacote.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>O desconto é a porta de entrada. O clube é o motivo para a paciente voltar depois que a promoção acaba. Uma coisa enche a agenda de novembro; a outra mexe na agenda do ano que vem.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se você vai fazer Black Friday, escreva ao lado de cada oferta a data da próxima visita da paciente. Se a oferta não tem próxima visita, ela vende um procedimento e para por aí.</p>
+          <div class="link"><a href="https://glaunacapital.com/2026/11/09/majo-beauty-clinic-asa-norte-estreia-na-black-friday-com-descontos-de-ate-70-em-depilacao-a-laser-e-estetica/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>No Espírito Santo, a &ldquo;Black Friday da beleza&rdquo; já virou o mês inteiro de novembro</h3>
+          <div class="credito"><span class="frescor hoje">🟢 14/11</span><span>A Tribuna (Tribuna Online) · 14/11/2026</span></div>
+          <p class="texto">A reportagem mostra clínicas e salões da Grande Vitória com descontos, combos e brindes durante todo o mês. Uma das clínicas diz que juntou procedimentos em uma proposta só porque a procura aumenta com a chegada do verão.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Combo&rdquo; é juntar dois ou mais procedimentos em uma oferta só. Quando todo mundo faz promoção o mês inteiro, a paciente tem tempo de comparar várias clínicas antes de decidir.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que já te conhece também está recebendo oferta das outras clínicas este mês. Ela deveria ouvir de você primeiro, e não pelo anúncio do vizinho.</p>
+          <div class="link"><a href="https://tribunaonline.com.br/cotidiano/black-friday-da-beleza-confira-promocoes-em-clinicas-e-saloes-do-es-334850">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Desconto pode. &ldquo;Faça e ganhe&rdquo; e sorteio, não: o que a regra dos médicos diz sobre promoção</h3>
+          <div class="credito"><span class="frescor">🟡 regra de 2023</span><span>Conselho Federal de Medicina · Resolução 2.336/2023</span></div>
+          <p class="texto">A regra de publicidade dos médicos permite anunciar descontos em campanha. Proíbe ligar a promoção a venda casada ou a prêmio, como &ldquo;faça o procedimento e ganhe&rdquo; ou &ldquo;concorra a prêmio&rdquo;. Também proíbe prometer ou insinuar bom resultado.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Venda casada&rdquo; é condicionar uma coisa à outra: só ganha isto se comprar aquilo. Essa regra vale para médicos. Biomédicas, enfermeiras, dentistas e esteticistas seguem os conselhos delas, que têm regras próprias.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de publicar a sua oferta, leia em voz alta. Se ela soa como &ldquo;faça e ganhe&rdquo; ou promete resultado, reescreva. Na dúvida, consulte a regra do seu conselho.</p>
+          <div class="link"><a href="https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2023/2336_2023.pdf">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>A paciente que chega pedindo o aparelho da atriz da novela</h3>
+          <div class="credito"><span class="frescor">🟡 31/07 e 13/11</span><span>Itatiaia · 31/07/2026 · O Globo · 13/11/2026</span></div>
+          <p class="texto">Desde julho, a imprensa lista os procedimentos do elenco de &ldquo;Quem Ama Cuida&rdquo;, com nome de aparelho e de produto. Na sexta, o Globo publicou que Letícia Colin aposta em uma tecnologia coreana para firmar a pele.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Quando a paciente chega com o nome do aparelho anotado no celular, ela já decidiu antes da avaliação. O seu trabalho passa a ser explicar o que serve para ela, e não vender o que ela viu na televisão.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> deixe a recepção com uma resposta curta para &ldquo;vocês fazem o da novela?&rdquo;: o convite para uma avaliação. Nunca responda com promessa de resultado igual ao da atriz.</p>
+          <div class="link"><a href="https://www.itatiaia.com.br/saude/quem-ama-cuida-veja-os-procedimentos-esteticos-do-elenco-da-novela-da-globo/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="materia publico" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+
+    <ol class="src">
+      <li><b>Glau na Capital, 09/11/2026</b> — &ldquo;Majô Beauty &amp; Clinic Asa Norte estreia na Black Friday com descontos de até 70% em depilação a laser e estética&rdquo;. Datas da campanha (21 a 30/11), pacotes de dez sessões, &ldquo;Esquenta Black&rdquo; até 20/11 com clube de doze meses, ação de 18/11. Seção 01, recorte 01 e painel de números. <a href="https://glaunacapital.com/2026/11/09/majo-beauty-clinic-asa-norte-estreia-na-black-friday-com-descontos-de-ate-70-em-depilacao-a-laser-e-estetica/">ver</a></li>
+      <li><b>A Tribuna (Tribuna Online), 14/11/2026</b> — &ldquo;&lsquo;Black Friday da beleza&rsquo;: confira promoções em clínicas e salões do ES&rdquo;. Descontos, combos e brindes durante todo o mês de novembro; combinação de procedimentos pela procura do verão. Recorte 02. <a href="https://tribunaonline.com.br/cotidiano/black-friday-da-beleza-confira-promocoes-em-clinicas-e-saloes-do-es-334850">ver</a></li>
+      <li><b>Conselho Federal de Medicina, Resolução 2.336/2023</b> (publicada no Diário Oficial em 13/09/2023) — artigo que permite anunciar descontos em campanhas promocionais e proíbe vincular promoções a vendas casadas e premiações; proibição de garantir, prometer ou insinuar bons resultados; exemplos &ldquo;faça a consulta e ganhe o exame&rdquo; e &ldquo;concorra a prêmio&rdquo;. Recorte 03. <a href="https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2023/2336_2023.pdf">ver</a></li>
+      <li><b>Itatiaia, 31/07/2026</b> — &ldquo;Quem Ama Cuida: veja os procedimentos estéticos do elenco da novela da Globo&rdquo;. Recorte 04. <a href="https://www.itatiaia.com.br/saude/quem-ama-cuida-veja-os-procedimentos-esteticos-do-elenco-da-novela-da-globo/">ver</a></li>
+      <li><b>O Globo, 13/11/2026</b> — &ldquo;Letícia Colin aposta em tecnologia coreana para firmar a pele durante &lsquo;Quem Ama Cuida&rsquo;&rdquo;, título encontrado pela busca do dossiê. Recorte 04. <a href="https://news.google.com/rss/articles/CBMi_wFBVV95cUxQdXZGVWUxV0JpMWRyZkVVdlNhSTlPUkVhS1NjaWFpVWlTZkQ0Yl9Zbml2MFlSZTFTbzUwd0dJU3ZIZXo5MGhPRUh6dkdsV1VVcVpJUUI5VUJTaF9aekY2ajA2aWFnOTFGTkNBRWlSckJCSWdsV2J">ver</a></li>
+      <li><b>Data da Black Friday</b> — 27 de novembro de 2026, quarta sexta-feira do mês. Painel de números.</li>
+    </ol>
+
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>Não sabemos quantas pacientes aderiram ao clube da clínica de Brasília, nem se a campanha deu certo: só temos o anúncio. A reportagem do Espírito Santo abriu parcialmente (o site pede cadastro), então usamos o resumo e os trechos visíveis. O texto do Globo sobre Letícia Colin não abriu; usamos só o título, e não sabemos o nome do aparelho. Uma matéria de Santa Catarina sobre regras de promoção para dentistas e enfermeiras apareceu na busca, mas o site bloqueou a leitura; por isso não citamos as regras desses conselhos. A Resolução 2.336 vale só para médicos.</p></div>
+  </section>
+
+  <!-- ═════════════ PARTE INTERNA — NUNCA PUBLICAR ═════════════ -->
+
+  
+
+  <div class="assinatura">
+    O desconto traz a paciente uma vez.<br>
+    O que decide a sua agenda de janeiro é o motivo que ela leva para voltar.<br>
+    Dossiê A Próxima Paciente · por My Glow Up · Nº 052 · 16/11/2026
+  </div>
+
+</div>
+</body>
+</html>
