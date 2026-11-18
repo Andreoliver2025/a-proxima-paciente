@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 053 · Pacote vendido com clareza já sai com a segunda sessão marcada</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>O Procon avisou: pacote e clube precisam dizer como cobram e como cancelam. Na clínica, é essa clareza que traz a paciente para a segunda sessão.</h1>
+    <p class="chamada">Faltam nove dias para a Black Friday. Nesta semana, o Procon de Minas Gerais publicou o que o consumidor deve conferir antes de fechar: cobrança, cancelamento e pressa fabricada. Para a sua clínica, a pergunta não é só quanto desconto dar. É se a paciente entende o que comprou e sabe quando volta.</p>
+    <div class="dateline">Edição Nº 053 · quarta-feira, 18 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a><div class="d">O Procon diz o que a paciente vai conferir antes de fechar o pacote. Clareza na venda é o começo da segunda sessão.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: o alerta do Procon de Minas, o preço dos últimos meses, a pesquisa que mostra o peso da indicação e as regras da Anvisa que continuam valendo.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a><div class="d">A paciente que chega pela Black Friday pode ser a próxima a indicar, se você souber quando pedir.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a><div class="d">Antes de vender pacote novo, termine o do ano passado.</div></li>
+      <li><a href="#postar">O que postar esta semana</a><div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+    </ol>
+    
+    <ol style="counter-reset:sm 6;border-top:0;margin-top:0">
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">Na segunda-feira, o Procon de Minas Gerais publicou o guia dele para a Black Friday. Três pontos falam direto com quem vende pacote e clube na clínica.</p>
+
+    <p class="texto capitular">Primeiro: antes de entrar em clube ou assinatura, o consumidor deve conferir as <b>cobranças de todo mês e as regras de cancelamento</b>. Segundo: nada pode ser imposto como condição para a compra, e nada pode entrar na conta sem autorização. Terceiro: &ldquo;últimas vagas&rdquo; e contagem regressiva podem criar uma <b>pressa falsa</b>. O guia ainda lembra que, em compra feita fora da loja, inclusive pela internet, em regra dá para desistir em até sete dias.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: pacote vendido com pressa tende a virar sessão parada. Pacote vendido com clareza já sai da sua recepção com a segunda sessão marcada. O que o Procon pede para a paciente conferir é exatamente o que faz ela voltar.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto"><b>Por que isso é com você.</b> Na edição de segunda, mostramos uma clínica de Brasília abrindo a Black Friday com um clube de doze meses. Muitas clínicas vão vender pacote de dez sessões, combo e clube nos próximos dias. Grande parte dessas vendas acontece pelo WhatsApp, fora da sala da clínica.</p>
+
+      <p class="texto"><b>O que muda na prática.</b> A paciente que leu o guia do Procon vai perguntar coisas que antes ficavam no ar. Quanto cai no cartão todo mês? Se eu mudar de cidade, como cancelo? Quantas sessões são, e até quando vale? Se a sua recepção responde de primeira, você passa confiança. Se hesita, a paciente fecha com dúvida, ou não fecha.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Venda casada&rdquo; é condicionar uma coisa à outra: só leva o desconto se entrar no clube, por exemplo. &ldquo;Direito de arrependimento&rdquo; é a regra que deixa a pessoa desistir, em até sete dias, de uma compra feita fora da loja, como pelo WhatsApp. O próprio guia diz que cada caso pode exigir análise específica. Na dúvida, fale com quem cuida da parte jurídica da clínica.</p></div>
+
+      <div class="olho">
+        <p>&ldquo;Pacote que a paciente não entendeu vira sessão parada.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto"><b>A ligação com a volta.</b> Uma sessão de pacote só acontece se a paciente lembrar dela, entender que ainda tem direito e achar um horário. Quando a venda foi feita na correria, ela sai sem saber quantas sessões restam e até quando valem. Em fevereiro, a sessão fica esquecida. E a paciente que tem sessão esquecida raramente indica a clínica para uma amiga.</p>
+
+      <p class="texto"><b>Os limites.</b> O guia é do Procon de Minas Gerais e fala de compra em geral: loja, eletrônico, internet. Ele não cita clínica de estética. Também não sabemos quantas reclamações sobre pacote estético existem hoje. O que usamos aqui é a orientação ao consumidor, aplicada à rotina da clínica.</p>
+
+      <p class="texto"><b>O que isso continua.</b> Na quarta passada, a proposta foi falar primeiro com quem já indicou. Na segunda, foi pensar na data da próxima visita antes do desconto. Hoje é o passo seguinte: a venda do pacote como começo da volta, e não como fim da conversa.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Quatro recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">9 dias</div><div class="lbl">até a <b>Black Friday</b>, em 27 de novembro</div></div>
+      <div class="numero"><div class="big">7 dias</div><div class="lbl">é o prazo em que, em regra, dá para <b>desistir de uma compra feita fora da loja</b>, segundo o Procon de Minas Gerais</div></div>
+      <div class="numero"><div class="big">34%</div><div class="lbl">citaram a <b>indicação de amigos ou parentes</b> como motivo para escolher quem fez o procedimento, em pesquisa Datafolha</div></div>
+      <div class="numero"><div class="big">28%</div><div class="lbl">citaram o <b>preço mais baixo</b>, na mesma pesquisa</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Procon de Minas: antes de entrar em clube, confira a cobrança e o cancelamento</h3>
+          <div class="credito"><span class="frescor hoje">🟢 16/11</span><span>Procon-MPMG · Ministério Público de Minas Gerais</span></div>
+          <p class="texto">O guia da Black Friday pede atenção a clubes e assinaturas, a itens incluídos sem autorização e a avisos de &ldquo;últimas unidades&rdquo; e contagem regressiva. Também lembra o prazo de sete dias para desistir de compra feita fora da loja.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Pressa falsa&rdquo; é a oferta que diz que vai acabar para a pessoa decidir sem pensar. Funciona na hora e cobra a conta depois, quando ela se arrepende.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> escreva hoje, em três linhas, como funciona o seu pacote: quantas sessões, até quando valem e como cancelar. A recepção manda esse texto junto com toda venda.</p>
+          <div class="link"><a href="https://www.mpmg.mp.br/portal/menu/comunicacao/noticias/black-friday-2026-tudo-pela-metade-do-dobro-veja-as-dicas-do-procon-mpmg-para-comprar-sem-cair-em-armadilhas.shtml">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Procon do Paraná ensina a conferir o preço de três, seis e doze meses atrás</h3>
+          <div class="credito"><span class="frescor antes">🟡 04/11</span><span>O Paraná · orientação do Procon-PR</span></div>
+          <p class="texto">O Procon-PR orienta o consumidor a comparar a oferta com os valores praticados há três, seis meses ou um ano. A coordenadora, Claudia Silvano, lembra que serviço extra é opcional: &ldquo;A contratação é uma faculdade do consumidor&rdquo;.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Faculdade do consumidor&rdquo; quer dizer que a escolha é dela. Ninguém pode obrigar a contratar um extra para levar a oferta.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente pode lembrar quanto você cobrou em agosto, ou ter o print. Se for anunciar desconto, parta do preço que você praticou de verdade nos últimos meses.</p>
+          <div class="link"><a href="https://oparana.com.br/economia/economia-sem-dor-de-cabeca-procon-pr-alerta-para-cuidados-essenciais-na-black-friday/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Pesquisa Datafolha: indicação de conhecidos é o motivo mais citado para escolher quem faz o procedimento</h3>
+          <div class="credito"><span class="frescor antes">🟡 20/10</span><span>CNN Brasil · pesquisa Datafolha encomendada pela Sociedade Brasileira de Cirurgia Plástica</span></div>
+          <p class="texto">Foram ouvidas duas mil e oitenta e seis pessoas. Entre quem fez procedimento estético com profissional não médico, a indicação de amigos ou parentes foi o motivo mais citado, à frente do preço mais baixo. A sociedade que encomendou a pesquisa defende que só médicos façam esses procedimentos.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Mesmo numa pesquisa feita para discutir quem pode atender, a conclusão prática é a mesma do seu dia a dia: a paciente escolhe, antes de tudo, quem alguém de confiança recomendou.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> numa semana em que todo mundo compete por preço, a sua vantagem é quem já foi bem cuidada por você. Pergunte a toda paciente nova como ela chegou e anote na ficha.</p>
+          <div class="link"><a href="https://www.cnnbrasil.com.br/saude/mais-de-6-milhoes-ja-fizeram-procedimentos-esteticos-com-nao-medicos-no-br/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Anvisa revisa as orientações da estética, mas as regras de hoje continuam valendo</h3>
+          <div class="credito"><span class="frescor hoje">🟢 15/11</span><span>ES Brasil</span></div>
+          <p class="texto">A matéria relembra o grupo de trabalho criado pela Anvisa para revisar as orientações sobre serviços de estética, com prazo de cento e oitenta dias. Enquanto isso, as normas sanitárias seguem valendo para clínicas, salões e profissionais.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>A nota técnica que foi suspensa era uma orientação, não uma lei. A suspensão não libera nenhum procedimento ou produto que antes era proibido.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> não use &ldquo;a Anvisa liberou&rdquo; em nenhuma oferta de Black Friday. Se a paciente perguntar, a resposta é simples: aqui seguimos as regras que valem hoje.</p>
+          <div class="link"><a href="https://esbrasil.com.br/servicos-de-estetica-anvisa-grupo-de-trabalho/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+    <p class="abertura">A paciente que chega pela Black Friday chega pelo preço. Ela só vira alguém que indica se você souber a hora de pedir.</p>
+
+    <p class="texto">A pesquisa do recorte 03 mostra a ordem das coisas: primeiro a indicação, depois o preço. Em novembro, essa ordem se inverte por alguns dias. Muita gente vai chegar até você só pelo desconto. Ela ainda não confia, está comparando.</p>
+
+    <p class="texto">Por isso, não peça indicação no dia da venda. Peça depois de uma sessão em que ela saiu satisfeita, quando ela mesma comentar que gostou. É nesse momento que a frase &ldquo;se alguém perto de você quiser conhecer, posso te mandar um convite para passar?&rdquo; soa natural.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Convite&rdquo; é uma mensagem curta com o nome da clínica, o seu nome e o contato, que a paciente encaminha para quem ela quiser. Ninguém precisa baixar nada.</p></div>
+
+    <p class="texto">E na primeira conversa com toda paciente nova, pergunte: &ldquo;como você chegou até mim?&rdquo;. Anote a resposta na ficha. Em dezembro, você vai saber quem veio pela promoção e quem veio por alguém. São duas pacientes diferentes, e cada uma pede uma conversa diferente.</p>
+
+    <p class="texto">Se a sua profissão tem regra sobre recompensa por indicação ou anúncio de preço, siga a do seu conselho.</p>
+  </section>
+
+  <!-- ═════════ 04 ═════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+    <p class="abertura">Antes de vender pacote novo, termine o do ano passado.</p>
+
+    <p class="texto">Pense em quem comprou pacote com você na Black Friday de 2025, ou em qualquer promoção deste ano. Quantas ainda têm sessão sobrando? Algumas sumiram no meio do caminho. Não foi por falta de vontade. Foi a rotina, o horário que não encaixou, a vergonha de ter faltado.</p>
+
+    <p class="texto">Essa paciente é a mais fácil de trazer de volta. Ela já pagou, já te conhece e tem um motivo concreto para voltar. Ela só precisa de alguém que lembre dela com gentileza, sem cobrança.</p>
+
+    <div class="olho">
+      <p>&ldquo;Antes de vender a primeira sessão, marque a segunda.&rdquo;</p>
+      <span class="quem">A frase para levar à recepção</span>
+    </div>
+
+    <p class="texto">Para os pacotes que você vender agora, a regra é simples. A paciente sai da primeira sessão com a segunda já marcada e com o resumo do pacote por escrito. Dois dias antes de cada sessão, ela recebe um lembrete. Se faltar, recebe uma mensagem perguntando o melhor dia, e não uma bronca.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Pacote em aberto&rdquo; é o pacote que a paciente pagou e ainda não terminou. Cada sessão que sobra é uma visita que já está paga e ainda não entrou na sua agenda.</p></div>
+  </section>
+
+  <!-- ═════════ 05 ═════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+    <p class="abertura">Três ganchos prontos. Todos falam de clareza, que é o assunto da semana. Use do seu jeito, sem prometer resultado e sem mostrar paciente.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <p class="texto">&ldquo;Comprou pacote aqui? Isto é o que você leva para casa.&rdquo; Você, em trinta segundos, mostrando o cartão ou a mensagem que a paciente recebe: quantas sessões, até quando valem, a data da próxima e como cancelar. Fecho: &ldquo;na Black Friday, pergunte isso em qualquer lugar onde for fechar&rdquo;.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <p class="texto">&ldquo;Por que existe intervalo entre uma sessão e outra.&rdquo; Cartão 1: o título. Cartões 2 a 4: para que serve o intervalo no procedimento que você mais faz, em linguagem simples. Cartão 5: &ldquo;faltou uma sessão? Acontece. Me chama que a gente encaixa&rdquo;. Último: o seu nome, a sua profissão e o seu registro. Sem antes e depois e sem promessa.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <p class="texto">Enquete: &ldquo;Você tem sessão de pacote parada em algum lugar?&rdquo; Opções &ldquo;tenho&rdquo; e &ldquo;não tenho&rdquo;. No story seguinte: &ldquo;se for aqui, me chama no direct. Sessão parada não perde a vez&rdquo;. Só escreva isso se a regra do seu pacote permitir remarcar.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 — aguardando validação do André ═════════ -->
+  
+
+  <section class="materia" id="fecho">
+    <p class="texto">A ideia volta aqui, e é por ela que a edição fecha. Nos próximos nove dias, a sua paciente vai receber muita oferta, e o Procon ensinou a ela o que perguntar. Responda antes que ela pergunte. Pacote vendido com pressa tende a virar sessão parada. Pacote vendido com clareza já sai com a segunda sessão marcada.</p>
+  </section>
+
+  <!-- ═════════ 07 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Procon-MPMG (Ministério Público de Minas Gerais), 16/11/2026</b> — &ldquo;Black Friday 2026: tudo pela metade do dobro? Veja as dicas do Procon-MPMG para comprar sem cair em armadilhas&rdquo;. Garantias e serviços não podem ser impostos como condição de compra; conferir itens incluídos sem autorização; em assinaturas e clubes, conferir &ldquo;cobranças periódicas e regras de cancelamento&rdquo;; &ldquo;últimas unidades&rdquo; e contadores regressivos como urgência falsa; desistência em até sete dias em compras fora do estabelecimento, que &ldquo;pode exigir análise específica&rdquo;. Seção 01, recorte 01, painel de números, seções 04 e 06. <a href="https://www.mpmg.mp.br/portal/menu/comunicacao/noticias/black-friday-2026-tudo-pela-metade-do-dobro-veja-as-dicas-do-procon-mpmg-para-comprar-sem-cair-em-armadilhas.shtml">ver</a></li>
+      <li><b>O Paraná, 04/11/2026</b> — &ldquo;Economia sem dor de cabeça: Procon-PR alerta para cuidados essenciais na Black Friday&rdquo;. Comparar com os valores praticados há três, seis meses ou um ano; garantia estendida é opcional; frase de Claudia Silvano, coordenadora do Procon-PR. Recorte 02. <a href="https://oparana.com.br/economia/economia-sem-dor-de-cabeca-procon-pr-alerta-para-cuidados-essenciais-na-black-friday/">ver</a></li>
+      <li><b>CNN Brasil, 20/10/2026</b> — &ldquo;Mais de 6 milhões já fizeram procedimentos estéticos com não médicos no BR&rdquo;. Pesquisa Datafolha encomendada pela Sociedade Brasileira de Cirurgia Plástica; 2.086 entrevistados com 16 anos ou mais; margem de erro de 2 pontos; motivos de escolha: indicação de amigos ou parentes (34%), preço mais baixo (28%). Recorte 03, painel de números e seção 03. <a href="https://www.cnnbrasil.com.br/saude/mais-de-6-milhoes-ja-fizeram-procedimentos-esteticos-com-nao-medicos-no-br/">ver</a></li>
+      <li><b>ES Brasil, 15/11/2026</b> — &ldquo;Serviços de estética: Anvisa cria grupo para rever regras&rdquo;. Portaria publicada no Diário Oficial em 3 de novembro; 180 dias para a análise, prorrogáveis; normas sanitárias seguem valendo; a nota suspensa é orientativa e a suspensão não autoriza práticas proibidas. Recorte 04. <a href="https://esbrasil.com.br/servicos-de-estetica-anvisa-grupo-de-trabalho/">ver</a></li>
+      <li><b>Data da Black Friday</b> — 27 de novembro de 2026, quarta sexta-feira do mês. Painel de números.</li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>O site do ES Brasil bloqueou a leitura direta. As informações do recorte 04 vêm do resumo da busca e batem com o que este dossiê publicou em 9 de novembro sobre o mesmo grupo de trabalho. Uma matéria de 17/11 sobre um novo alerta do Procon-PR também bloqueou a leitura; usamos a orientação de 04/11, que abriu. Na matéria da CNN, a data da pesquisa aparece de dois jeitos (fevereiro e março de 2026). Os guias do Procon falam de compras em geral e não citam clínica de estética: a aplicação à clínica é leitura deste dossiê. Não encontramos, nesta semana, nenhum dado sobre quantas sessões de pacote ficam paradas nas clínicas.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 053 · quarta-feira, 18 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
