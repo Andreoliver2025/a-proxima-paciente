@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 054 · A Anvisa aprovou o Botox para o músculo da mandíbula: a pergunta vai chegar no seu WhatsApp</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A Anvisa aprovou o Botox para o músculo da mandíbula. A pergunta da paciente vai chegar no seu WhatsApp antes do fim de semana.</h1>
+    <p class="chamada">Na segunda-feira, a Anvisa aprovou um novo uso do Botox: relaxar o músculo da mastigação quando ele está muito aumentado. A notícia saiu na TV e nos portais. Quem viu vai perguntar, e a resposta que a sua recepção der decide se essa paciente confia em você.</p>
+    <div class="dateline">Edição Nº 054 · sexta-feira, 20 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">O novo uso do Botox aprovado pela Anvisa, em três parágrafos, e por que a resposta certa vale mais que a promoção.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Três recortes: o que a Anvisa aprovou, o que ela pede de quem aplica e como a opinião das pacientes passou a pesar até nas respostas da inteligência artificial.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </nav>
+
+  <!-- ══════════ PARTE PÚBLICA ══════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">Notícia de procedimento não traz paciente sozinha. Traz pergunta. Quem responde com clareza e cuidado é quem ganha a confiança e, depois, a indicação.</p>
+
+    <p class="texto capitular">Na segunda-feira, 16 de novembro, a Anvisa aprovou o Botox para adultos com o masseter muito aumentado. O masseter é o músculo que você sente quando aperta os dentes. Quando ele cresce demais, o rosto fica mais largo embaixo. A decisão saiu no Diário Oficial e se apoiou num estudo com trezentas e setenta e sete pessoas.</p>
+
+    <p class="texto">A aprovação tem limites que a paciente não vai ler na manchete. Vale para o Botox, e não para toda marca de toxina. Vale para quem tem o músculo aumentado de forma acentuada, segundo a avaliação profissional. E a própria Anvisa lembra: o procedimento é feito por profissional habilitado, em serviço liberado pela vigilância sanitária, com produto registrado.</p>
+
+    <p class="texto">A tese desta edição, que volta no fim: a notícia é a mesma para todas as clínicas. O que muda é a resposta. Uma recepção que explica o que foi aprovado, sem prometer resultado e oferecendo uma avaliação, passa confiança. E a paciente que confia é a que volta e indica.</p>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto"><b>Por que a pergunta vai chegar.</b> A notícia saiu em telejornal, em agência pública e em portais regionais na mesma semana. A paciente não diz &ldquo;hipertrofia do masseter&rdquo;. Ela diz &ldquo;aquele Botox novo para afinar o rosto&rdquo; ou &ldquo;o Botox de quem range os dentes&rdquo;. É bom a equipe reconhecer as duas formas.</p>
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Nova indicação&rdquo; quer dizer que a bula do remédio ganhou mais um uso reconhecido pela Anvisa. &ldquo;Hipertrofia benigna do masseter&rdquo; é o músculo da mastigação maior do que o normal, sem doença grave por trás. A Anvisa diz que não é um risco à vida, mas pode mexer no contorno do rosto e no jeito como a pessoa se vê.</p></div>
+      <div class="olho">
+        <p>&ldquo;A Anvisa aprovou um uso. Quem decide se serve para você é a avaliação.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+      <p class="texto"><b>Os números, sem exagero.</b> No estudo, pouco mais da metade de quem recebeu o Botox melhorou pelo menos dois graus na escala usada pelos pesquisadores. No grupo que recebeu placebo, foram cerca de dois em cada cem. Isso é resultado de pesquisa, não promessa para a paciente que está na sua frente.</p>
+      <p class="texto"><b>Os cuidados.</b> A Anvisa lembra o risco raro de a toxina se espalhar para longe do local aplicado. Os sinais são vista embaçada, pálpebra caída, fala enrolada ou dificuldade para engolir ou respirar. Eles podem aparecer horas ou semanas depois, e pedem atendimento médico na hora.</p>
+      <p class="texto"><b>Quem pode aplicar.</b> A notícia não muda quem pode fazer o procedimento. Isso continua definido pelas regras de cada profissão. Siga a do seu conselho.</p>
+      <p class="texto"><b>A semana que vem.</b> A Black Friday é na sexta, dia 27. Uma notícia da Anvisa no meio da temporada de promoção é tentadora para anúncio. Não use &ldquo;aprovado pela Anvisa&rdquo; como chamariz de desconto: a aprovação é de um uso específico de uma marca, e não de uma oferta.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Três recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">16/11</div><div class="lbl">dia em que a <b>Anvisa publicou</b> o novo uso do Botox no Diário Oficial</div></div>
+      <div class="numero"><div class="big">377</div><div class="lbl">pessoas participaram do <b>estudo</b> que embasou a aprovação</div></div>
+      <div class="numero"><div class="big">51,2% × 2,2%</div><div class="lbl">melhoraram dois graus ou mais com o <b>Botox</b> e com o <b>placebo</b>, no estudo</div></div>
+      <div class="numero"><div class="big">7 dias</div><div class="lbl">até a <b>Black Friday</b>, em 27 de novembro</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Anvisa aprova o Botox para o músculo da mastigação aumentado</h3>
+          <div class="credito"><span class="frescor hoje">🟢 16/11</span><span>SBT News · Agência Brasil · Portal Afya</span></div>
+          <p class="texto">A aprovação vale para adultos com o masseter aumentado de forma acentuada ou muito acentuada. Ela se refere ao Botox. O estudo que embasou a decisão teve trezentas e setenta e sete pessoas.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Placebo&rdquo; é a aplicação sem o remédio, usada na pesquisa para comparar. Se só o grupo com o remédio melhora, o efeito vem do remédio e não da expectativa.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> escreva hoje uma resposta-padrão para o WhatsApp. O que foi aprovado, para quem, e o convite para uma avaliação. Sem preço na primeira mensagem e sem promessa de resultado.</p>
+          <div class="link"><a href="https://sbtnews.sbt.com.br/noticia/saude/anvisa-aprova-botox-para-musculo-da-mastigacao-entenda">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Junto com a aprovação, a Anvisa lembra quem aplica e o que observar depois</h3>
+          <div class="credito"><span class="frescor hoje">🟢 16/11</span><span>SBT News · orientação da Anvisa</span></div>
+          <p class="texto">A agência reforça: profissional habilitado, serviço autorizado pela vigilância sanitária, produto registrado, e dose e intervalo da bula. E lista os sinais raros que pedem socorro, que podem aparecer horas ou semanas depois.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Serviço autorizado pela vigilância&rdquo; é ter o alvará sanitário em dia para o que você faz. &ldquo;Registrado&rdquo; é o produto com número da Anvisa na caixa.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a orientação por escrito depois da aplicação é cuidado, e também é o motivo de uma mensagem dias depois: &ldquo;como você está?&rdquo;. Paciente que se sente acompanhada lembra de você.</p>
+          <div class="link"><a href="https://sbtnews.sbt.com.br/noticia/saude/anvisa-aprova-botox-para-musculo-da-mastigacao-entenda">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>A inteligência artificial também já indica negócios, e olha as avaliações</h3>
+          <div class="credito"><span class="frescor antes">🟡 23/06</span><span>Mercado&amp;Consumo · artigo de opinião</span></div>
+          <p class="texto">O artigo diz que assistentes como ChatGPT e Gemini começam a recomendar lojas, e tendem a preferir quem tem informação consistente e avaliações. Sugere pedir avaliação no Google e responder todas, as boas e as ruins.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Quando a paciente pergunta ao celular &ldquo;onde fazer tal procedimento perto de mim&rdquo;, o programa monta a resposta olhando o que já foi dito sobre você na internet. É o boca a boca, só que lido por uma máquina.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> confira se endereço, horário e telefone no Google estão certos. Peça avaliação à paciente que saiu satisfeita, nunca em troca de desconto. Se o seu conselho limita depoimento de paciente, siga a regra dele.</p>
+          <div class="link"><a href="https://mercadoeconsumo.com.br/23/06/2026/artigos/a-ia-ja-esta-indicando-lojas-aos-consumidores-a-sua-esta-nessa-lista/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">A tese volta aqui, e é por ela que a edição fecha. A notícia da Anvisa chegou para todas as clínicas ao mesmo tempo. A diferença está no que acontece depois que a paciente pergunta: a resposta clara, a avaliação honesta e a mensagem de cuidado alguns dias depois. É assim que a curiosidade de uma semana vira confiança, e a confiança vira a próxima indicação.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+    <ol class="src">
+      <li><b>SBT News, 16/11/2026</b> — &ldquo;Anvisa aprova Botox para músculo da mastigação; entenda&rdquo;. Aprovação publicada no Diário Oficial; hipertrofia benigna do masseter em adultos; estudo de fase 3 com 377 participantes, 51,2% com melhora de pelo menos dois graus contra 2,2% no placebo; procedimento por profissional habilitado, em serviço autorizado pela vigilância sanitária, com medicamento registrado, seguindo dose e intervalo da bula; sinais de alerta de botulismo. Seção 01, recortes 01 e 02, painel de números. <a href="https://sbtnews.sbt.com.br/noticia/saude/anvisa-aprova-botox-para-musculo-da-mastigacao-entenda">ver</a></li>
+      <li><b>Agência Brasil, via Folha de Pernambuco, 17/11/2026</b> — &ldquo;Botox poderá ser usado no relaxamento do músculo da mastigação&rdquo;. Publicação no Diário Oficial de segunda, 16/11; segundo a Anvisa, a condição não representa risco à vida, mas tem efeito funcional e estético. Seção 01. <a href="https://www.folhape.com.br/noticias/botox-podera-ser-usado-no-relaxamento-do-musculo-da-mastigacao/524692/">ver</a></li>
+      <li><b>Portal Afya, 17/11/2026</b> — &ldquo;Anvisa amplia indicação terapêutica da toxina botulínica&rdquo;. Indicação para proeminência &ldquo;acentuada ou muito acentuada&rdquo; do masseter; dados do estudo. Seção 01, recorte 01. <a href="https://portal.afya.com.br/dermatologia/anvisa-amplia-indicacao-terapeutica-da-toxina-botulinica">ver</a></li>
+      <li><b>Mercado&amp;Consumo, 23/06/2026</b> — &ldquo;A IA já está indicando lojas aos consumidores. A sua está nessa lista?&rdquo;, artigo de opinião de Stéfano Willig. Assistentes de IA recomendando negócios; peso de informação consistente e de avaliações; pedir e responder avaliações; manter o perfil do Google atualizado. Recorte 03. <a href="https://mercadoeconsumo.com.br/23/06/2026/artigos/a-ia-ja-esta-indicando-lojas-aos-consumidores-a-sua-esta-nessa-lista/">ver</a></li>
+      <li><b>Data da Black Friday</b> — 27 de novembro de 2026, quarta sexta-feira do mês. Painel de números e seção 01.</li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>As reportagens não dizem se outras marcas de toxina terão o mesmo uso aprovado, quanto tempo dura o efeito no estudo, nem com que frequência houve efeito colateral. Não lemos o texto oficial do Diário Oficial: usamos as reportagens que o citam. As fontes divergem num detalhe: o portal Afya trata o uso como terapêutico, e a Agência Brasil fala em efeito funcional e estético. O artigo do recorte 03 é opinião de um empresário e não traz pesquisa nem número próprio. Não verificamos quais profissões podem aplicar a toxina neste caso: isso depende da regra de cada conselho.</p></div>
+  </section>
+
+  <!-- ══════════ PARTE INTERNA — nunca vai ao ar ══════════ -->
+
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 054 · sexta-feira, 20 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
