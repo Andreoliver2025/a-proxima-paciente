@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 056 · O antes e depois feito por máquina virou golpe, e a foto de verdade passou a valer mais</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>O antes e depois feito por máquina virou golpe nas redes. A foto de verdade da sua paciente passou a valer mais.</h1>
+    <p class="chamada">Fotos de antes e depois inventadas por inteligência artificial estão sendo usadas para vender remédio de emagrecer de forma ilegal. O Sebrae já orienta: a máquina ajuda, mas não substitui a foto real. E a paciente, cada vez mais, pergunta para a máquina antes de perguntar para você.</p>
+    <div class="dateline">Edição Nº 056 · sexta-feira, 20 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">O antes e depois falso, em três parágrafos, e por que isso pesa sobre quem mostra resultado de verdade.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: a foto inventada, o guia do Sebrae, a paciente que pergunta à máquina, a regra do Conselho de Medicina e o robô que já atende no WhatsApp.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </nav>
+
+  <!-- ══════════ PARTE PÚBLICA ══════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">A foto de antes e depois sempre foi a prova que a paciente pedia. Agora ela também pode ser inventada por um programa de computador. <b>Quando a prova pode ser falsa, a paciente passa a desconfiar de todas.</b></p>
+
+    <p class="texto capitular">O ICTQ, instituto de ensino da área de farmácia, mostrou posts no Instagram e no TikTok com antes e depois feitos ou alterados por inteligência artificial. Eles vendiam tirzepatida, o remédio de algumas canetas de emagrecer, sem receita e sem acompanhamento. Num deles, uma modelo criada por computador &ldquo;perde&rdquo; cerca de noventa e quatro quilos em três semanas.</p>
+
+    <p class="texto">Na mesma linha, o Sebrae lançou um guia sobre fotos feitas por inteligência artificial. A orientação é usar a máquina como apoio, e não no lugar das fotos reais. O motivo citado é a credibilidade: imagem artificial demais gera desconfiança e pode trazer problema legal.</p>
+
+    <p class="texto">A tese desta edição, que volta no fim: a máquina pode ajudar a responder a mensagem, mas o resultado que você mostra tem que ser de verdade. Quanto mais foto falsa circula, mais vale a paciente real, com nome e rosto, contando para a amiga.</p>
+
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto"><b>Mostrar resultado não é o problema.</b> O próprio ICTQ diz que nem todo antes e depois é ilegal. O problema é a montagem enganosa ligada à venda de remédio. O que pode e o que não pode publicar depende da regra do seu conselho. Siga a do seu.</p>
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Imagem feita por inteligência artificial&rdquo; é uma foto que não foi tirada por câmera nenhuma. Um programa de computador desenha a pessoa a partir de um pedido escrito. Parece foto, mas a pessoa e o procedimento podem nunca ter existido.</p></div>
+      <div class="olho">
+        <p>&ldquo;A máquina pode ajudar a responder. O resultado que a gente mostra tem que ser de verdade.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+      <p class="texto"><b>A paciente chega com a resposta pronta.</b> Um estudo da consultoria LLYC, citado pelo Meio &amp; Mensagem, testou as ferramentas de inteligência artificial mais usadas no Brasil. A conclusão: elas viraram a primeira parada de quem tem dúvida de saúde. Muitas vezes a conversa termina ali, sem a pessoa abrir nenhum site.</p>
+      <p class="texto"><b>Onde a sua clínica entra.</b> Esta edição continua a anterior: a fiscalização já olha o que a clínica posta. Agora é a paciente que aprende a desconfiar do que vê. Quem mostra o trabalho real, com autorização da paciente e dentro da regra, fica em vantagem sobre quem só tem arte bonita.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">94 kg</div><div class="lbl">em <b>três semanas</b>: o &ldquo;resultado&rdquo; de uma modelo criada por computador num anúncio de remédio</div></div>
+      <div class="numero"><div class="big">40 milhões</div><div class="lbl">de pessoas usam <b>inteligência artificial todo dia</b> para dúvidas de saúde, segundo a LLYC</div></div>
+      <div class="numero"><div class="big">6 em 10</div><div class="lbl">conversas com a máquina terminam <b>sem a pessoa abrir um site</b>, em alguns casos, segundo a LLYC</div></div>
+      <div class="numero"><div class="big">15 em 100</div><div class="lbl">empresas clientes da Salvy já usam linha de telefone <b>para pessoas e para robôs</b></div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Antes e depois inventado por máquina vende remédio de emagrecer sem receita</h3>
+          <div class="credito"><span class="frescor antes">🟡 28/07</span><span>ICTQ</span></div>
+          <p class="texto">Os posts mostravam corpos que emagreciam rápido, sem acompanhamento, sem dieta e sem tempo de tratamento. A mesma foto de uma influenciadora aparecia como se fosse de três pessoas diferentes. Segundo a reportagem, a fabricante do remédio diz que qualquer venda dele por anúncio em rede social é ilegal.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Tirzepatida&rdquo; é o remédio de algumas canetas de emagrecer. Só pode ser usado com receita e acompanhamento.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que viu esses posts vai olhar a sua foto de resultado com mais desconfiança. Mostre só o que é real, com autorização dela, sem retoque e dentro da regra do seu conselho.</p>
+          <div class="link"><a href="https://ictq.com.br/assuntos-regulatorios/5361-posts-com-imagens-do-antes-e-depois-produzidos-com-ia-alimentam-propaganda-ilegal-de-tirzepatida-nas-redes-sociais">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Sebrae orienta: foto feita por máquina é apoio, não substitui a foto real</h3>
+          <div class="credito"><span class="frescor antes">🟡 2026</span><span>Agência Sebrae · Seu Dinheiro</span></div>
+          <p class="texto">O guia de boas práticas do Sebrae diz que toda imagem feita por inteligência artificial precisa ser conferida com calma antes de ir ao ar. Erros de proporção e de textura ainda são comuns. A reportagem lembra que imagem criada só pela máquina pode não ter proteção de direito autoral.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Direito autoral&rdquo; é quem é dono da imagem. Se a máquina fez sozinha, ela pode não ser de ninguém. E uma imagem parecida com a foto de outra pessoa pode virar processo.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a arte do post da promoção pode ter ajuda da máquina. A foto da pele, do rosto e do resultado, não. Separe as duas coisas antes da campanha de fim de ano.</p>
+          <div class="link"><a href="https://www.seudinheiro.com/2026/seu-negocio/imagens-com-ia-podem-prejudicar-seu-negocio-saiba-como-usar-sem-perder-credibilidade-cbcb/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>A paciente pergunta para a máquina antes de perguntar para você</h3>
+          <div class="credito"><span class="frescor antes">🟡 02/06</span><span>Times Brasil · Meio &amp; Mensagem</span></div>
+          <p class="texto">O estudo da LLYC testou ferramentas como ChatGPT, Gemini e Copilot com perguntas sobre canetas de emagrecer. Concluiu que a inteligência artificial virou a referência central nas decisões de saúde. A pessoa lê a resposta e muitas vezes nem abre outro site.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>ChatGPT, Gemini e Copilot são programas em que a pessoa escreve uma pergunta e recebe uma resposta pronta, como numa conversa de WhatsApp.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> ela vai chegar na avaliação com uma opinião pronta, às vezes errada. Combine com a equipe: ouvir primeiro, sem diminuir a dúvida dela, e depois explicar o que vale no caso dela.</p>
+          <div class="link"><a href="https://www.meioemensagem.com.br/marketing/estudo-revela-impacto-da-ia-nas-canetas-emagrecedoras">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Conselho de Medicina: a máquina ajuda, mas quem responde pelo diagnóstico é o profissional</h3>
+          <div class="credito"><span class="frescor antes">🟡 11/02</span><span>Conselho Federal de Medicina</span></div>
+          <p class="texto">A resolução do CFM sobre inteligência artificial deixa o médico como responsável final por diagnóstico e tratamento. Ele não pode deixar a máquina comunicar um diagnóstico à paciente sem uma pessoa no meio. A câmara de dermatologia do conselho também alertou para aplicativos que analisam foto de pele e sugerem diagnóstico.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Resolução&rdquo; é a regra oficial do conselho. Esta vale para médicos. Biomédicas, esteticistas, dentistas e enfermeiras seguem a regra do próprio conselho.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se a clínica usa aparelho ou aplicativo que &ldquo;lê&rdquo; a pele, ele serve de apoio para a sua avaliação. Quem conversa com a paciente sobre o que fazer é você.</p>
+          <div class="link"><a href="https://portal.cfm.org.br/noticias/cfm-normatiza-uso-da-ia-na-medicina">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Robôs que atendem no WhatsApp já ganham número de telefone próprio</h3>
+          <div class="credito"><span class="frescor antes">🟡 out/2026</span><span>Ecosistema Startup · Startups</span></div>
+          <p class="texto">A Salvy, empresa brasileira de linhas de celular para empresas, vende números para robôs que atendem, ligam e respondem no WhatsApp. Segundo a reportagem, mais de quinze em cada cem clientes dela já usam linhas para atendentes de carne e osso e para robôs ao mesmo tempo.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Agente de inteligência artificial&rdquo; é um programa que responde e agenda sozinho, como uma recepcionista que nunca dorme. Mas ele só sabe o que alguém ensinou a ele.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente vai se acostumar com resposta na hora, em todo lugar. Se a sua clínica usar robô, deixe com ele horário e endereço. Dúvida sobre procedimento vai para uma pessoa da equipe.</p>
+          <div class="link"><a href="https://ecosistemastartup.com/salvy-vende-lineas-moviles-a-agentes-de-ia-como-funciona/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto"><b>Para fechar a semana:</b> a máquina pode ajudar a responder o recado e até desenhar a arte do post. O resultado que você mostra tem que ser de verdade. Quanto mais foto falsa circula, mais vale a paciente real indicando a amiga.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+    <ol class="src">
+      <li><b>ICTQ, 28/07/2026</b> — &ldquo;Posts com imagens do antes e depois produzidos com IA alimentam propaganda ilegal de tirzepatida nas redes sociais&rdquo;. Posts no Instagram e no TikTok; mesma foto atribuída a três pessoas; modelo digital &ldquo;perdendo&rdquo; cerca de 94 kg (208 libras) em três semanas; posição da Eli Lilly, via Folha; ressalva de que nem todo antes e depois é ilícito. Seção 01, recorte 01 e painel de números. <a href="https://ictq.com.br/assuntos-regulatorios/5361-posts-com-imagens-do-antes-e-depois-produzidos-com-ia-alimentam-propaganda-ilegal-de-tirzepatida-nas-redes-sociais">ver</a></li>
+      <li><b>Seu Dinheiro, 2026</b> — &ldquo;Imagens com IA podem prejudicar seu negócio: saiba como usar sem perder credibilidade&rdquo;. Guia de boas práticas do Sebrae; revisão cuidadosa de toda imagem; erros de proporção e textura; risco de desconfiança, de reputação e jurídico; proteção autoral. Seção 01 e recorte 02. <a href="https://www.seudinheiro.com/2026/seu-negocio/imagens-com-ia-podem-prejudicar-seu-negocio-saiba-como-usar-sem-perder-credibilidade-cbcb/">ver</a></li>
+      <li><b>Agência Sebrae</b> — matéria sobre o &ldquo;Guia de Boas Práticas para Uso de Fotos Geradas por IA&rdquo;: inteligência artificial como apoio, não como substituição total das fotos reais. Seção 01 e recorte 02. <a href="https://agenciasebrae.com.br/?p=38615">ver</a></li>
+      <li><b>Meio &amp; Mensagem</b> — &ldquo;Estudo revela impacto da IA nas canetas emagrecedoras&rdquo;, sobre o estudo da LLYC com a Digital Solvers. Ferramentas testadas; IA como referência central em decisões de saúde; mais de 40 milhões de usuários diários com dúvidas de saúde; até 60% das conversas sem clique em site, em alguns contextos. Seção 01, recorte 03 e painel de números. <a href="https://www.meioemensagem.com.br/marketing/estudo-revela-impacto-da-ia-nas-canetas-emagrecedoras">ver</a></li>
+      <li><b>Times Brasil, 02/06/2026</b> — &ldquo;Busca por canetas emagrecedoras migra para IA e preocupa setor de saúde&rdquo;. Recorte 03. <a href="https://timesbrasil.com.br/empresas-e-negocios/ciencias-e-saude/busca-por-canetas-emagrecedoras-migra-para-ia-e-preocupa-setor-de-saude/">ver</a></li>
+      <li><b>Conselho Federal de Medicina</b> — &ldquo;CFM normatiza uso da IA na medicina&rdquo; (Resolução CFM nº 2.454, de 11/02/2026): médico como responsável final; vedado delegar à IA a comunicação de diagnóstico sem mediação humana. Recorte 04. <a href="https://portal.cfm.org.br/noticias/cfm-normatiza-uso-da-ia-na-medicina">ver</a></li>
+      <li><b>Conselho Federal de Medicina</b> — &ldquo;Câmara Técnica do CFM discute limites éticos do uso da IA no diagnóstico dermatológico&rdquo;: alerta sobre aplicativos que analisam imagens de pele e sugerem diagnóstico. Recorte 04. <a href="https://portal.cfm.org.br/noticias/camara-tecnica-do-cfm-discute-limites-eticos-do-uso-da-ia-no-diagnostico-dermatologico/">ver</a></li>
+      <li><b>Ecosistema Startup</b> — &ldquo;Salvy vende líneas móviles a agentes de IA: cómo funciona&rdquo;. Linhas para robôs ligarem, responderem e usarem WhatsApp; mais de 15% dos clientes com linhas para pessoas e para robôs, segundo a empresa. Recorte 05 e painel de números. <a href="https://ecosistemastartup.com/salvy-vende-lineas-moviles-a-agentes-de-ia-como-funciona/">ver</a></li>
+      <li><b>Startups, out/2026</b> — &ldquo;Salvy lança MCP para ser a operadora de quem atende com agentes&rdquo;. Contexto do recorte 05. <a href="https://startups.com.br/negocios/inteligencia-artificial/salvy-lanca-mcp-para-ser-a-operadora-de-quem-atende-com-agentes/">ver</a></li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>Lemos resumos e trechos das reportagens, não todas na íntegra: a do Times Brasil e a do Seu Dinheiro apareceram só em parte. Não achamos o texto completo do guia do Sebrae nem a data exata em que ele saiu. A data da matéria do Meio &amp; Mensagem e do estudo da LLYC não foi confirmada. O número de quinze em cada cem clientes da Salvy é da própria empresa; o de &ldquo;quarenta por cento da receita&rdquo;, citado num post de Instagram, não foi confirmado e ficou de fora. Não há dado sobre quantas pacientes de estética deixaram de confiar em antes e depois: a ligação entre as notícias é leitura nossa. Nenhuma das notícias é de hoje.</p></div>
+  </section>
+
+  <!-- ══════════ PARTE INTERNA — nunca vai ao ar ══════════ -->
+
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 056 · sexta-feira, 20 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
