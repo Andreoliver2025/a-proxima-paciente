@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 061 · A paciente que saiu feliz da maca não volta sozinha</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A paciente que saiu feliz da maca não volta sozinha. Ela volta quando alguém lembra dela.</h1>
+    <p class="chamada">Uma pesquisa da Ipsos mostrou que o cliente que cria vínculo com a empresa volta muito mais e indica para os outros. O detalhe que mexe com a sua agenda: quem some, muitas vezes, não saiu brava. Saiu e ninguém chamou de volta.</p>
+    <div class="dateline">Edição Nº 061 · segunda-feira, 23 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">O vínculo depois do procedimento decide se a paciente volta e se ela indica, em três parágrafos.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: o atendimento que ninguém lembra, a paciente que some pelo silêncio, a segunda visita, a falta de segunda chance e a indicação que metade dos negócios deixa de lado.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </nav>
+
+  <!-- ══════════ PARTE PÚBLICA ══════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">Uma pesquisa da Ipsos, apresentada no CONAREC 2026, mediu a diferença entre o cliente insatisfeito e o cliente que criou vínculo. <b>Entre os que criaram vínculo, oitenta e dois por cento pretendem comprar de novo. Entre os insatisfeitos, trinta e um por cento.</b></p>
+    <p class="texto capitular">Segundo a mesma pesquisa, quem cria vínculo também recomenda a empresa, em média, nove vezes por ano. Na clínica, isso tem nome: é a paciente que volta para a manutenção e ainda manda a irmã, a amiga e a colega de trabalho.</p>
+    <p class="texto">A tese desta edição, que volta no fim: a paciente não decide voltar na maca, decide nos dias depois dela. O procedimento bem feito abre a porta. O que acontece depois é o que faz ela voltar e indicar.</p>
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto"><b>Satisfeita não é o mesmo que ligada a você.</b> A Ipsos separou três grupos: insatisfeitos, satisfeitos só com o serviço e emocionalmente conectados. Entre os satisfeitos só com o serviço, a intenção de comprar de novo foi de sessenta e oito por cento. O salto final vem do vínculo, não só do serviço sem defeito.</p>
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Emocionalmente conectada&rdquo; é a paciente que sente que a clínica lembra dela: sabe o nome, o procedimento que fez, a época em que vale voltar. Não é carinho de propaganda. É a ficha da paciente sendo usada a favor dela.</p></div>
+      <div class="olho">
+        <p>&ldquo;A paciente nem sempre some porque não gostou. Muitas vezes some porque ninguém lembrou dela. A volta começa na mensagem que a gente manda depois.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+      <p class="texto"><b>O cuidado com o número.</b> A pesquisa da Ipsos cobre sete setores de consumo, não clínicas de estética. A reportagem não informa quantas pessoas foram ouvidas nem quando. A direção faz sentido para a clínica; o percentual não deve virar promessa de resultado.</p>
+      <p class="texto"><b>Onde isso encontra as últimas edições.</b> Hoje cedo falamos da paciente que lê avaliações antes de escrever e da primeira mensagem que fica sem resposta. Esta edição pula para o outro lado da agenda: depois que ela já foi atendida.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes sobre o depois da maca. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">82%</div><div class="lbl">dos clientes com <b>vínculo com a empresa</b> pretendem comprar de novo, contra 31% dos insatisfeitos, segundo a Ipsos</div></div>
+      <div class="numero"><div class="big">47%</div><div class="lbl">das experiências de consumo no país são <b>totalmente esquecíveis</b>, segundo a mesma pesquisa</div></div>
+      <div class="numero"><div class="big">37%</div><div class="lbl">dos consumidores <b>não dão segunda chance</b> depois de um único atendimento ruim, segundo a Hibou</div></div>
+      <div class="numero"><div class="big">50%</div><div class="lbl">dos pequenos negócios de beleza de São Paulo usam o <b>boca a boca e a indicação</b> para se divulgar, segundo o Sebrae-SP</div></div>
+    </div>
+
+    <div class="recortes">
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Quase metade das experiências de consumo no Brasil cai no esquecimento</h3>
+          <div class="credito"><span class="frescor antes">🟡 02/10</span><span>Consumidor Moderno · pesquisa Ipsos no CONAREC 2026</span></div>
+          <p class="texto">A Ipsos ouviu consumidores de sete setores. Quarenta e sete por cento das experiências de compra foram classificadas como totalmente esquecíveis: não deixaram marca nenhuma.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Esquecível é o atendimento correto que não deixa lembrança. A paciente sai bem, paga, vai embora, e três meses depois não lembra o nome da clínica para indicar.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> procedimento bem feito é o mínimo que a paciente espera. O que fica na memória é o detalhe: a mensagem no dia seguinte, a pergunta sobre como a pele reagiu, o lembrete na época certa da manutenção.</p>
+          <div class="link"><a href="https://consumidormoderno.com.br/conexao-emocional-experiencia-cliente/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A paciente que some, muitas vezes, não foi embora brava: foi embora no silêncio</h3>
+          <div class="credito"><span class="frescor antes">🟡 20/07</span><span>The Check-In · blog de uma empresa americana de sistema para clínicas</span></div>
+          <p class="texto">O texto, escrito para clínicas de estética dos Estados Unidos, afirma que o motivo mais comum para a paciente parar de vir não é insatisfação, e sim a falta de contato. Diz também que a maioria dá sinais de afastamento mais de trinta dias antes de sumir.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Sinal de afastamento&rdquo; é a paciente que remarca, que não marca a manutenção no prazo de sempre, que demora para responder. Está tudo na agenda e na ficha dela, só que ninguém está olhando.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a lista de pacientes que não voltam há alguns meses não é, necessariamente, lista de quem desistiu. Parte dela pode ser de quem só não foi lembrada.</p>
+          <div class="link"><a href="https://www.zenoti.com/es/thecheckin/win-back-lapsed-medspa-patients">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>A segunda visita é a que segura a paciente</h3>
+          <div class="credito"><span class="frescor antes">🟡 20/07</span><span>The Check-In · mesmo texto, perguntas frequentes</span></div>
+          <p class="texto">Segundo a empresa, com base em dados dos próprios clientes, trinta e sete por cento das pacientes desmarcam o primeiro retorno agendado. Depois da segunda visita, esse número cai muito.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Primeiro retorno&rdquo; é a volta depois da primeira sessão. É o momento mais frágil: a paciente ainda está decidindo se a sua clínica vira a clínica dela.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> o retorno marcado antes de a paciente sair, e lembrado perto da data, cuida justamente da visita que mais se perde.</p>
+          <div class="link"><a href="https://www.zenoti.com/es/thecheckin/win-back-lapsed-medspa-patients">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Mais de um terço não dá segunda chance depois de um atendimento ruim</h3>
+          <div class="credito"><span class="frescor antes">🟡 02/10/2025</span><span>Canaltech · pesquisa Atendimento ao Cliente 2025, da Hibou</span></div>
+          <p class="texto">A consultoria Hibou ouviu mil novecentos e vinte e seis consumidores no país. Trinta e sete por cento disseram que não dão segunda chance a uma empresa depois de um único atendimento ruim. Quase metade desiste depois de duas ou três falhas.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Atendimento ruim&rdquo;, na clínica, nem sempre é o procedimento. Pode ser o atraso sem aviso, a dúvida do pós que ficou sem resposta, a cobrança confusa.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> o pós-procedimento é quando a paciente mais tem dúvida e mais se sente sozinha. Uma pergunta sem resposta nessa hora pesa mais do que parece.</p>
+          <div class="link"><a href="https://canaltech.com.br/mercado/atendimento-pesa-mais-que-preco-na-hora-da-compra-em-2025-aponta-pesquisa/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Só metade dos negócios de beleza conta com a indicação para trazer gente nova</h3>
+          <div class="credito"><span class="frescor antes">🟡 nov/2025</span><span>Sebrae-SP · pesquisa Profissionais de Beleza e Estética</span></div>
+          <p class="texto">O Sebrae-SP ouviu oitocentos donos de negócios de beleza registrados como microempreendedor individual no estado. Para se divulgar, quase nove em cada dez usam as redes sociais. O boca a boca e a indicação aparecem em metade dos negócios.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Contar com a indicação&rdquo; não é esperar que a paciente fale de você. É pedir, facilitar e agradecer quando ela traz alguém.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> na mesma pesquisa, atendimento e relacionamento aparecem como o fator mais importante para o negócio dar certo. A paciente que você já atendeu é quem pode trazer a próxima.</p>
+          <div class="link"><a href="https://datasebrae.com.br/wp-content/uploads/2025/11/Profissionais-de-Beleza-e-Estetica-v5.pdf">clique aqui para ler</a></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="texto"><b>Para fechar:</b> a paciente não decide voltar na maca, decide nos dias depois dela. Quem lembra dela na hora certa tem mais chance de ver a volta. E é a paciente que volta, com vínculo, que costuma indicar a próxima.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+    <ol class="src">
+      <li><b>Consumidor Moderno, 02/10/2026</b> — &ldquo;47% das experiências de consumo no Brasil são esquecíveis, diz estudo&rdquo;, sobre a apresentação de Sidnei Martinez (Ipsos Brasil) no CONAREC 2026. Intenção de recompra: 31% entre insatisfeitos, 68% entre satisfeitos só com o serviço e 82% entre emocionalmente conectados; o conectado recomenda a marca, em média, nove vezes por ano; 47% das experiências são totalmente esquecíveis. Seção 01, recorte 01 e painel de números. <a href="https://consumidormoderno.com.br/conexao-emocional-experiencia-cliente/">ver</a></li>
+      <li><b>The Check-In, blog de uma empresa americana de sistema para clínicas, 20/07/2026</b> — &ldquo;How to win back lapsed Medspa patients&rdquo;, texto de Cheryl Cole. Conteúdo de quem vende sistema para clínicas. Afirma que o motivo mais comum de afastamento é o silêncio, não a insatisfação; que 70% a 80% das pacientes que saem dão sinais mais de 30 dias antes; e que 37% desmarcam o primeiro retorno, número que cai depois da segunda visita. Recortes 02 e 03. <a href="https://www.zenoti.com/es/thecheckin/win-back-lapsed-medspa-patients">ver</a></li>
+      <li><b>Canaltech, 02/10/2025</b> — &ldquo;Atendimento pesa mais que preço na hora da compra em 2025, aponta pesquisa&rdquo;, de Claudio Yuge, sobre a pesquisa Atendimento ao Cliente 2025, da Hibou (1.926 consumidores): 37% não dão segunda chance depois de um único mau atendimento; 49% desistem depois de duas ou três falhas. Recorte 04 e painel de números. <a href="https://canaltech.com.br/mercado/atendimento-pesa-mais-que-preco-na-hora-da-compra-em-2025-aponta-pesquisa/">ver</a></li>
+      <li><b>Sebrae-SP, novembro de 2025</b> — &ldquo;Profissionais de Beleza e Estética&rdquo;, pesquisa quantitativa com 800 donos de negócios de beleza registrados como MEI no estado de São Paulo, coleta de 31/05 a 08/06/2025. Divulgação: redes sociais 87%, promoções e descontos 59%, boca a boca e indicação 50%; atendimento de qualidade e relacionamento com o cliente é o fator de sucesso mais citado (54%); clínicas ou centros de estética são 29% da amostra. Recorte 05 e painel de números. <a href="https://datasebrae.com.br/wp-content/uploads/2025/11/Profissionais-de-Beleza-e-Estetica-v5.pdf">ver</a></li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>Nenhuma fonte desta edição é de hoje. A pesquisa da Ipsos cobre sete setores de consumo, não clínicas; a reportagem não informa tamanho da amostra nem período, e não lemos o estudo original. Os números do blog The Check-In são da própria empresa, que vende sistema para clínicas, vêm de clínicas dos Estados Unidos e não informam amostra; tratamos como sinal de tendência, não como medida. A pesquisa da Hibou é de 2025, cobre todos os setores e a reportagem não detalha o método. A pesquisa do Sebrae-SP ouviu só microempreendedores individuais do estado de São Paulo, e salões, esmalterias e barbearias são a maior parte da amostra. A ligação desses dados com a agenda da clínica é leitura nossa.</p></div>
+  </section>
+
+  <!-- ══════════ PARTE INTERNA — nunca vai ao ar ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 061 · segunda-feira, 23 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
