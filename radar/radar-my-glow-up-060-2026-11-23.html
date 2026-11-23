@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 060 · A paciente mandou mensagem enquanto você estava na maca</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>A paciente mandou mensagem enquanto você estava na maca. Do outro lado, ela conta os minutos.</h1>
+    <p class="chamada">Oito em cada dez pequenos negócios do país já têm no WhatsApp o seu principal balcão, e a clínica de estética está nessa fila. A cliente espera resposta mais rápida do que esperava há um ano. A primeira mensagem já é atendimento.</p>
+    <div class="dateline">Edição Nº 060 · segunda-feira, 23 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A recepção da clínica mudou de lugar: saiu do balcão e foi para o celular, em três parágrafos.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: a paciente perdida enquanto você atende, a pressa que aumentou, o WhatsApp como balcão, o cuidado com dado de saúde e o incômodo com a resposta de robô.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </nav>
+
+  <!-- ══════════ PARTE PÚBLICA ══════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">A pesquisa do Sebrae com mais de oito mil empreendedores mostrou: <b>para oitenta e dois por cento dos pequenos negócios, o WhatsApp já é o principal canal de conversa e de venda.</b></p>
+    <p class="texto capitular">Na prática, a recepção da sua clínica não fica mais só no balcão. Ela fica no celular, e funciona enquanto você está com as mãos ocupadas na maca. A paciente que escreve às três da tarde não sabe que você está no meio de um procedimento.</p>
+    <p class="texto">Ao mesmo tempo, a cliente ficou mais apressada. Um relatório internacional de atendimento, citado pelo portal Baguete, diz que oitenta e oito por cento dos clientes esperam resposta mais rápida do que esperavam um ano antes.</p>
+    <p class="texto">A tese desta edição, que volta no fim: a consulta começa na primeira mensagem, não na maca. A paciente que não recebeu resposta não reclama. Ela simplesmente escreve para outra clínica.</p>
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto"><b>De onde vem a ideia de &ldquo;quem responde primeiro leva&rdquo;.</b> Dois artigos de opinião publicados neste ano, um no ABC da Comunicação e outro no Baguete, retomam um estudo antigo da revista Harvard Business Review. Segundo esse estudo, empresas que respondem em até uma hora têm quase sete vezes mais chance de avançar a conversa com o interessado.</p>
+      <p class="texto">Vale o cuidado: o estudo é de 2011 e olhou empresas em geral, não clínicas. E os dois artigos foram escritos por presidentes de empresas que vendem ferramenta de atendimento. A direção faz sentido; o número exato não deve ser repetido como promessa.</p>
+      <div class="olho">
+        <p>&ldquo;Quem escreve para a gente está decidindo agora. Mensagem sem resposta é paciente indo embora sem fazer barulho.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+      <p class="texto"><b>Rápido não quer dizer robótico.</b> Uma pesquisa da Opinion Box, citada pelo ABC da Comunicação, mostra que cinquenta e nove por cento das pessoas não gostam de resposta automática. A paciente quer agilidade, mas quer sentir que tem gente do outro lado.</p>
+      <p class="texto"><b>Onde isso encontra as últimas edições.</b> Hoje cedo falamos da paciente que lê o que outras pacientes disseram antes de escrever. Esta edição mostra o passo seguinte: o momento em que ela finalmente escreve, e o que acontece se ninguém responde.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">82%</div><div class="lbl">dos pequenos negócios têm o <b>WhatsApp como principal canal</b> de conversa e de venda, segundo o Sebrae</div></div>
+      <div class="numero"><div class="big">88%</div><div class="lbl">dos clientes esperam <b>resposta mais rápida</b> do que há um ano, segundo relatório da Zendesk citado pelo Baguete</div></div>
+      <div class="numero"><div class="big">61%</div><div class="lbl">não se sentem à vontade para <b>passar informação sensível</b> pelo WhatsApp, segundo a Opinion Box</div></div>
+      <div class="numero"><div class="big">59%</div><div class="lbl">não gostam de <b>resposta automática</b>, segundo a Opinion Box, citada pelo ABC da Comunicação</div></div>
+    </div>
+
+    <div class="recortes">
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Enquanto você atende no consultório, a clínica pode estar perdendo paciente no WhatsApp</h3>
+          <div class="credito"><span class="frescor antes">🟡 26/06</span><span>ABC da Comunicação · artigo de opinião</span></div>
+          <p class="texto">O artigo fala direto com clínicas médicas, odontológicas e de estética. O ponto central: a mensagem chega na hora em que a profissional está atendendo, e fica sem resposta. O texto cita um levantamento da Zendesk: mais de sessenta por cento dos consumidores abandonam uma empresa depois de um atendimento ruim.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Perder paciente no WhatsApp&rdquo; é a moça que perguntou o valor do procedimento, esperou, não teve retorno e marcou em outro lugar. Ela não aparece em nenhuma lista de faltas, porque nunca chegou a ser paciente.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> os horários de procedimento costumam ser os horários de silêncio no celular. Saber quem olha as mensagens nessas horas é saber quem está segurando a porta da clínica aberta.</p>
+          <div class="link"><a href="https://www.abcdacomunicacao.com.br/enquanto-voce-atende-no-consultorio-sua-clinica-pode-estar-perdendo-pacientes-no-whatsapp/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A cliente ficou mais apressada: quase nove em cada dez querem resposta mais rápida do que há um ano</h3>
+          <div class="credito"><span class="frescor antes">🟡 01/09</span><span>Baguete · artigo &ldquo;Quem responde primeiro leva&rdquo;</span></div>
+          <p class="texto">O artigo cita o relatório anual de tendências de atendimento da Zendesk, edição 2026. Oitenta e oito por cento dos clientes esperam respostas mais rápidas do que um ano antes. A maioria também gostaria de atendimento a qualquer hora.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>O relógio da paciente não é o relógio da clínica. Para ela, &ldquo;rápido&rdquo; é o tempo que o aplicativo do banco ou da farmácia leva para responder. É com isso que ela compara você.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a mensagem que fica para &ldquo;depois do último atendimento&rdquo; pode chegar tarde demais. A pressa da paciente não é falta de educação: é o novo normal do celular.</p>
+          <div class="link"><a href="https://www.baguete.com.br/noticias/quem-responde-primeiro-leva">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Oito em cada dez pequenos negócios já vendem e conversam principalmente pelo WhatsApp</h3>
+          <div class="credito"><span class="frescor antes">🟡 16/04</span><span>Agência Sebrae de Notícias · Pesquisa Pulso dos Pequenos Negócios</span></div>
+          <p class="texto">A pesquisa ouviu mais de oito mil e duzentos empreendedores em fevereiro e março. O WhatsApp aparece como principal canal de comunicação e de venda para oitenta e dois por cento deles. O Instagram vem em segundo, bem atrás.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Canal de venda&rdquo; é o lugar onde o cliente decide comprar. Para a clínica, é onde a paciente pergunta preço, horário e cuidados antes de dizer sim.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a clínica da esquina está no mesmo aplicativo que você, a um toque de distância. A paciente pode estar conversando com as duas ao mesmo tempo.</p>
+          <div class="link"><a href="https://agenciasebrae.com.br/dados/whatsapp-se-consolida-nas-vendas-on-line-enquanto-facebook-e-lojas-proprias-perdem-folego/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>A paciente gosta de resolver pelo WhatsApp, mas seis em cada dez têm receio de passar informação sensível por ali</h3>
+          <div class="credito"><span class="frescor antes">🟡 2026</span><span>Opinion Box · Pesquisa WhatsApp no Brasil 2026</span></div>
+          <p class="texto">A pesquisa mostra que a maioria dos brasileiros costuma falar com marcas e empresas pelo aplicativo. Ao mesmo tempo, sessenta e um por cento não se sentem confortáveis em passar informação sensível por ali.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Informação sensível&rdquo;, na clínica, é a ficha de saúde da paciente: alergia, remédio que toma, gravidez, a foto do rosto antes do procedimento.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente gosta de marcar pelo celular, mas pode travar quando a conversa pede dado de saúde. Explicar por que você pergunta, e onde essa informação fica guardada, ajuda a conversa a seguir.</p>
+          <div class="link"><a href="https://materiais.opinionbox.com/pesquisa-whatsapp-no-brasil">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Rápido, sim; robô, não: a maioria não gosta de resposta automática</h3>
+          <div class="credito"><span class="frescor antes">🟡 05/06</span><span>ABC da Comunicação · dados da Opinion Box</span></div>
+          <p class="texto">A reportagem reúne números de pesquisas sobre conversa com empresas por mensagem. A maioria prefere falar com a empresa por mensagem. Mas, segundo a Opinion Box, cinquenta e nove por cento não gostam de resposta automática.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Resposta automática&rdquo; é aquela mensagem que sai sozinha, sempre igual, sem ninguém ter lido o que a paciente escreveu. Um programa que responde e agenda sozinho é a versão mais avançada disso.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a pressa da paciente não se resolve com qualquer resposta. Uma mensagem que soa como robô pode afastar tanto quanto o silêncio. O tom da clínica precisa aparecer já na primeira linha.</p>
+          <div class="link"><a href="https://www.abcdacomunicacao.com.br/73-dos-consumidores-preferem-mensagens-e-64-ja-compram-pelo-whatsapp-aponta-pesquisa-da-plataforma/">clique aqui para ler</a></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="texto"><b>Para fechar:</b> a paciente que escreve para você já está decidindo. Ela quer resposta rápida, com cara de gente, e sem precisar expor a ficha de saúde numa conversa de mensagens. A consulta começa na primeira mensagem, não na maca. E a paciente que chega indicada por uma amiga também chega por ali.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+    <ol class="src">
+      <li><b>Agência Sebrae de Notícias, 16/04/2026</b> — &ldquo;WhatsApp se consolida nas vendas on-line enquanto Facebook e lojas próprias perdem fôlego&rdquo;, sobre a 12ª edição da Pesquisa Pulso dos Pequenos Negócios (mais de 8,2 mil empreendedores, fevereiro e março de 2026): 82% dos MEI e das micro e pequenas empresas apontam o WhatsApp como principal canal de comunicação e de vendas; Instagram, 57%. Seção 01, recorte 03 e painel de números. <a href="https://agenciasebrae.com.br/dados/whatsapp-se-consolida-nas-vendas-on-line-enquanto-facebook-e-lojas-proprias-perdem-folego/">ver</a></li>
+      <li><b>Baguete, 01/09/2026</b> — &ldquo;Quem responde primeiro leva&rdquo;, artigo de opinião assinado pelo presidente de uma empresa de atendimento por inteligência artificial. Cita o Zendesk CX Trends 2026 (88% esperam respostas mais rápidas do que há um ano; 74% querem atendimento a qualquer hora) e o estudo da Harvard Business Review sobre resposta em até uma hora. Seção 01, recorte 02 e painel de números. <a href="https://www.baguete.com.br/noticias/quem-responde-primeiro-leva">ver</a></li>
+      <li><b>ABC da Comunicação, 26/06/2026</b> — &ldquo;Enquanto você atende no consultório, sua clínica pode estar perdendo pacientes no WhatsApp&rdquo;, artigo de opinião assinado pelo presidente de uma plataforma de comunicação para pequenas empresas. Cita o Zendesk (mais de 60% abandonam a empresa depois de um atendimento ruim) e a Harvard Business Review. Seção 01 e recorte 01. <a href="https://www.abcdacomunicacao.com.br/enquanto-voce-atende-no-consultorio-sua-clinica-pode-estar-perdendo-pacientes-no-whatsapp/">ver</a></li>
+      <li><b>Opinion Box, Pesquisa WhatsApp no Brasil 2026</b> — página de apresentação da pesquisa: 77% costumam falar com marcas e empresas pelo WhatsApp; 7 em cada 10 já compraram produtos ou contrataram serviços pelo aplicativo; 61% não se sentem confortáveis ao passar informações sensíveis por ele. Recorte 04 e painel de números. <a href="https://materiais.opinionbox.com/pesquisa-whatsapp-no-brasil">ver</a></li>
+      <li><b>ABC da Comunicação, 05/06/2026</b> — &ldquo;73% dos consumidores preferem mensagens e 64% já compram pelo WhatsApp, aponta pesquisa da plataforma&rdquo;: 73,3% preferem mandar mensagem a usar outros canais; 59% não gostam de respostas automáticas (dado atribuído à Opinion Box). Seção 01, recorte 05 e painel de números. <a href="https://www.abcdacomunicacao.com.br/73-dos-consumidores-preferem-mensagens-e-64-ja-compram-pelo-whatsapp-aponta-pesquisa-da-plataforma/">ver</a></li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>Nenhuma das fontes é pesquisa feita com pacientes de clínica de estética: todas falam de consumidores ou pequenos negócios em geral. Os dois artigos sobre velocidade de resposta são de opinião e foram escritos por executivos de empresas que vendem ferramenta de atendimento. O número da Harvard Business Review vem de um estudo de 2011 e não foi lido no original. Não tivemos acesso ao relatório da Zendesk; os números vêm do artigo do Baguete. A página da Opinion Box não informa data, tamanho da amostra nem período da pesquisa; o relatório completo exige cadastro. A pesquisa citada na reportagem de 05/06 não traz amostra nem período, e o título fala em &ldquo;64% já compram&rdquo;, mas o texto fala em preferência, por isso não usamos esse número. Nenhuma fonte desta edição é de hoje. A ligação desses dados com a agenda da clínica é leitura nossa.</p></div>
+  </section>
+
+  <!-- ══════════ PARTE INTERNA — nunca vai ao ar ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 060 · segunda-feira, 23 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
