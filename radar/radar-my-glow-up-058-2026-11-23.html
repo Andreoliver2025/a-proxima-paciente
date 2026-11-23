@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 058 · É semana de Black Friday, e a sua paciente vai conferir tudo</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>É semana de Black Friday, e a sua paciente vai conferir tudo antes de dizer sim.</h1>
+    <p class="chamada">Quase metade de quem vai às compras nesta sexta pretende perguntar para a máquina se a promoção é de verdade. Ela chega desconfiada, com o bolso apertado e cansada de mensagem. Nesta semana, a oferta que ela consegue conferir vale mais que o desconto maior.</p>
+    <div class="dateline">Edição Nº 058 · segunda-feira, 23 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A paciente que confere a promoção com a máquina antes de responder, em três parágrafos.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: a conferência pela máquina, o golpe que imita loja no WhatsApp, o bolso apertado, o cansaço de mensagem e as queixas que dobraram.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </nav>
+
+  <!-- ══════════ PARTE PÚBLICA ══════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">A Black Friday cai nesta sexta, 27 de novembro. <b>A paciente deste ano não acredita de primeira: ela confere.</b></p>
+    <p class="texto capitular">Uma pesquisa da Stefanini Marketing, publicada pelo E-Commerce Brasil em 16 de novembro, diz que oitenta e seis por cento dos consumidores pretendem usar inteligência artificial nas compras desta Black Friday. Quarenta e sete por cento querem usar a máquina para saber se a promoção é real. Beleza e perfumaria estão na lista de quarenta por cento.</p>
+    <p class="texto">Na prática, a sua paciente recebe a oferta da clínica e, antes de responder, pode colar o texto num programa como o ChatGPT e perguntar: &ldquo;isso é bom mesmo?&rdquo;. Ela também compara com o que viu no mês passado. Preço sem explicação, prazo apertado e Pix com pressa acendem a luz amarela.</p>
+    <p class="texto">A tese desta edição, que volta no fim: nesta semana, ganha a clínica que é fácil de conferir. Preço claro, nome claro, regra clara. Desconto que precisa de pressa para convencer perde para a confiança que aguenta uma pergunta.</p>
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto"><b>A desconfiança tem motivo.</b> Em Brasília, as reclamações por oferta não cumprida, serviço não prestado e propaganda enganosa mais que dobraram na Black Friday do ano passado, segundo dados do governo do Distrito Federal publicados pelo Metrópoles. O Procon de lá prepara uma fiscalização especial para esta semana.</p>
+      <div class="olho">
+        <p>&ldquo;Esta semana a paciente vai conferir tudo. A nossa oferta tem que passar na conferência.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+      <p class="texto"><b>O bolso também pesa.</b> A pesquisa da CNDL com o SPC Brasil, feita nas vinte e sete capitais, mostra que só cinquenta e um por cento pretendem comprar. Mais da metade de quem vai comprar ainda paga outras parcelas. O pacote parcelado da clínica entra numa fila que já existe.</p>
+      <p class="texto"><b>Onde isso encontra as últimas edições.</b> Na semana passada falamos de pacote com regra clara de cobrança e cancelamento, e de indicação como o motivo mais citado para escolher quem faz o procedimento. Esta edição mostra o outro lado: a paciente chega armada de perguntas. Quem já foi indicada por uma amiga chega com a resposta pronta.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">47%</div><div class="lbl">querem usar a máquina para <b>conferir se a promoção é real</b>, segundo a Stefanini Marketing</div></div>
+      <div class="numero"><div class="big">57%</div><div class="lbl">de quem vai comprar <b>ainda paga outras parcelas</b>, segundo a CNDL e o SPC Brasil</div></div>
+      <div class="numero"><div class="big">67%</div><div class="lbl">acham que as empresas <b>mandam mensagem demais</b>, segundo a Opinion Box com a Dito</div></div>
+      <div class="numero"><div class="big">260</div><div class="lbl">queixas de <b>oferta não cumprida e serviço não prestado</b> no Distrito Federal em novembro de 2025, contra 118 no ano anterior</div></div>
+    </div>
+
+    <div class="recortes">
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>A paciente vai perguntar para a máquina se a sua promoção é de verdade</h3>
+          <div class="credito"><span class="frescor antes">🟡 16/11</span><span>E-Commerce Brasil · Stefanini Marketing</span></div>
+          <p class="texto">Segundo a pesquisa, a maioria pretende usar inteligência artificial nesta Black Friday. Os usos mais citados: comparar preços, conferir se a promoção é real e checar se a loja é confiável. Mais da metade começa a pesquisar com mais de um mês de antecedência.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Usar inteligência artificial&rdquo;, aqui, é a paciente abrir um aplicativo de conversa, como o ChatGPT ou o Gemini, colar a sua oferta e perguntar se vale a pena. A máquina responde em segundos, sem conhecer a sua clínica.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a sua oferta precisa se explicar sozinha. Diga o que está incluído, quantas sessões, o valor total e até quando vale. Oferta que só faz sentido com uma ligação depois tende a ficar sem resposta.</p>
+          <div class="link"><a href="https://www.ecommercebrasil.com.br/noticias/black-friday-2026-ia-checar-ofertas">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Golpe da semana copia logotipo e foto de loja conhecida e chega por mensagem</h3>
+          <div class="credito"><span class="frescor hoje">🟢 20/11</span><span>Correio Braziliense · Procon-SP e Procon de Mato Grosso</span></div>
+          <p class="texto">Criminosos montam páginas que imitam marcas conhecidas e espalham ofertas por redes sociais e aplicativos de mensagem. O Procon orienta conferir o endereço do site, pesquisar o CNPJ, conferir em nome de quem está o Pix e desconfiar de desconto que exige pagamento na hora.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Conferir o destinatário do Pix&rdquo; é olhar, antes de confirmar, o nome que aparece na tela do banco. Se o nome não é o da clínica, a paciente desconfia, e com razão.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a mensagem da sua clínica chega no mesmo WhatsApp que os golpes. Se o Pix cai no CPF de alguém da equipe, ou se o link leva para uma página estranha, a sua oferta verdadeira pode parecer falsa. Vale conferir o nome que aparece no Pix da clínica.</p>
+          <div class="link"><a href="https://www.correiobraziliense.com.br/cbradar/golpes-black-friday-2026-cuidados-procon-evitar-fraudes/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Metade quer comprar, e mais da metade dessa metade ainda paga parcela</h3>
+          <div class="credito"><span class="frescor antes">🟡 10/11</span><span>CNDL e SPC Brasil · Offerwise</span></div>
+          <p class="texto">A pesquisa, feita nas vinte e sete capitais em outubro, mostra intenção de compra bem menor que a de três anos atrás. Entre quem não vai comprar, falta de dinheiro e dívida são motivos citados. Produtos de beleza, cosméticos e perfumes estão nos planos de vinte e oito por cento de quem vai comprar.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Endividamento&rdquo; é a paciente que já tem várias parcelas correndo no cartão. Um pacote parcelado da clínica vira mais uma linha na fatura dela.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> ao oferecer pacote, mostre o valor total junto com a parcela. A paciente que se aperta no meio do pacote costuma faltar às últimas sessões. É melhor ela saber desde o início quanto vai pagar no fim.</p>
+          <div class="link"><a href="https://site.cndl.org.br/51-dos-consumidores-pretendem-comprar-na-black-friday-2026-mas-orcamento-apertado-e-endividamento-freiam-o-consumo-aponta-pesquisa-cndl-spc-brasil/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Dois em cada três acham que as empresas mandam mensagem demais</h3>
+          <div class="credito"><span class="frescor antes">🟡 03/10</span><span>Negócios de Beleza · Opinion Box com a Dito</span></div>
+          <p class="texto">Na pesquisa, feita com mil e três pessoas, a maioria reclama do excesso de mensagens nesta época. Sete em cada dez desistem da compra se forem importunadas por telefone. Preço acima do esperado e reclamação de outros clientes também aparecem entre os motivos para desistir.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Ser importunada&rdquo; é receber a terceira mensagem da semana sem ter respondido a primeira. Na clínica, é a lista inteira recebendo o mesmo disparo três vezes.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> nesta semana, a caixa de mensagens da paciente vai estar lotada. Uma mensagem pessoal, para quem tem motivo para ouvir de você, pesa mais que vários disparos para todo mundo. Quem não respondeu, por ora, deixe em paz.</p>
+          <div class="link"><a href="https://negociosdebeleza.beautyfair.com.br/black-friday-2026-62-pretendem-comprar-beleza-esta-no-radar-de-33-deles-e-frete-gratis-e-mais-citado-que-o-valor-do-desconto-aponta-pesquisa/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Em Brasília, as queixas de serviço não prestado mais que dobraram na última Black Friday</h3>
+          <div class="credito"><span class="frescor antes">🟡 11/11</span><span>Metrópoles · governo do Distrito Federal</span></div>
+          <p class="texto">Os dados do governo federal mostram que, em novembro de 2025, as reclamações por oferta não cumprida, serviço não prestado e propaganda enganosa mais que dobraram em relação ao ano anterior. O Procon do Distrito Federal prepara uma fiscalização especial para esta Black Friday, mirando preço maquiado e condições abusivas.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Serviço não prestado&rdquo;, na clínica, é a sessão vendida no pacote que a paciente não consegue marcar. &ldquo;Preço maquiado&rdquo; é subir o valor antes para anunciar desconto depois, a famosa &ldquo;metade do dobro&rdquo;.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> cada pacote vendido nesta semana é uma promessa de horário nos próximos meses. Antes de vender, confira se a agenda comporta as sessões. Paciente sem horário vira queixa, e queixa vira o oposto de indicação.</p>
+          <div class="link"><a href="https://www.metropoles.com/distrito-federal/apos-alta-de-queixas-procon-quer-evitar-metade-do-dobro-na-black-friday">clique aqui para ler</a></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="texto"><b>Para fechar:</b> nesta sexta, a paciente vai conferir o preço, o nome no Pix, a regra do pacote e, muitas vezes, a opinião da máquina. Ganha quem passa nessa conferência sem pressa e sem susto. E a paciente que chega indicada por uma amiga já vem com a conferência feita.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+    <ol class="src">
+      <li><b>E-Commerce Brasil, 16/11/2026</b> — &ldquo;Black Friday 2026: consumidor chega mais preparado e usa IA para checar ofertas&rdquo;, com pesquisa da Stefanini Marketing: 86% pretendem usar inteligência artificial nas compras; 49% para comparar preços, 47% para verificar se a promoção é real, 42% para checar a confiabilidade da loja; 56% começam a pesquisar com mais de 30 dias; beleza e perfumaria para 40%. Seção 01, recorte 01 e painel de números. <a href="https://www.ecommercebrasil.com.br/noticias/black-friday-2026-ia-checar-ofertas">ver</a></li>
+      <li><b>Correio Braziliense, 20/11/2026</b> — &ldquo;Black Friday acontece em 27 de novembro de 2026: os cuidados recomendados pelo Procon antes de pagar ofertas recebidas por mensagens e redes sociais&rdquo;. Orientações do Procon-SP e do Procon de Mato Grosso: conferir endereço, CNPJ, destinatário do Pix e reputação; cautela com desconto que exige Pix imediato. Recorte 02. <a href="https://www.correiobraziliense.com.br/cbradar/golpes-black-friday-2026-cuidados-procon-evitar-fraudes/">ver</a></li>
+      <li><b>CNDL e SPC Brasil, 10/11/2026</b> — pesquisa com a Offerwise nas 27 capitais, coleta de 7 a 19 de outubro de 2026, variação estatística de 3,7 a 4,0 pontos para mais ou para menos: 51% pretendem comprar; 57% de quem vai comprar ainda pagam outras compras parceladas; 28% planejam comprar beleza, cosméticos e perfumes. Análise completa, recorte 03 e painel de números. <a href="https://site.cndl.org.br/51-dos-consumidores-pretendem-comprar-na-black-friday-2026-mas-orcamento-apertado-e-endividamento-freiam-o-consumo-aponta-pesquisa-cndl-spc-brasil/">ver</a></li>
+      <li><b>Negócios de Beleza (Beauty Fair), 03/10/2026</b> — pesquisa Opinion Box com a Dito, 1.003 pessoas, julho e agosto de 2026, variação estatística de 3,1 pontos: 67% acham que as empresas mandam mensagens demais; 71% desistem se forem importunados por telefone; 25% desistem por reclamações negativas sobre a loja. Recorte 04 e painel de números. <a href="https://negociosdebeleza.beautyfair.com.br/black-friday-2026-62-pretendem-comprar-beleza-esta-no-radar-de-33-deles-e-frete-gratis-e-mais-citado-que-o-valor-do-desconto-aponta-pesquisa/">ver</a></li>
+      <li><b>Metrópoles, 11/11/2026</b> — &ldquo;Após alta de queixas, Procon quer evitar &lsquo;metade do dobro&rsquo; na Black Friday&rdquo;. Dados do ProConsumidor divulgados pelo governo do DF: 260 reclamações por descumprimento de oferta, serviço não prestado e publicidade enganosa em novembro de 2025, contra 118 em novembro de 2024; operação especial de fiscalização anunciada. Análise completa, recorte 05 e painel de números. <a href="https://www.metropoles.com/distrito-federal/apos-alta-de-queixas-procon-quer-evitar-metade-do-dobro-na-black-friday">ver</a></li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>A pesquisa da Stefanini Marketing não informa, no texto publicado, o tamanho da amostra nem o método. Por isso os números dela aparecem aqui como tendência, não como retrato exato. As três pesquisas de intenção de compra usam perguntas e públicos diferentes e não devem ser comparadas entre si: a CNDL fala em 51% com intenção de comprar e a Opinion Box em 62%. Os números do Distrito Federal são da Black Friday de 2025, não da deste ano, e valem para o comércio em geral, não só para clínicas. Nenhuma das fontes trata especificamente de clínica de estética. A ligação com a agenda da clínica é leitura nossa.</p></div>
+  </section>
+
+  <!-- ══════════ PARTE INTERNA — nunca vai ao ar ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 058 · segunda-feira, 23 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+</div>
+</body>
+</html>
