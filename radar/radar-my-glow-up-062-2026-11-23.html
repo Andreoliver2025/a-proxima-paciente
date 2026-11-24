@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 062 · Agora a máquina também indica onde marcar consulta</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Agora a máquina também indica onde marcar consulta. A indicação da amiga ganhou concorrência.</h1>
+    <p class="chamada">Uma reportagem publicada hoje em Manaus conta que uma empresa usa inteligência artificial para indicar consultas e exames. Para a sua agenda, isso quer dizer o seguinte: antes de perguntar para a amiga, a paciente pode estar perguntando para a máquina.</p>
+    <div class="dateline">Edição Nº 062 · segunda-feira, 23 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A inteligência artificial começa a fazer o papel de quem indica, em três parágrafos.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: a máquina que indica consulta em Manaus, o agendamento feito por máquina numa rede de clínicas, a paciente que chega com a resposta pronta e as empresas que passam a falar também com a máquina.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+  </nav>
+
+  <!-- ══════════ PARTE PÚBLICA ══════════ -->
+
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+    <p class="abertura">O jornal A Crítica, de Manaus, publicou hoje: <b>uma empresa da cidade usa inteligência artificial para indicar consultas e exames com desconto.</b> A pessoa conta o que precisa, e a máquina aponta para onde ir.</p>
+    <p class="texto capitular">Até pouco tempo, esse gesto era só da amiga, da irmã ou da colega de trabalho: &ldquo;vai lá, que eu fui e gostei&rdquo;. Agora, em parte do caminho, quem aponta a porta é um programa. Não é o fim da indicação de gente. É uma segunda indicação, que chega antes ou junto com a primeira.</p>
+    <p class="texto">A tese desta edição, que volta no fim: quando a máquina também indica, a indicação de quem já foi atendida por você vale mais, não menos. A experiência dessa paciente a máquina não consegue inventar.</p>
+    <details class="mais"><summary>Ler a análise completa</summary>
+      <p class="texto"><b>Por que isso chega na estética.</b> A notícia de Manaus é de saúde em geral, não de estética. Mas o mesmo movimento já aparece em redes de clínicas. No Ceará, a Clínica SiM passou a usar máquina no agendamento para entender o que a paciente precisa e direcionar a consulta ou o exame. E a dermatologia entrou na lista do atendimento a distância.</p>
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Inteligência artificial que indica&rdquo; é um programa que lê a pergunta da paciente, como &ldquo;onde faço limpeza de pele perto de casa?&rdquo;, e responde com um nome. Ele monta a resposta com o que encontra: avaliações, notícias, o que outras pessoas escreveram.</p></div>
+      <p class="texto"><b>O cuidado com a notícia.</b> Da reportagem de Manaus confirmamos o título, o jornal e a data. Não conseguimos ler o nome da empresa, como a máquina escolhe o lugar nem de onde vem o desconto. Está tudo listado nas fontes.</p>
+      <p class="texto"><b>Onde isso encontra as últimas edições.</b> Hoje cedo falamos da paciente que lê avaliações antes de escrever, da primeira mensagem sem resposta e da paciente que volta quando alguém lembra dela. Esta edição olha para o começo de tudo: quem aponta a sua clínica para a próxima paciente.</p>
+    </details>
+  </section>
+
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Quatro recortes sobre quem está indicando a próxima paciente. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="olho">
+      <p>&ldquo;A máquina indica o que encontra escrito sobre a gente. A paciente indica o que viveu aqui. Isso ninguém copia.&rdquo;</p>
+      <span class="quem">A frase para levar à equipe</span>
+    </div>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">23</div><div class="lbl">unidades na rede Clínica SiM, que usa <b>máquina no agendamento</b> para direcionar consultas e exames, segundo O POVO</div></div>
+      <div class="numero"><div class="big">+20%</div><div class="lbl">no volume mensal de pacientes da mesma rede, segundo o diretor-presidente, em entrevista ao O POVO</div></div>
+      <div class="numero"><div class="big">3</div><div class="lbl">especialidades levadas pela rede ao atendimento a distância, entre elas a <b>dermatologia</b></div></div>
+    </div>
+
+    <div class="recortes">
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Em Manaus, empresa usa inteligência artificial para indicar consultas e exames com desconto</h3>
+          <div class="credito"><span class="frescor hoje">🟢 hoje</span><span>A Crítica (Manaus) · 23/11/2026</span></div>
+          <p class="texto">A reportagem saiu nesta segunda. Pelo título, a empresa usa uma máquina para dizer à pessoa onde fazer a consulta ou o exame, com desconto. Os detalhes de como ela escolhe ainda não conseguimos ler.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>É como uma recepcionista que não trabalha para você, sentada do lado de fora, mandando gente para cá ou para lá. Ela decide com o que sabe sobre cada lugar.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> parte da paciente nova pode chegar porque uma máquina apontou o seu nome. E parte pode deixar de chegar porque ela apontou outro. O que está escrito sobre a sua clínica na internet passa a pesar nessa escolha.</p>
+          <div class="link"><a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxNb0k4SUFOSm5jcDktZ1oyVlVJb1I0Vi02eUx4a0wyWFVrOWZFUDZIMUxPaHFzM2tvQ25MWXFFS2RwNVdiTDNIcF9hQnA3NVlqMVNGUjNiTmZXUm9nWm9XVmNrQUlld0E4MlFaekhqUnpuak83WDdva3I2WWMyLWM3XzhXSFpXejFyUHB0MU1IN201eEFRUWZTOF9kUEtjUXpiTmRsenBBSzBWYTJJeHB5T3JIRUxtYUU0UmkxUmh3WQ?oc=5">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Rede de clínicas no Ceará põe máquina no agendamento para direcionar a paciente</h3>
+          <div class="credito"><span class="frescor antes">🟡 27/07</span><span>O POVO · Clínica SiM</span></div>
+          <p class="texto">Segundo o jornal, a rede usa programas de inteligência artificial para entender mais rápido o que a paciente precisa e encaminhá-la para a consulta ou o exame certo. O atendimento a distância passou a incluir cardiologia, dermatologia e ginecologia.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Agente de inteligência artificial&rdquo; é um programa que responde e agenda sozinho. Aqui, ele faz a triagem da recepção: escuta o pedido e aponta o caminho.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente se acostuma a ser entendida e encaminhada rápido em outros lugares. É com essa régua que ela vai medir a sua recepção.</p>
+          <div class="link"><a href="https://mais.opovo.com.br/jornal/economia/2026/07/27/clinica-sim-amplia-uso-de-ia-e-ve-crescer-procura-por-telemedicina.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>&ldquo;Doutora, já perguntei à inteligência artificial&rdquo;: a paciente chega com a resposta pronta</h3>
+          <div class="credito"><span class="frescor antes">🟡 12/11</span><span>O POVO · coluna de Paola Torres</span></div>
+          <p class="texto">O título da coluna registra uma frase que ficou comum no consultório: a paciente conta que já consultou a máquina antes de sentar na cadeira. A conversa começa pelo que ela leu.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>A máquina não substitui a avaliação. Mas ela molda a expectativa: a paciente chega com uma ideia do procedimento, do preço e até de qual clínica procurar.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a avaliação vira também o momento de acertar a expectativa que veio de fora. Vale a equipe saber perguntar, com calma: &ldquo;o que a máquina te disse?&rdquo;.</p>
+          <div class="link"><a href="https://mais.opovo.com.br/colunistas/paola-torres/2026/11/12/doutora-ja-perguntei-a-inteligencia-artificial.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>As empresas passam a falar com duas plateias: a pessoa e a máquina que responde por ela</h3>
+          <div class="credito"><span class="frescor hoje">🟢 22/11</span><span>Valor Econômico · Central do Varejo, sobre o Web Summit 2026</span></div>
+          <p class="texto">Neste domingo, o Valor publicou que, para as marcas, o jornalismo ganha importância na era da inteligência artificial. No Web Summit, o diretor de marketing da Qualcomm disse que o marketing passa a falar com humanos e com máquinas.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>A máquina que indica um lugar procura fontes em que confia: reportagem, avaliação, gente falando bem. O anúncio que a própria empresa paga tende a pesar menos para ela.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> o que outras pessoas escrevem sobre a sua clínica ficou mais importante. A avaliação de uma paciente real conta para quem lê e para a máquina que lê por ela.</p>
+          <div class="link"><a href="https://centraldovarejo.com.br/marketing-com-ia-deve-mirar-humanos-e-agentes-diz-qualcomm/">clique aqui para ler</a></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="texto"><b>Para fechar:</b> quando a máquina também indica, a indicação de quem já foi atendida por você vale mais, não menos. A máquina repete o que encontra escrito. A paciente que viveu o atendimento é a fonte que nenhuma máquina consegue inventar.</p>
+  </section>
+
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="abertura">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+    <ol class="src">
+      <li><b>A Crítica (Manaus), 23/11/2026</b> — &ldquo;Empresa de Manaus usa inteligência artificial para indicar consultas e exames com desconto&rdquo;. Seção 01 e recorte 01. <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxNb0k4SUFOSm5jcDktZ1oyVlVJb1I0Vi02eUx4a0wyWFVrOWZFUDZIMUxPaHFzM2tvQ25MWXFFS2RwNVdiTDNIcF9hQnA3NVlqMVNGUjNiTmZXUm9nWm9XVmNrQUlld0E4MlFaekhqUnpuak83WDdva3I2WWMyLWM3XzhXSFpXejFyUHB0MU1IN201eEFRUWZTOF9kUEtjUXpiTmRsenBBSzBWYTJJeHB5T3JIRUxtYUU0UmkxUmh3WQ?oc=5">ver</a></li>
+      <li><b>O POVO, 27/07/2026</b> — &ldquo;Clínica SiM amplia uso de IA e vê crescer procura por telemedicina&rdquo;: agentes de IA no agendamento, identificando a necessidade da paciente e direcionando consultas e exames; telemedicina ampliada para cardiologia, dermatologia e ginecologia. Seção 01 (análise), recorte 02 e painel de números. <a href="https://mais.opovo.com.br/jornal/economia/2026/07/27/clinica-sim-amplia-uso-de-ia-e-ve-crescer-procura-por-telemedicina.html">ver</a></li>
+      <li><b>O POVO, 27/07/2026</b> — &ldquo;Grupo cearense de saúde amplia operação e projeta receita acima de R$ 200 milhões&rdquo;: 23 unidades, 11 no Ceará; volume mensal de pacientes com alta acima de 20%, segundo o diretor-presidente Eduardo Adrião. Painel de números. <a href="https://www.opovo.com.br/noticias/economia/2026/07/27/grupo-cearense-de-saude-amplia-operacao-e-projeta-receita-acima-de-rs-200-milhoes.html">ver</a></li>
+      <li><b>O POVO, 12/11/2026</b> — coluna de Paola Torres, &ldquo;Doutora, já perguntei à inteligência artificial&rdquo;. Recorte 03. <a href="https://mais.opovo.com.br/colunistas/paola-torres/2026/11/12/doutora-ja-perguntei-a-inteligencia-artificial.html">ver</a></li>
+      <li><b>Valor Econômico, 22/11/2026</b> — &ldquo;Para as marcas, o jornalismo ganha importância na era da IA, diz CMO da Qualcomm&rdquo;. Recorte 04. <a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxQeERyUWtITml5MWM5aU01ZHg1RnFvRTBRNlNZcDlSYS1ydGdPLUNhWmxkanRXY0QwWUZTeFZ1OTEwSVlkQkJucEw3NHZEdWllUmZObEQzcHBtMlpTX3FocmRjSXlfc2ZTelUwb1RLV2ZJS3VuSDl2YmRHMEdGTEZLZXRSc3gwU2M1V0l6M25STmtSOVhlSlZzOW1FdkhUTG5zTm1vTEFzWkNZRE1uMjluZHlSNHhIc2tUTk10UHBEd19lWjZzT1dkRmstbWM0TmdSZ3hzVE4wckFDUjR3VVRB?oc=5">ver</a></li>
+      <li><b>Central do Varejo, outubro de 2026</b> — &ldquo;Marketing com IA deve mirar humanos e agentes, diz Qualcomm&rdquo;, sobre a fala de Don McGuire no Web Summit Lisboa 2026. Recorte 04. <a href="https://centraldovarejo.com.br/marketing-com-ia-deve-mirar-humanos-e-agentes-diz-qualcomm/">ver</a></li>
+    </ol>
+    <div class="traduz"><span class="r">O que não deu para confirmar</span><p>Da reportagem de Manaus, só confirmamos título, jornal e data. Não lemos o texto, então não sabemos o nome da empresa, como a máquina escolhe o lugar nem quem paga o desconto. O texto do Valor também não foi lido na íntegra; a explicação do recorte 04 sobre como a máquina escolhe fontes é leitura nossa, apoiada na fala da Qualcomm relatada pela Central do Varejo. Das reportagens do O POVO lemos trechos, não a íntegra, e o crescimento de pacientes é declaração da própria empresa. A coluna de Paola Torres foi confirmada pelo título; o resumo é leitura nossa. Nenhuma das fontes trata de clínica de estética: a ligação com a sua agenda é interpretação nossa.</p></div>
+  </section>
+
+  <!-- ══════════ PARTE INTERNA — nunca vai ao ar ══════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 062 · segunda-feira, 23 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
