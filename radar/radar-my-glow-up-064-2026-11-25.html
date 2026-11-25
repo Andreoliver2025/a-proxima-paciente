@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 064 · A Black Friday traz gente nova. Quem faz ela voltar é o que acontece depois da primeira visita</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up · edição da semana</div>
+    <h1>Na Black Friday, nove em cada dez compradores são clientes novos. Em três meses, menos de quatro em cada cem voltaram a comprar.</h1>
+    <p class="chamada">Faltam dois dias para a Black Friday. Um levantamento com mais de um milhão e setecentos mil pedidos mostra o que acontece depois da data: muita gente nova entra, e quase ninguém volta sozinho. Para a sua clínica, a pergunta da semana não é quanto desconto dar. É o que a paciente nova vai encontrar depois da primeira sessão.</p>
+    <div class="dateline">Edição Nº 064 · quarta-feira, 25 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#movimento">O movimento da semana</a><div class="d">A Black Friday enche a casa de gente nova. Os números mostram que ela volta pouco, e por quê.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Quatro recortes: quem usou um benefício voltou mais, a cliente que decide em cima da hora, a primeira entrega no prazo e a Black Friday vista como começo de relação.</div></li>
+      <li><a href="#trazer">Como trazer paciente nova</a><div class="d">Nesta semana a paciente nova vem sozinha. O trabalho é saber de onde ela veio.</div></li>
+      <li><a href="#voltar">Como fazer a paciente voltar</a><div class="d">A ponte entre a primeira e a segunda sessão se constrói antes de ela sair da maca.</div></li>
+      <li><a href="#postar">O que postar esta semana</a><div class="d">Três ganchos prontos: um reels, um carrossel e um story.</div></li>
+    </ol>
+    
+    <ol style="counter-reset:sm 6;border-top:0;margin-top:0">
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="movimento">
+    <div class="titulo"><span class="n">01</span><h2>O movimento da semana</h2><span class="fio"></span></div>
+
+    <p class="abertura">A Appmax, empresa de pagamentos para lojas na internet, olhou mais de um milhão e setecentos mil pedidos de novembro do ano passado. Nove em cada dez compradores daquele mês eram clientes novos.</p>
+
+    <p class="texto capitular">O dado que importa vem depois. Em noventa dias, só <b>3,9% de quem chegou em novembro voltou a comprar</b>. Entre quem tinha chegado em outubro, sem a pressa da Black Friday, foram 5%. Ou seja: a data traz muita gente, e essa gente volta menos do que quem chegou num mês comum.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: a Black Friday traz a paciente uma vez. Quem faz ela voltar é o que acontece depois da primeira visita. Se nada acontecer, a paciente que chegou pelo desconto vai embora pelo desconto do próximo lugar.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <p class="texto"><b>Por que isso é com você.</b> Na sexta-feira, muitas clínicas vão abrir agenda com preço especial. Quem chega por preço ainda não conhece você, não tem vínculo e está comparando. Na semana passada, mostramos que a paciente vai conferir regras e prazos antes de fechar. Hoje o assunto é o que vem depois de ela fechar.</p>
+
+      <p class="texto"><b>O que muda na prática.</b> Pense na sua agenda de dezembro. Se dez pacientes novas fecharem na sexta, a conta que importa não é essa. A conta que importa é quantas delas você ainda vai ver em março. Esse número depende pouco do desconto e muito do que a clínica faz entre a primeira e a segunda sessão.</p>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Recompra&rdquo; é a cliente comprar de novo da mesma loja. Na clínica, é a paciente voltar para outra sessão ou outro procedimento. &ldquo;Novos na base&rdquo; quer dizer gente que nunca tinha comprado ali: na clínica, a paciente que entra pela primeira vez na sua lista.</p></div>
+
+      <div class="olho">
+        <p>&ldquo;A Black Friday enche a agenda uma vez. Quem enche de novo é a gente.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto"><b>A ligação com a indicação.</b> A paciente que volta é a que tem chance de indicar. A que vem uma vez e some leva junto a amiga que ela poderia ter trazido. Por isso a volta não é só uma sessão a mais: é o caminho por onde chega a próxima paciente.</p>
+
+      <p class="texto"><b>Os limites.</b> Os números são de lojas na internet, não de clínicas. Vêm da base de clientes de uma única empresa de pagamentos, que também apoia o portal onde o dado saiu. O próprio texto avisa que esses números não permitem generalizar. Usamos aqui a direção do dado, não o tamanho exato, e não sabemos quanto disso se repete numa clínica de estética.</p>
+
+      <p class="texto"><b>O que isso continua.</b> Na quarta passada, a proposta foi cuidar dos pacotes em aberto antes de vender pacote novo. Na segunda, mostramos que grandes empresas agradecem quem indica com regra escrita. Hoje é o passo do meio: a paciente nova que chega nesta semana, e o que você faz para ela virar paciente de verdade.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Quatro recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">2 dias</div><div class="lbl">até a <b>Black Friday</b>, sexta-feira, 27 de novembro</div></div>
+      <div class="numero"><div class="big">90,5%</div><div class="lbl">dos compradores de novembro eram <b>clientes novos</b>, segundo a Appmax</div></div>
+      <div class="numero"><div class="big">3,9%</div><div class="lbl">deles <b>voltaram a comprar em noventa dias</b>; entre quem chegou em outubro, foram 5%</div></div>
+      <div class="numero"><div class="big">32,3%</div><div class="lbl">dos consumidores já estavam <b>decididos a comprar</b> na data em novembro; em agosto eram 19%, segundo o Reclame Aqui</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Quem usou um benefício de fidelidade na Black Friday voltou bem mais nos meses seguintes</h3>
+          <div class="credito"><span class="frescor hoje">🟢 20/11</span><span>BRA 1 · estudo da BonifiQ</span></div>
+          <p class="texto">Um estudo com dados de mais de seiscentos e catorze mil consumidores comparou dois grupos. Quem usou pontos ou algum benefício na Black Friday voltou a comprar cerca de quatro vezes mais, nos noventa dias seguintes, do que quem não usou. O estudo é de uma empresa que vende programa de fidelidade.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Resgatar benefício&rdquo; é usar o que você ganhou, como trocar pontos por um desconto. Um cuidado na leitura: quem já gosta da loja tende a usar o benefício e também a voltar. O estudo mostra que as duas coisas andam juntas, não que uma causa a outra.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente precisa de um motivo concreto para a segunda visita, combinado antes de ela ir embora. Pode ser a próxima sessão já marcada ou um agradecimento com regra clara. Sem prometer resultado de procedimento.</p>
+          <div class="link"><a href="https://www.bra1.com.br/economia/id-729503/black_friday_vira_a_porta_de_entrada_para_criar_clientes_fieis_no_varejo">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A cliente decide em cima da hora: a fatia de quem já sabe que vai comprar subiu de agosto para novembro</h3>
+          <div class="credito"><span class="frescor hoje">🟢 18/11</span><span>Mercado&amp;Consumo · pesquisa do Reclame Aqui</span></div>
+          <p class="texto">Em agosto, 19% diziam estar decididos a comprar na Black Friday. Em novembro, eram 32,3%. A indecisão caiu, mas ainda era maior que a metade. Muita gente só resolve na última semana.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Ponto percentual&rdquo; é a diferença simples entre duas porcentagens. De 19% para 32,3%, a subida foi de pouco mais de treze pontos.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> as mensagens vão chegar de quinta a domingo, muitas de quem nunca falou com você. Deixe pronta a resposta com o resumo do que ela está fechando e a pergunta &ldquo;como você chegou até a gente?&rdquo;.</p>
+          <div class="link"><a href="https://mercadoeconsumo.com.br/18/11/2026/ecommerce/black-friday-2026-fatia-de-consumidores-decididos-a-comprar-salta-para-323/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Na primeira compra, cumprir o prazo prometido fez mais gente voltar</h3>
+          <div class="credito"><span class="frescor hoje">🟢 18/11</span><span>E-Commerce Brasil · estudo da Intelipost</span></div>
+          <p class="texto">Numa loja de roupas pela internet, 36% dos clientes de primeira compra voltaram quando o pedido chegou no prazo. Quando atrasou, foram 26%. A primeira experiência pesa na decisão de voltar.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Na clínica, o &ldquo;pedido no prazo&rdquo; é a sessão que começa no horário, a mensagem de cuidado que chega no dia combinado e a dúvida respondida no mesmo dia. É cumprir o que a recepção prometeu.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> não aperte a sexta e o sábado além do que a equipe dá conta. A paciente nova que esperou quarenta minutos na recepção dificilmente marca a segunda sessão.</p>
+          <div class="link"><a href="https://www.ecommercebrasil.com.br/artigos/black-friday-2026-o-que-o-checkout-e-a-plataforma-precisam-aguentar">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Para o mercado, o objetivo da Black Friday deixou de ser só vender: é fazer o cliente voltar</h3>
+          <div class="credito"><span class="frescor antes">🟡 sem data</span><span>Meio &amp; Mensagem · artigo de opinião de Luciano Ferrari</span></div>
+          <p class="texto">O artigo defende que o objetivo da data vai além do volume de vendas e está em fazer o cliente voltar. Para o autor, quem tem um atendimento sem falhas tem mais chance de retornar.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Fidelização&rdquo; é fazer a pessoa escolher você de novo, sem precisar ser convencida do zero. Na clínica, é a paciente que já sabe onde vai fazer a próxima sessão.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> antes de abrir as vagas da sexta, decida o que cada paciente nova recebe depois da primeira sessão. Se não houver nada combinado, o desconto foi o único contato.</p>
+          <div class="link"><a href="https://www.meioemensagem.com.br/opiniao/black-friday-mais-do-que-vendas-fidelizacao-e-eficiencia">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="trazer">
+    <div class="titulo"><span class="n">03</span><h2>Como trazer paciente nova</h2><span class="fio"></span></div>
+    <p class="abertura">Nesta semana, a paciente nova vem quase sozinha. O trabalho é outro: saber de onde ela veio.</p>
+
+    <p class="texto">Se nove em cada dez compradores da Black Friday são novos, a sua lista vai crescer nos próximos dias. Algumas pacientes vão chegar pelo anúncio. Outras, porque uma amiga mandou o seu contato. Se você não perguntar, as duas ficam iguais na sua ficha, e você perde a informação mais valiosa da semana.</p>
+
+    <p class="texto">Pergunte a toda paciente nova, já na primeira mensagem: &ldquo;como você chegou até a gente?&rdquo;. Anote a resposta na ficha. Se ela disser o nome de alguém, você ganhou duas coisas: a paciente nova e uma paciente antiga que indicou.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;A ficha&rdquo; aqui é qualquer lugar onde você guarda os dados da paciente: o sistema da clínica, uma planilha ou um caderno. O que importa é a linha &ldquo;chegou por&rdquo; estar lá.</p></div>
+
+    <p class="texto">Para quem indicou, mande um obrigado na mesma semana, com o nome dela: &ldquo;Oi, Ana, a Júlia veio aqui por você. Obrigada pela confiança&rdquo;. Na edição de segunda, vimos que grandes empresas agradecem quem indica com regra escrita. Na clínica, o primeiro passo é mais simples: avisar a quem indicou que a indicação chegou.</p>
+
+    <div class="acao"><div class="r">Na prática</div><p>Até quinta, cole a pergunta &ldquo;como você chegou até a gente?&rdquo; na mensagem de boas-vindas da recepção. De sexta a domingo, toda paciente nova responde antes de fechar.</p></div>
+  </section>
+
+  <!-- ═════════ 04 ═════════ -->
+  <section class="materia" id="voltar">
+    <div class="titulo"><span class="n">04</span><h2>Como fazer a paciente voltar</h2><span class="fio"></span></div>
+    <p class="abertura">A ponte entre a primeira e a segunda sessão se constrói antes de a paciente levantar da maca.</p>
+
+    <p class="texto">Quem chegou pelo desconto não tem motivo para voltar, a não ser que você dê um. Os recortes desta semana apontam três motivos: a próxima data já marcada, o prometido cumprido na primeira visita e um agradecimento que ela consegue usar.</p>
+
+    <div class="olho">
+      <p>&ldquo;Paciente da Black Friday sai da primeira sessão com a segunda marcada, ou não sai como paciente.&rdquo;</p>
+      <span class="quem">A regra da recepção para dezembro</span>
+    </div>
+
+    <p class="texto"><b>Primeiro: a segunda data, antes de ela ir embora.</b> Não deixe para &ldquo;depois eu te chamo&rdquo;. Se o procedimento pede intervalo, explique por quê e já ofereça dois horários.</p>
+
+    <p class="texto"><b>Segundo: a mensagem do dia seguinte.</b> Uma mensagem curta, com o nome dela, perguntando como ela está e lembrando os cuidados que você passou. É o &ldquo;pedido no prazo&rdquo; da clínica.</p>
+
+    <p class="texto"><b>Terceiro: um agradecimento com regra clara.</b> Se a clínica tiver algum reconhecimento para quem volta ou indica, explique como funciona ali mesmo, por escrito. Sem cobrança para a paciente, sem prometer resultado e respeitando a regra do seu conselho.</p>
+
+    <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Reconhecimento com regra clara&rdquo; é a paciente saber, de antemão, o que acontece quando ela volta ou indica alguém. É o contrário do mimo que depende de alguém lembrar.</p></div>
+  </section>
+
+  <!-- ═════════ 05 ═════════ -->
+  <section class="materia" id="postar">
+    <div class="titulo"><span class="n">05</span><h2>O que postar esta semana</h2><span class="fio"></span></div>
+    <p class="abertura">Três ganchos prontos. Todos falam do que acontece depois da primeira visita, que é o assunto da semana. Use do seu jeito, sem prometer resultado e sem mostrar paciente sem autorização.</p>
+
+    <div class="nota">
+      <div class="r">Gancho 1 · Reels</div>
+      <p class="texto">&ldquo;Fechou comigo na Black Friday? Isto é o que acontece depois.&rdquo; Você, em trinta segundos: a segunda data marcada antes de sair, a mensagem do dia seguinte e o canal para tirar dúvida. Fecho: &ldquo;desconto é a porta de entrada. O cuidado continua&rdquo;.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 2 · Carrossel</div>
+      <p class="texto">&ldquo;Primeira vez numa clínica de estética? Quatro perguntas para fazer antes de fechar.&rdquo; Cartão 1: o título. Cartões 2 a 5: quem vai fazer o procedimento e qual o registro; quantas sessões são e qual o intervalo; o que acontece depois da sessão; como falar com a clínica se tiver dúvida. Último: o seu nome, a sua profissão e o seu registro.</p>
+    </div>
+
+    <div class="nota">
+      <div class="r">Gancho 3 · Story</div>
+      <p class="texto">Caixinha de perguntas: &ldquo;Qual foi o melhor cuidado que você já recebeu depois de um procedimento?&rdquo;. Nos stories seguintes, responda com o que a sua clínica faz no dia seguinte à sessão. Só reposte resposta com o nome de alguém se ela autorizar.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 — aguardando validação do André ═════════ -->
+  
+
+  <section class="materia" id="fecho">
+    <p class="texto">A ideia volta aqui, e é por ela que a edição fecha. Na sexta, a sua agenda pode encher de gente que nunca veio. Os números do comércio mostram que quase ninguém volta sozinho. A Black Friday traz a paciente uma vez. Quem faz ela voltar é o que acontece depois da primeira visita.</p>
+  </section>
+
+  <!-- ═════════ 07 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">07</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>E-Commerce Brasil, 18/11/2026</b> — &ldquo;Black Friday 2026: o que o checkout e a plataforma precisam aguentar&rdquo;, de Débora Oliveira. &ldquo;No relatório da Appmax, 90,5% dos compradores de novembro eram novos na base, e a recompra em 90 dias foi de 3,9%, abaixo dos 5% de quem comprou em outubro.&rdquo; Base: mais de 1,7 milhão de pedidos de novembro de 2025. Também traz o estudo da Intelipost (36% contra 26%) e a ressalva de que esses números &ldquo;não permitem generalizar&rdquo;. A Appmax aparece entre as mantenedoras do portal. Capa, seção 01, recorte 03, painel de números e seções 03 e 04. <a href="https://www.ecommercebrasil.com.br/artigos/black-friday-2026-o-que-o-checkout-e-a-plataforma-precisam-aguentar">ver</a></li>
+      <li><b>Coletiva.net, 13/10/2026</b> — &ldquo;Black Friday 2026 exige campanhas mais longas e atenção à recompra&rdquo;, de Sarah Acosta. Origem do dado: &ldquo;Relatório de Comportamento do Consumidor e Projeção da Black Friday 2026&rdquo;, da Appmax, com 1.724.030 pedidos de novembro de 2025; recompra em 90 dias de 3,9% contra 5% em outubro. Seção 01 e painel de números. <a href="https://coletiva.net/coletivatech/black-friday-2026-exige-campanhas-mais-longas-e-atencao-a-recompra/">ver</a></li>
+      <li><b>BRA 1, 20/11/2026</b> — &ldquo;Black Friday vira a porta de entrada para criar clientes fiéis no varejo&rdquo;, de Júllia Nascimento (Mondoni Press). Estudo da BonifiQ com dados de mais de 614 mil consumidores: quem usou pontos ou benefícios na Black Friday &ldquo;voltaram a comprar 72,5% das vezes nos 90 dias seguintes&rdquo;, contra 17,32% de quem não resgatou, &ldquo;4,2 vezes mais&rdquo;. Recorte 01 e seção 04. <a href="https://www.bra1.com.br/economia/id-729503/black_friday_vira_a_porta_de_entrada_para_criar_clientes_fieis_no_varejo">ver</a></li>
+      <li><b>Mercado&amp;Consumo, 18/11/2026</b> — &ldquo;Black Friday 2026: fatia de consumidores decididos a comprar salta para 32,3%&rdquo;. Pesquisa do Reclame Aqui: decididos de 19% (agosto) para 32,3% (novembro); indecisos de 61% para 51,6%. Recorte 02 e painel de números. <a href="https://mercadoeconsumo.com.br/18/11/2026/ecommerce/black-friday-2026-fatia-de-consumidores-decididos-a-comprar-salta-para-323/">ver</a></li>
+      <li><b>Meio &amp; Mensagem, data não confirmada</b> — &ldquo;Black Friday: mais do que vendas, fidelização e eficiência&rdquo;, artigo de opinião de Luciano Ferrari. &ldquo;O objetivo da Black Friday vai além do volume de vendas: trata-se de fidelização.&rdquo; Recorte 04. <a href="https://www.meioemensagem.com.br/opiniao/black-friday-mais-do-que-vendas-fidelizacao-e-eficiencia">ver</a></li>
+      <li><b>Data da Black Friday</b> — 27 de novembro de 2026, quarta sexta-feira do mês. Capa e painel de números.</li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>Todos os números desta edição são do comércio, principalmente de lojas na internet. Nenhum deles mede clínica de estética: a aplicação à clínica é leitura deste dossiê. O dado de 90,5% aparece só na matéria do E-Commerce Brasil, não na do Coletiva. Os dados da Appmax e da BonifiQ vêm das bases das próprias empresas, que vendem serviços para esse mercado, e não trazem método detalhado. No estudo da BonifiQ, a frase &ldquo;voltaram a comprar 72,5% das vezes&rdquo; não deixa claro se é a parte dos clientes que voltou ou quantas vezes compraram; por isso falamos em &ldquo;cerca de quatro vezes mais&rdquo;, como diz o texto. A pesquisa do Reclame Aqui não informa tamanho da amostra. O estudo da Intelipost fala de uma única loja de roupas, sem amostra nem período. Não confirmamos a data do artigo do Meio &amp; Mensagem. Uma pesquisa da Serasa citada por outro jornal (38% voltariam a comprar após experiência boa) não abriu e ficou de fora.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 064 · quarta-feira, 25 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
