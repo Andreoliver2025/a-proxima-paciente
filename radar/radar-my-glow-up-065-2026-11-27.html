@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 065 · Hoje é Black Friday, e mais da metade de quem compra já pergunta para a inteligência artificial antes de escolher</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Hoje é Black Friday, e mais da metade de quem compra já pergunta para a inteligência artificial antes de escolher</h1>
+    <p class="chamada">Pesquisas desta temporada mostram que a cliente pede ajuda a programas como o ChatGPT para comparar preço e conferir se a loja é confiável. Para a sua clínica, isso quer dizer uma coisa: a paciente chega já tendo perguntado sobre você para alguém. E, na maioria das vezes, você nem fica sabendo.</p>
+    <div class="dateline">Edição Nº 065 · sexta-feira, 27 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A cliente da Black Friday consulta a inteligência artificial antes de fechar. O que isso muda na primeira mensagem que chega no seu WhatsApp.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: quantos já usam, em quem a cliente confia, por que a loja não sabe de onde a venda veio, o espaço que existe em beleza e o limite da máquina na saúde.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Num estudo do Google com o instituto Ipsos, 57% dos brasileiros disseram que usaram inteligência artificial em alguma etapa da última compra. Nesta Black Friday, ela virou a amiga que a cliente consulta antes de fechar.</p>
+
+    <p class="texto capitular">Na prática, a cliente escreve no ChatGPT ou no Gemini algo como &ldquo;onde fazer limpeza de pele boa e com preço justo perto de mim&rdquo;. O programa responde com nomes, compara e aponta o que parece confiável. Ela chega na sua clínica com essa conversa na cabeça.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>a paciente chega já tendo perguntado sobre você para alguém.</b> Pode ter sido uma amiga, uma avaliação de outra paciente ou um programa de inteligência artificial. O que ela encontra antes da primeira mensagem já faz parte do seu atendimento.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Inteligência artificial&rdquo;, aqui, são programas de conversa como o ChatGPT, do Google ou do celular. A cliente digita a pergunta como digitaria para uma amiga, e o programa responde com uma lista de sugestões. Ele monta essa lista a partir do que encontra publicado na internet.</p></div>
+
+      <p class="texto"><b>Por que isso é com você.</b> O programa só recomenda o que consegue ler. Se o perfil da clínica no Google está sem endereço, sem horário e sem a lista de procedimentos, a máquina tem pouco para dizer. Se há avaliações de pacientes respondidas com cuidado, ela tem o que mostrar.</p>
+
+      <p class="texto"><b>A ligação com a indicação.</b> Uma pesquisa da TOTVS mostra que a cliente confia mais na opinião de quem já comprou do que em propaganda. É o mesmo mecanismo da indicação, só que escrito. A paciente satisfeita que deixa uma avaliação continua indicando você, mesmo quando não está na conversa.</p>
+
+      <div class="olho">
+        <p>&ldquo;Antes de mandar a primeira mensagem, ela já perguntou sobre nós para alguém. Vamos descobrir para quem.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto"><b>O que isso continua.</b> Na quarta, a proposta foi perguntar a toda paciente nova da Black Friday: &ldquo;como você chegou até a gente?&rdquo;. Hoje acrescentamos uma resposta possível que muita clínica ainda não anota: &ldquo;perguntei para a inteligência artificial&rdquo;. Um estudo da Visa mostra que só uma em cada cinco lojas consegue saber quando a venda veio daí.</p>
+
+      <p class="texto"><b>Os limites.</b> Os números são de pesquisas com consumidores em geral, sobre compras de loja, e quase todos medem o que as pessoas dizem fazer. Nenhum mede clínica de estética. A aplicação à clínica é leitura deste dossiê. E as próprias pesquisas lembram que esses programas erram e às vezes inventam informação.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">57%</div><div class="lbl">dos brasileiros usaram <b>inteligência artificial em alguma etapa da compra</b>, segundo Google e Ipsos</div></div>
+      <div class="numero"><div class="big">53%</div><div class="lbl">dos consumidores já usaram a ferramenta <b>para ajudar numa compra</b>, segundo TOTVS e Opinion Box</div></div>
+      <div class="numero"><div class="big">32%</div><div class="lbl">dos compradores pela internet no Brasil <b>pesquisam produto no ChatGPT</b>; em 2024 eram 2%, segundo Visa e PYMNTS</div></div>
+      <div class="numero"><div class="big">21%</div><div class="lbl">das lojas <b>conseguem saber quando a venda veio</b> de uma ferramenta de inteligência artificial</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>Mais da metade dos brasileiros já usa inteligência artificial em alguma etapa da compra</h3>
+          <div class="credito"><span class="frescor antes">🟡 jan/2026</span><span>Propmark e Google · estudo Google e Ipsos</span></div>
+          <p class="texto">Num estudo do Google com o instituto Ipsos, 57% dos brasileiros disseram ter usado inteligência artificial em algum momento da jornada de compra. Ela entra para pesquisar, comparar e tirar dúvida, antes de a pessoa decidir.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Jornada de compra&rdquo; é o caminho da primeira curiosidade até o pagamento. Na clínica, vai do &ldquo;vi um vídeo sobre isso&rdquo; até a paciente deitada na maca.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente pode chegar com perguntas que o programa sugeriu, como intervalo entre sessões ou cuidados depois. Responda com calma e com a sua avaliação: a resposta da máquina não substitui a sua.</p>
+          <div class="link"><a href="https://propmark.com.br/digital/41-dos-brasileiros-esperam-gastar-mais-na-black-friday-de-2026-aponta-google/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Na Black Friday, a cliente confia mais na opinião de quem já comprou do que em propaganda</h3>
+          <div class="credito"><span class="frescor hoje">🟢 17/11</span><span>Forbes Brasil · pesquisa TOTVS e Opinion Box</span></div>
+          <p class="texto">A pesquisa ouviu mais de dois mil consumidores em outubro. A conclusão da reportagem: a opinião espontânea de quem comprou pesa mais do que o anúncio pago. A mesma pesquisa diz que 53% já usaram inteligência artificial para ajudar numa compra.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Review&rdquo; é a avaliação que a cliente escreve depois de comprar, como as estrelinhas e o comentário no perfil da clínica no Google. &ldquo;Publi&rdquo; é o post pago, em que alguém recebeu para falar bem.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> depois de uma sessão em que a paciente saiu satisfeita, peça que ela conte como foi no perfil da clínica, sem oferecer nada em troca. E responda cada avaliação, boa ou ruim, com educação. Siga a regra do seu conselho sobre depoimento de paciente.</p>
+          <div class="link"><a href="https://forbes.com.br/forbes-mkt/2026/11/na-black-friday-consumidor-confia-mais-em-reviews-do-que-em-publis-aponta-pesquisa-da-totvs/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Só uma em cada cinco lojas sabe quando a venda veio de uma ferramenta de inteligência artificial</h3>
+          <div class="credito"><span class="frescor antes">🟡 15/09</span><span>Central do Varejo · estudo da Visa com a PYMNTS</span></div>
+          <p class="texto">O estudo ouviu mais de dois mil consumidores e quinhentas lojas no Brasil. A cliente já pesquisa produto no ChatGPT, mas só 21% das lojas conseguem saber quando a venda começou ali.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Saber de onde veio a venda&rdquo; é o que a sua ficha faz quando tem a linha &ldquo;chegou por&rdquo;. Sem ela, a paciente que veio por indicação e a que veio pela inteligência artificial ficam iguais.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> na pergunta &ldquo;como você chegou até a gente?&rdquo;, acrescente uma opção: &ldquo;perguntei para o ChatGPT ou outro programa&rdquo;. Em um mês, você vê se isso já acontece na sua clínica.</p>
+          <div class="link"><a href="https://centraldovarejo.com.br/74-dos-varejistas-brasileiros-esperam-vendas-com-agentes-de-ia-diz-visa/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Em beleza, as recomendações da inteligência artificial estão espalhadas entre muitas marcas</h3>
+          <div class="credito"><span class="frescor hoje">🟢 17/11</span><span>Meio &amp; Mensagem · levantamento da HSR com ChatGPT e Gemini</span></div>
+          <p class="texto">O levantamento olhou o que o ChatGPT e o Gemini recomendam para a Black Friday. Em eletrônicos, aparecem sempre as mesmas grandes lojas. Em beleza e moda, as sugestões se dividem entre muito mais nomes.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Quando a lista não tem dono, sobra espaço para o negócio pequeno aparecer. O programa recomenda quem tem informação clara publicada: endereço, horário, o que faz, quem atende.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> hoje, confira o perfil da clínica no Google e a bio do Instagram. Endereço, horário, procedimentos que você faz e o seu registro profissional precisam estar lá, escritos e atualizados.</p>
+          <div class="link"><a href="https://www.meioemensagem.com.br/marketing/black-friday-2026-quais-varejistas-as-ias-mais-recomendam">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Na saúde, a regra é clara: a máquina ajuda, mas quem indica o tratamento é o profissional</h3>
+          <div class="credito"><span class="frescor antes">🟡 fev/2026</span><span>Conselho Federal de Medicina · Resolução 2.454/2026</span></div>
+          <p class="texto">A resolução do CFM trata a inteligência artificial como apoio ao médico. A decisão final é do profissional, e não se pode deixar a máquina comunicar diagnóstico ou decisão de tratamento. A regra vale para médicos; outras profissões seguem o seu próprio conselho.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Resolução&rdquo; é a regra que o conselho da profissão publica e que vale para todos os registrados nele. É o que o conselho cobra numa fiscalização.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se você usa mensagem que sai sozinha no WhatsApp, deixe ela marcar horário e lembrar consulta. Indicar procedimento continua sendo trabalho seu, na avaliação.</p>
+          <div class="link"><a href="https://portal.cfm.org.br/noticias/cfm-normatiza-uso-da-ia-na-medicina">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">Voltando à ideia do começo: nesta Black Friday, a paciente chega já tendo perguntado sobre você para alguém. Uma amiga, uma avaliação, um programa. Você não controla a pergunta, mas controla o que ela encontra quando pergunta.</p>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Propmark, data não confirmada</b> — &ldquo;41% dos brasileiros esperam gastar mais na Black Friday de 2026, aponta Google&rdquo;. &ldquo;Em uma análise de 17 mil jornadas de consumo apresentada pelo Google, 57% dos compradores utilizaram inteligência artificial em algum momento do processo de decisão.&rdquo; Seção 01, recorte 01 e painel de números. <a href="https://propmark.com.br/digital/41-dos-brasileiros-esperam-gastar-mais-na-black-friday-de-2026-aponta-google/">ver</a></li>
+      <li><b>Google, página &ldquo;Black Friday 2026&rdquo;</b> — atribui o mesmo 57% ao estudo &ldquo;Jornadas com IA&rdquo;, Google e Ipsos, janeiro de 2026 (82% usam ferramentas de inteligência artificial no dia a dia; 13% usam em todas as etapas da compra). Seção 01 e recorte 01. <a href="https://business.google.com/br/think/ai-excellence/black-friday-2026/">ver</a></li>
+      <li><b>Forbes Brasil, novembro de 2026</b> — &ldquo;Na Black Friday, consumidor confia mais em reviews do que em publis, aponta pesquisa da TOTVS&rdquo;. Estudo &ldquo;Jornada de Compra&rdquo;, TOTVS com Opinion Box, divulgado em 17/11: 2.109 consumidores de 18 anos ou mais, entrevistas pela internet de 10 a 22 de outubro, todas as regiões. Seção 01 e recorte 02. <a href="https://forbes.com.br/forbes-mkt/2026/11/na-black-friday-consumidor-confia-mais-em-reviews-do-que-em-publis-aponta-pesquisa-da-totvs/">ver</a></li>
+      <li><b>Times Brasil</b> — &ldquo;TOTVS aponta que 53% dos consumidores já usam IA nas compras e 90% veem utilidade na tecnologia para comparar preços na Black Friday&rdquo;. Mesmo estudo. Recorte 02 e painel de números. <a href="https://timesbrasil.com.br/brasil/totvs-aponta-que-53-dos-consumidores-ja-usam-ia-nas-compras-e-90-veem-utilidade-na-tecnologia-para-comparar-precos-na-black-friday/">ver</a></li>
+      <li><b>Central do Varejo</b> — &ldquo;74% dos varejistas brasileiros esperam vendas com agentes de IA, diz Visa&rdquo;. Estudo Global Digital Shopping Index 2026, PYMNTS Intelligence com a Visa: 2.273 consumidores e 501 estabelecimentos no Brasil; &ldquo;somente 21% conseguem identificar quando uma venda teve origem em uma plataforma de IA&rdquo;; uso do ChatGPT para pesquisar produto de 2% em 2024 para 32% em 2026. Seção 01, recorte 03 e painel de números. <a href="https://centraldovarejo.com.br/74-dos-varejistas-brasileiros-esperam-vendas-com-agentes-de-ia-diz-visa/">ver</a></li>
+      <li><b>Mobile Time, 15/09/2026</b> — reportagem sobre o mesmo estudo da Visa. Recorte 03. <a href="https://www.mobiletime.com.br/noticias/15/09/2026/ferramentas-de-ia-compra/">ver</a></li>
+      <li><b>Meio &amp; Mensagem, 17/11/2026</b> — &ldquo;Black Friday 2026: quais varejistas as IAs mais recomendam&rdquo;. Levantamento da HSR Specialist Researchers com respostas do ChatGPT e do Gemini; em beleza e moda, as recomendações se distribuem entre mais fabricantes. Recorte 04. <a href="https://www.meioemensagem.com.br/marketing/black-friday-2026-quais-varejistas-as-ias-mais-recomendam">ver</a></li>
+      <li><b>ABC da Comunicação</b> — &ldquo;Black Friday: confira cinco estratégias para as marcas se destacarem nas recomendações da inteligência artificial&rdquo;. Informações &ldquo;completas, atualizadas e organizadas&rdquo; para que as ferramentas consigam compreendê-las. Seção 01 e recorte 04. <a href="https://www.abcdacomunicacao.com.br/black-friday-confira-cinco-estrategias-para-as-marcas-se-destacarem-nas-recomendacoes-da-inteligencia-artificial/">ver</a></li>
+      <li><b>Conselho Federal de Medicina</b> — Resolução nº 2.454, de 11 de fevereiro de 2026, publicada no Diário Oficial da União em 27/02/2026, que normatiza o uso da inteligência artificial na medicina. Recorte 05. <a href="https://portal.cfm.org.br/noticias/cfm-normatiza-uso-da-ia-na-medicina">ver</a> · <a href="https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2026/2454_2026.pdf">texto da resolução</a></li>
+      <li><b>Investidor10</b> — &ldquo;Como usar a IA na Black Friday?&rdquo;. Lembra que essas ferramentas podem errar e inventar dados. Seção 01. <a href="https://investidor10.com.br/noticias/como-usar-a-ia-na-black-friday-123800/">ver</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>Nenhum número desta edição mede clínica de estética: são pesquisas com consumidores em geral, e a aplicação à clínica é leitura deste dossiê. Quase todos os números são do que as pessoas dizem fazer, não de compras medidas. O 57% aparece ligado a duas bases diferentes (17 mil jornadas e o estudo Google e Ipsos); não ficou claro qual é a original, e não confirmamos a data da matéria do Propmark. Não lemos o texto completo da Forbes: a comparação entre avaliação e propaganda está confirmada no título e no resumo, sem os percentuais. Uma reportagem atribui o 21% do estudo da Visa aos consumidores, e não às lojas; seguimos a leitura das demais fontes, que falam em lojas. O relatório da Visa fica atrás de cadastro. Há divergência sobre a data em que a resolução do CFM passou a valer (agosto ou setembro de 2026). Ficaram de fora: o número de 86% que pretendem usar inteligência artificial na Black Friday (estudo da Stefanini, só em reportagens, com versões diferentes); a matéria &ldquo;IA não deve indicar cirurgia&rdquo;, do guairanews, cujo texto não localizamos; as &ldquo;6 dicas&rdquo; da GZH, também não localizadas; e o dado de que a beleza seria 34% das marcas que mais crescem, que não encontramos em nenhuma fonte.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 065 · sexta-feira, 27 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
