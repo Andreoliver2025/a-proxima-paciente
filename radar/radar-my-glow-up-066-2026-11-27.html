@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 066 · As regras de quem pode fazer o quê na estética estão sendo revistas</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>As regras de quem pode fazer o quê na estética estão sendo revistas em quatro lugares ao mesmo tempo. Na sua maca, nada mudou ainda.</h1>
+    <p class="chamada">A Anvisa montou um grupo para rever as regras dos serviços de estética, o Senado e a Câmara discutem quem pode atuar na área e a Justiça questionou a harmonização feita por dentistas. Nenhuma dessas mudanças já vale. Mas a paciente lê a manchete e chega com a pergunta: &ldquo;você pode fazer isso?&rdquo;.</p>
+    <div class="dateline">Edição Nº 066 · sexta-feira, 27 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A Anvisa abriu um grupo de seis meses para rever as regras da estética. O que isso muda, e o que não muda, no seu atendimento.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: o grupo da Anvisa, a orientação suspensa, o projeto do Senado, o projeto da Câmara e a decisão sobre harmonização feita por dentistas.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">A Anvisa criou um grupo de trabalho, com prazo de cento e oitenta dias, para rever como os serviços de estética são fiscalizados. Enquanto isso, a orientação que ela tinha publicado para o setor está suspensa.</p>
+
+    <p class="texto capitular">O grupo junta gente da Anvisa, do Ministério da Saúde, das universidades, de sindicatos e de associações do setor. O resultado esperado é um estudo e, depois, um manual de boas práticas. A própria Anvisa avisa: as normas sanitárias que você já cumpre continuam valendo.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>as regras estão em revisão, mas a confiança da paciente não espera a regra nova.</b> Quando ela lê &ldquo;Anvisa muda regras da estética&rdquo;, a dúvida chega no seu WhatsApp antes de qualquer lei. A clínica que diz com clareza quem atende e com qual registro não perde a paciente para a dúvida.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Nota técnica&rdquo; é uma orientação da Anvisa para os fiscais da vigilância sanitária da sua cidade. Não é lei. &ldquo;Suspensa&rdquo; quer dizer que essa orientação ficou parada enquanto o assunto é rediscutido. Não quer dizer que algo foi liberado ou proibido.</p></div>
+
+      <p class="texto"><b>São quatro frentes, não uma.</b> Além da Anvisa, há um projeto no Senado que reconhece a saúde estética como área de seis profissões, um projeto na Câmara sobre o trabalho das esteticistas e uma decisão da Justiça Federal sobre a harmonização facial feita por dentistas. Cada uma anda num ritmo diferente, e nenhuma está concluída.</p>
+
+      <p class="texto"><b>Por que isso é atendimento, e não só papelada.</b> A paciente que indica você para uma amiga repete o que sabe: o seu nome, o que você faz, se é de confiança. Se a notícia gera dúvida e a sua bio não diz qual é a sua formação e o seu registro, a indicação chega fraca. A amiga hesita antes de marcar.</p>
+
+      <div class="olho">
+        <p>&ldquo;Ninguém mudou a regra ainda. Se a paciente perguntar, a gente explica quem atende e com qual registro.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto"><b>Os limites.</b> Este dossiê não é orientação jurídica. Quem diz o que a sua profissão pode fazer é o seu conselho e a vigilância sanitária da sua cidade. As datas e os números de alguns documentos variam entre as fontes; isso está detalhado na seção de fontes.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">180</div><div class="lbl">dias de prazo para o <b>grupo da Anvisa</b> que revê as regras dos serviços de estética, com possibilidade de prorrogação</div></div>
+      <div class="numero"><div class="big">6</div><div class="lbl">profissões citadas no <b>projeto do Senado</b> que reconhece a saúde estética como área de atuação</div></div>
+      <div class="numero"><div class="big">3 a 1</div><div class="lbl">foi o placar da turma do <b>tribunal federal</b> que considerou ilegal a regra dos dentistas sobre harmonização</div></div>
+      <div class="numero"><div class="big">5.703</div><div class="lbl">dentistas registrados como <b>especialistas em harmonização orofacial</b>, segundo o conselho deles</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>A Anvisa criou um grupo de seis meses para rever as regras dos serviços de estética</h3>
+          <div class="credito"><span class="frescor hoje">🟢 15/11</span><span>ES Brasil · Atlas Público</span></div>
+          <p class="texto">O grupo reúne Anvisa, Ministério da Saúde, universidades, sindicatos e associações. O prazo é de cento e oitenta dias, prorrogável. O trabalho deve virar um estudo do efeito das regras e, depois, um manual de boas práticas para o setor.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Grupo de trabalho&rdquo; é uma mesa de conversa com prazo para acabar. Ele não muda regra nenhuma sozinho: entrega uma proposta, e a diretoria da Anvisa decide depois.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> nos próximos meses vão sair manchetes sobre o assunto. Até haver decisão publicada, o que a vigilância da sua cidade cobra hoje continua igual.</p>
+          <div class="link"><a href="https://esbrasil.com.br/servicos-de-estetica-anvisa-grupo-de-trabalho/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>A orientação da Anvisa para clínicas de estética está suspensa, mas as normas sanitárias continuam valendo</h3>
+          <div class="credito"><span class="frescor antes">🟡 set/2026</span><span>Anvisa · gov.br</span></div>
+          <p class="texto">A Anvisa suspendeu os efeitos da nota técnica que orientava a fiscalização dos serviços de estética, enquanto o grupo de trabalho discute o tema. A agência deixou claro que a suspensão não derruba as regras sanitárias do setor.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>É como a recepção receber um aviso de &ldquo;roteiro em revisão&rdquo;: o roteiro novo ainda não chegou, e o protocolo de limpeza, descarte e registro de sempre continua de pé.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se alguém da equipe ouvir que &ldquo;a Anvisa liberou&rdquo;, a frase está errada. Nada foi liberado; uma orientação ficou parada.</p>
+          <div class="link"><a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-suspende-temporariamente-nota-tecnica-sobre-servicos-de-estetica">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Projeto no Senado reconhece a saúde estética como área de atuação de seis profissões</h3>
+          <div class="credito"><span class="frescor antes">🟡 out/2026</span><span>Senado Federal · PL 3698/2026</span></div>
+          <p class="texto">O projeto foi apresentado em julho e, na última consulta, aguardava despacho, ou seja, ainda não tinha ido para as comissões. Na Câmara, um projeto antigo com a mesma ideia segue na Comissão de Saúde.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Aguardando despacho&rdquo; é o projeto parado na fila, antes da primeira discussão. Daí até virar lei, ainda faltam comissões, votações nas duas casas e a sanção.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> projeto não é lei. O que você pode fazer hoje continua sendo o que o seu conselho permite hoje.</p>
+          <div class="link"><a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/175160">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Três conselhos pedem para revisar o projeto da Câmara sobre o trabalho das esteticistas</h3>
+          <div class="credito"><span class="frescor antes">🟡 ago/2026</span><span>Cofen · PL 3268/2026</span></div>
+          <p class="texto">Os conselhos de enfermagem, de biologia e de biomedicina pediram à autora do projeto que o revise. A maior objeção é ao trecho que deixaria atuar em estética quem tem pós-graduação na área ou passa num exame de proficiência.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Exame de proficiência&rdquo; é uma prova para comprovar que a pessoa sabe fazer o trabalho, como a prova da OAB para advogado.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se você contrata esteticista ou profissional de outra formação, a discussão é sobre quem pode atender na sua maca. Vale acompanhar pelo seu conselho ou sindicato, não pela manchete.</p>
+          <div class="link"><a href="https://cofen.gov.br/cofen-cfbio-e-cfbm-pedem-revisao-de-projeto-sobre-exercicio-da-estetica-e-da-cosmetologia/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>A Justiça considerou ilegal a regra que fez da harmonização uma especialidade dos dentistas, mas a decisão ainda não vale</h3>
+          <div class="credito"><span class="frescor antes">🟡 ago–out/2026</span><span>Migalhas · O Liberal · Itatiaia</span></div>
+          <p class="texto">Uma turma do Tribunal Regional Federal da 1ª Região anulou, por três votos a um, a resolução do conselho dos dentistas sobre harmonização orofacial. Segundo a cobertura, o efeito só vem depois da publicação da decisão, e o conselho dos dentistas disse que vai recorrer.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Recorrer&rdquo; é pedir que um tribunal acima reveja a decisão. Enquanto isso, segundo as reportagens, a decisão não impede de imediato o atendimento.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se você é dentista e faz harmonização, a paciente pode ter visto a manchete. Uma resposta calma e verdadeira, sem alarme e sem promessa, evita que ela desmarque por medo.</p>
+          <div class="link"><a href="https://www.oliberal.com/saude/decisao-sobre-harmonizacao-orofacial-nao-impede-atuacao-de-dentistas-de-imediato-entenda-1.1159777">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">Voltando à ideia do começo: as regras da estética estão em revisão, e isso vai render manchete por meses. A regra nova ainda não chegou, mas a dúvida da paciente já chegou. Quem diz com clareza quem atende e com qual registro mantém a confiança, e a indicação, de pé.</p>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>ES Brasil, 15/11/2026</b> — &ldquo;Serviços de estética: Anvisa cria grupo para rever regras&rdquo;. Seção 01 e recorte 01. <a href="https://esbrasil.com.br/servicos-de-estetica-anvisa-grupo-de-trabalho/">ver</a></li>
+      <li><b>Atlas Público</b> — &ldquo;Anvisa cria grupo de trabalho de 180 dias para discutir serviços de estética&rdquo; e &ldquo;Anvisa institui grupo de trabalho para subsidiar regulação dos serviços de estética&rdquo;. Prazo de 180 dias, prorrogável; composição com Anvisa, Ministério da Saúde, academia, sindicatos e associações; base para estudo de impacto e boas práticas. Seção 01, recorte 01 e painel de números. <a href="https://atlaspublico.com.br/noticias/anvisa-cria-grupo-de-trabalho-de-180-dias-para-discutir-97146">ver</a> · <a href="https://atlaspublico.com.br/noticias/anvisa-institui-grupo-de-trabalho-para-subsidiar-regulacao-97129">ver</a></li>
+      <li><b>Anvisa, gov.br, 2026</b> — &ldquo;Anvisa suspende temporariamente Nota Técnica sobre serviços de estética&rdquo;. A nota tem caráter orientativo; a suspensão não suspende as normas sanitárias do setor. Seção 01 e recorte 02. <a href="https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2026/anvisa-suspende-temporariamente-nota-tecnica-sobre-servicos-de-estetica">ver</a></li>
+      <li><b>Takta</b> — &ldquo;Suspensão de nota da Anvisa não altera regras sanitárias para serviços de estética; entenda&rdquo;. Recorte 02. <a href="https://takta.com.br/brasil/suspensao-de-nota-da-anvisa-nao-altera-regras-sanitarias-para-servicos-de-estetica-entenda/">ver</a></li>
+      <li><b>Senado Federal</b> — Projeto de Lei nº 3698, de 2026; reconhece a saúde estética como área de atuação de seis profissões; situação consultada: &ldquo;aguardando despacho&rdquo;. O sinal de hoje traz a notícia do Senado de 08/10/2026 sobre o projeto. Recorte 03 e painel de números. <a href="https://www25.senado.leg.br/web/atividade/materias/-/materia/175160">ver</a></li>
+      <li><b>Câmara dos Deputados</b> — &ldquo;Relator busca consenso para projeto que amplia rol de profissionais que atuam com saúde estética&rdquo; (PL 2717/2019, na Comissão de Saúde). Recorte 03. <a href="https://www.camara.leg.br/noticias/1223451-relator-busca-consenso-para-projeto-que-amplia-rol">ver</a></li>
+      <li><b>Cofen, 03/08/2026</b> — &ldquo;Cofen, CFBio e CFBM pedem revisão de projeto sobre exercício da estética e da cosmetologia&rdquo; (PL 3268/2026); objeção principal ao artigo 4º. Recorte 04. <a href="https://cofen.gov.br/cofen-cfbio-e-cfbm-pedem-revisao-de-projeto-sobre-exercicio-da-estetica-e-da-cosmetologia/">ver</a></li>
+      <li><b>Migalhas</b> — &ldquo;TRF-1 declara ilegal harmonização facial feita por dentistas&rdquo; e artigo &ldquo;Harmonização orofacial: limites de atuação e decisão do TRF-1&rdquo; (14/10/2026). 8ª Turma, decisão de 19/08/2026, por maioria de três votos a um, sobre a Resolução CFO nº 198/2019. Recorte 05 e painel de números. <a href="https://www.migalhas.com.br/quentes/462893/trf-1-declara-ilegal-harmonizacao-facial-feita-por-dentistas">ver</a> · <a href="https://www.migalhas.com.br/depeso/466338/harmonizacao-orofacial-limites-de-atuacao-e-decisao-do-trf-1">ver</a></li>
+      <li><b>O Liberal, 09/10/2026</b> — &ldquo;Decisão sobre harmonização orofacial não impede atuação de dentistas de imediato; entenda&rdquo;. Recorte 05. <a href="https://www.oliberal.com/saude/decisao-sobre-harmonizacao-orofacial-nao-impede-atuacao-de-dentistas-de-imediato-entenda-1.1159777">ver</a></li>
+      <li><b>Itatiaia</b> — &ldquo;CFO vai recorrer de decisão da Justiça sobre harmonização orofacial&rdquo;; dado de 5.703 dentistas especialistas, segundo o CFO. Recorte 05 e painel de números. <a href="https://www.itatiaia.com.br/saude/cfo-vai-recorrer-de-decisao-da-justica-sobre-harmonizacao-orofacial/">ver</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>Não lemos no Diário Oficial a portaria que cria o grupo da Anvisa: as reportagens divergem sobre o número (1.182 ou 1.183) e sobre a data da suspensão da nota técnica (uma delas fala em 23 de setembro). Há divergência também sobre qual nota foi suspensa: a maioria cita a Nota Técnica 2/2024, uma federação cita a 15/2023. A situação dos projetos de lei é a da última consulta indexada e pode ter avançado. Não lemos o texto integral do PL 3268/2026; o resumo do artigo 4º vem do comunicado do Cofen. Sobre a harmonização, não confirmamos se a decisão do TRF-1 já foi publicada nem se o recurso já foi apresentado. Ficaram de fora: &ldquo;Análise de pele com IA pode elevar faturamento de clínicas&rdquo; (Terra, 20/10), porque não achamos dado independente que sustente o título; e o anúncio de um programa de inovação de uma fabricante (13/11), que é conteúdo patrocinado.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 066 · sexta-feira, 27 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
