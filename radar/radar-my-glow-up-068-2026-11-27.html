@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dossiê A Próxima Paciente · Nº 068 · Duas em cada três clínicas nunca desenharam o caminho da paciente</title>
+<style>
+  /* ============================================================
+     RADAR MY GLOW UP — SISTEMA EDITORIAL "REVISTA" · identidade dark
+     Herda a estrutura do sistema do Radar André (medida de leitura, escala unica,
+     respiro em degraus, traducao ao lado do jargao) na paleta da marca.
+
+     DUAS CAMADAS, e isso e regra de seguranca, nao de estilo:
+       .publico  — o que vai ao ar e alimenta o programa
+       .interno  — leitura estrategica, concorrencia, posicionamento. NUNCA publicado.
+                   O script versao-publica.cjs remove estes blocos antes de qualquer coisa
+                   sair da maquina. A tarja visivel existe para quem le a edicao completa
+                   saber, de relance, o que nao pode ser repassado.
+     ============================================================ */
+  :root{
+    --bg:#0B0A0F; --bg2:#141119; --card:#1A1622; --card2:#221C2E;
+    --line:#2C2536; --line-soft:#241E2E;
+    --ink:#F5F2F8; --ink-soft:#B9B0C6; --ink-faint:#8A7F9A;
+    --g1:#E8B4C8; --g2:#C89BE0; --g3:#8FA9F0;
+    --ok:#7BE0B0; --alerta:#F0B86E;
+
+    --serif:Georgia,"Times New Roman",Times,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+    --t-xs:12px; --t-sm:13.5px; --t-base:17px; --t-md:19px;
+    --t-lg:clamp(20px,4.4vw,24px); --t-xl:clamp(28px,7.4vw,42px);
+    --sp-1:6px; --sp-2:12px; --sp-3:20px; --sp-4:32px; --sp-5:52px; --sp-6:84px;
+    --medida:62ch;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:var(--t-base); line-height:1.72;
+    background-image:radial-gradient(ellipse 80% 46% at 50% -8%, rgba(200,155,224,.14), transparent 62%);
+  }
+  ::selection{background:rgba(200,155,224,.3)}
+  a{color:var(--g1);text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .grad{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .revista{max-width:780px;margin:0 auto;padding:var(--sp-4) var(--sp-3) var(--sp-6)}
+  .medida{max-width:var(--medida)}
+
+  /* ── capa ── */
+  .capa{padding:var(--sp-3) 0 var(--sp-4)}
+  .capa .selo{font-family:var(--sans);font-size:var(--t-xs);font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .capa h1{font-family:var(--serif);font-weight:700;font-size:var(--t-xl);
+    line-height:1.15;letter-spacing:-.02em;margin:var(--sp-2) 0 0;max-width:20ch}
+  .capa .chamada{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    color:var(--ink-soft);margin:var(--sp-3) 0 0;max-width:46ch}
+  .capa .dateline{font-size:var(--t-xs);letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-4)}
+  .capa .fio{height:3px;border-radius:3px;margin-top:var(--sp-2);
+    background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
+
+  /* ── sumario ── */
+  .sumario{margin-top:var(--sp-5)}
+  .sumario .rot{font-size:var(--t-xs);font-weight:700;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-faint)}
+  .sumario ol{list-style:none;counter-reset:sm;padding:0;margin:var(--sp-3) 0 0;
+    border-top:1px solid var(--line)}
+  .sumario li{counter-increment:sm;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.6rem 1fr;gap:var(--sp-2);padding:var(--sp-2) 0}
+  .sumario li::before{content:counter(sm,decimal-leading-zero);font-family:var(--serif);
+    font-weight:700;font-size:15px;color:var(--g2);line-height:1.6}
+  .sumario a{font-weight:600;font-size:15px;line-height:1.4;text-decoration:none;
+    color:var(--ink);display:block}
+  .sumario a:hover{color:var(--g1)}
+  /* O <li> e grid de 2 colunas (numero | conteudo) e os itens sao ::before, <a> e .d.
+     Sem dizer a coluna, o .d cai na COLUNA DO NUMERO (2.6rem) e o texto quebra uma palavra
+     por linha. Corrigido em 26/08/2026. */
+  .sumario li > a,
+  .sumario li > .d{grid-column:2}
+
+  /* ── "ler a analise completa" ──
+     A secao 1 ficava longa e cansativa. Agora o essencial fica visivel em ate 3 paragrafos e
+     o aprofundamento entra num <details>. Quem quer, abre; quem nao quer, nao se cansa.
+     <details> e nativo: funciona sem JavaScript e e acessivel por teclado. */
+  .mais{margin-top:var(--sp-3);border-top:1px solid var(--line-soft);padding-top:var(--sp-2)}
+  .mais>summary{cursor:pointer;list-style:none;font-family:var(--sans);font-size:var(--t-sm);
+    font-weight:600;letter-spacing:.02em;color:var(--g2);padding:var(--sp-1) 0;
+    display:inline-flex;align-items:center;gap:8px}
+  .mais>summary::-webkit-details-marker{display:none}
+  .mais>summary::after{content:"+";font-size:18px;line-height:1;transition:transform .18s}
+  .mais[open]>summary::after{content:"−"}
+  .mais>summary:hover{color:var(--g1)}
+  .mais>summary:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:3px}
+  .mais>*:not(summary){margin-top:var(--sp-2)}
+  .sumario .d{font-size:var(--t-sm);color:var(--ink-faint);line-height:1.5;margin-top:2px}
+
+  /* ── materia ── */
+  .materia{margin-top:var(--sp-6);scroll-margin-top:var(--sp-3)}
+  .materia > .titulo{display:flex;align-items:baseline;gap:var(--sp-2);margin-bottom:var(--sp-4)}
+  .materia > .titulo .n{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--g2)}
+  .materia > .titulo h2{font-size:var(--t-xs);font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;margin:0;color:var(--ink)}
+  .materia > .titulo .fio{flex:1;height:1px;background:var(--line);align-self:center}
+
+  .abertura{font-family:var(--serif);font-size:var(--t-lg);line-height:1.45;
+    max-width:var(--medida);margin:0 0 var(--sp-3)}
+  .abertura b{color:var(--g1);font-weight:700}
+  .texto{font-family:var(--serif);font-size:var(--t-base);line-height:1.72;
+    max-width:var(--medida);margin:0 0 var(--sp-3);color:var(--ink)}
+  .texto:last-child{margin-bottom:0}
+  .capitular::first-letter{font-family:var(--serif);font-weight:700;float:left;
+    font-size:3.1em;line-height:.84;padding:6px 10px 0 0;
+    background:linear-gradient(180deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* ── traduz: todo jargao tem traducao ao lado ── */
+  .traduz{max-width:var(--medida);margin:var(--sp-3) 0;padding:var(--sp-2) var(--sp-3);
+    background:rgba(200,155,224,.10);border-radius:12px;border-left:3px solid var(--g2)}
+  .traduz .r{display:block;font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1);margin-bottom:var(--sp-1)}
+  .traduz p{font-family:var(--sans);font-size:15px;line-height:1.6;margin:0;color:var(--ink)}
+
+  /* ── olho ── */
+  .olho{margin:var(--sp-5) 0;padding:var(--sp-3) 0;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);max-width:var(--medida)}
+  .olho p{font-family:var(--serif);font-style:italic;font-size:var(--t-lg);
+    line-height:1.45;margin:0;color:var(--ink)}
+  .olho .quem{font-size:var(--t-xs);letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-faint);margin-top:var(--sp-2);display:block}
+
+  /* ── numeros ── */
+  .numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:var(--sp-2);margin:var(--sp-4) 0}
+  .numero{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:var(--sp-3)}
+  .numero .big{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1;
+    letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--g1),var(--g2));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  .numero .lbl{font-size:var(--t-sm);line-height:1.5;color:var(--ink-soft);margin-top:var(--sp-1)}
+  .numero .lbl b{color:var(--ink)}
+
+  /* ── nota ── */
+  .nota{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:var(--sp-3);margin:var(--sp-4) 0}
+  .nota .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--g1)}
+  .lista{list-style:none;padding:0;margin:var(--sp-2) 0 0}
+  .lista li{position:relative;padding-left:var(--sp-3);margin:var(--sp-2) 0;
+    font-size:15px;line-height:1.62;color:var(--ink-soft);max-width:var(--medida)}
+  .lista li::before{content:"";position:absolute;left:2px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:linear-gradient(90deg,var(--g1),var(--g2))}
+  .lista li b{color:var(--ink)}
+
+  /* ── acao (fecha a secao) ── */
+  .acao{background:linear-gradient(160deg,rgba(232,180,200,.13),rgba(143,169,240,.08));
+    border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);margin:var(--sp-4) 0 0}
+  .acao .r{font-size:var(--t-xs);font-weight:700;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--g1)}
+  .acao p{font-family:var(--serif);font-size:var(--t-base);line-height:1.62;
+    margin:var(--sp-2) 0 0;max-width:var(--medida)}
+  .acao p + p{margin-top:var(--sp-2)}
+  .acao b{color:var(--g1)}
+
+  /* ── recortes ── */
+  .recortes{border-top:1px solid var(--line)}
+  .recorte{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft);
+    display:grid;grid-template-columns:2.4rem 1fr;gap:var(--sp-2)}
+  .recorte .ordem{font-family:var(--serif);font-weight:700;font-size:17px;
+    color:var(--g2);line-height:1.35}
+  .recorte h3{font-weight:600;font-size:var(--t-md);line-height:1.32;margin:0;
+    letter-spacing:-.01em;max-width:34ch}
+  .recorte .credito{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-1) var(--sp-2);
+    margin-top:var(--sp-2);font-size:var(--t-xs);color:var(--ink-faint)}
+  .frescor{display:inline-flex;align-items:center;line-height:1.45;font-size:10.5px;
+    font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 9px;
+    border-radius:100px;white-space:nowrap}
+  .frescor.hoje{background:rgba(200,155,224,.18);color:var(--g1)}
+  .frescor.antes{border:1px solid var(--line);color:var(--ink-soft)}
+  .recorte .texto{margin-top:var(--sp-2);margin-bottom:0}
+  .recorte .traduz{margin:var(--sp-2) 0 0}
+  .recorte .link{margin-top:var(--sp-2)}
+  .recorte .link a{font-family:var(--sans);font-size:var(--t-sm);font-weight:700;
+    text-decoration:none;border-bottom:2px solid rgba(200,155,224,.35);padding-bottom:1px}
+  .recorte .link a:hover{border-bottom-color:var(--g2)}
+
+  /* ── fontes ── */
+  ol.src{list-style:none;counter-reset:s;padding:0;margin:var(--sp-2) 0 0}
+  ol.src li{counter-increment:s;position:relative;padding-left:var(--sp-4);margin:var(--sp-2) 0;
+    font-size:var(--t-sm);line-height:1.6;color:var(--ink-soft)}
+  ol.src li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:0;
+    font-family:var(--serif);font-weight:700;color:var(--g2)}
+  ol.src b{color:var(--ink)} ol.src a{font-weight:600}
+
+  /* ══════════ BLOCO INTERNO — nunca vai ao ar ══════════ */
+  .interno{position:relative;margin:var(--sp-5) 0;padding:var(--sp-4) var(--sp-3) var(--sp-3);
+    background:repeating-linear-gradient(135deg,rgba(240,184,110,.06) 0 12px,transparent 12px 24px),
+               var(--card2);
+    border:1px dashed rgba(240,184,110,.5);border-radius:16px}
+  .interno::before{content:"🔒 Uso interno · não publicar";position:absolute;top:-11px;left:16px;
+    background:var(--bg);padding:0 10px;font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--alerta)}
+  .interno .texto,.interno .lista li{color:var(--ink-soft)}
+  .interno h3{font-size:var(--t-md);margin:0 0 var(--sp-2);color:var(--alerta)}
+
+  .assinatura{margin-top:var(--sp-6);padding-top:var(--sp-3);
+    border-top:1px solid var(--line);text-align:center;font-size:var(--t-xs);
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);line-height:1.9}
+
+  @media (max-width:520px){
+    :root{--sp-6:60px;--sp-5:40px}
+    .revista{padding:var(--sp-3) 16px var(--sp-5)}
+    .recorte{grid-template-columns:1.9rem 1fr}
+    .capitular::first-letter{font-size:2.7em}
+  }
+  @media print{
+    body{background:#fff;color:#1a1a1a}
+    .interno{display:none !important}   /* impressao nunca leva o bloco interno */
+    .revista{max-width:none;padding:0}
+    .recorte,.nota,.acao,.numero,.olho,.traduz{break-inside:avoid}
+  }
+</style>
+
+</head>
+<body>
+<div class="revista">
+
+  <header class="capa">
+    <div class="selo">🎙 Dossiê A Próxima Paciente · por My Glow Up</div>
+    <h1>Duas em cada três clínicas nunca desenharam o caminho que a paciente faz até voltar. Quem não sabe por onde ela passa não vê onde ela se perde.</h1>
+    <p class="chamada">Uma pesquisa com mais de seiscentos gestores de clínicas mostra que a maioria nunca olhou o trajeto inteiro da paciente, da primeira mensagem ao retorno. Mais da metade ainda mede o sucesso pela paciente nova. Enquanto isso, a paciente diz que confia mais em quem ela já conhece.</p>
+    <div class="dateline">Edição Nº 068 · sexta-feira, 27 de novembro de 2026</div>
+    <div class="fio"></div>
+  </header>
+
+  <nav class="sumario" aria-label="Sumário">
+    <div class="rot">Nesta edição</div>
+    <ol>
+      <li><a href="#mudou">O que mudou</a><div class="d">A maioria das clínicas nunca desenhou o caminho da paciente. Por que isso aparece na sua agenda.</div></li>
+      <li><a href="#novidades">As novidades</a><div class="d">Cinco recortes: o caminho que ninguém desenhou, a régua da paciente nova, o anúncio, a inteligência artificial na recepção e em quem a paciente confia.</div></li>
+      <li><a href="#fontes">De onde veio cada informação</a><div class="d">Fonte com data e link, e a lista honesta do que não deu para confirmar.</div></li>
+    </ol>
+    
+  </nav>
+
+  <!-- ═════════ 01 ═════════ -->
+  <section class="materia" id="mudou">
+    <div class="titulo"><span class="n">01</span><h2>O que mudou</h2><span class="fio"></span></div>
+
+    <p class="abertura">Sessenta e sete por cento das clínicas e hospitais do Brasil nunca desenharam o caminho que a paciente faz com eles. O dado é do Panorama das Clínicas e Hospitais 2026, da Doctoralia, que ouviu mais de seiscentos gestores.</p>
+
+    <p class="texto capitular">Desenhar esse caminho é simples de explicar: anotar cada passo, da primeira mensagem no WhatsApp até a paciente voltar para a próxima sessão. Em cada passo, perguntar quem responde, em quanto tempo e o que acontece se ninguém responder. A maioria das clínicas nunca fez isso.</p>
+
+    <p class="texto">A ideia desta edição, que volta no fim: <b>quem não sabe por onde a paciente passa não consegue ver onde ela se perde.</b> E, segundo a mesma pesquisa, a régua de sucesso da maioria ainda é a paciente nova, não a que volta.</p>
+
+    <details class="mais">
+      <summary>Ler a análise completa</summary>
+
+      <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Jornada do paciente&rdquo; é o nome que a pesquisa dá para esse caminho: a primeira mensagem, a resposta, a avaliação, o procedimento, o pós e o retorno. É a ficha da paciente, só que contando a história inteira, não só o que foi feito na maca.</p></div>
+
+      <p class="texto"><b>A pesquisa é da saúde em geral, não só da estética.</b> Entram clínicas de várias especialidades e hospitais. Mesmo assim, o retrato conversa com a sua rotina: em quase toda clínica, a paciente passa por WhatsApp, recepção, maca e pós antes de decidir se volta.</p>
+
+      <p class="texto"><b>Onde a paciente costuma se perder.</b> Nenhum número desta pesquisa mostra em qual passo ela some. Isso só aparece quando a própria clínica desenha o caminho. É justamente o que sessenta e sete por cento disseram nunca ter feito.</p>
+
+      <div class="olho">
+        <p>&ldquo;A gente sabe quantas pacientes novas chegaram. Ainda não sabe em que ponto as outras pararam de voltar.&rdquo;</p>
+        <span class="quem">A frase para levar à equipe</span>
+      </div>
+
+      <p class="texto"><b>Os limites.</b> Quem fez a pesquisa vende sistema de agenda e gestão para clínicas, e parte das reportagens é conteúdo de parceria. Os textos não dizem quando a coleta foi feita nem qual a precisão dos números. Tratamos como retrato do mercado, não como medida exata.</p>
+    </details>
+  </section>
+
+  <!-- ═════════ 02 ═════════ -->
+  <section class="materia" id="novidades">
+    <div class="titulo"><span class="n">02</span><h2>As novidades</h2><span class="fio"></span></div>
+    <p class="abertura">Cinco recortes sobre como as clínicas olham para a paciente, e como a paciente olha para elas. Em cada um, o que muda na sua agenda.</p>
+
+    <div class="numeros">
+      <div class="numero"><div class="big">67%</div><div class="lbl">das clínicas e hospitais <b>nunca desenharam o caminho da paciente</b>, segundo a Doctoralia</div></div>
+      <div class="numero"><div class="big">54%</div><div class="lbl">dos gestores <b>medem o sucesso pela paciente nova</b>, segundo a mesma pesquisa</div></div>
+      <div class="numero"><div class="big">32%</div><div class="lbl">das instituições <b>já usam inteligência artificial</b>; outras quarenta por cento pretendem usar</div></div>
+      <div class="numero"><div class="big">72%</div><div class="lbl">dos pacientes ouvidos <b>confiam na recomendação de quem já conhecem</b>, segundo o estudo Perfil do Paciente Digital</div></div>
+    </div>
+
+    <div class="recortes">
+
+      <article class="recorte">
+        <div class="ordem">01</div>
+        <div>
+          <h3>A maioria das clínicas nunca desenhou o caminho que a paciente faz</h3>
+          <div class="credito"><span class="frescor antes">🟡 mar/2026</span><span>Doctoralia · Viva · Medicina S/A</span></div>
+          <p class="texto">Sessenta e sete por cento das clínicas e hospitais disseram nunca ter mapeado a jornada do paciente. Ou seja: não sabem, passo a passo, por onde a paciente passa entre o primeiro contato e o retorno.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Mapear a jornada&rdquo; é anotar cada passo da paciente com a clínica e ver quem cuida de cada um. Parece burocracia, mas é o que mostra onde a conversa para.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que não voltou raramente avisa. Sem o caminho desenhado, a ausência dela só aparece como horário vazio, semanas depois.</p>
+          <div class="link"><a href="https://viva.com.br/saude-e-bem-estar/pesquisa-aponta-que-uso-da-ia-deve-ser-a-maior-tendencia-na-saude-em-2026.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">02</div>
+        <div>
+          <h3>Mais da metade dos gestores mede o sucesso pela paciente nova</h3>
+          <div class="credito"><span class="frescor antes">🟡 2026</span><span>Doctoralia · Medicina S/A (conteúdo de parceria)</span></div>
+          <p class="texto">Cinquenta e quatro por cento dos gestores ouvidos ainda medem o sucesso da clínica principalmente pela chegada de pacientes novas. A paciente que volta fica fora da conta.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>É como avaliar o mês só pelo número de fichas novas abertas, sem olhar quantas fichas antigas ganharam mais uma sessão.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> se a única conta que você faz é &ldquo;quantas chegaram&rdquo;, a paciente que deixou de vir não aparece em lugar nenhum. Vale olhar também &ldquo;quantas voltaram&rdquo;.</p>
+          <div class="link"><a href="https://medicinasa.com.br/doctoralia-panorana-2026/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">03</div>
+        <div>
+          <h3>Três em cada quatro clínicas pagam anúncio para trazer paciente</h3>
+          <div class="credito"><span class="frescor antes">🟡 2026</span><span>Doctoralia · Medicina S/A (conteúdo de parceria)</span></div>
+          <p class="texto">Segundo a pesquisa, setenta e cinco por cento das clínicas investem em anúncios pagos. O Instagram aparece como o principal canal de comunicação para a grande maioria delas.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>&ldquo;Anúncio pago&rdquo; é o post impulsionado ou a campanha que aparece para quem ainda não segue você. Toda paciente que chega por ele teve um custo antes de deitar na maca.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a paciente que veio pelo anúncio e não voltou para a segunda sessão é dinheiro do anúncio que ficou pelo caminho. A pesquisa não mede quantas voltam.</p>
+          <div class="link"><a href="https://medicinasa.com.br/doctoralia-panorana-2026/">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">04</div>
+        <div>
+          <h3>Uma em cada três clínicas já usa inteligência artificial, e marcar consulta está entre os usos mais comuns</h3>
+          <div class="credito"><span class="frescor antes">🟡 mar/2026</span><span>Viva, com dados da Doctoralia</span></div>
+          <p class="texto">Trinta e dois por cento das instituições já usam inteligência artificial e outras quarenta por cento pretendem usar. Entre as que usam, marcar consulta aparece bem à frente do uso em diagnóstico.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>Na prática, é o programa que responde a mensagem e oferece horário sozinho, como uma recepcionista que não dorme. Ele marca a consulta; não decide o tratamento.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> um programa pode marcar a primeira consulta. Se ninguém desenhou o que acontece depois, ele só acelera o começo de um caminho que continua sem fim combinado.</p>
+          <div class="link"><a href="https://viva.com.br/saude-e-bem-estar/pesquisa-aponta-que-uso-da-ia-deve-ser-a-maior-tendencia-na-saude-em-2026.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+      <article class="recorte">
+        <div class="ordem">05</div>
+        <div>
+          <h3>Sete em cada dez pacientes confiam mais na recomendação de quem já conhecem</h3>
+          <div class="credito"><span class="frescor antes">🟡 jan/2026</span><span>Viva, com dados do Perfil do Paciente Digital 2026 (Doctoralia)</span></div>
+          <p class="texto">No estudo, setenta e dois por cento dos pacientes disseram confiar nas recomendações diretas dos profissionais que conhecem. Só uma pequena parte confia primeiro no site da clínica ou em perfis verificados nas redes.</p>
+          <div class="traduz"><span class="r">Em português claro</span><p>A confiança mora na relação, não na vitrine. A paciente que já passou pela sua maca leva mais a sério o que você diz do que qualquer anúncio.</p></div>
+          <p class="texto"><b>Na sua agenda:</b> a orientação de quando voltar, dada no fim do procedimento, sai da boca de quem a paciente mais escuta: você.</p>
+          <div class="link"><a href="https://viva.com.br/saude-e-bem-estar/mais-de-88-milhoes-de-consultas-medicas-foram-agendadas-online-em-2025.html">clique aqui para ler</a></div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="texto">De volta à ideia do começo: <b>quem não sabe por onde a paciente passa não consegue ver onde ela se perde.</b> As clínicas gastam com anúncio e começam a usar programas na recepção. O pedaço que quase ninguém desenhou é o depois, justamente onde a paciente diz que mais confia em você.</p>
+  </section>
+
+  <!-- ═════════ 03 ═════════ -->
+  <section class="materia" id="fontes">
+    <div class="titulo"><span class="n">03</span><h2>De onde veio cada informação</h2><span class="fio"></span></div>
+    <p class="texto">Tudo que está escrito acima saiu de uma destas fontes. O que não deu para confirmar está logo abaixo, com o mesmo destaque.</p>
+
+    <ol class="src">
+      <li><b>Viva</b>, 18/03/2026: &ldquo;Pesquisa aponta que uso de IA deve ser a maior tendência na saúde em 2026&rdquo;, com dados do Panorama das Clínicas e Hospitais 2026, da Doctoralia (sessenta e sete por cento sem a jornada mapeada; trinta e dois por cento usando inteligência artificial e quarenta por cento planejando; uso em agendamento à frente do diagnóstico). <a href="https://viva.com.br/saude-e-bem-estar/pesquisa-aponta-que-uso-da-ia-deve-ser-a-maior-tendencia-na-saude-em-2026.html">clique aqui para ler</a></li>
+      <li><b>Medicina S/A</b>, conteúdo de parceria, sem data na página: &ldquo;67% das clínicas no Brasil não conhecem a jornada do paciente, revela pesquisa inédita da Doctoralia&rdquo; (mais de seiscentos gestores; cinquenta e quatro por cento medem sucesso pela paciente nova; setenta e cinco por cento investem em anúncio pago; oitenta e cinco por cento usam o Instagram como principal canal). <a href="https://medicinasa.com.br/doctoralia-panorana-2026/">clique aqui para ler</a></li>
+      <li><b>Medicina S/A</b>, conteúdo de parceria de uma empresa do mesmo grupo: &ldquo;Gestão integrada: o caminho para uma nova experiência na saúde&rdquo; (repete o dado de sessenta e sete por cento e informa que a pesquisa foi feita em parceria). <a href="https://medicinasa.com.br/?p=167547">clique aqui para ler</a></li>
+      <li><b>Viva</b>, 29/01/2026: &ldquo;Mais de 88 milhões de consultas médicas foram agendadas online em 2025&rdquo;, com dados do Perfil do Paciente Digital 2026, da Doctoralia (setenta e dois por cento confiam nas recomendações diretas dos profissionais que conhecem). <a href="https://viva.com.br/saude-e-bem-estar/mais-de-88-milhoes-de-consultas-medicas-foram-agendadas-online-em-2025.html">clique aqui para ler</a></li>
+    </ol>
+
+    <div class="traduz">
+      <span class="r">O que não deu para confirmar</span>
+      <p>Não lemos o relatório original do Panorama: os números vêm das reportagens, e duas delas são conteúdo de parceria de quem fez a pesquisa. A amostra aparece como &ldquo;mais de seiscentos gestores&rdquo; num texto e &ldquo;profissionais da área&rdquo; em outro; precisão dos números e período da coleta não foram informados. Em buscas apareceram três números atribuídos à mesma pesquisa que não encontramos nas páginas lidas: oitenta e sete por cento das clínicas agendando pelo WhatsApp, oitenta e seis por cento confirmando por lá e a falta sem aviso como o quinto maior desafio. Ficaram de fora. O total de &ldquo;oitenta e oito milhões de consultas agendadas online&rdquo; também ficou de fora, porque não bate com outros números da própria empresa. A pesquisa cobre clínicas e hospitais de todas as áreas da saúde; não há recorte só de estética.</p>
+    </div>
+  </section>
+
+  <!-- ═════════ INTERNO ═════════ -->
+  
+
+  <div class="assinatura">
+    Dossiê A Próxima Paciente · por My Glow Up<br>
+    Edição Nº 068 · sexta-feira, 27 de novembro de 2026<br>
+    Programa de indicação: MILHAS DA BELEZA · a paciente nunca paga nada
+  </div>
+
+</div>
+</body>
+</html>
